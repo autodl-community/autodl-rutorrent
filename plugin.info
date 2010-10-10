@@ -1,0 +1,6 @@
+author: autodl-irssi
+description: Easy to use GUI for autodl-irssi's autodl.cfg file
+remote: ok
+need_rtorrent: 0
+version: 1.00
+runlevel: 10.0

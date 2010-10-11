@@ -62,6 +62,15 @@
 #autodl-filters-contents-upload input {
 	width: 25em;
 }
+#autodl-prefs-contents-upload input {
+	width: 30em;
+}
+#autodl-prefs-contents-programs input {
+	width: 30em;
+}
+#autodl-prefs-contents-advanced input {
+	width: 20em;
+}
 
 #autodl-prefs {
 	height: 200px;

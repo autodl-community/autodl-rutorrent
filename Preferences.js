@@ -65,65 +65,7 @@ function Preferences()
 						'</td>' +
 					'</div>' +
 				'</div>' +
-				'<div id="autodl-prefs-contents-upload">' +
-					'<label for="autodl-upload-method">' + theUILang.autodlChooseUploadMethod + '</label>' +
-					'<select id="autodl-upload-method">' +
-						'<option>' + theUILang.autodlSaveToWatchFolder + '</option>' +
-						'<option>' + theUILang.autodlUtorrentWebui + '</option>' +
-						'<option>' + theUILang.autodlFtpUpoad + '</option>' +
-						'<option>' + theUILang.autodlRunProgram + '</option>' +
-						'<option>' + theUILang.autodlDynamicFolder + '</option>' +
-					'</select>' +
-					'<div id="autodl-upload-watchdir">' +
-						'<table>' +
-							'<tbody>' +
-								'<tr>' +
-									'<td><label for="autodl-upload-watchdir-folder">' + theUILang.autodlTorrentClientWatchFolder + '</label></td>' +
-									'<td><input type="text" id="autodl-upload-watchdir-folder" /></td>' +
-								'</tr>' +
-							'</tbody>' +
-						'</table>' +
-					'</div>' +
-					'<div id="autodl-upload-webui">' +
-						'<p>' + theUILang.autodlOnlyUtorrentWebui + '</p>' +
-						'<p>' + theUILang.autodlSettingsInPrefsWebui + '</p>' +
-					'</div>' +
-					'<div id="autodl-upload-ftp">' +
-						'<p>' + theUILang.autodlSettingsInPrefsFtp + '</p>' +
-						'<table>' +
-							'<tbody>' +
-								'<tr>' +
-									'<td><label for="autodl-upload-ftp-path">' + theUILang.autodlFtpPath + '</label</td>' +
-									'<td><input type="text" id="autodl-upload-ftp-path" /></td>' +
-								'</tr>' +
-							'</tbody>' +
-						'</table>' +
-					'</div>' +
-					'<div id="autodl-upload-program">' +
-						'<table>' +
-							'<tbody>' +
-								'<tr>' +
-									'<td><label for="autodl-upload-program-command">' + theUILang.autodlCommand + '</label</td>' +
-									'<td><input type="text" id="autodl-upload-program-command" /></td>' +
-								'</tr>' +
-								'<tr>' +
-									'<td><label for="autodl-upload-program-args">' + theUILang.autodlArguments + '</label</td>' +
-									'<td><input type="text" id="autodl-upload-program-args" /></td>' +
-								'</tr>' +
-							'</tbody>' +
-						'</table>' +
-					'</div>' +
-					'<div id="autodl-upload-dyndir">' +
-						'<table>' +
-							'<tbody>' +
-								'<tr>' +
-									'<td><label for="autodl-upload-dyndir-dir">' + theUILang.autodlFolder + '</label</td>' +
-									'<td><input type="text" id="autodl-upload-dyndir-dir" /></td>' +
-								'</tr>' +
-							'</tbody>' +
-						'</table>' +
-					'</div>' +
-				'</div>' +
+				'<div id="autodl-prefs-contents-upload"/>' +
 				'<div id="autodl-prefs-contents-webui">' +
 					'<p>' + theUILang.autodlOnlyUtorrentWebui2 + '</p>' +
 					'<table>' +
@@ -222,4 +164,6 @@ function Preferences()
 	this.tabs.add("autodl-prefs-tab-ftp", "autodl-prefs-contents-ftp");
 	this.tabs.add("autodl-prefs-tab-programs", "autodl-prefs-contents-programs");
 	this.tabs.add("autodl-prefs-tab-advanced", "autodl-prefs-contents-advanced");
+
+	this.uploadMethod = new UploadMethod("autodl-prefs-contents-upload");
 }

@@ -22,43 +22,40 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-function Tabs()
+// Base class
+function TabsBase()
 {
 	this.tabs = [];
 	this.selected = undefined;
 }
 
 /*
- * @param idAnchorElem	The id of the <a> element
- * @param idDivElem		The id of the <div> (content) element
+ * @param idTabElem		The id of the tab element
+ * @param idContentElem	The id of the content element
  */
-Tabs.prototype.add =
-function(idAnchorElem, idDivElem)
+TabsBase.prototype.add =
+function(idTabElem, idContentElem)
 {
 	var obj =
 	{
-		anchorElem:	document.getElementById(idAnchorElem),
-		divElem:	document.getElementById(idDivElem),
+		tabElem:		document.getElementById(idTabElem),
+		contentElem:	document.getElementById(idContentElem),
 	};
-	if (!obj.anchorElem)
-		throw "No <a> elem with id " + idAnchorElem;
-	if (!obj.divElem)
-		throw "No <div> elem with id " + idDivElem;
+	if (!obj.tabElem)
+		throw "No tab elem with id " + idTabElem;
+	if (!obj.contentElem)
+		throw "No content elem with id " + idContentElem;
 	this.tabs.push(obj);
-
-	var this_ = this;
-	$(obj.anchorElem).bind('mousedown', function(e)
-	{
-		this_._setNewSelected(obj);
-	});
 
 	this._makeUnselected(obj);
 	if (this.tabs.length === 1)
 		this._setNewSelected(obj);
+
+	return obj;
 }
 
 // Set a new selected tab
-Tabs.prototype._setNewSelected =
+TabsBase.prototype._setNewSelected =
 function(newSelected)
 {
 	if (newSelected === this.selected)
@@ -69,13 +66,49 @@ function(newSelected)
 	this.selected = newSelected;
 }
 
+TabsBase.prototype._makeUnselected =
+function(obj)
+{
+	if (!obj)
+		return;
+	$(obj.contentElem).css("display", "none");
+}
+
+TabsBase.prototype._makeSelected =
+function(obj)
+{
+	if (!obj)
+		return;
+	$(obj.contentElem).css("display", "block");
+}
+
+// Controls a tab header
+function Tabs()
+{
+	TabsBase.call(this);
+}
+Tabs.prototype = new TabsBase();
+Tabs.constructor = Tabs;
+
+Tabs.prototype.add =
+function(idTabElem, idContentElem)
+{
+	var obj = TabsBase.prototype.add.call(this, idTabElem, idContentElem);
+
+	var this_ = this;
+	$(obj.tabElem).bind('mousedown', function(e)
+	{
+		this_._setNewSelected(obj);
+	});
+}
+
 Tabs.prototype._makeUnselected =
 function(obj)
 {
 	if (!obj)
 		return;
-	$(obj.anchorElem).removeClass("selected");
-	$(obj.divElem).css("display", "none");
+	TabsBase.prototype._makeUnselected.call(this, obj);
+	$(obj.tabElem).removeClass("selected");
 }
 
 Tabs.prototype._makeSelected =
@@ -83,6 +116,27 @@ function(obj)
 {
 	if (!obj)
 		return;
-	$(obj.anchorElem).addClass("selected");
-	$(obj.divElem).css("display", "block");
+	TabsBase.prototype._makeSelected.call(this, obj);
+	$(obj.tabElem).addClass("selected");
+}
+
+// Similar to a tab header except it's using a drop down box
+function DropDownTabs(idSelect)
+{
+	TabsBase.call(this);
+
+	this.selectElem = document.getElementById(idSelect);
+
+	var this_ = this;
+	$(this.selectElem).bind("change", function(e) { this_._onChange(); })
+						// selectedIndex should be updated when we get a keyup event
+					  .bind("keyup", function(e) { this_._onChange(); });
+}
+DropDownTabs.prototype = new TabsBase();
+DropDownTabs.constructor = DropDownTabs;
+
+DropDownTabs.prototype._onChange =
+function()
+{
+	this._setNewSelected(this.tabs[this.selectElem.selectedIndex]);
 }

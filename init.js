@@ -47,6 +47,7 @@ function()
 	this.loadJavaScriptFiles(
 	[
 		'Tabs.js',
+		'UploadMethod.js',
 		'Preferences.js',
 		'Filters.js',
 	], function()

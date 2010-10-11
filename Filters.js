@@ -192,15 +192,7 @@ function Filters()
 							'</tbody>' +
 						'</table>' +
 					'</div>' +
-					'<div id="autodl-filters-contents-upload">' +
-						'<table>' +
-							'<tbody>' +
-								'<tr>' +
-									'<td>TODO: FIX THIS</td>' +
-								'</tr>' +
-							'</tbody>' +
-						'</table>' +
-					'</div>' +
+					'<div id="autodl-filters-contents-upload"/>' +
 				'</div>' +
 			'</div>' +
 			'<div class="aright buttons-list dlgbuttons">' +
@@ -216,4 +208,6 @@ function Filters()
 	this.tabs.add("autodl-filters-tab-music", "autodl-filters-contents-music");
 	this.tabs.add("autodl-filters-tab-advanced", "autodl-filters-contents-advanced");
 	this.tabs.add("autodl-filters-tab-upload", "autodl-filters-contents-upload");
+
+	this.uploadMethod = new UploadMethod("autodl-filters-contents-upload");
 }

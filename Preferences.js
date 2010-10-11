@@ -38,36 +38,32 @@ function Preferences()
 			'</div>' +
 			'<div id="autodl-prefs-contents">' +
 				'<div id="autodl-prefs-contents-general">' +
-					'<table>' +
-						'<tbody>' +
-							'<tr>' +
-								'<td><label for="autodl-max-saved-releases">' + theUILang.autodlMaxSavedRels + '</label></td>' +
-								'<td><input type="text" id="autodl-max-saved-releases" /></td>' +
-							'</tr>' +
-							'<tr>' +
-								'<td>' +
-									'<input type="checkbox" id="autodl-save-download-history" />' +
-									'<label for="autodl-save-download-history">' + theUILang.autodlSaveDlHist + '</label>' +
-								'</td>' +
-							'</tr>' +
-							'<tr>' +
-								'<td>' +
-									'<input type="checkbox" id="autodl-download-duplicates" />' +
-									'<label for="autodl-download-duplicates">' + theUILang.autodlDownloadDupes + '</label>' +
-								'</td>' +
-							'</tr>' +
-							'<tr>' +
-								'<td>' +
-									'<label for="autodl-automatic-updates">' + theUILang.autodlAutomaticUpdates + '</label>' +
-									'<select id="autodl-automatic-updates">' +
-										'<option>' + theUILang.autodlUpdateAutomatically + '</option>' +
-										'<option>' + theUILang.autodlAsk + '</option>' +
-										'<option>' + theUILang.autodlDontCheckForUpdates + '</option>' +
-									'</select>' +
-								'</td>' +
-							'</tr>' +
-						'</tbody>' +
-					'</table>' +
+					'<div>' +
+						'<td><label for="autodl-max-saved-releases">' + theUILang.autodlMaxSavedRels + '</label></td>' +
+						'<td><input type="text" id="autodl-max-saved-releases" /></td>' +
+					'</div>' +
+					'<div>' +
+						'<td>' +
+							'<input type="checkbox" id="autodl-save-download-history" />' +
+							'<label for="autodl-save-download-history">' + theUILang.autodlSaveDlHist + '</label>' +
+						'</td>' +
+					'</div>' +
+					'<div>' +
+						'<td>' +
+							'<input type="checkbox" id="autodl-download-duplicates" />' +
+							'<label for="autodl-download-duplicates">' + theUILang.autodlDownloadDupes + '</label>' +
+						'</td>' +
+					'</div>' +
+					'<div>' +
+						'<td>' +
+							'<label for="autodl-automatic-updates">' + theUILang.autodlAutomaticUpdates + '</label>' +
+							'<select id="autodl-automatic-updates">' +
+								'<option>' + theUILang.autodlUpdateAutomatically + '</option>' +
+								'<option>' + theUILang.autodlAsk + '</option>' +
+								'<option>' + theUILang.autodlDontCheckForUpdates + '</option>' +
+							'</select>' +
+						'</td>' +
+					'</div>' +
 				'</div>' +
 				'<div id="autodl-prefs-contents-upload">' +
 					'<label for="autodl-upload-method">' + theUILang.autodlChooseUploadMethod + '</label>' +
@@ -93,9 +89,9 @@ function Preferences()
 						'<p>' + theUILang.autodlSettingsInPrefsWebui + '</p>' +
 					'</div>' +
 					'<div id="autodl-upload-ftp">' +
+						'<p>' + theUILang.autodlSettingsInPrefsFtp + '</p>' +
 						'<table>' +
 							'<tbody>' +
-								'<p>' + theUILang.autodlSettingsInPrefsFtp + '</p>' +
 								'<tr>' +
 									'<td><label for="autodl-upload-ftp-path">' + theUILang.autodlFtpPath + '</label</td>' +
 									'<td><input type="text" id="autodl-upload-ftp-path" /></td>' +
@@ -129,9 +125,9 @@ function Preferences()
 					'</div>' +
 				'</div>' +
 				'<div id="autodl-prefs-contents-webui">' +
+					'<p>' + theUILang.autodlOnlyUtorrentWebui2 + '</p>' +
 					'<table>' +
 						'<tbody>' +
-							'<p>' + theUILang.autodlOnlyUtorrentWebui2 + '</p>' +
 							'<tr>' +
 								'<td><label for="autodl-webui-user">' + theUILang.autodlUserName + '</label></td>' +
 								'<td><input type="text" id="autodl-webui-user" /></td>' +
@@ -144,14 +140,10 @@ function Preferences()
 								'<td><label for="autodl-webui-port">' + theUILang.autodlPort + '</label></td>' +
 								'<td><input type="text" id="autodl-webui-port" /></td>' +
 							'</tr>' +
-							'<tr>' +
-								'<td>' +
-									'<input type="checkbox" id="autodl-webui-ssl" />' +
-									'<label for="autodl-webui-ssl">' + theUILang.autodlUseSsl + '</label>' +
-								'</td>' +
-							'</tr>' +
 						'</tbody>' +
 					'</table>' +
+					'<input type="checkbox" id="autodl-webui-ssl" />' +
+					'<label for="autodl-webui-ssl">' + theUILang.autodlUseSsl + '</label>' +
 				'</div>' +
 				'<div id="autodl-prefs-contents-ftp">' +
 					'<table>' +
@@ -216,7 +208,7 @@ function Preferences()
 					'</table>' +
 				'</div>' +
 			'</div>' +
-			'<div class="aright buttons-list">' +
+			'<div class="aright buttons-list dlgbuttons">' +
 				'<input type="button" value="' + theUILang.ok + '" class="OK Button" />' +
 				'<input type="button" value="' + theUILang.Cancel + '" class="Cancel Button" />' +
 			'</div>' +

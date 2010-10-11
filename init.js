@@ -84,7 +84,7 @@ function()
 	}
 	catch (ex)
 	{
-		log("autod-irssi: __init2: ex: " + ex);
+		log("autodl-irssi: __init2: ex: " + ex);
 		throw ex;
 	}
 }

@@ -45,14 +45,10 @@ function Filters()
 				'</div>' +
 				'<div id="autodl-filters-contents">' +
 					'<div id="autodl-filters-contents-general">' +
+						'<input type="checkbox" id="autodl-filters-enabled" />' +
+						'<label for="autodl-filters-enabled">' + theUILang.autodlEnabled + '</label>' +
 						'<table>' +
 							'<tbody>' +
-								'<tr>' +
-									'<td>' +
-										'<input type="checkbox" id="autodl-filters-enabled" />' +
-										'<label for="autodl-filters-enabled">' + theUILang.autodlEnabled + '</label>' +
-									'</td>' +
-								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-name">' + theUILang.autodlDisplayName + '</label></td>' +
 									'<td><input type="text" id="autodl-filters-name" /></td>' +
@@ -207,7 +203,7 @@ function Filters()
 					'</div>' +
 				'</div>' +
 			'</div>' +
-			'<div class="aright buttons-list">' +
+			'<div class="aright buttons-list dlgbuttons">' +
 				'<input type="button" value="' + theUILang.ok + '" class="OK Button" />' +
 				'<input type="button" value="' + theUILang.Cancel + '" class="Cancel Button" />' +
 			'</div>' +

@@ -32,12 +32,65 @@
 	background-image: url("../../images/settings.gif");
 }
 
+#autodl-filters {
+	height: 300px;
+	width: 600px;
+}
+#autodl-filters-left {
+	float: left;
+	height: 250px;
+}
+#autodl-filters-list {
+	height: 230px;
+	background-color: white;
+	margin: 5px;
+}
+#autodl-filters-right {
+}
+#autodl-filters-contents-general input {
+	width: 25em;
+}
+#autodl-filters-contents-tv input {
+	width: 25em;
+}
+#autodl-filters-contents-music input {
+	width: 30em;
+}
+#autodl-filters-contents-advanced input {
+	width: 25em;
+}
+#autodl-filters-contents-upload input {
+	width: 25em;
+}
+
+#autodl-prefs {
+	height: 200px;
+	width: 500px;
+}
+
+#autodl-filters select, #autodl-prefs select {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.dlgbuttons {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	padding: 3px;
+}
+.dlgbuttons input {
+	margin-left: 5px;
+}
+
 .tabs-header {
 	height: 18px;
-	margin: 0;
-	padding: 0;
 	list-style-type: none;
 	text-align: left;
+	margin: 0;
+	padding: 0;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 .tabs-header li {
 	display: inline;

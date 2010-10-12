@@ -140,14 +140,10 @@ function Preferences()
 								'<td><label for="autodl-advanced-output-level">' + theUILang.autodlDebugOutputLevel + '</label></td>' +
 								'<td><input type="text" id="autodl-advanced-output-level" /></td>' +
 							'</tr>' +
-							'<tr>' +
-								'<td>' +
-									'<input type="checkbox" id="autodl-advanced-debug" />' +
-									'<label for="autodl-advanced-debug">' + theUILang.autodlDebug + '</label>' +
-								'</td>' +
-							'</tr>' +
 						'</tbody>' +
 					'</table>' +
+					'<input type="checkbox" id="autodl-advanced-debug" />' +
+					'<label for="autodl-advanced-debug">' + theUILang.autodlDebug + '</label>' +
 				'</div>' +
 			'</div>' +
 			'<div class="aright buttons-list dlgbuttons">' +

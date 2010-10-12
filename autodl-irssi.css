@@ -33,12 +33,12 @@
 }
 
 #autodl-filters {
-	height: 300px;
+	height: 320px;
 	width: 600px;
 }
 #autodl-filters-left {
 	float: left;
-	height: 250px;
+	height: 270px;
 }
 #autodl-filters-list {
 	height: 230px;
@@ -47,28 +47,18 @@
 }
 #autodl-filters-right {
 }
-#autodl-filters-contents-general input {
+#autodl-filters-contents-general table input,
+#autodl-filters-contents-tv table input,
+#autodl-filters-contents-advanced table input,
+#autodl-filters-contents-upload table input {
 	width: 25em;
 }
-#autodl-filters-contents-tv input {
-	width: 25em;
-}
-#autodl-filters-contents-music input {
+#autodl-filters-contents-music table input,
+#autodl-prefs-contents-upload table input,
+#autodl-prefs-contents-programs table input {
 	width: 30em;
 }
-#autodl-filters-contents-advanced input {
-	width: 25em;
-}
-#autodl-filters-contents-upload input {
-	width: 25em;
-}
-#autodl-prefs-contents-upload input {
-	width: 30em;
-}
-#autodl-prefs-contents-programs input {
-	width: 30em;
-}
-#autodl-prefs-contents-advanced input {
+#autodl-prefs-contents-advanced table input {
 	width: 20em;
 }
 

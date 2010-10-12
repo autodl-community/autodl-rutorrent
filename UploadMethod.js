@@ -101,9 +101,3 @@ function(id)
 {
 	return "autodl-upload-" + id + "-" + this.num;
 }
-
-UploadMethod.prototype.$id =
-function(id)
-{
-	return "#" + this.id(id);
-}

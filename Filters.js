@@ -111,6 +111,7 @@ function Filters()
 						'</table>' +
 					'</div>' +
 					'<div id="autodl-filters-contents-music">' +
+						'<p>' + theUILang.autodlWhatWafflesOnly + '</p>' +
 						'<table>' +
 							'<tbody>' +
 								'<tr>' +

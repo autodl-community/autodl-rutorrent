@@ -61,6 +61,7 @@ theUILang.autodlResolutions = "Resolutions";
 theUILang.autodlEncoders = "Encoders";
 theUILang.autodlSources = "Sources";
 theUILang.autodlYears = "Years";
+theUILang.autodlWhatWafflesOnly = "Waffles and What.CD";
 theUILang.autodlArtists = "Artists";
 theUILang.autodlAlbums = "Albums";
 theUILang.autodlFormats = "Formats";

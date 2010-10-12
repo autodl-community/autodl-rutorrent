@@ -28,7 +28,7 @@
 function AutodlFilesDownloader(pluginUrl)
 {
 	this.pluginUrl = pluginUrl;
-	this.handler = [];
+	this.handler = null;
 	this.isDownloading = false;
 	this.files =
 	{
@@ -37,7 +37,7 @@ function AutodlFilesDownloader(pluginUrl)
 	}
 }
 
-AutodlFilesDownloader.prototype._notifyHandlers =
+AutodlFilesDownloader.prototype._notifyHandler =
 function(errorMessage)
 {
 	try
@@ -52,12 +52,12 @@ function(errorMessage)
 		}
 		catch (ex)
 		{
-			log("AutodlFilesDownloader._notifyHandlers: handler: ex: " + ex);
+			log("AutodlFilesDownloader._notifyHandler: handler: ex: " + ex);
 		}
 	}
 	catch (ex)
 	{
-		log("AutodlFilesDownloader._notifyHandlers: ex: " + ex);
+		log("AutodlFilesDownloader._notifyHandler: ex: " + ex);
 	}
 }
 
@@ -81,13 +81,13 @@ function(handler)
 			success: function(data, status) { this_._onGetfiles(data); },
 			error: function(xhr, status, ex)
 			{
-				this_._notifyHandlers("Could not get files listing");
+				this_._notifyHandler("Could not get files listing");
 			},
 		});
 	}
 	catch (ex)
 	{
-		this_._notifyHandlers("AutodlFilesDownloader.downloadAllFiles: ex: " + ex);
+		this_._notifyHandler("AutodlFilesDownloader.downloadAllFiles: ex: " + ex);
 	}
 }
 
@@ -97,7 +97,7 @@ function(data)
 	try
 	{
 		if (data.error)
-			return this._notifyHandlers("Error getting files listing: " + data.error);
+			return this._notifyHandler("Error getting files listing: " + data.error);
 
 		this.files.trackers = [];
 		this._downloadFiles(data.files);
@@ -122,7 +122,7 @@ function(handler)
 	}
 	catch (ex)
 	{
-		this_._notifyHandlers("AutodlFilesDownloader.downloadAllFiles: ex: " + ex);
+		this_._notifyHandler("AutodlFilesDownloader.downloadAllFiles: ex: " + ex);
 	}
 }
 
@@ -147,7 +147,7 @@ function()
 	try
 	{
 		if (this.filenameIndex >= this.filenames.length)
-			return this._notifyHandlers("");
+			return this._notifyHandler("");
 		var filename = this.filenames[this.filenameIndex++];
 
 		var dataType;
@@ -166,7 +166,7 @@ function()
 			success: function(data, status) { this_._gotFileData(data, filename); },
 			error: function(xhr, status, ex)
 			{
-				this_._notifyHandlers("Could not read file " + filename);
+				this_._notifyHandler("Could not read file " + filename);
 			},
 		});
 	}

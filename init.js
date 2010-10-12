@@ -50,6 +50,7 @@ function()
 		'UploadMethod.js',
 		'Preferences.js',
 		'Filters.js',
+		'AutodlFilesDownloader.js',
 	], function()
 	{
 		this_.loadLang(true);
@@ -82,6 +83,12 @@ function()
 
 		this.preferences = new Preferences();
 		this.filters = new Filters();
+
+		this.filesDownloader = new AutodlFilesDownloader(this.path);
+		this.filesDownloader.downloadAllFiles(function()
+		{
+			//TODO:
+		});
 	}
 	catch (ex)
 	{

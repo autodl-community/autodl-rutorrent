@@ -57,7 +57,7 @@ else {
 $stat = stat($pathname);
 if ($stat !== false) {
 	$mtime = $stat[9];
-	$etag = '"' . md5($mtime . $pathname) . '"';
+	$etag = '"' . md5($mtime . '-' . $pathname) . '"';
 	checkSameFile($etag, $mtime);
 }
 $data = file_get_contents($pathname);

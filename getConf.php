@@ -37,7 +37,7 @@ function isValidFilename($filename) {
 	return !!preg_match('/^[\w .\-]+$/', $filename);
 }
 
-// Sends a 304 if it's the same file (and exits) or returns if the file has changed
+// Sends a 304 if it's the same file (and exists) or returns if the file has changed
 // with added ETag and Last-Modified HTTP headers.
 function checkSameFile($etag, $mtime) {
 	if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) &&

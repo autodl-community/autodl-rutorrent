@@ -40,15 +40,12 @@ function isValidFilename($filename) {
 // Sends a 304 if it's the same file (and exists) or returns if the file has changed
 // with added ETag and Last-Modified HTTP headers.
 function checkSameFile($etag, $mtime) {
-	if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) &&
-		isset($_SERVER['HTTP_IF_NONE_MATCH']) &&
-		strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) === $mtime &&
+	header("ETag: $etag");
+	if (isset($_SERVER['HTTP_IF_NONE_MATCH']) &&
 		trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
 		header("HTTP/1.1 304 Not Modified");
 		exit;
 	}
-	header("ETag: $etag");
-	header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $mtime) . ' GMT');
 }
 
 $irssiScriptDirectory = removeEndingSlash($irssiScriptDirectory);

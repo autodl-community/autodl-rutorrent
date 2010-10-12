@@ -51,27 +51,27 @@ function Filters()
 							'<tbody>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-name">' + theUILang.autodlDisplayName + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-name" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-name" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-match-releases">' + theUILang.autodlMatchReleases + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-match-releases" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-match-releases" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-except-releases">' + theUILang.autodlExceptReleases + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-except-releases" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-except-releases" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-match-sites">' + theUILang.autodlMatchSites + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-match-sites" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-match-sites" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-min-size">' + theUILang.autodlMinimumSize + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-min-size" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-min-size" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-max-size">' + theUILang.autodlMaximumSize + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-max-size" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-max-size" /></td>' +
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
@@ -81,31 +81,31 @@ function Filters()
 							'<tbody>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-tv-show">' + theUILang.autodlTvShowMovie + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-tv-show" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-tv-show" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-seasons">' + theUILang.autodlSeasons + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-seasons" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-seasons" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-episodes">' + theUILang.autodlEpisodes + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-episodes" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-episodes" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-resolutions">' + theUILang.autodlResolutions + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-resolutions" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-resolutions" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-encoders">' + theUILang.autodlEncoders + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-encoders" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-encoders" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-sources">' + theUILang.autodlSources + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-sources" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-sources" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-years1">' + theUILang.autodlYears + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-years1" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-years1" /></td>' +
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
@@ -116,31 +116,31 @@ function Filters()
 							'<tbody>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-years2">' + theUILang.autodlYears + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-years2" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-years2" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-artists">' + theUILang.autodlArtists + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-artists" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-artists" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-albums">' + theUILang.autodlAlbums + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-albums" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-albums" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-formats">' + theUILang.autodlFormats + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-formats" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-formats" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-bitrates">' + theUILang.autodlBitrates + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-bitrates" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-bitrates" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-media">' + theUILang.autodlMedia + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-media" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-media" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-tags">' + theUILang.autodlTags + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-tags" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-tags" /></td>' +
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
@@ -168,27 +168,27 @@ function Filters()
 							'<tbody>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-match-categories">' + theUILang.autodlMatchCategories + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-match-categories" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-match-categories" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-except-categories">' + theUILang.autodlExceptCategories + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-except-categories" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-except-categories" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-match-uploaders">' + theUILang.autodlMatchUploaders + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-match-uploaders" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-match-uploaders" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-except-uploaders">' + theUILang.autodlExceptUploaders + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-except-uploaders" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-except-uploaders" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-except-sites">' + theUILang.autodlExceptSites + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-except-sites" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-except-sites" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-max-pretime">' + theUILang.autodlMaxPreTime + '</label></td>' +
-									'<td><input type="text" id="autodl-filters-max-pretime" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-max-pretime" /></td>' +
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +

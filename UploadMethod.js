@@ -40,7 +40,7 @@ function UploadMethod(idParent)
 				'<tbody>' +
 					'<tr>' +
 						'<td><label for="' + this.id("watchdir-folder") + '">' + theUILang.autodlTorrentClientWatchFolder + '</label></td>' +
-						'<td><input type="text" id="' + this.id("watchdir-folder") + '" /></td>' +
+						'<td><input type="text" class="textbox" id="' + this.id("watchdir-folder") + '" /></td>' +
 					'</tr>' +
 				'</tbody>' +
 			'</table>' +
@@ -55,7 +55,7 @@ function UploadMethod(idParent)
 				'<tbody>' +
 					'<tr>' +
 						'<td><label for="' + this.id("ftp-path") + '">' + theUILang.autodlFtpPath + '</label</td>' +
-						'<td><input type="text" id="' + this.id("ftp-path") + '" /></td>' +
+						'<td><input type="text" class="textbox" id="' + this.id("ftp-path") + '" /></td>' +
 					'</tr>' +
 				'</tbody>' +
 			'</table>' +
@@ -65,11 +65,11 @@ function UploadMethod(idParent)
 				'<tbody>' +
 					'<tr>' +
 						'<td><label for="' + this.id("program-command") + '">' + theUILang.autodlCommand + '</label</td>' +
-						'<td><input type="text" id="' + this.id("program-command") + '" /></td>' +
+						'<td><input type="text" class="textbox" id="' + this.id("program-command") + '" /></td>' +
 					'</tr>' +
 					'<tr>' +
 						'<td><label for="' + this.id("program-args") + '">' + theUILang.autodlArguments + '</label</td>' +
-						'<td><input type="text" id="' + this.id("program-args") + '" /></td>' +
+						'<td><input type="text" class="textbox" id="' + this.id("program-args") + '" /></td>' +
 					'</tr>' +
 				'</tbody>' +
 			'</table>' +
@@ -79,7 +79,7 @@ function UploadMethod(idParent)
 				'<tbody>' +
 					'<tr>' +
 						'<td><label for="' + this.id("dyndir-dir") + '">' + theUILang.autodlFolder + '</label</td>' +
-						'<td><input type="text" id="' + this.id("dyndir-dir") + '" /></td>' +
+						'<td><input type="text" class="textbox" id="' + this.id("dyndir-dir") + '" /></td>' +
 					'</tr>' +
 				'</tbody>' +
 			'</table>' +

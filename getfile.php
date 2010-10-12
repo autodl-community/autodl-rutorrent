@@ -54,16 +54,15 @@ else {
 	notFound();
 }
 
-// Let the browser know if the file hasn't been modified since last download
 $stat = stat($pathname);
-$data = file_get_contents($pathname);
-if ($data === false && $fileMustExist)
-	notFound();
 if ($stat !== false) {
 	$mtime = $stat[9];
 	$etag = '"' . md5($mtime . $pathname) . '"';
 	checkSameFile($etag, $mtime);
 }
+$data = file_get_contents($pathname);
+if ($data === false && $fileMustExist)
+	notFound();
 
 header("Content-Type: $contentType");
 if ($data !== false)

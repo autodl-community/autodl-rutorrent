@@ -47,18 +47,18 @@
 }
 #autodl-filters-right {
 }
-#autodl-filters-contents-general table input,
-#autodl-filters-contents-tv table input,
-#autodl-filters-contents-advanced table input,
-#autodl-filters-contents-upload table input {
+#autodl-filters-contents-general .textbox,
+#autodl-filters-contents-tv .textbox,
+#autodl-filters-contents-advanced .textbox,
+#autodl-filters-contents-upload .textbox {
 	width: 25em;
 }
-#autodl-filters-contents-music table input,
-#autodl-prefs-contents-upload table input,
-#autodl-prefs-contents-programs table input {
+#autodl-filters-contents-music .textbox,
+#autodl-prefs-contents-upload .textbox,
+#autodl-prefs-contents-programs .textbox {
 	width: 30em;
 }
-#autodl-prefs-contents-advanced table input {
+#autodl-prefs-contents-advanced .textbox {
 	width: 20em;
 }
 

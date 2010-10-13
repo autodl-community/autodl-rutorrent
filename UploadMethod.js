@@ -22,19 +22,25 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-function UploadMethod(idParent)
+function UploadMethod(configFile, idParent)
 {
+	this.configFile = configFile;
+
 	this.num = UploadMethod.num++;
 
 	$("#" + idParent).html(
 		'<label for="' + this.id("method") + '">' + theUILang.autodlChooseUploadMethod + '</label>' +
 		'<select id="' + this.id("method") + '">' +
+			'<option id="' + this.id("method-nothing") + '">' + theUILang.autodlChoose + '</option>' +
 			'<option id="' + this.id("method-watchdir") + '">' + theUILang.autodlSaveToWatchFolder + '</option>' +
 			'<option id="' + this.id("method-webui") + '">' + theUILang.autodlUtorrentWebui + '</option>' +
 			'<option id="' + this.id("method-ftp") + '">' + theUILang.autodlFtpUpoad + '</option>' +
 			'<option id="' + this.id("method-program") + '">' + theUILang.autodlRunProgram + '</option>' +
 			'<option id="' + this.id("method-dyndir") + '">' + theUILang.autodlDynamicFolder + '</option>' +
 		'</select>' +
+		'<div id="' + this.id("nothing") + '">' +
+			'<p>' + theUILang.autodlChooseMethod + '</p>' +
+		'</div>' +
 		'<div id="' + this.id("watchdir") + '">' +
 			'<table>' +
 				'<tbody>' +
@@ -87,11 +93,21 @@ function UploadMethod(idParent)
 	);
 
 	this.dropdown = new DropDownTabs(this.id("method"));
-	this.dropdown.add(this.id("method-watchdir"), this.id("watchdir"));
-	this.dropdown.add(this.id("method-webui"), this.id("webui"));
-	this.dropdown.add(this.id("method-ftp"), this.id("ftp"));
-	this.dropdown.add(this.id("method-program"), this.id("program"));
-	this.dropdown.add(this.id("method-dyndir"), this.id("dyndir"));
+	this.dropdown.add(this.id("method-nothing"), this.id("nothing"), "");
+	this.dropdown.add(this.id("method-watchdir"), this.id("watchdir"), "watchdir");
+	this.dropdown.add(this.id("method-webui"), this.id("webui"), "webui");
+	this.dropdown.add(this.id("method-ftp"), this.id("ftp"), "ftp");
+	this.dropdown.add(this.id("method-program"), this.id("program"), "exec");
+	this.dropdown.add(this.id("method-dyndir"), this.id("dyndir"), "dyndir");
+
+	this.options =
+	[
+		new DialogOptionText(this.id("watchdir-folder"), "upload-watch-dir", ""),
+		new DialogOptionText(this.id("ftp-path"), "upload-ftp-path", ""),
+		new DialogOptionText(this.id("program-command"), "upload-command", ""),
+		new DialogOptionText(this.id("program-args"), "upload-args", ""),
+		new DialogOptionText(this.id("dyndir-dir"), "upload-dyndir", ""),
+	];
 }
 
 UploadMethod.num = 0;
@@ -100,4 +116,14 @@ UploadMethod.prototype.id =
 function(id)
 {
 	return "autodl-upload-" + id + "-" + this.num;
+}
+
+UploadMethod.prototype.initDialogBox =
+function(sectionType, sectionName)
+{
+	_initDialogOptions(this.configFile, sectionType, sectionName, this.options);
+
+	var section = this.configFile.getSection(sectionType, sectionName);
+	var option = section.getOption("upload-type", "", "text");
+	this.dropdown.select(option.getValue());
 }

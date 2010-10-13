@@ -37,6 +37,12 @@ function AutodlFilesDownloader(pluginUrl)
 	};
 }
 
+AutodlFilesDownloader.prototype.getConfigFile =
+function()
+{
+	return this.files.config;
+}
+
 AutodlFilesDownloader.prototype._notifyHandler =
 function(errorMessage)
 {

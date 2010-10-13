@@ -22,8 +22,10 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-function Preferences()
+function Preferences(configFile)
 {
+	this.configFile = configFile;
+
 	theDialogManager.make("autodl-preferences", theUILang.autodlPreferences,
 		'<div id="autodl-prefs">' +
 			'<div id="autodl-prefs-tabs">' +
@@ -161,5 +163,54 @@ function Preferences()
 	this.tabs.add("autodl-prefs-tab-programs", "autodl-prefs-contents-programs");
 	this.tabs.add("autodl-prefs-tab-advanced", "autodl-prefs-contents-advanced");
 
-	this.uploadMethod = new UploadMethod("autodl-prefs-contents-upload");
+	this.dropDownBox = new DropDownBox("autodl-automatic-updates");
+	this.dropDownBox.add("auto");
+	this.dropDownBox.add("ask");
+	this.dropDownBox.add("disabled");
+
+	this.uploadMethod = new UploadMethod(this.configFile, "autodl-prefs-contents-upload");
+}
+
+Preferences.prototype.options =
+[
+	new DialogOptionInt("autodl-max-saved-releases", "max-saved-releases", "1000"),
+	new DialogOptionBool("autodl-save-download-history", "save-download-history", "true"),
+	new DialogOptionBool("autodl-download-duplicates", "download-duplicates", "false"),
+	new DialogOptionText("autodl-programs-utorrent", "path-utorrent", ""),
+	new DialogOptionText("autodl-advanced-user-agent", "user-agent", "autodl-irssi"),
+	new DialogOptionText("autodl-advanced-tracker-user-agent", "user-agent-tracker", ""),
+	new DialogOptionText("autodl-advanced-peer-id", "peer-id", ""),
+	new DialogOptionInt("autodl-advanced-max-download-retry-time", "download-retry-time-seconds", "300"),
+	new DialogOptionInt("autodl-advanced-output-level", "output-level", "3"),
+	new DialogOptionBool("autodl-advanced-debug", "debug", "false"),
+];
+
+Preferences.prototype.webui =
+[
+	new DialogOptionText("autodl-webui-user", "user", ""),
+	new DialogOptionText("autodl-webui-password", "password", ""),
+	new DialogOptionText("autodl-webui-hostname", "hostname", ""),
+	new DialogOptionInt("autodl-webui-port", "port", "0"),
+	new DialogOptionBool("autodl-webui-ssl", "ssl", "false"),
+];
+
+Preferences.prototype.ftp =
+[
+	new DialogOptionText("autodl-ftp-user", "user", ""),
+	new DialogOptionText("autodl-ftp-password", "password", ""),
+	new DialogOptionText("autodl-ftp-hostname", "hostname", ""),
+	new DialogOptionInt("autodl-ftp-port", "port", "0"),
+];
+
+Preferences.prototype.initDialogBox =
+function()
+{
+	this.uploadMethod.initDialogBox("options", null);
+	_initDialogOptions(this.configFile, "options", null, this.options);
+	_initDialogOptions(this.configFile, "webui", null, this.webui);
+	_initDialogOptions(this.configFile, "ftp", null, this.ftp);
+
+	var section = this.configFile.getSection("options", null);
+	var option = section.getOption("update-check", "ask", "text");
+	this.dropDownBox.select(option.getValue());
 }

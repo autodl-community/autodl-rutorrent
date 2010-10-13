@@ -140,3 +140,26 @@ function()
 {
 	this._setNewSelected(this.tabs[this.selectElem.selectedIndex]);
 }
+
+DropDownTabs.prototype.add =
+function(idTabElem, idContentElem, value)
+{
+	var obj = TabsBase.prototype.add.call(this, idTabElem, idContentElem);
+	obj.value = value;
+}
+
+DropDownTabs.prototype.select =
+function(value)
+{
+	for (var i = 0; i < this.tabs.length; i++)
+	{
+		if (this.tabs[i].value === value)
+		{
+			this.selectElem.selectedIndex = i;
+			this._setNewSelected(this.tabs[i]);
+			return;
+		}
+	}
+
+	log("DropDownTabs: Could not find value " + value);
+}

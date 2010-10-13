@@ -47,6 +47,7 @@ function()
 	this.loadJavaScriptFiles(
 	[
 		'Tabs.js',
+		'DialogUtils.js',
 		'UploadMethod.js',
 		'Preferences.js',
 		'Filters.js',
@@ -83,8 +84,8 @@ function()
 		));
 
 		this.configFile = new ConfigFile();
-		this.preferences = new Preferences();
-		this.filters = new Filters();
+		this.preferences = new Preferences(this.configFile);
+		this.filters = new Filters(this.configFile);
 
 		this.filesDownloader = new AutodlFilesDownloader(this.path);
 		this.filesDownloader.downloadAllFiles(function()

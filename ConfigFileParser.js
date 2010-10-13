@@ -59,6 +59,30 @@ function()
 	return this.name + " = " + this.value;
 }
 
+ConfigOption.prototype.setDefaultValue =
+function(defaultValue, type)
+{
+	if (defaultValue != null)
+		this.defaultValue = defaultValue;
+	if (type != null)
+		this.type = type;
+}
+
+ConfigOption.prototype.getValue =
+function()
+{
+	switch (this.type)
+	{
+	case "bool":
+		return convertStringToBoolean(this.value);
+	case "int":
+		return convertStringToInteger(this.value, this.defaultValue);
+	case "text":
+	default:
+		return this.value;
+	}
+}
+
 function ConfigComment(id, name, line)
 {
 	this.type = "comment";
@@ -101,6 +125,17 @@ function(line)
 	var name = " comment " + id;
 	var comment = new ConfigComment(id, name, line);
 	this.lines[comment.name] = comment;
+}
+
+ConfigSection.prototype.getOption =
+function(name, defaultValue, type)
+{
+	var hash = $.trim(name);
+	var option = this.lines[hash];
+	if (!option)
+		this.lines[hash] = option = new ConfigOption(this.nextId++, name, defaultValue);
+	option.setDefaultValue(defaultValue, type);
+	return option;
 }
 
 ConfigSection.prototype.toString =
@@ -158,9 +193,7 @@ function(contents)
 			var type = $.trim(ary[1]).toLowerCase();
 			var name = $.trim(ary[2]);
 
-			section = this.sections[type + " " + name];
-			if (!section)
-				this.sections[type + " " + name] = section = new ConfigSection(this.id++, type, name);
+			section = this.getSection(type, name);
 		}
 		else if (ary = line.match(/^([\w\-]+)\s*=(.*)$/))
 		{
@@ -195,4 +228,14 @@ function()
 	}
 
 	return out;
+}
+
+ConfigFile.prototype.getSection =
+function(type, name)
+{
+	var hash = $.trim(type) + " " + $.trim(name);
+	var section = this.sections[hash];
+	if (!section)
+		this.sections[hash] = section = new ConfigSection(this.id++, type, name);
+	return section;
 }

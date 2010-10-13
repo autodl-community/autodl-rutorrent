@@ -51,6 +51,7 @@ function()
 		'Preferences.js',
 		'Filters.js',
 		'AutodlFilesDownloader.js',
+		'ConfigFileParser.js',
 	], function()
 	{
 		this_.loadLang(true);
@@ -81,6 +82,7 @@ function()
 			'<div class="TB_Separator" />'
 		));
 
+		this.configFile = new ConfigFile();
 		this.preferences = new Preferences();
 		this.filters = new Filters();
 

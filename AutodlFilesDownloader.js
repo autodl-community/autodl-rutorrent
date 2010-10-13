@@ -34,7 +34,7 @@ function AutodlFilesDownloader(pluginUrl)
 	{
 		config: "",
 		trackers: [],
-	}
+	};
 }
 
 AutodlFilesDownloader.prototype._notifyHandler =
@@ -87,7 +87,7 @@ function(handler)
 	}
 	catch (ex)
 	{
-		this_._notifyHandler("AutodlFilesDownloader.downloadAllFiles: ex: " + ex);
+		this._notifyHandler("AutodlFilesDownloader.downloadAllFiles: ex: " + ex);
 	}
 }
 
@@ -104,7 +104,7 @@ function(data)
 	}
 	catch (ex)
 	{
-		log("AutodlFilesDownloader._onGetfiles: ex: " + ex);
+		this._notifyHandler("AutodlFilesDownloader._onGetfiles: ex: " + ex);
 	}
 }
 
@@ -122,7 +122,7 @@ function(handler)
 	}
 	catch (ex)
 	{
-		this_._notifyHandler("AutodlFilesDownloader.downloadAllFiles: ex: " + ex);
+		this._notifyHandler("AutodlFilesDownloader.downloadAllFiles: ex: " + ex);
 	}
 }
 
@@ -137,7 +137,7 @@ function(aryFiles)
 	}
 	catch (ex)
 	{
-		log("AutodlFilesDownloader._downloadFiles: ex: " + ex);
+		this._notifyHandler("AutodlFilesDownloader._downloadFiles: ex: " + ex);
 	}
 }
 
@@ -172,7 +172,7 @@ function()
 	}
 	catch (ex)
 	{
-		log("AutodlFilesDownloader._getNextFile: ex: " + ex);
+		this._notifyHandler("AutodlFilesDownloader._getNextFile: ex: " + ex);
 	}
 }
 
@@ -192,6 +192,6 @@ function(data, filename)
 	}
 	catch (ex)
 	{
-		log("AutodlFilesDownloader._gotFileData: ex: " + ex);
+		this._notifyHandler("AutodlFilesDownloader._gotFileData: ex: " + ex);
 	}
 }

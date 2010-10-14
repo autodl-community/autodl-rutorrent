@@ -93,7 +93,12 @@ function initDialogOptions(section, aryDlgOptions)
 		var dlgOption = aryDlgOptions[i];
 		var val = getSectionOptionValue(section, dlgOption.name, dlgOption.defaultValue, dlgOption.type);
 		if (dlgOption.type === "bool")
-			enableJqueryElem($("#" + dlgOption.id), val);
+		{
+			if (val)
+				$("#" + dlgOption.id).attr("checked", "checked");
+			else
+				$("#" + dlgOption.id).removeAttr("checked");
+		}
 		else
 			$("#" + dlgOption.id).val(val);
 	}

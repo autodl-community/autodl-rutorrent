@@ -53,6 +53,7 @@ function()
 		'Filters.js',
 		'AutodlFilesDownloader.js',
 		'ConfigFileParser.js',
+		'MyDialogManager.js',
 	], function()
 	{
 		this_.loadLang(true);
@@ -72,25 +73,26 @@ function()
 {
 	try
 	{
+		var this_ = this;
+		this.dialogManager = new MyDialogManager(this.path);
+
 		// Add our button to the left of the About button
 		$("#mnu_help").before($(
-			'<a id="mnu_autodl" title="autodl-irssi" onfocus="this.blur()" onclick="theDialogManager.toggle(\'autodl-preferences\'); return false;" href="void()">' +
+			'<a id="mnu_autodl" title="autodl-irssi" onfocus="this.blur()" href="javascript:void(0)">' +
 				'<div id="autodl">autodl</div>' +
 			'</a>' +
-			'<a id="mnu_autodl2" title="autodl-irssi" onfocus="this.blur()" onclick="theDialogManager.toggle(\'autodl-filters\'); return false;" href="void()">' +
+			'<a id="mnu_autodl2" title="autodl-irssi" onfocus="this.blur()" href="javascript:void(0)">' +
 				'<div id="autodl2">filters</div>' +
 			'</a>' +
 			'<div class="TB_Separator" />'
 		));
-
-		this.configFile = new ConfigFile();
-		this.preferences = new Preferences(this.configFile);
-		this.filters = new Filters(this.configFile);
-
-		this.filesDownloader = new AutodlFilesDownloader(this.path);
-		this.filesDownloader.downloadAllFiles(function()
+		$("#mnu_autodl").click(function(e)
 		{
-			//TODO:
+			this_.dialogManager.toggleDialog("preferences");
+		});
+		$("#mnu_autodl2").click(function(e)
+		{
+			this_.dialogManager.toggleDialog("filters");
 		});
 	}
 	catch (ex)

@@ -76,7 +76,7 @@ function()
 	case "bool":
 		return convertStringToBoolean(this.value);
 	case "int":
-		return convertStringToInteger(this.value, this.defaultValue);
+		return convertStringToInteger(this.value, convertStringToInteger(this.defaultValue));
 	case "text":
 	default:
 		return this.value;

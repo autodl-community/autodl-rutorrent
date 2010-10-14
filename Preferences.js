@@ -22,10 +22,8 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-function Preferences(configFile)
+function Preferences()
 {
-	this.configFile = configFile;
-
 	theDialogManager.make("autodl-preferences", theUILang.autodlPreferences,
 		'<div id="autodl-prefs">' +
 			'<div id="autodl-prefs-tabs">' +
@@ -168,7 +166,7 @@ function Preferences(configFile)
 	this.dropDownBox.add("ask");
 	this.dropDownBox.add("disabled");
 
-	this.uploadMethod = new UploadMethod(this.configFile, "autodl-prefs-contents-upload");
+	this.uploadMethod = new UploadMethod("autodl-prefs-contents-upload", true);
 }
 
 Preferences.prototype.options =
@@ -203,14 +201,14 @@ Preferences.prototype.ftp =
 ];
 
 Preferences.prototype.initDialogBox =
-function()
+function(configFile)
 {
-	this.uploadMethod.initDialogBox("options", null);
-	_initDialogOptions(this.configFile, "options", null, this.options);
-	_initDialogOptions(this.configFile, "webui", null, this.webui);
-	_initDialogOptions(this.configFile, "ftp", null, this.ftp);
+	this.uploadMethod.initDialogBox(configFile, "options", null);
+	_initDialogOptions(configFile, "options", null, this.options);
+	_initDialogOptions(configFile, "webui", null, this.webui);
+	_initDialogOptions(configFile, "ftp", null, this.ftp);
 
-	var section = this.configFile.getSection("options", null);
+	var section = configFile.getSection("options", null);
 	var option = section.getOption("update-check", "ask", "text");
 	this.dropDownBox.select(option.getValue());
 }

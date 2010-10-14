@@ -22,16 +22,19 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-function UploadMethod(configFile, idParent)
+function UploadMethod(idParent, isPrefs)
 {
-	this.configFile = configFile;
-
 	this.num = UploadMethod.num++;
+
+	if (isPrefs)
+		var text = [theUILang.autodlChoose, theUILang.autodlChooseMethod];
+	else
+		var text = [theUILang.autodlOverride1, theUILang.autodlOverride2];
 
 	$("#" + idParent).html(
 		'<label for="' + this.id("method") + '">' + theUILang.autodlChooseUploadMethod + '</label>' +
 		'<select id="' + this.id("method") + '">' +
-			'<option id="' + this.id("method-nothing") + '">' + theUILang.autodlChoose + '</option>' +
+			'<option id="' + this.id("method-nothing") + '">' + text[0] + '</option>' +
 			'<option id="' + this.id("method-watchdir") + '">' + theUILang.autodlSaveToWatchFolder + '</option>' +
 			'<option id="' + this.id("method-webui") + '">' + theUILang.autodlUtorrentWebui + '</option>' +
 			'<option id="' + this.id("method-ftp") + '">' + theUILang.autodlFtpUpoad + '</option>' +
@@ -39,7 +42,7 @@ function UploadMethod(configFile, idParent)
 			'<option id="' + this.id("method-dyndir") + '">' + theUILang.autodlDynamicFolder + '</option>' +
 		'</select>' +
 		'<div id="' + this.id("nothing") + '">' +
-			'<p>' + theUILang.autodlChooseMethod + '</p>' +
+			'<p>' + text[1] + '</p>' +
 		'</div>' +
 		'<div id="' + this.id("watchdir") + '">' +
 			'<table>' +
@@ -119,11 +122,11 @@ function(id)
 }
 
 UploadMethod.prototype.initDialogBox =
-function(sectionType, sectionName)
+function(configFile, sectionType, sectionName)
 {
-	_initDialogOptions(this.configFile, sectionType, sectionName, this.options);
+	_initDialogOptions(configFile, sectionType, sectionName, this.options);
 
-	var section = this.configFile.getSection(sectionType, sectionName);
+	var section = configFile.getSection(sectionType, sectionName);
 	var option = section.getOption("upload-type", "", "text");
 	this.dropdown.select(option.getValue());
 }

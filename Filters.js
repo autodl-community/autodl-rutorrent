@@ -22,10 +22,8 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-function Filters(configFile)
+function Filters()
 {
-	this.configFile = configFile;
-
 	theDialogManager.make("autodl-filters", theUILang.autodlFilters,
 		'<div id="autodl-filters">' +
 			'<div id="autodl-filters-left">' +
@@ -212,11 +210,10 @@ function Filters(configFile)
 	this.tabs.add("autodl-filters-tab-advanced", "autodl-filters-contents-advanced");
 	this.tabs.add("autodl-filters-tab-upload", "autodl-filters-contents-upload");
 
-	this.uploadMethod = new UploadMethod(this.configFile, "autodl-filters-contents-upload");
+	this.uploadMethod = new UploadMethod("autodl-filters-contents-upload");
 }
 
 Filters.prototype.initDialogBox =
-function()
+function(configFile)
 {
-	this.uploadMethod.initDialogBox();
 }

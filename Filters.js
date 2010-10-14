@@ -30,7 +30,7 @@ function Filters()
 				'<div id="autodl-filters-list" />' +
 				'<div id="autodl-filters-list-buttons">' +
 					'<input type="button" class="Button" value="' + theUILang.autodlNew + '" />' +
-					'<input type="button" class="Button" value="' + theUILang.autodlRemove + '" />' +
+					'<input type="button" class="Button" id="autodl-filters-remove-button" value="' + theUILang.autodlRemove + '" />' +
 				'</div>' +
 			'</div>' +
 			'<div id="autodl-filters-right">' +
@@ -45,8 +45,6 @@ function Filters()
 				'</div>' +
 				'<div id="autodl-filters-contents">' +
 					'<div id="autodl-filters-contents-general">' +
-						'<input type="checkbox" id="autodl-filters-enabled" />' +
-						'<label for="autodl-filters-enabled">' + theUILang.autodlEnabled + '</label>' +
 						'<table>' +
 							'<tbody>' +
 								'<tr>' +
@@ -80,8 +78,8 @@ function Filters()
 						'<table>' +
 							'<tbody>' +
 								'<tr>' +
-									'<td><label for="autodl-filters-tv-show">' + theUILang.autodlTvShowMovie + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-tv-show" /></td>' +
+									'<td><label for="autodl-filters-shows">' + theUILang.autodlTvShowMovie + '</label></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-shows" /></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-seasons">' + theUILang.autodlSeasons + '</label></td>' +
@@ -203,6 +201,8 @@ function Filters()
 		'</div>'
 	);
 
+	var this_ = this;
+
 	this.tabs = new Tabs();
 	this.tabs.add("autodl-filters-tab-general", "autodl-filters-contents-general");
 	this.tabs.add("autodl-filters-tab-tv", "autodl-filters-contents-tv");
@@ -210,10 +210,122 @@ function Filters()
 	this.tabs.add("autodl-filters-tab-advanced", "autodl-filters-contents-advanced");
 	this.tabs.add("autodl-filters-tab-upload", "autodl-filters-contents-upload");
 
+	var names = ["scene", "log", "cue"];
+	for (var i = 0; i < names.length; i++)
+	{
+		var dropdown = new DropDownBox('autodl-filters-' + names[i]);
+		this[names[i] + "DropDownBox"] = dropdown;
+		dropdown.add("");
+		dropdown.add("true");
+		dropdown.add("false");
+	}
+
+	this.filterListBox = new ListBox("autodl-filters-list");
+	this.filterListBox.onSelected = function(oldObj, newObj) { this_._onFilterSelected(oldObj, newObj); }
+
 	this.uploadMethod = new UploadMethod("autodl-filters-contents-upload");
 }
 
-Filters.prototype.initDialogBox =
+Filters.prototype.onBeforeShow =
 function(configFile)
 {
+	this.initFilters(configFile);
 }
+
+Filters.prototype.onAfterHide =
+function()
+{
+	this.filterListBox.removeAll();
+	delete this.filterSections;
+}
+
+Filters.prototype.initFilters =
+function(configFile)
+{
+	this.nextId = 0;
+	var ary = configFile.getSectionsByType("filter");
+	this.filterSections = [];
+	for (var i = 0; i < ary.length; i++)
+		this.addFilterSection(ary[i].clone());
+
+	if (this.filterSections.length === 0)
+		this._onFilterSelected();
+	else
+		this.filterListBox.simulateSelect(0);
+}
+
+Filters.prototype.addFilterSection =
+function(section)
+{
+	var obj =
+	{
+		section: section,
+		idNum: this.nextId,
+	};
+	obj.checkboxElem = $('<input type="checkbox" />')[0];
+	obj.labelElem = $('<label>' + section.name + '</label>')[0];
+
+	if (section.getOption("enabled", "true", "bool").getValue())
+		$(obj.checkboxElem).attr("checked", "checked");
+
+	this.filterListBox.append($(obj.checkboxElem).add(obj.labelElem), obj);
+
+	this.filterSections.push(obj);
+	this.nextId++;
+}
+
+Filters.prototype._onFilterSelected =
+function(oldObj, newObj)
+{
+	if (oldObj)
+	{
+		//TODO: Save data in oldObj.section
+	}
+
+	var section = (newObj || {}).section;
+	initDialogOptions(section, this.options);
+	this.uploadMethod.initFields(section);
+	$("#autodl-filters-name").val(section ? section.name : "");
+
+	function setDropDown(dropdown, name)
+	{
+		var val = getSectionOptionValue(section, name, "", "text");
+		if (val !== "")
+			val = convertStringToBoolean(val, "");
+		dropdown.select(val.toString());
+	}
+	setDropDown(this.sceneDropDownBox, "scene");
+	setDropDown(this.logDropDownBox, "log");
+	setDropDown(this.cueDropDownBox, "cue");
+
+	var elems = $("#autodl-filters-remove-button").
+				add($("input, select", $("#autodl-filters-right")[0]));
+	enableJqueryElem(elems, !newObj);
+}
+
+Filters.prototype.options =
+[
+	new DialogOptionText("autodl-filters-match-releases", "match-releases", ""),
+	new DialogOptionText("autodl-filters-except-releases", "except-releases", ""),
+	new DialogOptionText("autodl-filters-match-categories", "match-categories", ""),
+	new DialogOptionText("autodl-filters-except-categories", "except-categories", ""),
+	new DialogOptionText("autodl-filters-match-sites", "match-sites", ""),
+	new DialogOptionText("autodl-filters-except-sites", "except-sites", ""),
+	new DialogOptionText("autodl-filters-min-size", "min-size", ""),
+	new DialogOptionText("autodl-filters-max-size", "max-size", ""),
+	new DialogOptionText("autodl-filters-shows", "shows", ""),
+	new DialogOptionText("autodl-filters-seasons", "seasons", ""),
+	new DialogOptionText("autodl-filters-episodes", "episodes", ""),
+	new DialogOptionText("autodl-filters-resolutions", "resolutions", ""),
+	new DialogOptionText("autodl-filters-sources", "sources", ""),
+	new DialogOptionText("autodl-filters-years1", "years", ""),
+	new DialogOptionText("autodl-filters-encoders", "encoders", ""),
+	new DialogOptionText("autodl-filters-albums", "albums", ""),
+	new DialogOptionText("autodl-filters-formats", "formats", ""),
+	new DialogOptionText("autodl-filters-bitrates", "bitrates", ""),
+	new DialogOptionText("autodl-filters-media", "media", ""),
+	new DialogOptionText("autodl-filters-tags", "tags", ""),
+	new DialogOptionText("autodl-filters-match-uploaders", "match-uploaders", ""),
+	new DialogOptionText("autodl-filters-except-uploaders", "except-uploaders", ""),
+	new DialogOptionText("autodl-filters-max-pretime", "max-pretime", ""),
+];

@@ -46,6 +46,7 @@ function()
 	this.loadMainCSS();
 	this.loadJavaScriptFiles(
 	[
+		'ListBox.js',
 		'Tabs.js',
 		'DialogUtils.js',
 		'UploadMethod.js',

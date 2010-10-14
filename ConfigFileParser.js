@@ -49,37 +49,59 @@ function ConfigOption(id, name, value)
 	this.id = id;
 	this.name = $.trim(name);
 	this.value = $.trim(value);
+	this.defaultValue = null;
+	this.optionType = null;
+}
+
+ConfigOption.prototype.clone =
+function()
+{
+	var clone = new ConfigOption(this.id, this.name, this.value);
+	clone.defaultValue = this.defaultValue;
+	clone.optionType = this.optionType;
+	return clone;
 }
 
 ConfigOption.prototype._toString =
 function()
 {
-	if (this.defaultValue != null && this.defaultValue === this.value)
-		return null;
+	if (this.defaultValue != null)
+	{
+		var value = this.getValue();
+		var defaultValue = this._getValue(this.optionType, this.defaultValue, this.defaultValue);
+		if (value === defaultValue)
+			return null;
+	}
 	return this.name + " = " + this.value;
 }
 
 ConfigOption.prototype.setDefaultValue =
-function(defaultValue, type)
+function(defaultValue, optionType)
 {
 	if (defaultValue != null)
 		this.defaultValue = defaultValue;
-	if (type != null)
-		this.type = type;
+	if (optionType != null)
+		this.optionType = optionType;
 }
 
 ConfigOption.prototype.getValue =
 function()
 {
-	switch (this.type)
+	return this._getValue(this.optionType, this.value, this.defaultValue);
+}
+
+ConfigOption.prototype._getValue =
+function(optionType, value, defaultValue)
+{
+	switch (optionType)
 	{
 	case "bool":
-		return convertStringToBoolean(this.value);
+		return convertStringToBoolean(value);
 	case "int":
-		return convertStringToInteger(this.value, convertStringToInteger(this.defaultValue));
+		return convertStringToInteger(value, convertStringToInteger(defaultValue));
 	case "text":
 	default:
-		return this.value;
+		return value;
 	}
 }
 
@@ -89,6 +111,13 @@ function ConfigComment(id, name, line)
 	this.id = id;
 	this.name = name;
 	this.value = line;
+}
+
+ConfigComment.prototype.clone =
+function()
+{
+	var clone = new ConfigComment(this.id, this.name, this.value);
+	return clone;
 }
 
 ConfigComment.prototype._toString =
@@ -109,6 +138,19 @@ function ConfigSection(id, type, name)
 	this.name = $.trim(name);
 	this.nextId = 0;
 	this.lines = {};
+}
+
+ConfigSection.prototype.clone =
+function()
+{
+	var clone = new ConfigSection(this.id, this.type, this.name);
+	clone.nextId = this.nextId;
+	for (var key in this.lines)
+	{
+		var line = this.lines[key];
+		clone.lines[key] = line.clone();
+	}
+	return clone;
 }
 
 ConfigSection.prototype.addOption =
@@ -238,4 +280,20 @@ function(type, name)
 	if (!section)
 		this.sections[hash] = section = new ConfigSection(this.id++, type, name);
 	return section;
+}
+
+ConfigFile.prototype.getSectionsByType =
+function(type)
+{
+	var ary = [];
+
+	type = $.trim(type);
+	for (var key in this.sections)
+	{
+		var section = this.sections[key];
+		if (section.type === type)
+			ary.push(section);
+	}
+
+	return ary;
 }

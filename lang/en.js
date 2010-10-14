@@ -51,7 +51,6 @@ theUILang.autodlNew = "New";
 theUILang.autodlRemove = "Remove";
 theUILang.autodlTvMovies = "TV/Movies";
 theUILang.autodlMusic = "Music";
-theUILang.autodlEnabled = "Enabled";
 theUILang.autodlDisplayName = "Display name";
 theUILang.autodlMatchReleases = "Match releases";
 theUILang.autodlExceptReleases = "Except releases";

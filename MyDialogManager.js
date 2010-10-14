@@ -32,8 +32,31 @@ function MyDialogManager(pluginPath)
 	this.preferences = new Preferences();
 	this.filters = new Filters();
 
+	var this_ = this;
+	for (var i = 0; i < this.names.length; i++)
+	{
+		(function(name)
+		{
+			var id = 'autodl-' + name;
+			theDialogManager.setHandler(id, "beforeShow", function()
+			{
+				this_[name].onBeforeShow(this_.configFile);
+			});
+			theDialogManager.setHandler(id, "afterHide", function()
+			{
+				this_[name].onAfterHide();
+			});
+		})(this.names[i]);
+	}
+
 	this._downloadAllFiles();
 }
+
+MyDialogManager.prototype.names =
+[
+	'preferences',
+	'filters',
+];
 
 MyDialogManager.prototype._isDialogVisible =
 function(name)
@@ -44,14 +67,9 @@ function(name)
 MyDialogManager.prototype._isOneOfOurDialogsVisible =
 function()
 {
-	var names =
-	[
-		'preferences',
-		'filters',
-	];
-	for (var i = 0; i < names.length; i++)
+	for (var i = 0; i < this.names.length; i++)
 	{
-		if (this._isDialogVisible(names[i]))
+		if (this._isDialogVisible(this.names[i]))
 			return true;
 	}
 	return false;
@@ -130,10 +148,7 @@ function(errorMessage, downloadedAllFiles)
 		}
 
 		if (dialogName)
-		{
-			this[dialogName].initDialogBox(this.configFile);
-			theDialogManager.toggle('autodl-' + dialogName);
-		}
+			theDialogManager.show('autodl-' + dialogName);
 	}
 	catch (ex)
 	{

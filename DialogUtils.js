@@ -71,21 +71,29 @@ function DialogOptionText(id, name, defaultValue)
 	this.defaultValue = defaultValue;
 }
 
-function _initDialogOptions(configFile, sectionType, sectionName, aryDlgOptions)
+function getSectionOptionValue(section, name, defaultValue, type)
 {
-	var section = configFile.getSection(sectionType, sectionName);
+	if (!section)
+		return defaultValue;
+	return section.getOption(name, defaultValue, type).getValue();
+}
+
+function enableJqueryElem(jq, enable)
+{
+	if (enable)
+		jq.attr("disabled", "disabled");
+	else
+		jq.removeAttr("disabled");
+}
+
+function initDialogOptions(section, aryDlgOptions)
+{
 	for (var i = 0; i < aryDlgOptions.length; i++)
 	{
 		var dlgOption = aryDlgOptions[i];
-		var option = section.getOption(dlgOption.name, dlgOption.defaultValue, dlgOption.type);
-		var val = option.getValue();
+		var val = getSectionOptionValue(section, dlgOption.name, dlgOption.defaultValue, dlgOption.type);
 		if (dlgOption.type === "bool")
-		{
-			if (val)
-				$("#" + dlgOption.id).attr("checked", "1");
-			else
-				$("#" + dlgOption.id).removeAttr("checked");
-		}
+			enableJqueryElem($("#" + dlgOption.id), val);
 		else
 			$("#" + dlgOption.id).val(val);
 	}

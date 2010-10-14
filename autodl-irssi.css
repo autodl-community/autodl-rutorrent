@@ -32,6 +32,24 @@
 	background-image: url("../../images/settings.gif");
 }
 
+.listbox {
+	overflow: auto;
+	background-color: white;
+	white-space: nowrap;
+}
+.listboxItem {
+	padding: 1px 2px;
+}
+.listboxItem:hover {
+	background: #CFDEEF;
+}
+.listboxItemSelected {
+	background: #9FBDDF;
+}
+.listboxItemSelected:hover {
+	background: #447EC1;
+}
+
 #autodl-filters {
 	height: 320px;
 	width: 600px;
@@ -42,18 +60,19 @@
 }
 #autodl-filters-list {
 	height: 230px;
-	background-color: white;
-	margin: 5px;
+	width: 200px;
 }
 #autodl-filters-right {
 }
 #autodl-filters-contents-general .textbox,
 #autodl-filters-contents-tv .textbox,
-#autodl-filters-contents-advanced .textbox,
+#autodl-filters-contents-advanced .textbox {
+	width: 23em;
+}
+#autodl-filters-contents-music .textbox,
 #autodl-filters-contents-upload .textbox {
 	width: 25em;
 }
-#autodl-filters-contents-music .textbox,
 #autodl-prefs-contents-upload .textbox,
 #autodl-prefs-contents-programs .textbox {
 	width: 30em;

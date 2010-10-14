@@ -121,12 +121,10 @@ function(id)
 	return "autodl-upload-" + id + "-" + this.num;
 }
 
-UploadMethod.prototype.initDialogBox =
-function(configFile, sectionType, sectionName)
+UploadMethod.prototype.initFields =
+function(section)
 {
-	_initDialogOptions(configFile, sectionType, sectionName, this.options);
+	initDialogOptions(section, this.options);
 
-	var section = configFile.getSection(sectionType, sectionName);
-	var option = section.getOption("upload-type", "", "text");
-	this.dropdown.select(option.getValue());
+	this.dropdown.select(getSectionOptionValue(section, "upload-type", "", "text"));
 }

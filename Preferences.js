@@ -200,15 +200,20 @@ Preferences.prototype.ftp =
 	new DialogOptionInt("autodl-ftp-port", "port", "0"),
 ];
 
-Preferences.prototype.initDialogBox =
+Preferences.prototype.onBeforeShow =
 function(configFile)
 {
-	this.uploadMethod.initDialogBox(configFile, "options", null);
-	_initDialogOptions(configFile, "options", null, this.options);
-	_initDialogOptions(configFile, "webui", null, this.webui);
-	_initDialogOptions(configFile, "ftp", null, this.ftp);
+	this.uploadMethod.initFields(configFile.getSection("options", null));
+	initDialogOptions(configFile.getSection("options", null), this.options);
+	initDialogOptions(configFile.getSection("webui", null), this.webui);
+	initDialogOptions(configFile.getSection("ftp", null), this.ftp);
 
 	var section = configFile.getSection("options", null);
 	var option = section.getOption("update-check", "ask", "text");
 	this.dropDownBox.select(option.getValue());
+}
+
+Preferences.prototype.onAfterHide =
+function()
+{
 }

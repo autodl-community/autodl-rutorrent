@@ -28,7 +28,10 @@
 #autodl2 {
 	background: transparent url(../../images/quest.gif) no-repeat center;
 }
-#autodl-preferences-header, #autodl-filters-header {
+#autodl3 {
+	background: transparent url(../../images/quest.gif) no-repeat center;
+}
+#autodl-preferences-header, #autodl-filters-header, #autodl-trackers-header {
 	background-image: url("../../images/settings.gif");
 }
 
@@ -49,6 +52,31 @@
 }
 .listboxItemSelected:hover {
 	background: #447EC1;
+}
+
+#autodl-trackers {
+	height: 250px;
+	width: 600px;
+}
+#autodl-trackers-left {
+	float: left;
+	height: 230px;
+	margin: 5px 5px 5px 5px;
+}
+#autodl-trackers-left .listbox {
+}
+#autodl-trackers-list {
+	height: 200px;
+	width: 200px;
+}
+#autodl-trackers-right {
+	padding: 5px 5px 5px 5px;
+}
+#autodl-trackers-right p {
+	margin: 0 0 0 0;
+}
+#autodl-trackers-right .textbox {
+	width: 25em;
 }
 
 #autodl-filters {

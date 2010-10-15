@@ -201,7 +201,7 @@ function Preferences()
 }
 
 Preferences.prototype.onBeforeShow =
-function(configFile)
+function(configFile, trackerInfos)
 {
 	this.uploadMethod.initFields(configFile.getSection("options", null));
 	initDialogOptions(configFile.getSection("options", null), this.options);

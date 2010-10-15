@@ -28,8 +28,10 @@ function MyDialogManager(pluginPath)
 	this.pluginPath = pluginPath;
 
 	this.filesDownloader = new AutodlFilesDownloader(this.pluginPath);
+	this.trackerInfos = [];
 	this.configFile = new ConfigFile();
 	this.preferences = new Preferences();
+	this.trackers = new Trackers();
 	this.filters = new Filters();
 
 	var this_ = this;
@@ -40,7 +42,7 @@ function MyDialogManager(pluginPath)
 			var id = 'autodl-' + name;
 			theDialogManager.setHandler(id, "beforeShow", function()
 			{
-				this_[name].onBeforeShow(this_.configFile);
+				this_[name].onBeforeShow(this_.configFile, this_.trackerInfos);
 			});
 			theDialogManager.setHandler(id, "afterHide", function()
 			{
@@ -56,6 +58,7 @@ MyDialogManager.prototype.names =
 [
 	'preferences',
 	'filters',
+	'trackers',
 ];
 
 MyDialogManager.prototype._isDialogVisible =
@@ -100,7 +103,6 @@ function()
 {
 	if (this.isDownloading)
 		return;
-	log("Downloading all files...");
 	this.isDownloading = true;
 	var this_ = this;
 	this.filesDownloader.downloadAllFiles(function(errorMessage)
@@ -115,7 +117,6 @@ function()
 {
 	if (this.isDownloading)
 		return;
-	log("Downloading autodl.cfg...");
 	this.isDownloading = true;
 	var this_ = this;
 	this.filesDownloader.downloadConfig(function(errorMessage)
@@ -129,7 +130,6 @@ function(errorMessage, downloadedAllFiles)
 {
 	try
 	{
-		log("File(s) downloaded");
 		this.isDownloading = false;
 		var dialogName = this.dialogName;
 		this.dialogName = null;
@@ -143,9 +143,7 @@ function(errorMessage, downloadedAllFiles)
 
 		this.configFile.parse(this.filesDownloader.getConfigFile());
 		if (downloadedAllFiles)
-		{
-			//TODO: Parse XML documents
-		}
+			this._parseXmlDocuments(this.filesDownloader.getTrackers());
 
 		if (dialogName)
 			theDialogManager.show('autodl-' + dialogName);
@@ -154,4 +152,18 @@ function(errorMessage, downloadedAllFiles)
 	{
 		log("MyDialogManager._onDownloadedFiles: ex: " + ex);
 	}
+}
+
+MyDialogManager.prototype._parseXmlDocuments =
+function(aryDocs)
+{
+	var trackerInfos = [];
+
+	for (var i = 0; i < aryDocs.length; i++)
+	{
+		var xmlDoc = aryDocs[i];
+		trackerInfos.push(new TrackerInfo(xmlDoc));
+	}
+
+	this.trackerInfos = trackerInfos;
 }

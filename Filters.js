@@ -272,7 +272,7 @@ function Filters()
 }
 
 Filters.prototype.onBeforeShow =
-function(configFile)
+function(configFile, trackerInfos)
 {
 	this.initFilters(configFile);
 }

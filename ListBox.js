@@ -22,6 +22,12 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
+/*
+ * @param idParent	Parent of all listitems, i.e., the id of this listbox
+ *
+ * When a listitem is selected, ListBox.onSelected(oldData, newData) is called if it's been
+ * initialized to a user function.
+ */
 function ListBox(idParent)
 {
 	this.lbElem = document.getElementById(idParent);

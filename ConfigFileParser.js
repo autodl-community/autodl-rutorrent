@@ -31,14 +31,7 @@ function sortObjectById(obj)
 		ary.push(obj[key]);
 
 	// Output in the same order we read it from the file
-	ary.sort(function(a, b)
-	{
-		if (a.id < b.id)
-			return -1;
-		if (a.id > b.id)
-			return 1;
-		return 0;
-	});
+	ary.sort(function(a, b) { return stringCompare(a.id, b.id); });
 
 	return ary;
 }

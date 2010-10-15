@@ -43,6 +43,12 @@ function()
 	return this.files.config;
 }
 
+AutodlFilesDownloader.prototype.getTrackers =
+function()
+{
+	return this.files.trackers;
+}
+
 AutodlFilesDownloader.prototype._notifyHandler =
 function(errorMessage)
 {

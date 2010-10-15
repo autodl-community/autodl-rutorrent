@@ -201,6 +201,33 @@ function Filters()
 		'</div>'
 	);
 
+	this.options =
+	[
+		new DialogOptionText("autodl-filters-match-releases", "match-releases", ""),
+		new DialogOptionText("autodl-filters-except-releases", "except-releases", ""),
+		new DialogOptionText("autodl-filters-match-categories", "match-categories", ""),
+		new DialogOptionText("autodl-filters-except-categories", "except-categories", ""),
+		new DialogOptionText("autodl-filters-match-sites", "match-sites", ""),
+		new DialogOptionText("autodl-filters-except-sites", "except-sites", ""),
+		new DialogOptionText("autodl-filters-min-size", "min-size", ""),
+		new DialogOptionText("autodl-filters-max-size", "max-size", ""),
+		new DialogOptionText("autodl-filters-shows", "shows", ""),
+		new DialogOptionText("autodl-filters-seasons", "seasons", ""),
+		new DialogOptionText("autodl-filters-episodes", "episodes", ""),
+		new DialogOptionText("autodl-filters-resolutions", "resolutions", ""),
+		new DialogOptionText("autodl-filters-sources", "sources", ""),
+		new DialogOptionText("autodl-filters-years1", "years", ""),
+		new DialogOptionText("autodl-filters-encoders", "encoders", ""),
+		new DialogOptionText("autodl-filters-albums", "albums", ""),
+		new DialogOptionText("autodl-filters-formats", "formats", ""),
+		new DialogOptionText("autodl-filters-bitrates", "bitrates", ""),
+		new DialogOptionText("autodl-filters-media", "media", ""),
+		new DialogOptionText("autodl-filters-tags", "tags", ""),
+		new DialogOptionText("autodl-filters-match-uploaders", "match-uploaders", ""),
+		new DialogOptionText("autodl-filters-except-uploaders", "except-uploaders", ""),
+		new DialogOptionText("autodl-filters-max-pretime", "max-pretime", ""),
+	];
+
 	var this_ = this;
 
 	this.tabs = new Tabs();
@@ -243,8 +270,8 @@ Filters.prototype.initFilters =
 function(configFile)
 {
 	this.nextId = 0;
-	var ary = configFile.getSectionsByType("filter");
 	this.filterSections = [];
+	var ary = configFile.getSectionsByType("filter");
 	for (var i = 0; i < ary.length; i++)
 		this.addFilterSection(ary[i].clone());
 
@@ -300,32 +327,5 @@ function(oldObj, newObj)
 
 	var elems = $("#autodl-filters-remove-button").
 				add($("input, select", $("#autodl-filters-right")[0]));
-	enableJqueryElem(elems, !newObj);
+	enableJqueryElem(elems, newObj);
 }
-
-Filters.prototype.options =
-[
-	new DialogOptionText("autodl-filters-match-releases", "match-releases", ""),
-	new DialogOptionText("autodl-filters-except-releases", "except-releases", ""),
-	new DialogOptionText("autodl-filters-match-categories", "match-categories", ""),
-	new DialogOptionText("autodl-filters-except-categories", "except-categories", ""),
-	new DialogOptionText("autodl-filters-match-sites", "match-sites", ""),
-	new DialogOptionText("autodl-filters-except-sites", "except-sites", ""),
-	new DialogOptionText("autodl-filters-min-size", "min-size", ""),
-	new DialogOptionText("autodl-filters-max-size", "max-size", ""),
-	new DialogOptionText("autodl-filters-shows", "shows", ""),
-	new DialogOptionText("autodl-filters-seasons", "seasons", ""),
-	new DialogOptionText("autodl-filters-episodes", "episodes", ""),
-	new DialogOptionText("autodl-filters-resolutions", "resolutions", ""),
-	new DialogOptionText("autodl-filters-sources", "sources", ""),
-	new DialogOptionText("autodl-filters-years1", "years", ""),
-	new DialogOptionText("autodl-filters-encoders", "encoders", ""),
-	new DialogOptionText("autodl-filters-albums", "albums", ""),
-	new DialogOptionText("autodl-filters-formats", "formats", ""),
-	new DialogOptionText("autodl-filters-bitrates", "bitrates", ""),
-	new DialogOptionText("autodl-filters-media", "media", ""),
-	new DialogOptionText("autodl-filters-tags", "tags", ""),
-	new DialogOptionText("autodl-filters-match-uploaders", "match-uploaders", ""),
-	new DialogOptionText("autodl-filters-except-uploaders", "except-uploaders", ""),
-	new DialogOptionText("autodl-filters-max-pretime", "max-pretime", ""),
-];

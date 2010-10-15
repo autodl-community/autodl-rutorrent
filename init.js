@@ -44,6 +44,8 @@ function()
 {
 	var this_ = this;
 	this.loadMainCSS();
+
+	// Note: These files aren't necessarily loaded in order! They must not rely on other JS files.
 	this.loadJavaScriptFiles(
 	[
 		'ListBox.js',

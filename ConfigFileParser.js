@@ -43,22 +43,20 @@ function sortObjectById(obj)
 	return ary;
 }
 
-function ConfigOption(id, name, value)
+function ConfigOption(id, name, value, defaultValue, optionType)
 {
 	this.type = "option";
 	this.id = id;
 	this.name = $.trim(name);
 	this.value = $.trim(value);
-	this.defaultValue = null;
-	this.optionType = null;
+	this.defaultValue = defaultValue;
+	this.optionType = optionType;
 }
 
 ConfigOption.prototype.clone =
 function()
 {
-	var clone = new ConfigOption(this.id, this.name, this.value);
-	clone.defaultValue = this.defaultValue;
-	clone.optionType = this.optionType;
+	var clone = new ConfigOption(this.id, this.name, this.value, this.defaultValue, this.optionType);
 	return clone;
 }
 

@@ -74,16 +74,16 @@ function DialogOptionText(id, name, defaultValue)
 function getSectionOptionValue(section, name, defaultValue, type)
 {
 	if (!section)
-		return defaultValue;
+		return (new ConfigOption(0, name, defaultValue, defaultValue, type)).getValue();
 	return section.getOption(name, defaultValue, type).getValue();
 }
 
 function enableJqueryElem(jq, enable)
 {
 	if (enable)
-		jq.attr("disabled", "disabled");
-	else
 		jq.removeAttr("disabled");
+	else
+		jq.attr("disabled", "disabled");
 }
 
 function initDialogOptions(section, aryDlgOptions)

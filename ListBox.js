@@ -52,10 +52,11 @@ function(elem, data)
 	var this_ = this;
 	$(obj.elem).click(function(e)
 	{
-		this_.simulateSelect(this_._findIndex(obj));
+		this_.select(this_._findIndex(obj));
 	});
 }
 
+// Returns the index or -1 if not found
 ListBox.prototype._findIndex =
 function(obj)
 {
@@ -65,13 +66,32 @@ function(obj)
 			return i;
 	}
 
-	return null;
+	return -1;
 }
 
-ListBox.prototype.simulateSelect =
+// Returns the index or -1 if not found
+ListBox.prototype._findIndexData =
+function(data)
+{
+	for (var i = 0; i < this.rows.length; i++)
+	{
+		if (this.rows[i].data === data)
+			return i;
+	}
+
+	return -1;
+}
+
+ListBox.prototype.select =
 function(index)
 {
 	this._newSelected(index);
+}
+
+ListBox.prototype.selectData =
+function(data)
+{
+	this._newSelected(this._findIndexData(data));
 }
 
 ListBox.prototype._getData =
@@ -86,31 +106,93 @@ function(index)
 ListBox.prototype._newSelected =
 function(index)
 {
-	if (this.selectedIndex === index)
+	var oldObj = this.rows[this.selectedIndex];
+	var newObj = this.rows[index];
+	this.selectedIndex = this._fixIndex(index);
+	this._newSelectedObj(oldObj, newObj);
+}
+
+ListBox.prototype._newSelectedObj =
+function(oldObj, newObj)
+{
+	if (oldObj === newObj)
 		return;
 
-	var oldIndex = this.selectedIndex;
-	this._makeUnselected(oldIndex);
-	this._makeSelected(index);
-	this.selectedIndex = index;
+	this._makeUnselected(oldObj);
+	this._makeSelected(newObj);
 	if (this.onSelected)
-		this.onSelected(this._getData(oldIndex), this._getData(index));
+		this.onSelected((oldObj || {}).data, (newObj || {}).data);
 }
 
 ListBox.prototype._makeUnselected =
-function(index)
+function(obj)
 {
-	var obj = this.rows[index];
 	if (!obj)
 		return;
 	$(obj.elem).removeClass("listboxItemSelected");
 }
 
 ListBox.prototype._makeSelected =
-function(index)
+function(obj)
 {
-	var obj = this.rows[index];
 	if (!obj)
 		return;
 	$(obj.elem).addClass("listboxItemSelected");
+}
+
+ListBox.prototype.getSelectedData =
+function()
+{
+	return (this.rows[this.selectedIndex] || {}).data;
+}
+
+ListBox.prototype.removeSelected =
+function()
+{
+	this.remove(this.selectedIndex);
+}
+
+ListBox.prototype.removeData =
+function(data)
+{
+	this.remove(this._findIndexData(data));
+}
+
+ListBox.prototype._fixIndex =
+function(index)
+{
+	if (!this.rows[index])
+		return -1;
+	return index;
+}
+
+ListBox.prototype._removeIndex =
+function(index)
+{
+	var childElem = $(this.lbElem).children("div")[index];
+	$(childElem).remove();
+	this.rows.splice(index, 1);
+}
+
+ListBox.prototype.remove =
+function(index)
+{
+	if (!this.rows[index])
+		return;
+
+	if (this.selectedIndex !== index)
+	{
+		this._removeIndex(index);
+		if (this.selectedIndex > index);
+			this.selectedIndex--;
+		return;
+	}
+
+	var oldObj = this.rows[this.selectedIndex];
+	var newObj = this.rows[this.selectedIndex + 1];
+	if (!newObj)
+		newObj = this.rows[this.selectedIndex - 1];
+	this._removeIndex(index);
+	this.selectedIndex = this._findIndex(newObj);
+	this._newSelectedObj(oldObj, newObj);
 }

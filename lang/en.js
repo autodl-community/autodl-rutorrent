@@ -82,3 +82,5 @@ theUILang.autodlExceptUploaders = "Except uploaders";
 theUILang.autodlExceptSites = "Except sites";
 theUILang.autodlMaxPreTime = "Maximum pretime";
 theUILang.autodlCloseOther = "You must first close the other already visible autodl-irssi dialog box.";
+theUILang.autodlDeleteFilter = "Do you want to delete the selected filter?";
+theUILang.autodlNoName = "<no-name>";

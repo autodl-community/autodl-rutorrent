@@ -29,7 +29,7 @@ function Filters()
 			'<div id="autodl-filters-left">' +
 				'<div id="autodl-filters-list" />' +
 				'<div id="autodl-filters-list-buttons">' +
-					'<input type="button" class="Button" value="' + theUILang.autodlNew + '" />' +
+					'<input type="button" class="Button" id="autodl-filters-new-button" value="' + theUILang.autodlNew + '" />' +
 					'<input type="button" class="Button" id="autodl-filters-remove-button" value="' + theUILang.autodlRemove + '" />' +
 				'</div>' +
 			'</div>' +
@@ -212,11 +212,13 @@ function Filters()
 		new DialogOptionText("autodl-filters-min-size", "min-size", ""),
 		new DialogOptionText("autodl-filters-max-size", "max-size", ""),
 		new DialogOptionText("autodl-filters-shows", "shows", ""),
+		new DialogOptionText("autodl-filters-artists", "shows", ""),
 		new DialogOptionText("autodl-filters-seasons", "seasons", ""),
 		new DialogOptionText("autodl-filters-episodes", "episodes", ""),
 		new DialogOptionText("autodl-filters-resolutions", "resolutions", ""),
 		new DialogOptionText("autodl-filters-sources", "sources", ""),
 		new DialogOptionText("autodl-filters-years1", "years", ""),
+		new DialogOptionText("autodl-filters-years2", "years", ""),
 		new DialogOptionText("autodl-filters-encoders", "encoders", ""),
 		new DialogOptionText("autodl-filters-albums", "albums", ""),
 		new DialogOptionText("autodl-filters-formats", "formats", ""),
@@ -229,6 +231,22 @@ function Filters()
 	];
 
 	var this_ = this;
+
+	$("#autodl-filters-new-button").click(function(e)
+	{
+		this_._onClickNew();
+	});
+	$("#autodl-filters-remove-button").click(function(e)
+	{
+		this_._onClickRemove();
+	});
+	$("#autodl-filters-name").keyup(function(e)
+	{
+		this_._onFilterNameModified();
+	});
+
+	this.syncName1 = new SyncTextBoxes(["autodl-filters-shows", "autodl-filters-artists"]);
+	this.syncYears = new SyncTextBoxes(["autodl-filters-years1", "autodl-filters-years2"]);
 
 	this.tabs = new Tabs();
 	this.tabs.add("autodl-filters-tab-general", "autodl-filters-contents-general");
@@ -273,15 +291,21 @@ function(configFile)
 	this.filterSections = [];
 	var ary = configFile.getSectionsByType("filter");
 	for (var i = 0; i < ary.length; i++)
-		this.addFilterSection(ary[i].clone());
+		this._addFilterSection(ary[i].clone());
 
 	if (this.filterSections.length === 0)
 		this._onFilterSelected();
 	else
-		this.filterListBox.simulateSelect(0);
+		this.filterListBox.select(0);
 }
 
-Filters.prototype.addFilterSection =
+Filters.prototype._fixFilterName =
+function(name)
+{
+	return name || theUILang.autodlNoName;
+}
+
+Filters.prototype._addFilterSection =
 function(section)
 {
 	var obj =
@@ -290,7 +314,7 @@ function(section)
 		idNum: this.nextId,
 	};
 	obj.checkboxElem = $('<input type="checkbox" />')[0];
-	obj.labelElem = $('<label>' + section.name + '</label>')[0];
+	obj.labelElem = $('<label />').text(this._fixFilterName(section.name))[0];
 
 	if (section.getOption("enabled", "true", "bool").getValue())
 		$(obj.checkboxElem).attr("checked", "checked");
@@ -299,6 +323,7 @@ function(section)
 
 	this.filterSections.push(obj);
 	this.nextId++;
+	return obj;
 }
 
 Filters.prototype._onFilterSelected =
@@ -328,4 +353,30 @@ function(oldObj, newObj)
 	var elems = $("#autodl-filters-remove-button").
 				add($("input, select", $("#autodl-filters-right")[0]));
 	enableJqueryElem(elems, newObj);
+}
+
+Filters.prototype._onClickNew =
+function()
+{
+	var obj = this._addFilterSection(new ConfigSection(null, "filter", ""));
+	this.filterListBox.selectData(obj);
+	this.tabs.selectByIndex(0);
+	$("#autodl-filters-name").focus();
+}
+
+Filters.prototype._onClickRemove =
+function()
+{
+	if (confirm(theUILang.autodlDeleteFilter))
+		this.filterListBox.removeSelected();
+}
+
+Filters.prototype._onFilterNameModified =
+function()
+{
+	var obj = this.filterListBox.getSelectedData();
+	if (!obj)
+		return;
+	var newText = this._fixFilterName($("#autodl-filters-name").val())
+	$(obj.labelElem).text(newText);
 }

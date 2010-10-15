@@ -33,6 +33,7 @@
 }
 
 .listbox {
+	border: 1px solid #DBDBDB;
 	overflow: auto;
 	background-color: white;
 	white-space: nowrap;
@@ -57,6 +58,10 @@
 #autodl-filters-left {
 	float: left;
 	height: 270px;
+	margin: 0 5px 10px 5px;
+}
+#autodl-filters-left .listbox {
+	margin-bottom: 5px;
 }
 #autodl-filters-list {
 	height: 230px;

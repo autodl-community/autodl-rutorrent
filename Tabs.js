@@ -54,6 +54,15 @@ function(idTabElem, idContentElem)
 	return obj;
 }
 
+TabsBase.prototype.selectByIndex =
+function(index)
+{
+	var obj = this.tabs[index];
+	if (!obj)
+		return;
+	this._setNewSelected(obj);
+}
+
 // Set a new selected tab
 TabsBase.prototype._setNewSelected =
 function(newSelected)

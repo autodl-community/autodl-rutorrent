@@ -130,3 +130,27 @@ function(value)
 
 	log("DropDownBox: Could not find value " + value);
 }
+
+// Makes sure a bunch of textboxes contain the same value
+function SyncTextBoxes(ids)
+{
+	var this_ = this;
+
+	this.textboxElems = [];
+	for (var i = 0; i < ids.length; i++)
+	{
+		(function(textbox)
+		{
+			this_.textboxElems[i] = textbox;
+			$(textbox).keyup(function(e) { this_.setNewValue($(textbox).val()); })
+		})(document.getElementById(ids[i]));
+	}
+}
+
+// Updates each textbox with the new value
+SyncTextBoxes.prototype.setNewValue =
+function(newValue)
+{
+	for (var i = 0; i < this.textboxElems.length; i++)
+		$(this.textboxElems[i]).val(newValue);
+}

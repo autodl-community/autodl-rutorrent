@@ -80,8 +80,18 @@ function readTextNode(elem, childElemName, defaultValue)
 	if (!child || child.nodeType !== 3)
 		return defaultValue;
 
+	// FireFox has a 4K limit on text nodes! It will split them up into multiple text
+	// nodes, so we must combine them all.
+	var s = "";
+	for (var i = 0; i < elem.childNodes.length; i++)
+	{
+		var childNode = elem.childNodes[i];
+		var nodeType = childNode.nodeType;
+		if (nodeType === 3 || nodeType === 4)
+			s += childNode.nodeValue;
+	}
+
 	// Trim the string, including newlines
-	var s = child.nodeValue;
 	s = s.replace(/^\s+/m, "");
 	s = s.replace(/\s+$/m, "");
 	return s;

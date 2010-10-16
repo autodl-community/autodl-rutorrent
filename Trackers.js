@@ -29,8 +29,7 @@ function Trackers()
 			'<div id="autodl-trackers-left">' +
 				'<div id="autodl-trackers-list" />' +
 			'</div>' +
-			'<div id="autodl-trackers-right">' +
-			'</div>' +
+			'<div id="autodl-trackers-right" />' +
 			'<div class="aright buttons-list dlgbuttons">' +
 				'<input type="button" value="' + theUILang.ok + '" class="OK Button" />' +
 				'<input type="button" value="' + theUILang.Cancel + '" class="Cancel Button" />' +
@@ -41,7 +40,7 @@ function Trackers()
 	var this_ = this;
 
 	this.trackerListBox = new ListBox("autodl-trackers-list");
-	this.trackerListBox.onSelected = function(oldObj, newObj) { this_._onFilterSelected(oldObj, newObj); }
+	this.trackerListBox.onSelected = function(oldObj, newObj) { this_._onTrackerSelected(oldObj, newObj); }
 }
 
 Trackers.prototype._getSortedTrackerInfos =
@@ -86,7 +85,7 @@ function(configFile, trackerInfos)
 
 		var obj =
 		{
-			trackerInfo: trackerInfo,
+			trackerInfo: trackerInfo
 		};
 		obj.checkboxElem = $('<input type="checkbox" />')[0];
 		obj.labelElem = $('<label />').text(trackerInfo.longName)[0];
@@ -122,7 +121,7 @@ function(trackerInfo, name)
 	return this._id(trackerInfo) + "-" + name;
 }
 
-Trackers.prototype._onFilterSelected =
+Trackers.prototype._onTrackerSelected =
 function(oldObj, newObj)
 {
 	if (oldObj)
@@ -188,8 +187,9 @@ function(configFile, setting, trackerInfo)
 
 	case "textbox":
 	case "integer":
+		var optionType = setting.type === "integer" ? "int" : "text";
 		var label = $('<label />').attr("for", id).text(setting.text);
-		var val = section.getOption(setting.name, setting.defaultValue, "text").getValue();
+		var val = section.getOption(setting.name, setting.defaultValue, optionType).getValue();
 		var textbox = $('<input type="text" class="textbox" />').attr("id", id).val(val);
 		var this_ = this;
 		if (setting.pasteRegex && setting.pasteGroup)
@@ -197,7 +197,7 @@ function(configFile, setting, trackerInfo)
 			textbox.change(function(e)
 			{
 				this_._onPaste(trackerInfo, setting.pasteGroup, textbox);
-			}, true);
+			});
 		}
 		return label.add(textbox);
 

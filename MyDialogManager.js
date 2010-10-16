@@ -58,7 +58,7 @@ MyDialogManager.prototype.names =
 [
 	'preferences',
 	'filters',
-	'trackers',
+	'trackers'
 ];
 
 MyDialogManager.prototype._isDialogVisible =

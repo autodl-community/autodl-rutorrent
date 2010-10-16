@@ -33,7 +33,7 @@ function AutodlFilesDownloader(pluginUrl)
 	this.files =
 	{
 		config: "",
-		trackers: [],
+		trackers: []
 	};
 }
 
@@ -94,7 +94,7 @@ function(handler)
 			error: function(xhr, status, ex)
 			{
 				this_._notifyHandler("Could not get files listing");
-			},
+			}
 		});
 	}
 	catch (ex)
@@ -179,7 +179,7 @@ function()
 			error: function(xhr, status, ex)
 			{
 				this_._notifyHandler("Could not read file " + filename);
-			},
+			}
 		});
 	}
 	catch (ex)

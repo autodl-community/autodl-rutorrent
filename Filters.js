@@ -227,7 +227,7 @@ function Filters()
 		new DialogOptionText("autodl-filters-tags", "tags", ""),
 		new DialogOptionText("autodl-filters-match-uploaders", "match-uploaders", ""),
 		new DialogOptionText("autodl-filters-except-uploaders", "except-uploaders", ""),
-		new DialogOptionText("autodl-filters-max-pretime", "max-pretime", ""),
+		new DialogOptionText("autodl-filters-max-pretime", "max-pretime", "")
 	];
 
 	var this_ = this;
@@ -311,7 +311,7 @@ function(section)
 	var obj =
 	{
 		section: section,
-		idNum: this.nextId,
+		idNum: this.nextId
 	};
 	obj.checkboxElem = $('<input type="checkbox" />')[0];
 	obj.labelElem = $('<label />').text(this._fixFilterName(section.name))[0];

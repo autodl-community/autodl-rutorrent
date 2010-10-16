@@ -109,7 +109,7 @@ function UploadMethod(idParent, isPrefs)
 		new DialogOptionText(this.id("ftp-path"), "upload-ftp-path", ""),
 		new DialogOptionText(this.id("program-command"), "upload-command", ""),
 		new DialogOptionText(this.id("program-args"), "upload-args", ""),
-		new DialogOptionText(this.id("dyndir-dir"), "upload-dyndir", ""),
+		new DialogOptionText(this.id("dyndir-dir"), "upload-dyndir", "")
 	];
 }
 

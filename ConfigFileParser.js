@@ -216,7 +216,7 @@ function(contents)
 		if (line === "")
 			continue;
 
-		if (line[0] === "#")
+		if (line.charAt(0) === "#")
 		{
 			if (section)
 				section.addComment(line);

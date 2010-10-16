@@ -58,7 +58,7 @@ function()
 		'AutodlFilesDownloader.js',
 		'ConfigFileParser.js',
 		'TrackerInfo.js',
-		'MyDialogManager.js',
+		'MyDialogManager.js'
 	], function()
 	{
 		this_.loadLang(true);

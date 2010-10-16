@@ -164,7 +164,7 @@ function Preferences()
 		new DialogOptionText("autodl-advanced-peer-id", "peer-id", ""),
 		new DialogOptionInt("autodl-advanced-max-download-retry-time", "download-retry-time-seconds", "300"),
 		new DialogOptionInt("autodl-advanced-output-level", "output-level", "3"),
-		new DialogOptionBool("autodl-advanced-debug", "debug", "false"),
+		new DialogOptionBool("autodl-advanced-debug", "debug", "false")
 	];
 
 	this.webui =
@@ -173,7 +173,7 @@ function Preferences()
 		new DialogOptionText("autodl-webui-password", "password", ""),
 		new DialogOptionText("autodl-webui-hostname", "hostname", ""),
 		new DialogOptionInt("autodl-webui-port", "port", "0"),
-		new DialogOptionBool("autodl-webui-ssl", "ssl", "false"),
+		new DialogOptionBool("autodl-webui-ssl", "ssl", "false")
 	];
 
 	this.ftp =
@@ -181,7 +181,7 @@ function Preferences()
 		new DialogOptionText("autodl-ftp-user", "user", ""),
 		new DialogOptionText("autodl-ftp-password", "password", ""),
 		new DialogOptionText("autodl-ftp-hostname", "hostname", ""),
-		new DialogOptionInt("autodl-ftp-port", "port", "0"),
+		new DialogOptionInt("autodl-ftp-port", "port", "0")
 	];
 
 	this.tabs = new Tabs();

@@ -50,7 +50,7 @@ function(elem, data)
 	var obj =
 	{
 		elem: $('<div class="listboxItem" />').append(elem)[0],
-		data: data,
+		data: data
 	};
 	this.rows.push(obj);
 	$(this.lbElem).append(obj.elem);

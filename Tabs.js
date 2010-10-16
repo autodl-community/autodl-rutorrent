@@ -39,7 +39,7 @@ function(idTabElem, idContentElem)
 	var obj =
 	{
 		tabElem:		document.getElementById(idTabElem),
-		contentElem:	document.getElementById(idContentElem),
+		contentElem:	document.getElementById(idContentElem)
 	};
 	if (!obj.tabElem)
 		throw "No tab elem with id " + idTabElem;

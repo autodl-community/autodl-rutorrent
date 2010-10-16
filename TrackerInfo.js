@@ -187,7 +187,7 @@ function(trackerInfoElem)
 		defaultValue: "true",
 		text: theUILang.autodlEnabled,
 		tooltiptext: theUILang.autodlEnableAnnouncer,
-		isDownloadVar: false,
+		isDownloadVar: false
 	});
 
 	for (var i = 0; i < children.length; i++)
@@ -206,7 +206,7 @@ function(trackerInfoElem)
 			pasteRegex:		readAttribute(elem, "pasteRegex"),
 			minValue:		readAttribute(elem, "minValue"),
 			maxValue:		readAttribute(elem, "maxValue"),
-			isDownloadVar:	readAttributeBoolean(elem, "isDownloadVar", true),
+			isDownloadVar:	readAttributeBoolean(elem, "isDownloadVar", true)
 		};
 
 		addIt(setting, elem.nodeName);
@@ -220,7 +220,7 @@ function(trackerInfoElem)
 		text: theUILang.autodlUploadDelay,
 		tooltiptext: theUILang.autodlUploadDelay2,
 		isDownloadVar: false,
-		minValue: "0",
+		minValue: "0"
 	});
 	addIt(
 	{
@@ -229,7 +229,7 @@ function(trackerInfoElem)
 		defaultValue: this.checkRegd.toString(),
 		text: theUILang.autodlCheckRegd,
 		tooltiptext: theUILang.autodlCheckRegd2,
-		isDownloadVar: false,
+		isDownloadVar: false
 	});
 	addIt(
 	{
@@ -238,7 +238,7 @@ function(trackerInfoElem)
 		defaultValue: "false",
 		text: theUILang.autodlForceSsl,
 		tooltiptext: theUILang.autodlForceSsl2,
-		isDownloadVar: false,
+		isDownloadVar: false
 	});
 
 	return rv;
@@ -354,7 +354,7 @@ function(trackerInfoElem)
 			network:		readAttribute(elem, "network", ""),
 			serverNames:	readAttribute(elem, "serverNames", ""),
 			channelNames:	readAttribute(elem, "channelNames", ""),
-			announcerNames:	readAttribute(elem, "announcerNames", ""),
+			announcerNames:	readAttribute(elem, "announcerNames", "")
 		};
 		rv.push(server);
 	}

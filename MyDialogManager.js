@@ -33,6 +33,8 @@ function MyDialogManager(pluginPath)
 	this.preferences = new Preferences();
 	this.trackers = new Trackers();
 	this.filters = new Filters();
+	this.servers = new Servers();
+	this.trackersId = 0;
 
 	var this_ = this;
 	for (var i = 0; i < this.names.length; i++)
@@ -42,7 +44,7 @@ function MyDialogManager(pluginPath)
 			var id = 'autodl-' + name;
 			theDialogManager.setHandler(id, "beforeShow", function()
 			{
-				this_[name].onBeforeShow(this_.configFile, this_.trackerInfos);
+				this_[name].onBeforeShow(this_.configFile, this_.trackerInfos, this_.trackersId);
 			});
 			theDialogManager.setHandler(id, "afterHide", function()
 			{
@@ -58,7 +60,8 @@ MyDialogManager.prototype.names =
 [
 	'preferences',
 	'filters',
-	'trackers'
+	'trackers',
+	'servers'
 ];
 
 MyDialogManager.prototype._isDialogVisible =
@@ -166,4 +169,5 @@ function(aryDocs)
 	}
 
 	this.trackerInfos = trackerInfos;
+	this.trackersId++;
 }

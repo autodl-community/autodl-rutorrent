@@ -59,7 +59,7 @@ function(trackerInfos)
 }
 
 Trackers.prototype.onBeforeShow =
-function(configFile, trackerInfos)
+function(configFile, trackerInfos, trackersId)
 {
 	trackerInfos = this._getSortedTrackerInfos(trackerInfos);
 

@@ -355,6 +355,11 @@ function(trackerInfoElem)
 
 	var rv = [];
 
+	function fixList(s)
+	{
+		return s.split(/\s*,\s*/).join(", ");
+	}
+
 	for (var i = 0; i < children.length; i++)
 	{
 		var elem = children[i];
@@ -362,9 +367,9 @@ function(trackerInfoElem)
 		var server =
 		{
 			network:		readAttribute(elem, "network", ""),
-			serverNames:	readAttribute(elem, "serverNames", ""),
-			channelNames:	readAttribute(elem, "channelNames", ""),
-			announcerNames:	readAttribute(elem, "announcerNames", "")
+			serverNames:	fixList(readAttribute(elem, "serverNames", "")),
+			channelNames:	fixList(readAttribute(elem, "channelNames", "")),
+			announcerNames:	fixList(readAttribute(elem, "announcerNames", ""))
 		};
 		rv.push(server);
 	}

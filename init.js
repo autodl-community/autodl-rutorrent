@@ -55,6 +55,7 @@ function()
 		'Preferences.js',
 		'Filters.js',
 		'Trackers.js',
+		'Servers.js',
 		'AutodlFilesDownloader.js',
 		'ConfigFileParser.js',
 		'TrackerInfo.js',
@@ -92,6 +93,9 @@ function()
 			'<a id="mnu_autodl3" title="autodl-irssi" onfocus="this.blur()" href="javascript:void(0)">' +
 				'<div id="autodl3">trackers</div>' +
 			'</a>' +
+			'<a id="mnu_autodl4" title="autodl-irssi" onfocus="this.blur()" href="javascript:void(0)">' +
+				'<div id="autodl4">trackers</div>' +
+			'</a>' +
 			'<div class="TB_Separator" />'
 		));
 		$("#mnu_autodl").click(function(e)
@@ -105,6 +109,10 @@ function()
 		$("#mnu_autodl3").click(function(e)
 		{
 			this_.dialogManager.toggleDialog("trackers");
+		});
+		$("#mnu_autodl4").click(function(e)
+		{
+			this_.dialogManager.toggleDialog("servers");
 		});
 	}
 	catch (ex)

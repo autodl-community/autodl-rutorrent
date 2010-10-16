@@ -1,6 +1,7 @@
 theUILang.autodlPreferences = "autodl-irssi Preferences";
 theUILang.autodlFilters = "autodl-irssi Filters";
 theUILang.autodlTrackers = "autodl-irssi Trackers";
+theUILang.autodlServers = "autodl-irssi Announce Channels";
 theUILang.autodlGeneral = "General";
 theUILang.autodlUploadMethod = "Upload Method";
 theUILang.autodlWebui = "Webui";
@@ -107,3 +108,8 @@ theUILang.autodlCookie1 = "Go to the tracker and write javascript:document.inner
 theUILang.autodlCookie2 = "The ";
 theUILang.autodlCookie3 = " cookie.";
 theUILang.autodlIdDelta = "Torrent ID delta";
+theUILang.autodlCantEditHere = "These are all the supported IRC announce channels. YOU CANNOT EDIT THE SETTINGS HERE.";
+theUILang.autodlNetwork = "Network";
+theUILang.autodlServer = "Server";
+theUILang.autodlChannels = "Channel";
+theUILang.autodlAnnouncer = "Announcer";

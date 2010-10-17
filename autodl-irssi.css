@@ -60,7 +60,6 @@
 }
 #autodl-servers-left {
 	float: left;
-	height: 230px;
 	margin: 5px 5px 5px 5px;
 }
 #autodl-servers-left .listbox {
@@ -85,7 +84,6 @@
 }
 #autodl-trackers-left {
 	float: left;
-	height: 230px;
 	margin: 5px 5px 5px 5px;
 }
 #autodl-trackers-left .listbox {
@@ -101,23 +99,22 @@
 	margin: 0 0 0 0;
 }
 #autodl-trackers-right .textbox {
-	width: 25em;
+	width: 22em;
 }
 
 #autodl-filters {
-	height: 320px;
+	height: 330px;
 	width: 600px;
 }
 #autodl-filters-left {
 	float: left;
-	height: 270px;
 	margin: 0 5px 10px 5px;
 }
 #autodl-filters-left .listbox {
 	margin-bottom: 5px;
 }
 #autodl-filters-list {
-	height: 230px;
+	height: 240px;
 	width: 200px;
 }
 #autodl-filters-right {
@@ -137,6 +134,10 @@
 }
 #autodl-prefs-contents-advanced .textbox {
 	width: 20em;
+}
+#autodl-filters-contents p {
+	margin: 0;
+	padding: 0;
 }
 
 #autodl-prefs {

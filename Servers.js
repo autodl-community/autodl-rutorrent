@@ -91,10 +91,9 @@ function(configFile, trackerInfos, trackersId)
 	{
 		trackerInfos = this._getSortedTrackerInfos(trackerInfos);
 		this._initListbox(trackerInfos);
+		this.trackerListBox.select(0);
 		this.trackersId = trackersId;
 	}
-
-	this.trackerListBox.select(0);
 }
 
 Servers.prototype.onAfterHide =

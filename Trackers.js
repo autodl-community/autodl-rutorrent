@@ -218,17 +218,24 @@ function(configFile, setting, trackerInfo)
 Trackers.prototype._addHtmlLinks =
 function(text)
 {
-	var res = "<p>";
+	// Fix for IE8, it doesn't support using parens in split to extract the links.
+	var foundLink = false;
 	var ary = text.split(/((?:javascript|https?)\S+)/);
+	var res = "";
 	for (var i = 0; i < ary.length; i++)
 	{
 		var s = ary[i];
 		if (s.match(/^(?:javascript|https?)/))
+		{
+			foundLink = true;
 			res += '<a href="' + s + '" target="_blank">' + s + '</a>';
+		}
 		else
 			res += s;
 	}
-	res += "</p>";
+	if (!foundLink)
+		res = text;
+	res = "<p>" + res + "</p>";
 	return $(res);
 }
 

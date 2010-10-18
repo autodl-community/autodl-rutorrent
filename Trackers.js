@@ -174,15 +174,16 @@ function(configFile, setting, trackerInfo)
 {
 	var id = this._settingIdFromName(trackerInfo, setting.name);
 	var section = configFile.getSection("tracker", trackerInfo.type);
+	var tooltipText = setting.tooltiptext;
 
 	switch (setting.type)
 	{
 	case "bool":
-		var checkbox = $('<input type="checkbox" />').attr("id", id);
+		var checkbox = $('<input type="checkbox" />').attr("id", id).attr("title", tooltipText);
 		var val = section.getOption(setting.name, setting.defaultValue, "bool").getValue();
 		if (val)
 			checkbox.attr("checked", "checked");
-		var label = $('<label />').attr("for", id).text(setting.text);
+		var label = $('<label />').attr("for", id).text(setting.text).attr("title", tooltipText);
 		return checkbox.add(label);
 
 	case "textbox":
@@ -190,7 +191,7 @@ function(configFile, setting, trackerInfo)
 		var optionType = setting.type === "integer" ? "int" : "text";
 		var label = $('<label />').attr("for", id).text(setting.text);
 		var val = section.getOption(setting.name, setting.defaultValue, optionType).getValue();
-		var textbox = $('<input type="text" class="textbox" />').attr("id", id).val(val);
+		var textbox = $('<input type="text" class="textbox" />').attr("id", id).val(val).attr("title", tooltipText);
 		var this_ = this;
 		if (setting.pasteRegex && setting.pasteGroup)
 		{
@@ -198,16 +199,37 @@ function(configFile, setting, trackerInfo)
 			{
 				this_._onPaste(trackerInfo, setting.pasteGroup, textbox);
 			});
+			textbox.keyup(function(e)
+			{
+				this_._onPaste(trackerInfo, setting.pasteGroup, textbox);
+			});
 		}
 		return label.add(textbox);
 
 	case "description":
-		return $('<p />').text(setting.text);
+		return this._addHtmlLinks(setting.text);
 
 	default:
 		log("Unknown tracker setting: " + setting.type);
 		return $();
 	}
+}
+
+Trackers.prototype._addHtmlLinks =
+function(text)
+{
+	var res = "<p>";
+	var ary = text.split(/((?:javascript|https?)\S+)/);
+	for (var i = 0; i < ary.length; i++)
+	{
+		var s = ary[i];
+		if (s.match(/^(?:javascript|https?)/))
+			res += '<a href="' + s + '" target="_blank">' + s + '</a>';
+		else
+			res += s;
+	}
+	res += "</p>";
+	return $(res);
 }
 
 Trackers.prototype._findSetting =

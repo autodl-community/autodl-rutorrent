@@ -300,27 +300,27 @@ function Filters(multiSelectDlgBox)
 							'<tbody>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-name">' + theUILang.autodlDisplayName + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-name" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-name" title="' + theUILang.autodlTitle1 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-match-releases">' + theUILang.autodlMatchReleases + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-match-releases" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-match-releases" title="' + theUILang.autodlTitle2 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-except-releases">' + theUILang.autodlExceptReleases + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-except-releases" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-except-releases" title="' + theUILang.autodlTitle3 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><input type="button" id="autodl-filters-match-sites-button" class="Button" value="' + theUILang.autodlMatchSites + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-match-sites" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-match-sites" title="' + theUILang.autodlTitle4 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-min-size">' + theUILang.autodlMinimumSize + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-min-size" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-min-size" title="' + theUILang.autodlTitle5 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-max-size">' + theUILang.autodlMaximumSize + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-max-size" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-max-size" title="' + theUILang.autodlTitle6 + '"/></td>' +
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
@@ -330,31 +330,31 @@ function Filters(multiSelectDlgBox)
 							'<tbody>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-shows">' + theUILang.autodlTvShowMovie + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-shows" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-shows" title="' + theUILang.autodlTitle7 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-seasons">' + theUILang.autodlSeasons + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-seasons" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-seasons" title="' + theUILang.autodlTitle8 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-episodes">' + theUILang.autodlEpisodes + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-episodes" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-episodes" title="' + theUILang.autodlTitle9 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><input type="button" id="autodl-filters-resolutions-button" class="Button" value="' + theUILang.autodlResolutions + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-resolutions" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-resolutions" title="' + theUILang.autodlTitle10 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><input type="button" id="autodl-filters-encoders-button" class="Button" value="' + theUILang.autodlEncoders + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-encoders" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-encoders" title="' + theUILang.autodlTitle11 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><input type="button" id="autodl-filters-sources-button" class="Button" value="' + theUILang.autodlSources + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-sources" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-sources" title="' + theUILang.autodlTitle12 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-years1">' + theUILang.autodlYears + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-years1" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-years1" title="' + theUILang.autodlTitle13 + '"/></td>' +
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
@@ -365,31 +365,31 @@ function Filters(multiSelectDlgBox)
 							'<tbody>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-years2">' + theUILang.autodlYears + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-years2" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-years2" title="' + theUILang.autodlTitle13 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-artists">' + theUILang.autodlArtists + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-artists" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-artists" title="' + theUILang.autodlTitle14 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-albums">' + theUILang.autodlAlbums + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-albums" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-albums" title="' + theUILang.autodlTitle15 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><input type="button" id="autodl-filters-formats-button" class="Button" value="' + theUILang.autodlFormats + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-formats" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-formats" title="' + theUILang.autodlTitle16 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><input type="button" id="autodl-filters-bitrates-button" class="Button" value="' + theUILang.autodlBitrates + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-bitrates" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-bitrates" title="' + theUILang.autodlTitle17 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><input type="button" id="autodl-filters-media-button" class="Button" value="' + theUILang.autodlMedia + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-media" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-media" title="' + theUILang.autodlTitle18 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-tags">' + theUILang.autodlTags + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-tags" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-tags" title="' + theUILang.autodlTitle19 + '"/></td>' +
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
@@ -417,27 +417,27 @@ function Filters(multiSelectDlgBox)
 							'<tbody>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-match-categories">' + theUILang.autodlMatchCategories + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-match-categories" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-match-categories" title="' + theUILang.autodlTitle20 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-except-categories">' + theUILang.autodlExceptCategories + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-except-categories" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-except-categories" title="' + theUILang.autodlTitle21 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-match-uploaders">' + theUILang.autodlMatchUploaders + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-match-uploaders" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-match-uploaders" title="' + theUILang.autodlTitle22 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-except-uploaders">' + theUILang.autodlExceptUploaders + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-except-uploaders" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-except-uploaders" title="' + theUILang.autodlTitle23 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><input type="button" id="autodl-filters-except-sites-button" class="Button" value="' + theUILang.autodlExceptSites + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-except-sites" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-except-sites" title="' + theUILang.autodlTitle24 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-max-pretime">' + theUILang.autodlMaxPreTime + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-max-pretime" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-max-pretime" title="' + theUILang.autodlTitle25 + '"/></td>' +
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +

@@ -40,18 +40,18 @@ function Preferences()
 				'<div id="autodl-prefs-contents-general">' +
 					'<div>' +
 						'<td><label for="autodl-max-saved-releases">' + theUILang.autodlMaxSavedRels + '</label></td>' +
-						'<td><input type="text" class="textbox" id="autodl-max-saved-releases" /></td>' +
+						'<td><input type="text" class="textbox" id="autodl-max-saved-releases" title="' + theUILang.autodlTitle31 + '"/></td>' +
 					'</div>' +
 					'<div>' +
 						'<td>' +
-							'<input type="checkbox" id="autodl-save-download-history" />' +
-							'<label for="autodl-save-download-history">' + theUILang.autodlSaveDlHist + '</label>' +
+							'<input type="checkbox" id="autodl-save-download-history" title="' + theUILang.autodlTitle32 + '"/>' +
+							'<label for="autodl-save-download-history" title="' + theUILang.autodlTitle32 + '">' + theUILang.autodlSaveDlHist + '</label>' +
 						'</td>' +
 					'</div>' +
 					'<div>' +
 						'<td>' +
-							'<input type="checkbox" id="autodl-download-duplicates" />' +
-							'<label for="autodl-download-duplicates">' + theUILang.autodlDownloadDupes + '</label>' +
+							'<input type="checkbox" id="autodl-download-duplicates" title="' + theUILang.autodlTitle33 + '"/>' +
+							'<label for="autodl-download-duplicates" title="' + theUILang.autodlTitle33 + '">' + theUILang.autodlDownloadDupes + '</label>' +
 						'</td>' +
 					'</div>' +
 					'<div>' +
@@ -72,15 +72,15 @@ function Preferences()
 						'<tbody>' +
 							'<tr>' +
 								'<td><label for="autodl-webui-user">' + theUILang.autodlUserName + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-webui-user" /></td>' +
+								'<td><input type="text" class="textbox" id="autodl-webui-user" title="' + theUILang.autodlTitle34 + '"/></td>' +
 								'<td><label for="autodl-webui-password">' + theUILang.autodlPassword + '</label></td>' +
-								'<td><input type="password" id="autodl-webui-password" /></td>' +
+								'<td><input type="password" id="autodl-webui-password" title="' + theUILang.autodlTitle35 + '"/></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><label for="autodl-webui-hostname">' + theUILang.autodlIpAddress + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-webui-hostname" /></td>' +
+								'<td><input type="text" class="textbox" id="autodl-webui-hostname" title="' + theUILang.autodlTitle36 + '"/></td>' +
 								'<td><label for="autodl-webui-port">' + theUILang.autodlPort + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-webui-port" /></td>' +
+								'<td><input type="text" class="textbox" id="autodl-webui-port" title="' + theUILang.autodlTitle37 + '"/></td>' +
 							'</tr>' +
 						'</tbody>' +
 					'</table>' +
@@ -92,15 +92,15 @@ function Preferences()
 						'<tbody>' +
 							'<tr>' +
 								'<td><label for="autodl-ftp-user">' + theUILang.autodlUserName + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-ftp-user" /></td>' +
+								'<td><input type="text" class="textbox" id="autodl-ftp-user" title="' + theUILang.autodlTitle38 + '"/></td>' +
 								'<td><label for="autodl-ftp-password">' + theUILang.autodlPassword + '</label></td>' +
-								'<td><input type="password" id="autodl-ftp-password" /></td>' +
+								'<td><input type="password" id="autodl-ftp-password" title="' + theUILang.autodlTitle39 + '"/></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><label for="autodl-ftp-hostname">' + theUILang.autodlHostname + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-ftp-hostname" /></td>' +
+								'<td><input type="text" class="textbox" id="autodl-ftp-hostname" title="' + theUILang.autodlTitle40 + '"/></td>' +
 								'<td><label for="autodl-ftp-port">' + theUILang.autodlPort + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-ftp-port" /></td>' +
+								'<td><input type="text" class="textbox" id="autodl-ftp-port" title="' + theUILang.autodlTitle41 + '"/></td>' +
 							'</tr>' +
 						'</tbody>' +
 					'</table>' +
@@ -110,7 +110,7 @@ function Preferences()
 						'<tbody>' +
 							'<tr>' +
 								'<td><label for="autodl-programs-utorrent">' + theUILang.autodlUtorrentExe + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-programs-utorrent" /></td>' +
+								'<td><input type="text" class="textbox" id="autodl-programs-utorrent" title="' + theUILang.autodlTitle42 + '"/></td>' +
 							'</tr>' +
 						'</tbody>' +
 					'</table>' +
@@ -120,30 +120,30 @@ function Preferences()
 						'<tbody>' +
 							'<tr>' +
 								'<td><label for="autodl-advanced-user-agent">' + theUILang.autodlDownloadUserAgent + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-advanced-user-agent" /></td>' +
+								'<td><input type="text" class="textbox" id="autodl-advanced-user-agent" title="' + theUILang.autodlTitle43 + '"/></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><label for="autodl-advanced-tracker-user-agent">' + theUILang.autodlTrackerUserAgent + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-advanced-tracker-user-agent" /></td>' +
+								'<td><input type="text" class="textbox" id="autodl-advanced-tracker-user-agent" title="' + theUILang.autodlTitle44 + '"/></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><label for="autodl-advanced-peer-id">' + theUILang.autodlTrackerPeerId + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-advanced-peer-id" maxlength="20" /></td>' +
+								'<td><input type="text" class="textbox" id="autodl-advanced-peer-id" maxlength="20" title="' + theUILang.autodlTitle45 + '"/></td>' +
 								'<td><label for="autodl-advanced-peer-id">' + theUILang.autodl20Chars + '</label></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><label for="autodl-advanced-max-download-retry-time">' + theUILang.autodlMaxDlRetryTime + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-advanced-max-download-retry-time" /></td>' +
+								'<td><input type="text" class="textbox" id="autodl-advanced-max-download-retry-time" title="' + theUILang.autodlTitle46 + '"/></td>' +
 								'<td><label for="autodl-advanced-max-download-retry-time">' + theUILang.autodlSeconds + '</label></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><label for="autodl-advanced-output-level">' + theUILang.autodlDebugOutputLevel + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-advanced-output-level" /></td>' +
+								'<td><input type="text" class="textbox" id="autodl-advanced-output-level" title="' + theUILang.autodlTitle47 + '"/></td>' +
 							'</tr>' +
 						'</tbody>' +
 					'</table>' +
-					'<input type="checkbox" id="autodl-advanced-debug" />' +
-					'<label for="autodl-advanced-debug">' + theUILang.autodlDebug + '</label>' +
+					'<input type="checkbox" id="autodl-advanced-debug" title="' + theUILang.autodlTitle48 + '"/>' +
+					'<label for="autodl-advanced-debug" title="' + theUILang.autodlTitle48 + '">' + theUILang.autodlDebug + '</label>' +
 				'</div>' +
 			'</div>' +
 			'<div class="aright buttons-list dlgbuttons">' +

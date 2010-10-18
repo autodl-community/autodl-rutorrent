@@ -55,8 +55,7 @@ function Servers()
 				'</table>' +
 			'</div>' +
 			'<div class="aright buttons-list dlgbuttons">' +
-				'<input type="button" value="' + theUILang.ok + '" class="OK Button" />' +
-				'<input type="button" value="' + theUILang.Cancel + '" class="Cancel Button" />' +
+				'<input type="button" id="autodl-servers-close-button" value="' + theUILang.autodlClose + '" class="Button" />' +
 			'</div>' +
 		'</div>'
 	);
@@ -67,6 +66,11 @@ function Servers()
 
 	this.trackerListBox = new ListBox("autodl-servers-list");
 	this.trackerListBox.onSelected = function(oldObj, newObj) { this_._onTrackerSelected(oldObj, newObj); }
+
+	$("#autodl-servers-close-button").click(function(e)
+	{
+		theDialogManager.hide("autodl-servers");
+	});
 }
 
 Servers.prototype._getSortedTrackerInfos =

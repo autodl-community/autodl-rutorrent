@@ -113,3 +113,5 @@ theUILang.autodlNetwork = "Network";
 theUILang.autodlServer = "Server";
 theUILang.autodlChannels = "Channel";
 theUILang.autodlAnnouncer = "Announcer";
+theUILang.autodlHoldCtrl = "Press and hold CTRL to select more than one tracker.";
+theUILang.autodlSelect = "Select";

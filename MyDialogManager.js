@@ -29,10 +29,11 @@ function MyDialogManager(pluginPath)
 
 	this.filesDownloader = new AutodlFilesDownloader(this.pluginPath);
 	this.trackerInfos = [];
+	this.multiSelectDlgBox = new MultiSelect();
 	this.configFile = new ConfigFile();
 	this.preferences = new Preferences();
 	this.trackers = new Trackers();
-	this.filters = new Filters();
+	this.filters = new Filters(this.multiSelectDlgBox);
 	this.servers = new Servers();
 	this.trackersId = 0;
 

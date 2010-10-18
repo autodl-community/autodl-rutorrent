@@ -51,6 +51,7 @@ function()
 		'ListBox.js',
 		'Tabs.js',
 		'DialogUtils.js',
+		'MultiSelect.js',
 		'UploadMethod.js',
 		'Preferences.js',
 		'Filters.js',

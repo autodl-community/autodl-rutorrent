@@ -245,7 +245,61 @@ function(index)
 	$(this.textboxElem).val(s);
 }
 
-function Filters()
+function SitesButton(buttonId, textboxId, multiSelectDlgBox)
+{
+	this.buttonElem = document.getElementById(buttonId);
+	this.textboxElem = document.getElementById(textboxId);
+	this.multiSelectDlgBox = multiSelectDlgBox;
+
+	var this_ = this;
+	$(this.buttonElem).click(function(e)
+	{
+		this_._onClick(e);
+	});
+}
+
+SitesButton.prototype._onClick =
+function()
+{
+	var listboxData = [];
+	for (var i = 0; i < this.trackerInfos.length; i++)
+	{
+		var trackerInfo = this.trackerInfos[i];
+		listboxData.push(
+		{
+			displayName: trackerInfo.longName,
+			validNames:
+			[
+				trackerInfo.type,
+				trackerInfo.siteName,
+				trackerInfo.longName
+			]
+		});
+	}
+
+	var data =
+	{
+		selectedText: $(this.textboxElem).val(),
+		listboxData: listboxData,
+		multiSelect: true,
+		title: theUILang.autodlHoldCtrl,
+		okClicked: function()
+		{
+			$(this_.textboxElem).val(data.selectedText);
+		}
+	};
+
+	var this_ = this;
+	this.multiSelectDlgBox.show(data)
+}
+
+SitesButton.prototype._setTrackerInfos =
+function(trackerInfos)
+{
+	this.trackerInfos = trackerInfos;
+}
+
+function Filters(multiSelectDlgBox)
 {
 	theDialogManager.make("autodl-filters", theUILang.autodlFilters,
 		'<div id="autodl-filters">' +
@@ -283,7 +337,7 @@ function Filters()
 									'<td><input type="text" class="textbox" id="autodl-filters-except-releases" /></td>' +
 								'</tr>' +
 								'<tr>' +
-									'<td><label for="autodl-filters-match-sites">' + theUILang.autodlMatchSites + '</label></td>' +
+									'<td><input type="button" id="autodl-filters-match-sites-button" class="Button" value="' + theUILang.autodlMatchSites + '" /></td>' +
 									'<td><input type="text" class="textbox" id="autodl-filters-match-sites" /></td>' +
 								'</tr>' +
 								'<tr>' +
@@ -404,7 +458,7 @@ function Filters()
 									'<td><input type="text" class="textbox" id="autodl-filters-except-uploaders" /></td>' +
 								'</tr>' +
 								'<tr>' +
-									'<td><label for="autodl-filters-except-sites">' + theUILang.autodlExceptSites + '</label></td>' +
+									'<td><input type="button" id="autodl-filters-except-sites-button" class="Button" value="' + theUILang.autodlExceptSites + '" /></td>' +
 									'<td><input type="text" class="textbox" id="autodl-filters-except-sites" /></td>' +
 								'</tr>' +
 								'<tr>' +
@@ -478,6 +532,9 @@ function Filters()
 	this.bitratesButton = new MenuButton("autodl-filters-bitrates-button", "autodl-filters-bitrates", musicBitrates, true);
 	this.mediaButton = new MenuButton("autodl-filters-media-button", "autodl-filters-media", musicMedia);
 
+	this.matchSitesButton = new SitesButton("autodl-filters-match-sites-button", "autodl-filters-match-sites", multiSelectDlgBox);
+	this.exceptSitesButton = new SitesButton("autodl-filters-except-sites-button", "autodl-filters-except-sites", multiSelectDlgBox);
+
 	this.tabs = new Tabs();
 	this.tabs.add("autodl-filters-tab-general", "autodl-filters-contents-general");
 	this.tabs.add("autodl-filters-tab-tv", "autodl-filters-contents-tv");
@@ -504,12 +561,16 @@ function Filters()
 Filters.prototype.onBeforeShow =
 function(configFile, trackerInfos, trackersId)
 {
+	this.matchSitesButton._setTrackerInfos(trackerInfos);
+	this.exceptSitesButton._setTrackerInfos(trackerInfos);
 	this.initFilters(configFile);
 }
 
 Filters.prototype.onAfterHide =
 function()
 {
+	this.matchSitesButton._setTrackerInfos(null);
+	this.exceptSitesButton._setTrackerInfos(null);
 	this.filterListBox.removeAll();
 	delete this.filterSections;
 }

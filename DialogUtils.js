@@ -32,6 +32,32 @@ function stringCompare(a, b)
 	return 0;
 }
 
+function checkFilterStrings(name, filter)
+{
+	return checkRegexArray(name, regexEscapeWildcardString(filter).split(","));
+}
+
+function regexEscapeWildcardString(s)
+{
+	s = s.replace(/([\^\$\.\+\=\!\:\|\\\/\(\)\[\]\{\}])/g, "\\$1");
+	s = s.replace(/([\*\?])/g, ".$1");
+	return s;
+}
+
+function checkRegexArray(name, filterWordsAry)
+{
+	for (var i = 0; i < filterWordsAry.length; i++)
+	{
+		var filterWord = $.trim(filterWordsAry[i]);
+		if (!filterWord)
+			continue;
+		if (name.match(new RegExp("^" + filterWord + "$", "i")))
+			return true;
+	}
+
+	return false;
+}
+
 function convertStringToBoolean(s)
 {
 	s = s.toLowerCase();

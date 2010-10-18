@@ -119,12 +119,14 @@
 }
 #autodl-filters-right {
 }
+#autodl-filters-contents-advanced .textbox {
+	width: 22em;
+}
 #autodl-filters-contents-general .textbox,
 #autodl-filters-contents-tv .textbox,
-#autodl-filters-contents-advanced .textbox {
+#autodl-filters-contents-music .textbox {
 	width: 23em;
 }
-#autodl-filters-contents-music .textbox,
 #autodl-filters-contents-upload .textbox {
 	width: 25em;
 }
@@ -139,10 +141,28 @@
 	margin: 0;
 	padding: 0;
 }
+#autodl-filters-resolutions-button,
+#autodl-filters-encoders-button,
+#autodl-filters-sources-button,
+#autodl-filters-formats-button,
+#autodl-filters-bitrates-button,
+#autodl-filters-media-button {
+	margin: 0;
+	padding: 0;
+}
+
 
 #autodl-prefs {
 	height: 200px;
 	width: 500px;
+}
+#autodl-prefs-contents {
+	margin: 3px 5px;
+	padding: 0;
+}
+#autodl-prefs-tabs {
+	margin: 2px 2px;
+	padding: 0;
 }
 
 #autodl-filters select, #autodl-prefs select {

@@ -22,6 +22,229 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
+function checkFilterStrings(name, filter)
+{
+	return checkRegexArray(name, regexEscapeWildcardString(filter).split(","));
+}
+
+function regexEscapeWildcardString(s)
+{
+	s = s.replace(/([\^\$\.\+\=\!\:\|\\\/\(\)\[\]\{\}])/g, "\\$1");
+	s = s.replace(/([\*\?])/g, ".$1");
+	return s;
+}
+
+function checkRegexArray(name, filterWordsAry)
+{
+	for (var i = 0; i < filterWordsAry.length; i++)
+	{
+		var filterWord = $.trim(filterWordsAry[i]);
+		if (!filterWord)
+			continue;
+		if (name.match(new RegExp("^" + filterWord + "$", "i")))
+			return true;
+	}
+
+	return false;
+}
+
+var tvResolutions =
+[
+	["SD", "SDTV", "Standard Def", "Standard Definition"],
+	["480i"],
+	["480p"],
+	["576p"],
+	["720p"],
+	["810p"],
+	["1080i"],
+	["1080p"]
+];
+
+var tvSources =
+[
+	["DSR"],
+	["PDTV"],
+	["HDTV"],
+	["HR.PDTV"],
+	["HR.HDTV"],
+	["DVDRip"],
+	["DVDScr", "DVDScrener", "DVD-Screner"],
+	["BDr"],
+	["BD5"],
+	["BD9"],
+	["BDRip"],
+	["BRRip", "BLURAYRiP"],
+	["DVDR", "MDVDR", "DVD"],
+	["HDDVD", "HD-DVD"],
+	["HDDVDRip"],
+	["BluRay", "Blu-Ray", "MBluRay"],
+	["WEB-DL", "WEB"],
+	["TVRip", "TV"],
+	["CAM"],
+	["R5"],
+	["TELESYNC", "TS"],
+	["TELECINE", "TC"]
+];
+
+var tvEncoders =
+[
+	["XviD", "XvidHD"],
+	["DivX"],
+	["x264"],
+	["h.264", "h264"],
+	["mpeg2", "mpeg-2"],
+	["VC-1", "VC1"],
+	["WMV", "WMV-HD"]
+];
+
+var musicFormats =
+[
+	["MP3"],
+	["FLAC"],
+	["Ogg"],
+	["AAC"],
+	["AC3"],
+	["DTS"]
+];
+
+var musicBitrates =
+[
+	["192"],
+	["APS (VBR)"],
+	["V2 (VBR)"],
+	["V1 (VBR)"],
+	["256"],
+	["APX (VBR)"],
+	["V0 (VBR)"],
+	["q8.x (VBR)"],
+	["320"],
+	["Lossless"],
+	["24bit Lossless"],
+	["Other"]
+];
+
+var musicMedia =
+[
+	["CD"],
+	["DVD"],
+	["Vinyl"],
+	["Soundboard"],
+	["SACD"],
+	["DAT"],
+	["Cassette"],
+	["WEB"],
+	["Other"]
+];
+
+function MenuButton(buttonId, textboxId, strings, onlyAppendValues, sortIt)
+{
+	this.buttonElem = document.getElementById(buttonId);
+	this.textboxElem = document.getElementById(textboxId);
+	this.onlyAppendValues = !!onlyAppendValues;
+
+	this.strings = [];
+	for (var i = 0; i < strings.length; i++)
+		this.strings[i] = strings[i];
+	if (sortIt == null || sortIt === true)
+	{
+		this.strings.sort(function(a, b)
+		{
+			return stringCompare(a[0].toLowerCase(), b[0].toLowerCase());
+		});
+	}
+
+	var this_ = this;
+	$(this.buttonElem).click(function(e)
+	{
+		this_._onClick(e);
+	});
+	$(this.buttonElem).mouseup(function(e)
+	{
+		// Prevent ruTorrent from immediately closing the popup menu!
+		e.stopPropagation();
+	});
+}
+
+MenuButton.prototype._getChecked =
+function()
+{
+	var checked = [];
+
+	if (this.onlyAppendValues)
+		return checked;
+
+	var ary = $(this.textboxElem).val().split(",");
+	for (var i = 0; i < ary.length; i++)
+	{
+		var name = $.trim(ary[i]).toLowerCase();
+		for (var j = 0; j < this.strings.length; j++)
+		{
+			var strings = this.strings[j];
+			for (var k = 0; k < strings.length; k++)
+			{
+				if (checkFilterStrings(strings[k], name))
+					checked[j] = true;
+			}
+		}
+	}
+
+	return checked;
+}
+
+MenuButton.prototype._onClick =
+function(e)
+{
+	theContextMenu.clear();
+
+	var this_ = this;
+	this.checked = this._getChecked();
+	for (var i = 0; i < this.strings.length; i++)
+	{
+		(function(i)
+		{
+			var ary = [];
+			if (this_.checked[i])
+				ary.push(CMENU_SEL);
+			ary.push(this_.strings[i][0], function()
+			{
+				this_._onClickedMenuitem(i);
+			});
+			theContextMenu.add(ary);
+		})(i);
+	}
+
+	theContextMenu.show(e.clientX, e.clientY);
+}
+
+// Called when the user clicked one of the menu items
+MenuButton.prototype._onClickedMenuitem =
+function(index)
+{
+	this.checked[index] = !this.checked[index];
+
+	var s;
+	if (this.onlyAppendValues)
+	{
+		s = $(this.textboxElem).val();
+		if (s)
+			s += ", ";
+		s += this.strings[index][0];
+	}
+	else
+	{
+		s = "";
+		for (var i in this.checked)
+		{
+			if (!this.checked[i])
+				continue;
+			if (s)
+				s += ", ";
+			s += this.strings[i][0];
+		}
+	}
+	$(this.textboxElem).val(s);
+}
+
 function Filters()
 {
 	theDialogManager.make("autodl-filters", theUILang.autodlFilters,
@@ -90,15 +313,15 @@ function Filters()
 									'<td><input type="text" class="textbox" id="autodl-filters-episodes" /></td>' +
 								'</tr>' +
 								'<tr>' +
-									'<td><label for="autodl-filters-resolutions">' + theUILang.autodlResolutions + '</label></td>' +
+									'<td><input type="button" id="autodl-filters-resolutions-button" class="Button" value="' + theUILang.autodlResolutions + '" /></td>' +
 									'<td><input type="text" class="textbox" id="autodl-filters-resolutions" /></td>' +
 								'</tr>' +
 								'<tr>' +
-									'<td><label for="autodl-filters-encoders">' + theUILang.autodlEncoders + '</label></td>' +
+									'<td><input type="button" id="autodl-filters-encoders-button" class="Button" value="' + theUILang.autodlEncoders + '" /></td>' +
 									'<td><input type="text" class="textbox" id="autodl-filters-encoders" /></td>' +
 								'</tr>' +
 								'<tr>' +
-									'<td><label for="autodl-filters-sources">' + theUILang.autodlSources + '</label></td>' +
+									'<td><input type="button" id="autodl-filters-sources-button" class="Button" value="' + theUILang.autodlSources + '" /></td>' +
 									'<td><input type="text" class="textbox" id="autodl-filters-sources" /></td>' +
 								'</tr>' +
 								'<tr>' +
@@ -125,15 +348,15 @@ function Filters()
 									'<td><input type="text" class="textbox" id="autodl-filters-albums" /></td>' +
 								'</tr>' +
 								'<tr>' +
-									'<td><label for="autodl-filters-formats">' + theUILang.autodlFormats + '</label></td>' +
+									'<td><input type="button" id="autodl-filters-formats-button" class="Button" value="' + theUILang.autodlFormats + '" /></td>' +
 									'<td><input type="text" class="textbox" id="autodl-filters-formats" /></td>' +
 								'</tr>' +
 								'<tr>' +
-									'<td><label for="autodl-filters-bitrates">' + theUILang.autodlBitrates + '</label></td>' +
+									'<td><input type="button" id="autodl-filters-bitrates-button" class="Button" value="' + theUILang.autodlBitrates + '" /></td>' +
 									'<td><input type="text" class="textbox" id="autodl-filters-bitrates" /></td>' +
 								'</tr>' +
 								'<tr>' +
-									'<td><label for="autodl-filters-media">' + theUILang.autodlMedia + '</label></td>' +
+									'<td><input type="button" id="autodl-filters-media-button" class="Button" value="' + theUILang.autodlMedia + '" /></td>' +
 									'<td><input type="text" class="textbox" id="autodl-filters-media" /></td>' +
 								'</tr>' +
 								'<tr>' +
@@ -247,6 +470,13 @@ function Filters()
 
 	this.syncName1 = new SyncTextBoxes(["autodl-filters-shows", "autodl-filters-artists"]);
 	this.syncYears = new SyncTextBoxes(["autodl-filters-years1", "autodl-filters-years2"]);
+
+	this.resolutionsButton = new MenuButton("autodl-filters-resolutions-button", "autodl-filters-resolutions", tvResolutions, undefined, false);
+	this.encodersButton = new MenuButton("autodl-filters-encoders-button", "autodl-filters-encoders", tvEncoders);
+	this.sourcesButton = new MenuButton("autodl-filters-sources-button", "autodl-filters-sources", tvSources);
+	this.formatsButton = new MenuButton("autodl-filters-formats-button", "autodl-filters-formats", musicFormats);
+	this.bitratesButton = new MenuButton("autodl-filters-bitrates-button", "autodl-filters-bitrates", musicBitrates, true);
+	this.mediaButton = new MenuButton("autodl-filters-media-button", "autodl-filters-media", musicMedia);
 
 	this.tabs = new Tabs();
 	this.tabs.add("autodl-filters-tab-general", "autodl-filters-contents-general");

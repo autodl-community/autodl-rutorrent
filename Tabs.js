@@ -105,7 +105,7 @@ function(idTabElem, idContentElem)
 	var obj = TabsBase.prototype.add.call(this, idTabElem, idContentElem);
 
 	var this_ = this;
-	$(obj.tabElem).bind('mousedown', function(e)
+	$(obj.tabElem).mousedown(function(e)
 	{
 		this_._setNewSelected(obj);
 	});
@@ -137,9 +137,9 @@ function DropDownTabs(idSelect)
 	this.selectElem = document.getElementById(idSelect);
 
 	var this_ = this;
-	$(this.selectElem).bind("change", function(e) { this_._onChange(); })
+	$(this.selectElem).change(function(e) { this_._onChange(); })
 						// selectedIndex should be updated when we get a keyup event
-					  .bind("keyup", function(e) { this_._onChange(); });
+					  .keyup(function(e) { this_._onChange(); });
 }
 DropDownTabs.prototype = new TabsBase();
 DropDownTabs.constructor = DropDownTabs;

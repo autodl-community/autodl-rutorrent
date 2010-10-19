@@ -104,11 +104,6 @@ function(trackerInfo)
 	var section = this.configFile.getSection("tracker", trackerInfo.type);
 	section.dontPrintEmpty();
 
-	function optBool(name)
-	{
-		return new DialogOptionBool(this._settingIdFromName(trackerInfo, name), name, null);
-	}
-
 	var options = [];
 	var settings = trackerInfo.settings;
 	for (var i = 0; i < settings.length; i++)

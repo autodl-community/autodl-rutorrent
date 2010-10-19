@@ -115,6 +115,7 @@ theUILang.autodlChannels = "Channel";
 theUILang.autodlAnnouncer = "Announcer";
 theUILang.autodlHoldCtrl = "Press and hold CTRL to select more than one tracker.";
 theUILang.autodlSelect = "Select";
+theUILang.autodlSelectTrackers = "Select trackers";
 theUILang.autodlTitle1 = "The name of this filter displayed in the list box to the left.";
 theUILang.autodlTitle2 = "All torrent names, separated by commas. Wildcards are allowed. This is optional. Example: the.office*,Lost.*,*simpsons*";
 theUILang.autodlTitle3 = "If your match-releases grabs some unwanted releases, add the releases you don't want here, separated by commas. Wildcards are allowed. This is optional.";

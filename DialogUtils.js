@@ -140,9 +140,28 @@ function initDialogOptions(section, aryDlgOptions)
 	}
 }
 
+function saveDialogOptions(section, aryDlgOptions)
+{
+	if (!section)
+		return;
+	for (var i = 0; i < aryDlgOptions.length; i++)
+	{
+		var dlgOption = aryDlgOptions[i];
+		var option = section.getOption(dlgOption.name, dlgOption.defaultValue, dlgOption.type);
+
+		var val;
+		if (dlgOption.type === "bool")
+			val = $("#" + dlgOption.id)[0].checked;
+		else
+			val = $("#" + dlgOption.id).val();
+
+		option.setValue(val.toString());
+	}
+}
+
 function DropDownBox(id)
 {
-	this.id = id;
+	this.selectElem = document.getElementById(id);
 	this.options = [];
 }
 
@@ -159,12 +178,18 @@ function(value)
 	{
 		if (this.options[i] === value)
 		{
-			$("#" + this.id).attr("selectedIndex", i);
+			this.selectElem.selectedIndex = i;
 			return;
 		}
 	}
 
 	log("DropDownBox: Could not find value " + value);
+}
+
+DropDownBox.prototype.getSelectedValue =
+function()
+{
+	return this.options[this.selectElem.selectedIndex];
 }
 
 // Makes sure a bunch of textboxes contain the same value

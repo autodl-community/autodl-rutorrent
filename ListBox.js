@@ -44,6 +44,12 @@ function()
 	$(this.lbElem).empty();
 }
 
+ListBox.prototype.getSelectedIndex =
+function()
+{
+	return this.selectedIndex;
+}
+
 ListBox.prototype.append =
 function(elem, data)
 {

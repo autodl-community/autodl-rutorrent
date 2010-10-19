@@ -31,7 +31,7 @@ function Trackers()
 			'</div>' +
 			'<div id="autodl-trackers-right" />' +
 			'<div class="aright buttons-list dlgbuttons">' +
-				'<input type="button" value="' + theUILang.ok + '" class="OK Button" />' +
+				'<input type="button" id="autodl-trackers-ok-button" value="' + theUILang.ok + '" class="OK Button" />' +
 				'<input type="button" value="' + theUILang.Cancel + '" class="Cancel Button" />' +
 			'</div>' +
 		'</div>'
@@ -41,6 +41,11 @@ function Trackers()
 
 	this.trackerListBox = new ListBox("autodl-trackers-list");
 	this.trackerListBox.onSelected = function(oldObj, newObj) { this_._onTrackerSelected(oldObj, newObj); }
+
+	$("#autodl-trackers-ok-button").click(function(e)
+	{
+		this_._onOkClicked();
+	});
 }
 
 Trackers.prototype._getSortedTrackerInfos =
@@ -61,10 +66,11 @@ function(trackerInfos)
 Trackers.prototype.onBeforeShow =
 function(configFile, trackerInfos, trackersId)
 {
-	trackerInfos = this._getSortedTrackerInfos(trackerInfos);
+	this.configFile = configFile;
+	this.trackerInfos = this._getSortedTrackerInfos(trackerInfos);
 
-	this._initListbox(configFile, trackerInfos);
-	this._initContents(configFile, trackerInfos);
+	this._initListbox();
+	this._initContents();
 	this.trackerListBox.select(0);
 }
 
@@ -73,21 +79,81 @@ function()
 {
 	$("#autodl-trackers-right").empty();
 	this.trackerListBox.removeAll();
+	this.configFile = null;
+	this.trackerInfos = null;
+}
+
+Trackers.prototype._onOkClicked =
+function()
+{
+	this._saveTrackers();
+
+	theDialogManager.hide("autodl-trackers");
+}
+
+Trackers.prototype._saveTrackers =
+function()
+{
+	for (var i = 0; i < this.trackerInfos.length; i++)
+		this._saveTracker(this.trackerInfos[i]);
+}
+
+Trackers.prototype._saveTracker =
+function(trackerInfo)
+{
+	var section = this.configFile.getSection("tracker", trackerInfo.type);
+	section.dontPrintEmpty();
+
+	function optBool(name)
+	{
+		return new DialogOptionBool(this._settingIdFromName(trackerInfo, name), name, null);
+	}
+
+	var options = [];
+	var settings = trackerInfo.settings;
+	for (var i = 0; i < settings.length; i++)
+	{
+		var setting = settings[i];
+		var id = this._settingIdFromName(trackerInfo, setting.name);
+		switch (setting.type)
+		{
+		case "bool":
+			options.push(new DialogOptionBool(id, setting.name, setting.defaultValue));
+			break;
+
+		case "integer":
+			options.push(new DialogOptionInt(id, setting.name, setting.defaultValue));
+			break;
+
+		case "textbox":
+			options.push(new DialogOptionText(id, setting.name, setting.defaultValue));
+			break;
+
+		case "description":
+			break;
+
+		default:
+			log("Unknown type: " + setting.type);
+			break;
+		}
+	}
+	saveDialogOptions(section, options);
 }
 
 Trackers.prototype._initListbox =
-function(configFile, trackerInfos)
+function()
 {
-	for (var i = 0; i < trackerInfos.length; i++)
+	for (var i = 0; i < this.trackerInfos.length; i++)
 	{
-		var trackerInfo = trackerInfos[i];
-		var section = configFile.getSection("tracker", trackerInfo.type);
+		var trackerInfo = this.trackerInfos[i];
+		var section = this.configFile.getSection("tracker", trackerInfo.type);
 
 		var obj =
 		{
 			trackerInfo: trackerInfo
 		};
-		obj.checkboxElem = $('<input type="checkbox" />')[0];
+		var checkboxId = this._settingIdFromName(trackerInfo, "enabled");
+		obj.checkboxElem = $('<input type="checkbox" />').attr("id", checkboxId)[0];
 		obj.labelElem = $('<label />').text(trackerInfo.longName)[0];
 
 		if (section.getOption("enabled", "true", "bool").getValue())
@@ -98,11 +164,11 @@ function(configFile, trackerInfos)
 }
 
 Trackers.prototype._initContents =
-function(configFile, trackerInfos)
+function()
 {
-	for (var i = 0; i < trackerInfos.length; i++)
+	for (var i = 0; i < this.trackerInfos.length; i++)
 	{
-		var elem = this._createTrackerContent(configFile, trackerInfos[i]);
+		var elem = this._createTrackerContent(this.trackerInfos[i]);
 		elem.css("display", "none");
 		$("#autodl-trackers-right").append(elem);
 	}
@@ -131,7 +197,7 @@ function(oldObj, newObj)
 }
 
 Trackers.prototype._createTrackerContent =
-function(configFile, trackerInfo)
+function(trackerInfo)
 {
 	var div = $("<div />").attr("id", this._id(trackerInfo));
 
@@ -145,7 +211,7 @@ function(configFile, trackerInfo)
 		if (setting.name === "enabled")
 			continue;
 
-		var elem = this._createTrackerSettingsElem(configFile, setting, trackerInfo);
+		var elem = this._createTrackerSettingsElem(setting, trackerInfo);
 
 		if (setting.type === "textbox" || setting.type === "integer")
 		{
@@ -170,10 +236,10 @@ function(configFile, trackerInfo)
 }
 
 Trackers.prototype._createTrackerSettingsElem =
-function(configFile, setting, trackerInfo)
+function(setting, trackerInfo)
 {
 	var id = this._settingIdFromName(trackerInfo, setting.name);
-	var section = configFile.getSection("tracker", trackerInfo.type);
+	var section = this.configFile.getSection("tracker", trackerInfo.type);
 	var tooltipText = setting.tooltiptext;
 
 	switch (setting.type)

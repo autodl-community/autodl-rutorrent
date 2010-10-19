@@ -67,7 +67,8 @@ function(data)
 MultiSelect.prototype.onBeforeShow =
 function()
 {
-	$("#autodl-multiselect-title").text(this.data.title);
+	$("#autodl-multiselect-header").text(this.data.title);
+	$("#autodl-multiselect-title").text(this.data.text);
 	this._initializeListbox();
 }
 

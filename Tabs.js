@@ -172,3 +172,11 @@ function(value)
 
 	log("DropDownTabs: Could not find value " + value);
 }
+
+DropDownTabs.prototype.getSelectedValue =
+function()
+{
+	if (!this.selected)
+		return null;
+	return this.selected.value;
+}

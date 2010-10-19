@@ -96,6 +96,12 @@ function(optionType, value, defaultValue)
 	}
 }
 
+ConfigOption.prototype.setValue =
+function(value)
+{
+	this.value = value.toString();
+}
+
 function ConfigComment(id, name, line)
 {
 	this.type = "comment";
@@ -129,6 +135,13 @@ function ConfigSection(id, type, name)
 	this.name = $.trim(name);
 	this.nextId = 0;
 	this.lines = {};
+	this.printEmpty = true;
+}
+
+ConfigSection.prototype.dontPrintEmpty =
+function()
+{
+	this.printEmpty = false;
 }
 
 ConfigSection.prototype.clone =
@@ -171,7 +184,7 @@ function(name, defaultValue, type)
 	return option;
 }
 
-ConfigSection.prototype.toString =
+ConfigSection.prototype._toString =
 function()
 {
 	var out = "";
@@ -182,14 +195,17 @@ function()
 	out += "]\n";
 
 	var ary = sortObjectById(this.lines);
+	var opts = "";
 	for (var i = 0; i < ary.length; i++)
 	{
 		var s = ary[i]._toString();
 		if (s != null)
-			out += s + "\n";
+			opts += s + "\n";
 	}
+	if (!this.printEmpty && !opts)
+		return null;
 
-	return out;
+	return out + opts;
 }
 
 function ConfigFile()
@@ -202,6 +218,7 @@ ConfigFile.prototype.parse =
 function(contents)
 {
 	this.sections = {};
+	this.filters = [];
 	var section, sectionLine, ary;
 
 	function error(msg)
@@ -255,36 +272,83 @@ function()
 	for (var i = 0; i < ary.length; i++)
 	{
 		var section = ary[i];
+
+		var s = section._toString();
+		if (s == null)
+			continue;
+
 		if (out !== "")
 			out += "\n";
-		out += section.toString();
+		out += s;
 	}
 
 	return out;
 }
 
+ConfigFile.prototype._sectionHash =
+function(type, name)
+{
+	return $.trim(type) + " " + $.trim(name);
+}
+
+ConfigFile.prototype._filterHash =
+function(filterSection)
+{
+	return $.trim(filterSection.type) + " " + filterSection.id;
+}
+
 ConfigFile.prototype.getSection =
 function(type, name)
 {
-	var hash = $.trim(type) + " " + $.trim(name);
+	if (type === "filter")
+	{
+		var section = new ConfigSection(this.id++, type, name);
+		this.filters.push(section);
+		var hash = this._filterHash(section);
+		this.sections[hash] = section;
+		return section;
+	}
+
+	var hash = this._sectionHash(type, name);
 	var section = this.sections[hash];
 	if (!section)
 		this.sections[hash] = section = new ConfigSection(this.id++, type, name);
 	return section;
 }
 
-ConfigFile.prototype.getSectionsByType =
+ConfigFile.prototype.getFilters =
 function(type)
 {
-	var ary = [];
+	return this.filters;
+}
 
-	type = $.trim(type);
-	for (var key in this.sections)
+ConfigFile.prototype._removeFilters =
+function()
+{
+	for (var i = 0; i < this.filters.length; i++)
 	{
-		var section = this.sections[key];
-		if (section.type === type)
-			ary.push(section);
+		var filter = this.filters[i];
+		var hash = this._filterHash(filter);
+		delete this.sections[hash];
 	}
+	this.filters = [];
+}
 
-	return ary;
+ConfigFile.prototype.setFilters =
+function(sections)
+{
+	this._removeFilters();
+
+	for (var i = 0; i < sections.length; i++)
+	{
+		var section = sections[i];
+
+		// It's null if caller created it
+		if (section.id == null)
+			section.id = this.id++;
+
+		var hash = this._filterHash(section);
+		this.sections[hash] = section;
+	}
+	this.filters = sections;
 }

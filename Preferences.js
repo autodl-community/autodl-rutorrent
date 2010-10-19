@@ -147,7 +147,7 @@ function Preferences()
 				'</div>' +
 			'</div>' +
 			'<div class="aright buttons-list dlgbuttons">' +
-				'<input type="button" value="' + theUILang.ok + '" class="OK Button" />' +
+				'<input type="button" id="autodl-prefs-ok-button" value="' + theUILang.ok + '" class="OK Button" />' +
 				'<input type="button" value="' + theUILang.Cancel + '" class="Cancel Button" />' +
 			'</div>' +
 		'</div>'
@@ -184,6 +184,8 @@ function Preferences()
 		new DialogOptionInt("autodl-ftp-port", "port", "0")
 	];
 
+	var this_ = this;
+
 	this.tabs = new Tabs();
 	this.tabs.add("autodl-prefs-tab-general", "autodl-prefs-contents-general");
 	this.tabs.add("autodl-prefs-tab-upload", "autodl-prefs-contents-upload");
@@ -198,17 +200,24 @@ function Preferences()
 	this.dropDownBox.add("disabled");
 
 	this.uploadMethod = new UploadMethod("autodl-prefs-contents-upload", true);
+
+	$("#autodl-prefs-ok-button").click(function(e)
+	{
+		this_._onOkClicked();
+	});
 }
 
 Preferences.prototype.onBeforeShow =
 function(configFile, trackerInfos, trackersId)
 {
-	this.uploadMethod.initFields(configFile.getSection("options", null));
-	initDialogOptions(configFile.getSection("options", null), this.options);
-	initDialogOptions(configFile.getSection("webui", null), this.webui);
-	initDialogOptions(configFile.getSection("ftp", null), this.ftp);
+	this.configFile = configFile;	// _onOkClicked() needs it
 
-	var section = configFile.getSection("options", null);
+	this.uploadMethod.initFields(this.configFile.getSection("options", null));
+	initDialogOptions(this.configFile.getSection("options", null), this.options);
+	initDialogOptions(this.configFile.getSection("webui", null), this.webui);
+	initDialogOptions(this.configFile.getSection("ftp", null), this.ftp);
+
+	var section = this.configFile.getSection("options", null);
 	var option = section.getOption("update-check", "ask", "text");
 	this.dropDownBox.select(option.getValue());
 }
@@ -216,4 +225,19 @@ function(configFile, trackerInfos, trackersId)
 Preferences.prototype.onAfterHide =
 function()
 {
+	this.configFile = null;
+}
+
+Preferences.prototype._onOkClicked =
+function()
+{
+	var optionsSection = this.configFile.getSection("options", null);
+	this.uploadMethod.saveOptions(optionsSection);
+	saveDialogOptions(optionsSection, this.options);
+	saveDialogOptions(this.configFile.getSection("webui", null), this.webui);
+	saveDialogOptions(this.configFile.getSection("ftp", null), this.ftp);
+
+	optionsSection.getOption("update-check").setValue(this.dropDownBox.getSelectedValue());
+
+	theDialogManager.hide("autodl-preferences");
 }

@@ -256,7 +256,8 @@ function()
 		selectedText: $(this.textboxElem).val(),
 		listboxData: listboxData,
 		multiSelect: true,
-		title: theUILang.autodlHoldCtrl,
+		title: theUILang.autodlSelectTrackers,
+		text: theUILang.autodlHoldCtrl,
 		okClicked: function()
 		{
 			$(this_.textboxElem).val(data.selectedText);
@@ -446,7 +447,7 @@ function Filters(multiSelectDlgBox)
 				'</div>' +
 			'</div>' +
 			'<div class="aright buttons-list dlgbuttons">' +
-				'<input type="button" value="' + theUILang.ok + '" class="OK Button" />' +
+				'<input type="button" id="autodl-filters-ok-button" value="' + theUILang.ok + '" class="OK Button" />' +
 				'<input type="button" value="' + theUILang.Cancel + '" class="Cancel Button" />' +
 			'</div>' +
 		'</div>'
@@ -530,14 +531,21 @@ function Filters(multiSelectDlgBox)
 	this.filterListBox.onSelected = function(oldObj, newObj) { this_._onFilterSelected(oldObj, newObj); }
 
 	this.uploadMethod = new UploadMethod("autodl-filters-contents-upload");
+
+	$("#autodl-filters-ok-button").click(function(e)
+	{
+		this_._onOkClicked();
+	});
 }
 
 Filters.prototype.onBeforeShow =
 function(configFile, trackerInfos, trackersId)
 {
+	this.configFile = configFile;
+
 	this.matchSitesButton._setTrackerInfos(trackerInfos);
 	this.exceptSitesButton._setTrackerInfos(trackerInfos);
-	this.initFilters(configFile);
+	this.initFilters();
 }
 
 Filters.prototype.onAfterHide =
@@ -546,19 +554,33 @@ function()
 	this.matchSitesButton._setTrackerInfos(null);
 	this.exceptSitesButton._setTrackerInfos(null);
 	this.filterListBox.removeAll();
-	delete this.filterSections;
+	delete this.filterObjs;
+	this.configFile = null;
+}
+
+Filters.prototype._onOkClicked =
+function()
+{
+	this._saveFilterObj(this.filterListBox.getSelectedData());
+
+	var filters = [];
+	for (var i = 0; i < this.filterObjs.length; i++)
+		filters.push(this.filterObjs[i].section);
+	this.configFile.setFilters(filters);
+
+	theDialogManager.hide("autodl-filters");
 }
 
 Filters.prototype.initFilters =
-function(configFile)
+function()
 {
 	this.nextId = 0;
-	this.filterSections = [];
-	var ary = configFile.getSectionsByType("filter");
+	this.filterObjs = [];
+	var ary = this.configFile.getFilters();
 	for (var i = 0; i < ary.length; i++)
 		this._addFilterSection(ary[i].clone());
 
-	if (this.filterSections.length === 0)
+	if (this.filterObjs.length === 0)
 		this._onFilterSelected();
 	else
 		this.filterListBox.select(0);
@@ -586,18 +608,35 @@ function(section)
 
 	this.filterListBox.append($(obj.checkboxElem).add(obj.labelElem), obj);
 
-	this.filterSections.push(obj);
+	this.filterObjs.push(obj);
 	this.nextId++;
 	return obj;
+}
+
+Filters.prototype._saveFilterObj =
+function(obj)
+{
+	if (obj)
+	{
+		var section = obj.section;
+
+		this.uploadMethod.saveOptions(section);
+		saveDialogOptions(section, this.options);
+		section.getOption("scene").setValue(this.sceneDropDownBox.getSelectedValue());
+		section.getOption("log").setValue(this.logDropDownBox.getSelectedValue());
+		section.getOption("cue").setValue(this.cueDropDownBox.getSelectedValue());
+
+		section.name = $("#autodl-filters-name").val();
+
+		var enabled = obj.checkboxElem.checked;
+		section.getOption("enabled").setValue(enabled.toString());
+	}
 }
 
 Filters.prototype._onFilterSelected =
 function(oldObj, newObj)
 {
-	if (oldObj)
-	{
-		//TODO: Save data in oldObj.section
-	}
+	this._saveFilterObj(oldObj);
 
 	var section = (newObj || {}).section;
 	initDialogOptions(section, this.options);
@@ -633,7 +672,11 @@ Filters.prototype._onClickRemove =
 function()
 {
 	if (confirm(theUILang.autodlDeleteFilter))
+	{
+		var selectedIndex = this.filterListBox.getSelectedIndex();
+		this.filterObjs.splice(selectedIndex, 1);
 		this.filterListBox.removeSelected();
+	}
 }
 
 Filters.prototype._onFilterNameModified =

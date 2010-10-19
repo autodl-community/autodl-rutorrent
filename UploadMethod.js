@@ -128,3 +128,11 @@ function(section)
 
 	this.dropdown.select(getSectionOptionValue(section, "upload-type", "", "text"));
 }
+
+UploadMethod.prototype.saveOptions =
+function(section)
+{
+	saveDialogOptions(section, this.options);
+
+	section.getOption("upload-type").setValue(this.dropdown.getSelectedValue());
+}

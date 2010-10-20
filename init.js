@@ -83,45 +83,53 @@ function()
 	{
 		var this_ = this;
 		this.dialogManager = new MyDialogManager(this.path);
-
-		// Add our button to the left of the About button
-		$("#mnu_help").before($(
-			'<a id="mnu_autodl" title="autodl-irssi" onfocus="this.blur()" href="javascript:void(0)">' +
-				'<div id="autodl">autodl</div>' +
-			'</a>' +
-			'<a id="mnu_autodl2" title="autodl-irssi" onfocus="this.blur()" href="javascript:void(0)">' +
-				'<div id="autodl2">filters</div>' +
-			'</a>' +
-			'<a id="mnu_autodl3" title="autodl-irssi" onfocus="this.blur()" href="javascript:void(0)">' +
-				'<div id="autodl3">trackers</div>' +
-			'</a>' +
-			'<a id="mnu_autodl4" title="autodl-irssi" onfocus="this.blur()" href="javascript:void(0)">' +
-				'<div id="autodl4">trackers</div>' +
-			'</a>' +
-			'<div class="TB_Separator" />'
-		));
-		$("#mnu_autodl").click(function(e)
-		{
-			this_.dialogManager.toggleDialog("preferences");
-		});
-		$("#mnu_autodl2").click(function(e)
-		{
-			this_.dialogManager.toggleDialog("filters");
-		});
-		$("#mnu_autodl3").click(function(e)
-		{
-			this_.dialogManager.toggleDialog("trackers");
-		});
-		$("#mnu_autodl4").click(function(e)
-		{
-			this_.dialogManager.toggleDialog("servers");
-		});
+		this._addToToolbar();
 	}
 	catch (ex)
 	{
 		log("autodl-irssi: __init2: ex: " + ex);
 		throw ex;
 	}
+}
+
+plugin._addToToolbar =
+function()
+{
+	this.addButtonToToolbar("autodl-tb", "autodl-irssi", "", "help");
+	this.addSeparatorToToolbar("help");
+
+	var this_ = this;
+	$("#mnu_autodl-tb").click(function(e)
+	{
+		this_._onClickToolbarButton(e);
+	}).
+	mouseup(function(e)
+	{
+		// Prevent ruTorrent from closing the popup menu
+		e.stopPropagation();
+	});
+}
+
+plugin._onClickToolbarButton =
+function(e)
+{
+	var this_ = this;
+
+	theContextMenu.clear();
+	theContextMenu.add(["Filters...", function() { this_.dialogManager.toggleDialog("filters"); }]);
+	theContextMenu.add(["Announce Channels...", function() { this_.dialogManager.toggleDialog("servers"); }]);
+	theContextMenu.add(["Trackers...", function() { this_.dialogManager.toggleDialog("trackers"); }]);
+	theContextMenu.add(["Preferences...", function() { this_.dialogManager.toggleDialog("preferences"); }]);
+	theContextMenu.add([CMENU_SEP]);
+	theContextMenu.add(["Help", function() {}]);
+
+	// There's no way to add href links so add this fugly hack
+	$($("a", theContextMenu.obj)[4]).attr("target", "_blank").attr("href", "http://sourceforge.net/apps/phpbb/autodl-irssi/")
+
+	var offset = $("#autodl-tb").offset();
+	var x = offset.left - 5;
+	var y = offset.top + 5 + $("#autodl-tb").height();
+	theContextMenu.show(x, y);
 }
 
 if (plugin.enabled)

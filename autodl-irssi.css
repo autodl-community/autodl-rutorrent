@@ -27,11 +27,8 @@
 	font-style: italic;
 }
 
-#autodl,
-#autodl2,
-#autodl3,
-#autodl4 {
-	background: transparent url(../../images/quest.gif) no-repeat center;
+#autodl-tb {
+	background: transparent url(001_52.gif) no-repeat center;
 }
 #autodl-preferences-header,
 #autodl-filters-header,

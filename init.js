@@ -116,12 +116,12 @@ function(e)
 	var this_ = this;
 
 	theContextMenu.clear();
-	theContextMenu.add(["Filters...", function() { this_.dialogManager.toggleDialog("filters"); }]);
-	theContextMenu.add(["Announce Channels...", function() { this_.dialogManager.toggleDialog("servers"); }]);
-	theContextMenu.add(["Trackers...", function() { this_.dialogManager.toggleDialog("trackers"); }]);
-	theContextMenu.add(["Preferences...", function() { this_.dialogManager.toggleDialog("preferences"); }]);
+	theContextMenu.add([theUILang.autodlFilters2, function() { this_.dialogManager.toggleDialog("filters"); }]);
+	theContextMenu.add([theUILang.autodlServers2, function() { this_.dialogManager.toggleDialog("servers"); }]);
+	theContextMenu.add([theUILang.autodlTrackers2, function() { this_.dialogManager.toggleDialog("trackers"); }]);
+	theContextMenu.add([theUILang.autodlPreferences2, function() { this_.dialogManager.toggleDialog("preferences"); }]);
 	theContextMenu.add([CMENU_SEP]);
-	theContextMenu.add(["Help", function() {}]);
+	theContextMenu.add([theUILang.autodlHelp, function() {}]);
 
 	// There's no way to add href links so add this fugly hack
 	$($("a", theContextMenu.obj)[4]).attr("target", "_blank").attr("href", "http://sourceforge.net/apps/phpbb/autodl-irssi/")

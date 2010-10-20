@@ -22,6 +22,11 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
+.emptytext-set {
+	color: gray;
+	font-style: italic;
+}
+
 #autodl,
 #autodl2,
 #autodl3,

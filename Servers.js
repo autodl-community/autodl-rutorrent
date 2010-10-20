@@ -71,6 +71,9 @@ function Servers()
 	{
 		theDialogManager.hide("autodl-servers");
 	});
+
+	// Do this last so all textboxes have been created
+	installEmptyTextHandlers("autodl-servers");
 }
 
 Servers.prototype._getSortedTrackerInfos =
@@ -136,7 +139,7 @@ function(oldObj, newObj)
 	function setIt(obj, id, propName)
 	{
 		var server = (obj || {}).server || {};
-		$("#" + id).val(server[propName] || "");
+		$("#" + id).myval(server[propName] || "");
 	}
 	setIt(newObj, "autodl-servers-network", "network");
 	setIt(newObj, "autodl-servers-servers", "serverNames");

@@ -110,7 +110,7 @@ function Preferences()
 						'<tbody>' +
 							'<tr>' +
 								'<td><label for="autodl-programs-utorrent">' + theUILang.autodlUtorrentExe + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-programs-utorrent" title="' + theUILang.autodlTitle42 + '"/></td>' +
+								'<td><input type="text" class="textbox" id="autodl-programs-utorrent" title="' + theUILang.autodlTitle42 + '" emptytext="' + theUILang.autodlHint31 + '"/></td>' +
 							'</tr>' +
 						'</tbody>' +
 					'</table>' +
@@ -120,15 +120,15 @@ function Preferences()
 						'<tbody>' +
 							'<tr>' +
 								'<td><label for="autodl-advanced-user-agent">' + theUILang.autodlDownloadUserAgent + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-advanced-user-agent" title="' + theUILang.autodlTitle43 + '"/></td>' +
+								'<td><input type="text" class="textbox" id="autodl-advanced-user-agent" title="' + theUILang.autodlTitle43 + '" emptytext="' + theUILang.autodlHint32 + '"/></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><label for="autodl-advanced-tracker-user-agent">' + theUILang.autodlTrackerUserAgent + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-advanced-tracker-user-agent" title="' + theUILang.autodlTitle44 + '"/></td>' +
+								'<td><input type="text" class="textbox" id="autodl-advanced-tracker-user-agent" title="' + theUILang.autodlTitle44 + '" emptytext="' + theUILang.autodlHint32 + '"/></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><label for="autodl-advanced-peer-id">' + theUILang.autodlTrackerPeerId + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-advanced-peer-id" maxlength="20" title="' + theUILang.autodlTitle45 + '"/></td>' +
+								'<td><input type="text" class="textbox" id="autodl-advanced-peer-id" maxlength="20" title="' + theUILang.autodlTitle45 + '" emptytext="' + theUILang.autodlHint32 + '"/></td>' +
 								'<td><label for="autodl-advanced-peer-id">' + theUILang.autodl20Chars + '</label></td>' +
 							'</tr>' +
 							'<tr>' +
@@ -205,6 +205,9 @@ function Preferences()
 	{
 		this_._onOkClicked();
 	});
+
+	// Do this last so all textboxes have been created
+	installEmptyTextHandlers("autodl-preferences");
 }
 
 Preferences.prototype.onBeforeShow =

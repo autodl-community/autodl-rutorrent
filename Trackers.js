@@ -74,6 +74,7 @@ function(configFile, trackerInfos, trackersId)
 		this._createListbox();
 		this._createContents();
 		this._createOptions();
+		installEmptyTextHandlers("autodl-trackers");
 		this.trackerListBox.select(0);
 		this.trackersId = trackersId;
 	}
@@ -271,7 +272,7 @@ function(setting, trackerInfo)
 	case "textbox":
 	case "integer":
 		var label = $('<label />').attr("for", id).text(setting.text);
-		var textbox = $('<input type="text" class="textbox" />').attr("id", id).attr("title", tooltipText);
+		var textbox = $('<input type="text" class="textbox" />').attr("id", id).attr("title", tooltipText).attr("emptytext", setting.emptytext);
 		if (setting.pasteRegex && setting.pasteGroup)
 		{
 			var this_ = this;
@@ -335,7 +336,7 @@ function(trackerInfo, name)
 Trackers.prototype._onPaste =
 function(trackerInfo, pasteGroup, textboxElem)
 {
-	var s = textboxElem.val();
+	var s = textboxElem.myval();
 	var names = pasteGroup.split(",");
 	for (var i = 0; i < names.length; i++)
 	{
@@ -347,6 +348,6 @@ function(trackerInfo, pasteGroup, textboxElem)
 		var textbox = $("#" + this._settingIdFromName(trackerInfo, name));
 		var ary = s.match(setting.pasteRegex);
 		if (textbox.size() > 0 && ary && ary.length > 1)
-			textbox.val(ary[1]);
+			textbox.myval(ary[1]);
 	}
 }

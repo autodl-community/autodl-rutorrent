@@ -272,7 +272,10 @@ function(setting, trackerInfo)
 	case "textbox":
 	case "integer":
 		var label = $('<label />').attr("for", id).text(setting.text);
-		var textbox = $('<input type="text" class="textbox" />').attr("id", id).attr("title", tooltipText).attr("emptytext", setting.emptytext);
+		var textbox = $('<input type="text" class="textbox" />')
+							.attr("id", id)
+							.attr("title", tooltipText)
+							.attr("emptytext", setting.emptytext || "");
 		if (setting.pasteRegex && setting.pasteGroup)
 		{
 			var this_ = this;

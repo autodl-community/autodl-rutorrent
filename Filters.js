@@ -165,9 +165,29 @@ function()
 	return checked;
 }
 
+MenuButton.prototype._isOurMenuVisible =
+function()
+{
+	if (theContextMenu.obj.css("display") !== "block")
+		return false;
+
+	var links = theContextMenu.obj.find("a");
+	var len = links.size();
+	if (len !== this.strings.length || $(links[len-1]).text() !== this.strings[len-1][0])
+		return false;
+
+	return true;
+}
+
 MenuButton.prototype._onClick =
 function(e)
 {
+	if (this._isOurMenuVisible())
+	{
+		theContextMenu.hide();
+		return;
+	}
+
 	theContextMenu.clear();
 
 	var this_ = this;
@@ -187,7 +207,10 @@ function(e)
 		})(i);
 	}
 
-	theContextMenu.show(e.clientX, e.clientY);
+	var offset = $(this.buttonElem).offset();
+	var x = offset.left;
+	var y = offset.top + $(this.buttonElem).height();
+	theContextMenu.show(x, y);
 }
 
 // Called when the user clicked one of the menu items

@@ -30,6 +30,7 @@ $.fn.myval = function(value)
 	if (value == null)
 	{
 		// get value
+
 		if ($(elem).hasClass("emptytext-set"))
 			return "";
 		return $(elem).val();
@@ -37,6 +38,11 @@ $.fn.myval = function(value)
 	else
 	{
 		// set value
+
+		// Less flickering if we test it here
+		if ($(elem).hasClass("emptytext-set") && value === "")
+			return;
+
 		$(elem).removeClass("emptytext-set").val(value);
 		_textboxSetEmptyText(elem);
 	}

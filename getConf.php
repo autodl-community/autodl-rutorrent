@@ -26,7 +26,7 @@
 require_once '../../php/util.php';
 eval(getPluginConf('autodl-irssi'));
 
-// Sends a 304 if it's the same file (and exists) or returns if the file has changed
+// Sends a 304 if it's the same file (and exits) or returns if the file has changed
 // with added ETag HTTP header.
 function checkSameFile($etag, $mtime) {
 	header("ETag: $etag");

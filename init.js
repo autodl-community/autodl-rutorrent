@@ -95,8 +95,9 @@ function()
 plugin._addToToolbar =
 function()
 {
-	this.addButtonToToolbar("autodl-tb", "autodl-irssi", "", "help");
-	this.addSeparatorToToolbar("help");
+	var beforeId = "help";
+	this.addButtonToToolbar("autodl-tb", "autodl-irssi", "", beforeId);
+	this.addSeparatorToToolbar(beforeId);
 
 	var this_ = this;
 	$("#mnu_autodl-tb").click(function(e)

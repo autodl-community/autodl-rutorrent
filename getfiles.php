@@ -28,27 +28,19 @@
 
 require_once 'getConf.php';
 
-$error = "";
-$ary[] = 'autodl.cfg';
-$aryTrackers = glob("$trackersDirectory/*.tracker", GLOB_NOSORT | GLOB_ERR);
-if ($aryTrackers === false) {
-	$error = "Could not read tracker files. Make sure your web server has permission to read the tracker directory!";
-}
-else {
-	foreach ($aryTrackers as $path) {
-		if (filesize($path))
-			$ary[] = basename($path);
-	}
-}
+$command = Array("command" => "getfiles");
+$response = sendAutodlCommand($command);
 
-$res = Array('error' => $error, 'files' => $ary);
+$res = Array('error' => $response->error);
+if ($response->files)
+	$res['files'] = $response->files;
 $jsonData = json_encode($res);
 
 $etag = '"' . md5($jsonData) . '"';
 $mtime = 1286000000;	// A "valid" Last-Modified time so Chrome tries to GET this file from the server again
 checkSameFile($etag, $mtime);
 
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=UTF-8');
 echo $jsonData;
 
 ?>

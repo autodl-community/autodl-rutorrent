@@ -37,35 +37,22 @@ function notFound() {
 if (!isset($_GET["file"]))
 	notFound();
 $filename = trim($_GET["file"]);
-if (!isValidFilename($filename))
+$command = Array("command" => "getfile", "name" => $filename);
+$response = sendAutodlCommand($command);
+
+if ($response->error)
 	notFound();
 
-$fileMustExist = true;
-if ($filename === 'autodl.cfg') {
-	$fileMustExist = false;	// Return a 0-byte file if it doesn't exist
+$mtime = $response->mtime;
+$etag = '"' . md5($mtime . '-' . $filename) . '"';
+checkSameFile($etag, $mtime);
+
+if ($filename === 'autodl.cfg')
 	$contentType = 'text/plain';
-	$pathname = "$autodlDirectory/$filename";
-}
-elseif (preg_match('/\.tracker$/', $filename)) {
+else
 	$contentType = 'application/xml';
-	$pathname = "$trackersDirectory/$filename";
-}
-else {
-	notFound();
-}
 
-$stat = stat($pathname);
-if ($stat !== false) {
-	$mtime = $stat[9];
-	$etag = '"' . md5($mtime . '-' . $pathname) . '"';
-	checkSameFile($etag, $mtime);
-}
-$data = file_get_contents($pathname);
-if ($data === false && $fileMustExist)
-	notFound();
-
-header("Content-Type: $contentType");
-if ($data !== false)
-	echo $data;
+header("Content-Type: $contentType; charset=UTF-8");
+echo $response->data;
 
 ?>

@@ -26,17 +26,6 @@
 require_once '../../php/util.php';
 eval(getPluginConf('autodl-irssi'));
 
-function removeEndingSlash($dir) {
-	if ($dir{strlen($dir)-1} != '/')
-		return $dir;
-	return substr($dir, 0, strlen($dir) - 1);
-}
-
-// Returns true if the filename contains only valid characters
-function isValidFilename($filename) {
-	return !!preg_match('/^[\w .\-]+$/', $filename);
-}
-
 // Sends a 304 if it's the same file (and exists) or returns if the file has changed
 // with added ETag HTTP header.
 function checkSameFile($etag, $mtime) {
@@ -48,8 +37,56 @@ function checkSameFile($etag, $mtime) {
 	}
 }
 
-$irssiScriptDirectory = removeEndingSlash($irssiScriptDirectory);
-$autodlDirectory = removeEndingSlash($autodlDirectory);
-$trackersDirectory = "$irssiScriptDirectory/AutodlIrssi/trackers";
+function getSocketError($socket) {
+	$code = socket_last_error($socket);
+	return "($code) " . socket_strerror($code);
+}
+
+function socketWriteAllData($socket, $data) {
+	while (strlen($data)) {
+		$lenWritten = socket_write($socket, $data, strlen($data));
+		if ($lenWritten === false || $lenWritten <= 0)
+			throw new Exception("Could not write to socket: " . getSocketError($socket));
+		$data = substr($data, $lenWritten);
+	}
+}
+
+function socketReadAllData($socket) {
+	$data = "";
+	while (1) {
+		$val = socket_read($socket, 4096);
+		if ($val === false)
+			throw new Exception("Could not read from socket: " . getSocketError($socket));
+		if ($val === "")
+			break;
+		$data .= $val;
+	}
+	return $data;
+}
+
+function sendAutodlCommand($data) {
+	global $autodlPort;
+	try {
+		$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+		if ($socket === false)
+			throw new Exception("Could not create socket: " . getSocketError());
+
+		if (!socket_connect($socket, "127.0.0.1", $autodlPort))
+			throw new Exception("Could not connect: " . getSocketError($socket));
+
+		socketWriteAllData($socket, json_encode($data));
+		$response = utf8_decode(socketReadAllData($socket));
+		socket_close($socket);
+		$jsonData = json_decode($response);
+		if (is_null($jsonData))
+			throw new Exception("Could not decode json string");
+		return $jsonData;
+	}
+	catch (Exception $ex) {
+		$obj = (object)0;
+		$obj->error = 'Internal error';
+		return $obj;
+	}
+}
 
 ?>

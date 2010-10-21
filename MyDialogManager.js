@@ -143,8 +143,9 @@ function(errorMessage, downloadedAllFiles)
 
 		if (errorMessage)
 		{
-			log("Error downloading files: " + errorMessage);
-			alert("Error downloading files: " + errorMessage);
+			var msg = "Error downloading files. Make sure autodl-irssi is started and listening for connections: " + errorMessage;
+			log(msg);
+			alert(msg);
 			return;
 		}
 

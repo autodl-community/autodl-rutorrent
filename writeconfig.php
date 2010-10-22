@@ -48,6 +48,8 @@ if (!$error) {
 	$error = $response->error;
 }
 
+if (is_null($error))
+	$error = "";
 $result = Array("error" => $error);
 $jsonData = json_encode($result);
 header('Content-Type: application/json; charset=UTF-8');

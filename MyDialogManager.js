@@ -143,7 +143,7 @@ function(errorMessage, downloadedAllFiles)
 
 		if (errorMessage)
 		{
-			log("Error downloading files. Make sure autodl-irssi is started and listening for connections: " + errorMessage);
+			log(theUILang.autodlError + errorMessage);
 			return;
 		}
 

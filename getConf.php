@@ -65,7 +65,7 @@ function socketReadAllData($socket) {
 }
 
 function sendAutodlCommand($data) {
-	global $autodlPort;
+	global $autodlPort, $autodlPassword;
 	try {
 		$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 		if ($socket === false)
@@ -74,6 +74,7 @@ function sendAutodlCommand($data) {
 		if (!socket_connect($socket, "127.0.0.1", $autodlPort))
 			throw new Exception("Could not connect: " . getSocketError($socket));
 
+		$data['password'] = $autodlPassword;
 		socketWriteAllData($socket, json_encode($data));
 		$response = utf8_decode(socketReadAllData($socket));
 		socket_close($socket);

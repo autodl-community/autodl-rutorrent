@@ -1,17 +1,20 @@
 <?php
 /*
-This file should be renamed 'conf.php' and updated
-*/
-
-/*
- * The port autodl-irssi is listening on for connections. IP address is always 127.0.0.1.
- * To set a port, edit ~/.autodl/autodl.cfg and add gui-server-port = 12345 to [options], eg.:
+ * Rename this file to conf.php.
  *
- * 	...
- * 	[options]
- * 	gui-server-port = 12345
- * 	...
+ * You need to edit ~/.autodl/autodl.cfg and add a few options to the [options] section
+ *		...
+ *		[options]
+ *		gui-server-port = 12345
+ *		gui-server-password = abcdef
+ *		...
+ * 
+ * $autodlPort and gui-server-port must have the same value.
+ * $autodlPassword and gui-server-password must have the same value.
+ * The password cannot be blank.
  */
+
 $autodlPort = 0;
+$autodlPassword = "";
 
 ?>

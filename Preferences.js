@@ -123,15 +123,6 @@ function Preferences()
 								'<td><input type="text" class="textbox" id="autodl-advanced-user-agent" title="' + theUILang.autodlTitle43 + '" emptytext="' + theUILang.autodlHint32 + '"/></td>' +
 							'</tr>' +
 							'<tr>' +
-								'<td><label for="autodl-advanced-tracker-user-agent">' + theUILang.autodlTrackerUserAgent + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-advanced-tracker-user-agent" title="' + theUILang.autodlTitle44 + '" emptytext="' + theUILang.autodlHint32 + '"/></td>' +
-							'</tr>' +
-							'<tr>' +
-								'<td><label for="autodl-advanced-peer-id">' + theUILang.autodlTrackerPeerId + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-advanced-peer-id" maxlength="20" title="' + theUILang.autodlTitle45 + '" emptytext="' + theUILang.autodlHint32 + '"/></td>' +
-								'<td><label for="autodl-advanced-peer-id">' + theUILang.autodl20Chars + '</label></td>' +
-							'</tr>' +
-							'<tr>' +
 								'<td><label for="autodl-advanced-max-download-retry-time">' + theUILang.autodlMaxDlRetryTime + '</label></td>' +
 								'<td><input type="text" class="textbox" id="autodl-advanced-max-download-retry-time" title="' + theUILang.autodlTitle46 + '"/></td>' +
 								'<td><label for="autodl-advanced-max-download-retry-time">' + theUILang.autodlSeconds + '</label></td>' +
@@ -160,8 +151,6 @@ function Preferences()
 		new DialogOptionBool("autodl-download-duplicates", "download-duplicates", "false"),
 		new DialogOptionText("autodl-programs-utorrent", "path-utorrent", ""),
 		new DialogOptionText("autodl-advanced-user-agent", "user-agent", "autodl-irssi"),
-		new DialogOptionText("autodl-advanced-tracker-user-agent", "user-agent-tracker", ""),
-		new DialogOptionText("autodl-advanced-peer-id", "peer-id", ""),
 		new DialogOptionInt("autodl-advanced-max-download-retry-time", "download-retry-time-seconds", "300"),
 		new DialogOptionInt("autodl-advanced-output-level", "output-level", "3"),
 		new DialogOptionBool("autodl-advanced-debug", "debug", "false")

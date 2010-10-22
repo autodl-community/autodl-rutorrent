@@ -234,15 +234,6 @@ function(trackerInfoElem)
 	});
 	addIt(
 	{
-		name: "checkregd",
-		type: "bool",
-		defaultValue: this.checkRegd.toString(),
-		text: theUILang.autodlCheckRegd,
-		tooltiptext: theUILang.autodlCheckRegd2,
-		isDownloadVar: false
-	});
-	addIt(
-	{
 		name: "force-ssl",
 		type: "bool",
 		defaultValue: "false",

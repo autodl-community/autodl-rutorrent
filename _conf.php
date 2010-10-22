@@ -1,6 +1,6 @@
 <?php
 /*
- * Rename this file to conf.php.
+ * Rename this file to conf.php. Make sure only your web server can read the renamed file!
  *
  * You need to edit ~/.autodl/autodl.cfg and add a few options to the [options] section
  *		...

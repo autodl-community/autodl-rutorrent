@@ -43,6 +43,12 @@ function()
 	return this.files.config;
 }
 
+AutodlFilesDownloader.prototype.setConfigFile =
+function(config)
+{
+	this.files.config = config;
+}
+
 AutodlFilesDownloader.prototype.getTrackers =
 function()
 {

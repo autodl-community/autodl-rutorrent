@@ -198,3 +198,5 @@ theUILang.autodlHint30 = "Eg. /home/YOURNAME/$(month)$(day)";
 theUILang.autodlHint31 = "Path to utorrent.exe";
 theUILang.autodlHint32 = "Leave blank for default";
 theUILang.autodlError = "Error downloading files. Make sure autodl-irssi is started and configured properly (eg. password, port number): ";
+theUILang.autodlErrorSaving = "Could not save to autodl.cfg! Error: ";
+theUILang.autodlWaitSaving = "Wait a little bit. Trying to save to autodl.cfg...";

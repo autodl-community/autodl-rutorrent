@@ -24,6 +24,11 @@
 
 function Preferences()
 {
+}
+
+Preferences.prototype.createDialogBox =
+function(multiSelectDlgBox, okHandler)
+{
 	theDialogManager.make("autodl-preferences", theUILang.autodlPreferences,
 		'<div id="autodl-prefs">' +
 			'<div id="autodl-prefs-tabs">' +
@@ -190,10 +195,7 @@ function Preferences()
 
 	this.uploadMethod = new UploadMethod("autodl-prefs-contents-upload", true);
 
-	$("#autodl-prefs-ok-button").click(function(e)
-	{
-		this_._onOkClicked();
-	});
+	$("#autodl-prefs-ok-button").click(function(e) { okHandler() });
 
 	// Do this last so all textboxes have been created
 	installEmptyTextHandlers("autodl-preferences");
@@ -202,7 +204,7 @@ function Preferences()
 Preferences.prototype.onBeforeShow =
 function(configFile, trackerInfos, trackersId)
 {
-	this.configFile = configFile;	// _onOkClicked() needs it
+	this.configFile = configFile;	// onOkClicked() needs it
 
 	this.uploadMethod.initFields(this.configFile.getSection("options", null));
 	initDialogOptions(this.configFile.getSection("options", null), this.options);
@@ -220,7 +222,7 @@ function()
 	this.configFile = null;
 }
 
-Preferences.prototype._onOkClicked =
+Preferences.prototype.onOkClicked =
 function()
 {
 	var optionsSection = this.configFile.getSection("options", null);
@@ -231,5 +233,5 @@ function()
 
 	optionsSection.getOption("update-check").setValue(this.dropDownBox.getSelectedValue());
 
-	theDialogManager.hide("autodl-preferences");
+	return true;	// autodl.cfg updated
 }

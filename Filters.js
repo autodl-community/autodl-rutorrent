@@ -297,7 +297,12 @@ function(trackerInfos)
 	this.trackerInfos = trackerInfos;
 }
 
-function Filters(multiSelectDlgBox)
+function Filters()
+{
+}
+
+Filters.prototype.createDialogBox =
+function(multiSelectDlgBox, okHandler)
 {
 	theDialogManager.make("autodl-filters", theUILang.autodlFilters,
 		'<div id="autodl-filters">' +
@@ -555,10 +560,7 @@ function Filters(multiSelectDlgBox)
 
 	this.uploadMethod = new UploadMethod("autodl-filters-contents-upload");
 
-	$("#autodl-filters-ok-button").click(function(e)
-	{
-		this_._onOkClicked();
-	});
+	$("#autodl-filters-ok-button").click(function(e) { okHandler() });
 
 	// Do this last so all textboxes have been created
 	installEmptyTextHandlers("autodl-filters");
@@ -584,7 +586,7 @@ function()
 	this.configFile = null;
 }
 
-Filters.prototype._onOkClicked =
+Filters.prototype.onOkClicked =
 function()
 {
 	this._saveFilterObj(this.filterListBox.getSelectedData());
@@ -594,7 +596,7 @@ function()
 		filters.push(this.filterObjs[i].section);
 	this.configFile.setFilters(filters);
 
-	theDialogManager.hide("autodl-filters");
+	return true;	// autodl.cfg updated
 }
 
 Filters.prototype.initFilters =

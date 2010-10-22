@@ -165,7 +165,6 @@ function(doc)
 	this.shortName = readAttribute(trackerInfoElem, "shortName");
 	this.longName = readAttribute(trackerInfoElem, "longName");
 	this.siteName = readAttribute(trackerInfoElem, "siteName");
-	this.checkRegd = readAttributeBoolean(trackerInfoElem, "checkRegisteredTorrent", false);
 	if (this.type == null || this.shortName == null || this.longName == null || this.siteName == null)
 		throw "Invalid tracker file";
 

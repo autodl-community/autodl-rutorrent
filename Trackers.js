@@ -24,6 +24,11 @@
 
 function Trackers()
 {
+}
+
+Trackers.prototype.createDialogBox =
+function(multiSelectDlgBox, okHandler)
+{
 	theDialogManager.make("autodl-trackers", theUILang.autodlTrackers,
 		'<div id="autodl-trackers">' +
 			'<div id="autodl-trackers-left">' +
@@ -42,10 +47,7 @@ function Trackers()
 	this.trackerListBox = new ListBox("autodl-trackers-list");
 	this.trackerListBox.onSelected = function(oldObj, newObj) { this_._onTrackerSelected(oldObj, newObj); }
 
-	$("#autodl-trackers-ok-button").click(function(e)
-	{
-		this_._onOkClicked();
-	});
+	$("#autodl-trackers-ok-button").click(function(e) { okHandler() });
 }
 
 Trackers.prototype._getSortedTrackerInfos =
@@ -88,12 +90,12 @@ function()
 	this.configFile = null;
 }
 
-Trackers.prototype._onOkClicked =
+Trackers.prototype.onOkClicked =
 function()
 {
 	this._saveTrackers();
 
-	theDialogManager.hide("autodl-trackers");
+	return true;	// autodl.cfg updated
 }
 
 Trackers.prototype._saveTrackers =

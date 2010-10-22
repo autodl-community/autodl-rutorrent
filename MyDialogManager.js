@@ -26,6 +26,10 @@ function MyDialogManager(pluginPath)
 {
 	this.isDownloading = false;
 	this.pluginPath = pluginPath;
+	this.trackersId = 0;			// Incremented each time we've read the tracker files
+	this.lastReadConfigFile = null;	// Date() when we last read autodl.cfg from server
+	this.redownloadAll = true;		// true if we should download all files: *.tracker and autodl.cfg
+	this.savingConfigFile = false;	// true when we're saving to autodl.cfg
 
 	this.filesDownloader = new AutodlFilesDownloader(this.pluginPath);
 	this.trackerInfos = [];
@@ -33,17 +37,19 @@ function MyDialogManager(pluginPath)
 	this.configFile = new ConfigFile();
 	this.preferences = new Preferences();
 	this.trackers = new Trackers();
-	this.filters = new Filters(this.multiSelectDlgBox);
+	this.filters = new Filters();
 	this.servers = new Servers();
-	this.trackersId = 0;
-	this.lastReadConfigFile = null;
-	this.redownloadAll = true;
 
 	var this_ = this;
 	for (var i = 0; i < this.names.length; i++)
 	{
 		(function(name)
 		{
+			this_[name].createDialogBox(this_.multiSelectDlgBox, function()
+			{
+				this_._onOkClicked(name);
+			});
+
 			var id = 'autodl-' + name;
 			theDialogManager.setHandler(id, "beforeShow", function()
 			{
@@ -72,6 +78,82 @@ MyDialogManager.prototype.names =
 	'trackers',
 	'servers'
 ];
+
+MyDialogManager.prototype._onOkClicked =
+function(name)
+{
+	var updatedConfigFile = this[name].onOkClicked();
+
+	try
+	{
+		theDialogManager.hide("autodl-" + name);
+
+		if (updatedConfigFile)
+			this._uploadConfigFile(this.configFile.toString());
+	}
+	catch (ex)
+	{
+		log("MyDialogManager._onOkClicked: ex: " + ex);
+	}
+}
+
+MyDialogManager.prototype._uploadConfigFile =
+function(fileData)
+{
+	try
+	{
+		var this_ = this;
+
+		var boundaryString = "---------------------------32853208516921";
+		var boundary = "--" + boundaryString;
+		var postData = boundary + "\r\n" +
+						"Content-Disposition: form-data; name=\"file\"; filename=\"autodl.cfg\"\r\n" +
+						"Content-Type: text/plain\r\n" +
+						"\r\n" +
+						fileData + "\r\n" +
+						boundary + "--" + "\r\n";
+
+		this.savingConfigFile = true;
+		$.ajax(
+		{
+			url: this.pluginPath + "writeconfig.php",
+			data: postData,
+			type: "POST",
+			dataType: "json",
+			contentType: "multipart/form-data; boundary=" + boundaryString,
+			processData: false,
+			success: function(data, status)
+			{
+				this_._onSavedConfigFile(data.error, fileData);
+			},
+			error: function(xhr, status, ex)
+			{
+				this_._onSavedConfigFile("Unknown error");
+			}
+		});
+	}
+	catch (ex)
+	{
+		this.savingConfigFile = false;
+		log("Could not save to autodl.cfg. Got an exception: " + ex);
+	}
+}
+
+MyDialogManager.prototype._onSavedConfigFile =
+function(errorMessage, configFileData)
+{
+	this.savingConfigFile = false;
+	if (errorMessage)
+	{
+		this.redownloadAll = true;
+		log(theUILang.autodlErrorSaving + errorMessage);
+		return;
+	}
+
+	// We just wrote the file, so we have a copy of it
+	this.lastReadConfigFile = new Date();
+	this.filesDownloader.setConfigFile(configFileData);
+}
 
 MyDialogManager.prototype._isDialogVisible =
 function(name)
@@ -112,7 +194,12 @@ function(name)
 MyDialogManager.prototype._downloadFiles =
 function()
 {
-	if (this.redownloadAll)
+	if (this.savingConfigFile)
+	{
+		this.dialogName = null;
+		alert(theUILang.autodlWaitSaving);
+	}
+	else if (this.redownloadAll)
 		this._downloadAllFiles();
 	else
 		this._downloadConfigFile();

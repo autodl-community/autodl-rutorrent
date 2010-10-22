@@ -24,6 +24,11 @@
 
 function Servers()
 {
+}
+
+Servers.prototype.createDialogBox =
+function(multiSelectDlgBox, okHandler)
+{
 	theDialogManager.make("autodl-servers", theUILang.autodlServers,
 		'<div id="autodl-servers">' +
 			'<div>' +
@@ -67,13 +72,16 @@ function Servers()
 	this.trackerListBox = new ListBox("autodl-servers-list");
 	this.trackerListBox.onSelected = function(oldObj, newObj) { this_._onTrackerSelected(oldObj, newObj); }
 
-	$("#autodl-servers-close-button").click(function(e)
-	{
-		theDialogManager.hide("autodl-servers");
-	});
+	$("#autodl-servers-close-button").click(function(e) { okHandler() });
 
 	// Do this last so all textboxes have been created
 	installEmptyTextHandlers("autodl-servers");
+}
+
+Servers.prototype.onOkClicked =
+function()
+{
+	return false;	// autodl.cfg NOT updated
 }
 
 Servers.prototype._getSortedTrackerInfos =

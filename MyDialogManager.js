@@ -37,6 +37,7 @@ function MyDialogManager(pluginPath)
 	this.servers = new Servers();
 	this.trackersId = 0;
 	this.lastReadConfigFile = null;
+	this.redownloadAll = true;
 
 	var this_ = this;
 	for (var i = 0; i < this.names.length; i++)
@@ -56,9 +57,9 @@ function MyDialogManager(pluginPath)
 	}
 
 	// Download new tracker files once every hour
-	setInterval(function() { this_._downloadAllFiles(); }, 60*60*1000);
+	setInterval(function() { this.redownloadAll = true }, 60*60*1000);
 
-	this._downloadAllFiles();
+	this_._downloadFiles();
 }
 
 // Number of seconds to cache the config file.
@@ -105,7 +106,16 @@ function(name)
 	}
 
 	this.dialogName = name;
-	this._downloadConfigFile();
+	this._downloadFiles();
+}
+
+MyDialogManager.prototype._downloadFiles =
+function()
+{
+	if (this.redownloadAll)
+		this._downloadAllFiles();
+	else
+		this._downloadConfigFile();
 }
 
 // Downloads the autodl.cfg file and all *.tracker files
@@ -155,19 +165,23 @@ function(errorMessage, downloadedAllFiles)
 
 		if (errorMessage)
 		{
+			this.redownloadAll = true;
 			log(theUILang.autodlError + errorMessage);
 			return;
 		}
 
 		this.configFile.parse(this.filesDownloader.getConfigFile());
 		this.lastReadConfigFile = new Date();
+
 		if (downloadedAllFiles)
 			this._parseXmlDocuments(this.filesDownloader.getTrackers());
 
+		this.redownloadAll = false;
 		this._showDialog(dialogName);
 	}
 	catch (ex)
 	{
+		this.redownloadAll = true;
 		log("MyDialogManager._onDownloadedFiles: ex: " + ex);
 	}
 }

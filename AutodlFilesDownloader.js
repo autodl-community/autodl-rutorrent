@@ -22,6 +22,15 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
+function myajax(obj)
+{
+	// IE8 caches all Ajax requests!
+	if ($.browser.msie)
+		obj.cache = false;
+
+	$.ajax(obj);
+}
+
 /**
  * @param pluginUrl	URL of plugin directory (plugin.path), ending in a slash.
  */
@@ -91,7 +100,7 @@ function(handler)
 		this.handler = handler;
 
 		var this_ = this;
-		$.ajax(
+		myajax(
 		{
 			url: this.pluginUrl + "getfiles.php",
 			type: "GET",
@@ -175,7 +184,7 @@ function()
 			dataType = "text";
 
 		var this_ = this;
-		$.ajax(
+		myajax(
 		{
 			url: this.pluginUrl + "getfile.php",
 			data: [{name: 'file', value: filename}],

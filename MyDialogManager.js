@@ -120,7 +120,10 @@ function(fileData)
 			data: postData,
 			type: "POST",
 			dataType: "json",
-			contentType: "multipart/form-data; boundary=" + boundaryString,
+			// We MUST add charset=UTF-8 here ourselves or it will fail to upload (possibly a PHP or Chrome
+			// bug). If we don't add it before 'boundary', then Chrome will add it at the end of the string,
+			// i.e., after 'boundary' causing PHP to report an error and the upload fail.
+			contentType: "multipart/form-data; charset=UTF-8; boundary=" + boundaryString,
 			processData: false,
 			success: function(data, status)
 			{

@@ -36,6 +36,7 @@ function MyDialogManager(pluginPath)
 	this.filters = new Filters(this.multiSelectDlgBox);
 	this.servers = new Servers();
 	this.trackersId = 0;
+	this.lastReadConfigFile = null;
 
 	var this_ = this;
 	for (var i = 0; i < this.names.length; i++)
@@ -59,6 +60,9 @@ function MyDialogManager(pluginPath)
 
 	this._downloadAllFiles();
 }
+
+// Number of seconds to cache the config file.
+MyDialogManager.prototype.CONFIG_FILE_CACHE_SECS = 30;
 
 MyDialogManager.prototype.names =
 [
@@ -124,6 +128,14 @@ function()
 {
 	if (this.isDownloading)
 		return;
+
+	if (this.lastReadConfigFile != null &&
+		((new Date()) - this.lastReadConfigFile) <= this.CONFIG_FILE_CACHE_SECS*1000)
+	{
+		this._useCachedConfigFile();
+		return;
+	}
+
 	this.isDownloading = true;
 	var this_ = this;
 	this.filesDownloader.downloadConfig(function(errorMessage)
@@ -148,16 +160,39 @@ function(errorMessage, downloadedAllFiles)
 		}
 
 		this.configFile.parse(this.filesDownloader.getConfigFile());
+		this.lastReadConfigFile = new Date();
 		if (downloadedAllFiles)
 			this._parseXmlDocuments(this.filesDownloader.getTrackers());
 
-		if (dialogName)
-			theDialogManager.show('autodl-' + dialogName);
+		this._showDialog(dialogName);
 	}
 	catch (ex)
 	{
 		log("MyDialogManager._onDownloadedFiles: ex: " + ex);
 	}
+}
+
+MyDialogManager.prototype._useCachedConfigFile =
+function()
+{
+	try
+	{
+		var dialogName = this.dialogName;
+		this.dialogName = null;
+		this.configFile.parse(this.filesDownloader.getConfigFile());
+		this._showDialog(dialogName);
+	}
+	catch (ex)
+	{
+		log("MyDialogManager._useCachedConfigFile : ex: " + ex);
+	}
+}
+
+MyDialogManager.prototype._showDialog =
+function(dialogName)
+{
+	if (dialogName)
+		theDialogManager.show('autodl-' + dialogName);
 }
 
 MyDialogManager.prototype._parseXmlDocuments =

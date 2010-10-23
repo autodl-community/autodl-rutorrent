@@ -39,7 +39,7 @@ else {
 if (!$error) {
 	$data = file_get_contents($file['tmp_name']);
 	if ($data === false)
-		$error = "Could not read downloaded file";
+		$error = "Could not read uploaded file";
 }
 
 if (!$error) {

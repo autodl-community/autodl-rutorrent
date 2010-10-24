@@ -63,7 +63,7 @@ function MyDialogManager(pluginPath)
 	}
 
 	// Download new tracker files once every hour
-	setInterval(function() { this.redownloadAll = true }, 60*60*1000);
+	setInterval(function() { this_.redownloadAll = true }, 60*60*1000);
 
 	this_._downloadFiles();
 }

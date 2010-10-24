@@ -200,18 +200,23 @@ function SyncTextBoxes(ids)
 	this.textboxElems = [];
 	for (var i = 0; i < ids.length; i++)
 	{
-		(function(textbox)
+		(function(i, textbox)
 		{
-			this_.textboxElems[i] = textbox;
-			$(textbox).keyup(function(e) { this_.setNewValue($(textbox).myval()); })
-		})(document.getElementById(ids[i]));
+			this_.textboxElems.push(textbox);
+			$(textbox).keyup(function(e) { this_.setNewValue(i); })
+		})(i, document.getElementById(ids[i]));
 	}
 }
 
 // Updates each textbox with the new value
 SyncTextBoxes.prototype.setNewValue =
-function(newValue)
+function(index)
 {
+	var newValue = $(this.textboxElems[index]).myval();
 	for (var i = 0; i < this.textboxElems.length; i++)
+	{
+		if (i === index)
+			continue;
 		$(this.textboxElems[i]).myval(newValue);
+	}
 }

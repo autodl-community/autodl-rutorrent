@@ -42,11 +42,11 @@
 	border: 1px solid #DBDBDB;
 	overflow: auto;
 	background-color: white;
-	color: black;
 	white-space: nowrap;
 }
 .listboxItem {
 	padding: 1px 2px;
+	color: black;
 }
 .listboxItem:hover {
 	background: #CFDEEF;

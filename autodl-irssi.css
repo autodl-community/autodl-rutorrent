@@ -42,6 +42,7 @@
 	border: 1px solid #DBDBDB;
 	overflow: auto;
 	background-color: white;
+	color: black;
 	white-space: nowrap;
 }
 .listboxItem {
@@ -184,6 +185,7 @@
 	width: 180px;
 	margin-left: 10px;
 	background-color: white;
+	color: black;
 }
 #autodl-multiselect-title {
 	margin: 3px;

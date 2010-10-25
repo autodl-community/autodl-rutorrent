@@ -32,7 +32,7 @@ function(multiSelectDlgBox, okHandler)
 	theDialogManager.make("autodl-preferences", theUILang.autodlPreferences,
 		'<div id="autodl-prefs">' +
 			'<div id="autodl-prefs-tabs">' +
-				'<ul class="tabs-header">' +
+				'<ul class="tabbar">' +
 					'<li><a id="autodl-prefs-tab-general">' + theUILang.autodlGeneral + '</a></li>' +
 					'<li><a id="autodl-prefs-tab-upload">' + theUILang.autodlUploadMethod + '</a></li>' +
 					'<li><a id="autodl-prefs-tab-webui">' + theUILang.autodlWebui + '</a></li>' +

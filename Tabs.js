@@ -117,7 +117,7 @@ function(obj)
 	if (!obj)
 		return;
 	TabsBase.prototype._makeUnselected.call(this, obj);
-	$(obj.tabElem).removeClass("selected");
+	$(obj.tabElem).parent().removeClass("selected");
 }
 
 Tabs.prototype._makeSelected =
@@ -126,7 +126,7 @@ function(obj)
 	if (!obj)
 		return;
 	TabsBase.prototype._makeSelected.call(this, obj);
-	$(obj.tabElem).addClass("selected");
+	$(obj.tabElem).parent().addClass("selected");
 }
 
 // Similar to a tab header except it's using a drop down box

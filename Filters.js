@@ -315,7 +315,7 @@ function(multiSelectDlgBox, okHandler)
 			'</div>' +
 			'<div id="autodl-filters-right">' +
 				'<div id="autodl-filters-tabs">' +
-					'<ul class="tabs-header">' +
+					'<ul class="tabbar">' +
 						'<li><a id="autodl-filters-tab-general">' + theUILang.autodlGeneral + '</a></li>' +
 						'<li><a id="autodl-filters-tab-tv">' + theUILang.autodlTvMovies + '</a></li>' +
 						'<li><a id="autodl-filters-tab-music">' + theUILang.autodlMusic + '</a></li>' +

@@ -123,6 +123,7 @@
 	width: 200px;
 }
 #autodl-filters-right {
+	margin-top: 5px;
 }
 #autodl-filters-contents-advanced .textbox {
 	width: 22em;
@@ -167,7 +168,7 @@
 	padding: 0;
 }
 #autodl-prefs-tabs {
-	margin: 2px 2px;
+	margin: 5px 2px;
 	padding: 0;
 }
 
@@ -205,6 +206,10 @@
 .x-window-mr #autodl-prefs {
 	position: relative;
 	left: 0;
+}
+.x-window-mr #autodl-filters-tabs,
+.x-window-mr #autodl-prefs-tabs {
+	margin-top: 5px;
 }
 
 .dlgbuttons {

@@ -82,7 +82,7 @@ function sendAutodlCommand($data) {
 		if (is_null($jsonData))
 			throw new Exception("Could not decode json string");
 		if (!isset($jsonData->error))
-			throw new Exception("Gui Server didn't set the error field");
+			$jsonData->error = "";
 		return $jsonData;
 	}
 	catch (Exception $ex) {

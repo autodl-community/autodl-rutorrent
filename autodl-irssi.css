@@ -43,6 +43,7 @@
 	overflow: auto;
 	background-color: white;
 	white-space: nowrap;
+	text-shadow: none;	/* Fix for Oblivion theme */
 }
 .listboxItem {
 	padding: 1px 2px;
@@ -157,7 +158,6 @@
 	padding: 0;
 }
 
-
 #autodl-prefs {
 	height: 170px;
 	width: 500px;
@@ -184,6 +184,7 @@
 	height: 200px;
 	width: 180px;
 	margin-left: 10px;
+	background: none;	/* Fix for Oblivion theme */
 	background-color: white;
 	color: black;
 }
@@ -192,11 +193,25 @@
 	padding: 0;
 }
 
+/* Fix for Blue theme */
+.x-window-mr #autodl-filters-left {
+	margin-top: 5px;
+}
+/* Fix for Blue theme */
+.x-window-mr #autodl-multiselect,
+.x-window-mr #autodl-filters,
+.x-window-mr #autodl-trackers,
+.x-window-mr #autodl-servers,
+.x-window-mr #autodl-prefs {
+	position: relative;
+	left: 0;
+}
+
 .dlgbuttons {
 	position: absolute;
 	right: 0;
 	bottom: 0;
-	padding: 3px;
+	padding: 5px 3px;
 }
 .dlgbuttons input {
 	margin-left: 5px;
@@ -210,6 +225,7 @@
 	padding: 0;
 	margin-top: 5px;
 	margin-bottom: 5px;
+	text-shadow: none;	/* Fix for Oblivion theme */
 }
 .tabs-header li {
 	display: inline;

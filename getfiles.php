@@ -32,7 +32,7 @@ $command = Array("command" => "getfiles");
 $response = sendAutodlCommand($command);
 
 $res = Array('error' => $response->error);
-if ($response->files)
+if (isset($response->files))
 	$res['files'] = $response->files;
 $jsonData = json_encode($res);
 

@@ -158,7 +158,7 @@ function(aryFiles)
 {
 	try
 	{
-		this.filenames = aryFiles;
+		this.filenames = aryFiles || [];
 		this.filenameIndex = 0;
 		this._getNextFile();
 	}

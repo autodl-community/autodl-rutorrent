@@ -38,11 +38,29 @@ function(aryFiles, func)
 	}
 }
 
+// Returns the theme name.
+plugin.getThemeName =
+function()
+{
+	var themeName = "Standard";
+	var theme = thePlugins.get("theme");
+	if (theme)
+	{
+		// Use the path since it's never localized
+		var ary = theme.path.match(/themes\/([^\/]+)\//);
+		if (ary && ary[1])
+			themeName = ary[1];
+	}
+	return themeName.toLowerCase();
+}
+
 // Initialize the plugin (load CSS and JS files). Continues in onLangLoaded()
 plugin.__init =
 function()
 {
 	var this_ = this;
+
+	$("body").addClass("theme-" + this.getThemeName());
 	this.loadMainCSS();
 
 	// Note: These files aren't necessarily loaded in order! They must not rely on other JS files.

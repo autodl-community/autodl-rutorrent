@@ -285,12 +285,6 @@ function()
 	return out;
 }
 
-ConfigFile.prototype._sectionHash =
-function(type, name)
-{
-	return $.trim(type) + " " + $.trim(name);
-}
-
 ConfigFile.prototype._filterHash =
 function(filterSection)
 {
@@ -300,16 +294,39 @@ function(filterSection)
 ConfigFile.prototype.getSection =
 function(type, name)
 {
-	if (type === "filter")
+	switch (type)
 	{
+	case "filter":
 		var section = new ConfigSection(this.id++, type, name);
 		this.filters.push(section);
 		var hash = this._filterHash(section);
 		this.sections[hash] = section;
 		return section;
-	}
 
-	var hash = this._sectionHash(type, name);
+	case "options":
+	case "webui":
+	case "ftp":
+		return this._getOrCreateSection(type, name, $.trim(type));
+
+	case "tracker":
+		return this._getOrCreateSection(type, name, $.trim(type) + " " + $.trim(name));
+
+	case "server":
+		log("Getting server");
+		return this._getOrCreateSection(type, name, " server " + this.id++ + " " + $.trim(type) + " " + $.trim(name));
+
+	case "channel":
+		log("Getting channel");
+		return this._getOrCreateSection(type, name, " channel " + this.id++ + " " + $.trim(type) + " " + $.trim(name));
+
+	default:
+		return this._getOrCreateSection(type, name, " unknown " + this.id++ + " " + $.trim(type) + " " + $.trim(name));
+	}
+}
+
+ConfigFile.prototype._getOrCreateSection =
+function(type, name, hash)
+{
 	var section = this.sections[hash];
 	if (!section)
 		this.sections[hash] = section = new ConfigSection(this.id++, type, name);

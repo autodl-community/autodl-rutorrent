@@ -312,11 +312,9 @@ function(type, name)
 		return this._getOrCreateSection(type, name, $.trim(type) + " " + $.trim(name));
 
 	case "server":
-		log("Getting server");
 		return this._getOrCreateSection(type, name, " server " + this.id++ + " " + $.trim(type) + " " + $.trim(name));
 
 	case "channel":
-		log("Getting channel");
 		return this._getOrCreateSection(type, name, " channel " + this.id++ + " " + $.trim(type) + " " + $.trim(name));
 
 	default:

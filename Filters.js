@@ -605,6 +605,10 @@ function()
 	this.nextId = 0;
 	this.filterObjs = [];
 	var ary = this.configFile.getFilters();
+	ary.sort(function(a, b)
+	{
+		return stringCompare(a.name.toLowerCase(), b.name.toLowerCase());
+	});
 	for (var i = 0; i < ary.length; i++)
 		this._addFilterSection(ary[i].clone());
 

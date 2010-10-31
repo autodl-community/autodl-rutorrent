@@ -27,6 +27,7 @@
 function AutodlIrssiTab(plugin)
 {
 	this.gettingLines = false;
+	this.visible = false;
 	this.pluginUrl = plugin.path;
 
 	plugin.attachPageToTabs($(
@@ -168,9 +169,18 @@ function(data)
 	}
 }
 
+AutodlIrssiTab.prototype._resetSizeChrome =
+function()
+{
+	// Fix for Google Chrome. Without it Chrome will add horiz and vertical scroll bars when we
+	// make the tabs area smaller.
+	$("#autodl-irssi-log").width(0).height(0);
+}
+
 AutodlIrssiTab.prototype._onResizeBottom =
 function(width, height)
 {
+	this._resetSizeChrome();
 	this.oldResizeBottom.call(theWebUI, width, height);
 	this._onResize();
 }
@@ -179,15 +189,23 @@ AutodlIrssiTab.prototype.onShow =
 function(id)
 {
 	if (id !== "autodl-irssi-tab")
+	{
+		this.visible = false;
 		return this.oldOnShow(id);
+	}
 
 	// Resize since height() won't work on our button div when it's hidden.
+	this._resetSizeChrome();
+	this.visible = true;
 	this._onResize();
 }
 
 AutodlIrssiTab.prototype._onResize =
 function()
 {
+	if (!this.visible)
+		return;
+
 	function fromPixels(s)
 	{
 		var ary = s.match(/^(\d+)px$/);
@@ -204,8 +222,8 @@ function()
 		logElem.width(width);
 	if (height != null)
 	{
-		height -= $("#autodl-log-buttons").height();
-		logElem.height(height);
+		var topDivHeight = $("#autodl-log-buttons").height();
+		logElem.height(height - topDivHeight);
 	}
 }
 

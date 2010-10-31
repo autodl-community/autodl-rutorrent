@@ -27,8 +27,6 @@
 
 require_once 'getConf.php';
 
-if (!isset($_GET["file"]))
-
 $command = Array("command" => "getlines");
 if (isset($_GET["cid"]) && preg_match('/^\d+$/', $_GET["cid"]))
 	$command["cid"] = $_GET["cid"];

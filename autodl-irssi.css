@@ -301,7 +301,7 @@
 #autodl-irssi-log tr,
 #autodl-irssi-log td {
 	margin: 0;
-	padding: 2px 2px;
+	padding: 0px 2px;
 	border: 0 none black;
 }
 #autodl-irssi-log tr:hover {
@@ -317,10 +317,16 @@
 	white-space: pre-wrap;
 	width: 100%;
 }
+.autodl-line-sep {
+	white-space: pre;
+	font-weight: bold;
+}
 .autodl-bold { font-weight: bold; }
 .autodl-underline { text-decoration: underline; }
 .autodl-fg-default { color: #000000; }
-.autodl-bg-default { background-color: #FFFFFF; }
+.autodl-fg-as-bg { background-color: #000000; }
+.autodl-bg-default { background-color: #F5F5F5; }
+.autodl-bg-as-fg { color: #F5F5F5; }
 .autodl-fg-0 { color: #FFFFFF; }
 .autodl-fg-1 { color: #000000; }
 .autodl-fg-2 { color: #0000FF; }
@@ -357,17 +363,27 @@
 .theme-oblivion #autodl-irssi-log tr:hover {
 	background-color: #282828;
 }
+.theme-oblivion .autodl-line-sep { color: #FFFFFF; }
+.theme-oblivion .autodl-bold { color: #FFFFFF; }
 .theme-oblivion .autodl-fg-default { color: #808080; }
+.theme-oblivion .autodl-fg-as-bg { background-color: #808080; }
 .theme-oblivion .autodl-bg-default { background-color: #000000; }
+.theme-oblivion .autodl-bg-as-fg { color: #000000; }
 
 .theme-dark #autodl-irssi-log tr:hover {
 	background-color: #282828;
 }
+.theme-dark .autodl-line-sep { color: #FFFFFF; }
+.theme-dark .autodl-bold { color: #FFFFFF; }
 .theme-dark .autodl-fg-default { color: #808080; }
+.theme-dark .autodl-fg-as-bg { background-color: #808080; }
 .theme-dark .autodl-bg-default { background-color: #000000; }
+.theme-dark .autodl-bg-as-fg { color: #000000; }
 
 .theme-acid #autodl-irssi-log tr:hover {
 	background-color: #3C4753;
 }
 .theme-acid .autodl-fg-default { color: #FFFFFF; }
+.theme-acid .autodl-fg-as-bg { background-color: #FFFFFF; }
 .theme-acid .autodl-bg-default { background-color: #272E36; }
+.theme-acid .autodl-bg-as-fg { color: #272E36; }

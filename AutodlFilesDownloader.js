@@ -22,7 +22,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-function myajax(obj)
+function autodl_ajax(obj)
 {
 	// IE8 caches all Ajax requests!
 	if ($.browser.msie)
@@ -100,7 +100,7 @@ function(handler)
 		this.handler = handler;
 
 		var this_ = this;
-		myajax(
+		autodl_ajax(
 		{
 			url: this.pluginUrl + "getfiles.php",
 			type: "GET",
@@ -184,7 +184,7 @@ function()
 			dataType = "text";
 
 		var this_ = this;
-		myajax(
+		autodl_ajax(
 		{
 			url: this.pluginUrl + "getfile.php",
 			data: [{name: 'file', value: filename}],

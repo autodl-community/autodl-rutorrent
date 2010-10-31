@@ -79,6 +79,7 @@ function()
 		'AutodlFilesDownloader.js',
 		'ConfigFileParser.js',
 		'TrackerInfo.js',
+		'AutodlIrssiTab.js',
 		'MyDialogManager.js'
 	], function()
 	{
@@ -102,6 +103,7 @@ function()
 		var this_ = this;
 		this.dialogManager = new MyDialogManager(this.path);
 		this._addToToolbar();
+		this.autodlIrssiTab = new AutodlIrssiTab(this);
 	}
 	catch (ex)
 	{
@@ -113,7 +115,7 @@ function()
 plugin._addToToolbar =
 function()
 {
-	var beforeId = "help";
+	var beforeId = "settings";
 	this.addButtonToToolbar("autodl-tb", "autodl-irssi", "", beforeId);
 	this.addSeparatorToToolbar(beforeId);
 

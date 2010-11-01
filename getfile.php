@@ -53,6 +53,7 @@ else
 	$contentType = 'application/xml';
 
 header("Content-Type: $contentType; charset=UTF-8");
+header("Content-Disposition: attachment; filename=$filename");
 echo $response->data;
 
 ?>

@@ -291,9 +291,17 @@
 	font-family: Tahoma, Arial, Helvetica, sans-serif;
 	font-size: 11px;
 }
+#autodl-log-buttons {
+	padding: 3px 3px;
+}
+#autodl-log-buttons form {
+	display: inline;
+}
 #autodl-irssi-log {
 	overflow: auto;
 	font-family: Courier New, Courier, monospace;
+	border: 1px solid black;
+	padding: 3px;
 }
 #autodl-irssi-log table {
 	border-collapse: collapse;
@@ -336,7 +344,7 @@
 .autodl-fg-6 { color: #800080; }
 .autodl-fg-7 { color: #FFA500; }
 .autodl-fg-8 { color: #8A5C2E; }
-.autodl-fg-9 { color: #68AD00; }
+.autodl-fg-9 { color: #599400; }
 .autodl-fg-10 { color: #0080FF; }
 .autodl-fg-11 { color: #6666FF; }
 .autodl-fg-12 { color: #57AECB; }
@@ -352,7 +360,7 @@
 .autodl-bg-6 { background-color: #800080; }
 .autodl-bg-7 { background-color: #FFA500; }
 .autodl-bg-8 { background-color: #8A5C2E; }
-.autodl-bg-9 { background-color: #68AD00; }
+.autodl-bg-9 { background-color: #599400; }
 .autodl-bg-10 { background-color: #0080FF; }
 .autodl-bg-11 { background-color: #6666FF; }
 .autodl-bg-12 { background-color: #57AECB; }
@@ -361,6 +369,7 @@
 .autodl-bg-15 { background-color: #ADADAD; }
 
 .theme-dark .autodl-line-sep, .theme-oblivion .autodl-line-sep { color: #FFFFFF; }
+.theme-dark #autodl-irssi-log, .theme-oblivion #autodl-irssi-log { border: 1px solid #575757; }
 .theme-dark #autodl-irssi-log tr:hover, .theme-oblivion #autodl-irssi-log tr:hover { background-color: #282828; }
 .theme-dark .autodl-bold, .theme-oblivion .autodl-bold { color: #FFFFFF; }
 .theme-dark .autodl-fg-default, .theme-oblivion .autodl-fg-default { color: #808080; }
@@ -399,6 +408,7 @@
 .theme-dark .autodl-bg-15, .theme-oblivion .autodl-bg-15 { background-color: #D3D3D3; }
 
 .theme-acid .autodl-line-sep { color: #FFFFFF; }
+.theme-acid #autodl-irssi-log { border: 1px solid #677A8E; }
 .theme-acid #autodl-irssi-log tr:hover { background-color: #3C4753; }
 .theme-acid .autodl-fg-default { color: #BDDBDB; }
 .theme-acid .autodl-fg-as-bg { background-color: #BDDBDB; }

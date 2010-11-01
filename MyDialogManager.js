@@ -222,6 +222,12 @@ function()
 	});
 }
 
+MyDialogManager.prototype.clearConfigFileCache =
+function()
+{
+	this.lastReadConfigFile = null;
+}
+
 // Downloads the autodl.cfg file
 MyDialogManager.prototype._downloadConfigFile =
 function()

@@ -23,41 +23,29 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-// Writes to autodl.cfg
+// Send /autodl commands
 
 require_once 'getConf.php';
 
-$error = "";
-if (!isset($_FILES['file']))
-	$error = "No file uploaded!";
-else {
-	$file = $_FILES['file'];
-	if ($file['error'] !== UPLOAD_ERR_OK)
-		$error = "Error uploading the file, code: " . $file['error'];
-}
+$command = Array("command" => "command");
+if (isset($_GET['type']))
+	$command['type'] = $_GET['type'];
+if (isset($_GET['arg1']))
+	$command['arg1'] = $_GET['arg1'];
+if (isset($_GET['arg2']))
+	$command['arg2'] = $_GET['arg2'];
+if (isset($_GET['arg3']))
+	$command['arg3'] = $_GET['arg3'];
+$response = sendAutodlCommand($command);
 
-if (!$error) {
-	$data = file_get_contents($file['tmp_name']);
-	if ($data === false)
-		$error = "Could not read uploaded file";
-}
+$res = Array('error' => $response->error);
+$jsonData = json_encode($res);
 
-if (!$error) {
-	$command = Array("command" => "writeconfig", "data" => $data);
-	$response = sendAutodlCommand($command);
-	$error = $response->error;
-}
-if (is_null($error))
-	$error = "";
+$etag = '"' . md5($jsonData) . '"';
+$mtime = 1286000000;	// A "valid" Last-Modified time so Chrome tries to GET this file from the server again
+checkSameFile($etag, $mtime);
 
-if (isset($_POST['restoring']) && $_POST['restoring'] === "1") {
-	header('Content-Type: text/html; charset=UTF-8');
-}
-else {
-	$result = Array("error" => $error);
-	$jsonData = json_encode($result);
-	header('Content-Type: application/json; charset=UTF-8');
-	echo $jsonData;
-}
+header('Content-Type: application/json; charset=UTF-8');
+echo $jsonData;
 
 ?>

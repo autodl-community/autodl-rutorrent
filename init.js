@@ -103,7 +103,7 @@ function()
 		var this_ = this;
 		this.dialogManager = new MyDialogManager(this.path);
 		this._addToToolbar();
-		this.autodlIrssiTab = new AutodlIrssiTab(this);
+		this.autodlIrssiTab = new AutodlIrssiTab(this.dialogManager, this);
 	}
 	catch (ex)
 	{

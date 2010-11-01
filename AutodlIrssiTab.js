@@ -24,16 +24,45 @@
 
 // Code for the autodl-irssi tab
 
-function AutodlIrssiTab(plugin)
+function jqSetHeight(elem, height)
 {
+	var extraHeight = elem.outerHeight() - elem.height();
+	elem.height(height - extraHeight);
+}
+
+function jqSetWidth(elem, width)
+{
+	var extraWidth = elem.outerWidth() - elem.width();
+	elem.width(width - extraWidth);
+}
+
+function AutodlIrssiTab(dialogManager, plugin)
+{
+	var this_ = this;
+
 	this.gettingLines = false;
 	this.visible = false;
 	this.pluginUrl = plugin.path;
 
+	// For the Restore button
+	$(document.body).append($('<iframe name="autodl-restore-iframe" />').css("visibility", "hidden").width(0).height(0));
+
+	// For the Backup button
+	var backupIframe = $('<iframe name="autodl-backup-iframe" />').css("visibility", "hidden").width(0).height(0);
+	$(document.body).append(backupIframe);
+
 	plugin.attachPageToTabs($(
 		'<div id="autodl-irssi-tab">' +
 			'<div id="autodl-log-buttons">' +
-				'<input type="button" id="autodl-log-clear-button" class="Button" value="' + theUILang.ClearButton + '" />' +
+				'<input type="button" id="autodl-log-clear-button" class="Button" value="' + theUILang.ClearButton + '" title="' + theUILang.autodlClear2  + '" />' +
+				'<input type="button" id="autodl-log-update-button" class="Button" value="' + theUILang.autodlUpdate1 + '" title="' + theUILang.autodlUpdate2  + '" />' +
+				'<input type="button" id="autodl-log-whatsnew-button" class="Button" value="' + theUILang.autodlWhatsNew1 + '" title="' + theUILang.autodlWhatsNew2  + '" />' +
+				'<input type="button" id="autodl-log-backup-button" class="Button" value="' + theUILang.autodlBackup1 + '" title="' + theUILang.autodlBackup2  + '" />' +
+				'<form target="autodl-restore-iframe" id="autodl-restore" method="POST" action="plugins/autodl-irssi/writeconfig.php" enctype="multipart/form-data">' +
+					'<input type="hidden" name="restoring" value="1" />' +
+					'<input type="submit" id="autodl-log-restore-button" class="Button" value="' + theUILang.autodlRestore1 + '" title="' + theUILang.autodlRestore2  + '" />' +
+					'<input type="file" name="file" />' +
+				'</form>' +
 			'</div>' +
 			'<div id="autodl-irssi-log" class="autodl-fg-default autodl-bg-default">' +
 				'<table>' +
@@ -43,10 +72,26 @@ function AutodlIrssiTab(plugin)
 		'</div>'
 	).get(0), "autodl-irssi", "lcont");
 
+	$("#autodl-restore").submit(function()
+	{
+		dialogManager.clearConfigFileCache();
+		return true;
+	});
+	$("#autodl-log-backup-button").click(function()
+	{
+		backupIframe.attr("src", "plugins/autodl-irssi/getfile.php?file=autodl.cfg");
+	});
+	$("#autodl-log-update-button").click(function()
+	{
+		this_._sendAutodlCommand("update");
+	});
+	$("#autodl-log-whatsnew-button").click(function()
+	{
+		this_._sendAutodlCommand("whatsnew");
+	});
+
 	this._initResizeBottom();
 	this._initOnShow();
-
-	var this_ = this;
 
 	$("#autodl-log-clear-button").click(function(e)
 	{
@@ -58,13 +103,42 @@ function AutodlIrssiTab(plugin)
 }
 
 // Max number of visible lines
-AutodlIrssiTab.prototype.MAX_AUTODL_IRSSI_LINES = 200;
+AutodlIrssiTab.prototype.MAX_AUTODL_IRSSI_LINES = 500;
 
 // Start removing lines when it reaches this limit
 AutodlIrssiTab.prototype.REMOVE_LINES_LIMIT = AutodlIrssiTab.prototype.MAX_AUTODL_IRSSI_LINES + 10;
 
 // How often we'll get new autodl-irssi output lines from the server
 AutodlIrssiTab.prototype.CHECK_NEW_LINES_EVERY_SECS = 1;
+
+AutodlIrssiTab.prototype._sendAutodlCommand =
+function(subcmd)
+{
+	try
+	{
+		function onComplete(errorMessage)
+		{
+			if (errorMessage)
+				log("Command failed: " + errorMessage);
+		}
+
+		$.ajax(
+		{
+			url: this.pluginUrl + "command.php?type=autodl&arg1=" + subcmd,
+			type: "POST",
+			dataType: "json",
+			success: function(data, status) { onComplete(data.error) },
+			error: function(xhr, status, ex)
+			{
+				onComplete("Unknown error");
+			}
+		});
+	}
+	catch (ex)
+	{
+		log("AutodlIrssiTab::_sendAutodlCommand: ex: " + ex);
+	}
+}
 
 AutodlIrssiTab.prototype._initResizeBottom =
 function()
@@ -194,12 +268,9 @@ function()
 
 	var logElem = $("#autodl-irssi-log");
 	if (width != null)
-		logElem.width(width);
+		jqSetWidth(logElem, width);
 	if (height != null)
-	{
-		var topDivHeight = $("#autodl-log-buttons").height();
-		logElem.height(height - topDivHeight);
-	}
+		jqSetHeight(logElem, height - $("#autodl-log-buttons").outerHeight());
 }
 
 function getMircColorInfo(s)

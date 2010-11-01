@@ -316,11 +316,11 @@ function getMircColorInfo(s)
 			var ary = s2.match(/^(?:(\d\d?)(?:,(\d\d?))?)?/);
 			attrs.fg = -1;
 			attrs.bg = -2;
-			if (ary[1] != null)
+			if (ary[1] != null && ary[1] !== "")
 			{
 				attrs.fg = parseInt(ary[1], 10) % 16;
 				i += ary[1].length;
-				if (ary[2] != null)
+				if (ary[2] != null && ary[2] !== "")
 				{
 					attrs.bg = parseInt(ary[2], 10) % 16;
 					i += 1 + ary[2].length;	// Don't forget the comma

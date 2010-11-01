@@ -335,14 +335,14 @@
 .autodl-fg-5 { color: #A52A2A; }
 .autodl-fg-6 { color: #800080; }
 .autodl-fg-7 { color: #FFA500; }
-.autodl-fg-8 { color: #FFFF00; }
-.autodl-fg-9 { color: #ADFF2F; }
-.autodl-fg-10 { color: #00FFFF; }
-.autodl-fg-11 { color: #E0FFFF; }
-.autodl-fg-12 { color: #ADD8E6; }
-.autodl-fg-13 { color: #FFC0CB; }
+.autodl-fg-8 { color: #8A5C2E; }
+.autodl-fg-9 { color: #68AD00; }
+.autodl-fg-10 { color: #0080FF; }
+.autodl-fg-11 { color: #6666FF; }
+.autodl-fg-12 { color: #57AECB; }
+.autodl-fg-13 { color: #FF4766; }
 .autodl-fg-14 { color: #808080; }
-.autodl-fg-15 { color: #D3D3D3; }
+.autodl-fg-15 { color: #ADADAD; }
 .autodl-bg-0 { background-color: #FFFFFF; }
 .autodl-bg-1 { background-color: #000000; }
 .autodl-bg-2 { background-color: #0000FF; }
@@ -351,26 +351,24 @@
 .autodl-bg-5 { background-color: #A52A2A; }
 .autodl-bg-6 { background-color: #800080; }
 .autodl-bg-7 { background-color: #FFA500; }
-.autodl-bg-8 { background-color: #FFFF00; }
-.autodl-bg-9 { background-color: #ADFF2F; }
-.autodl-bg-10 { background-color: #00FFFF; }
-.autodl-bg-11 { background-color: #E0FFFF; }
-.autodl-bg-12 { background-color: #ADD8E6; }
-.autodl-bg-13 { background-color: #FFC0CB; }
+.autodl-bg-8 { background-color: #8A5C2E; }
+.autodl-bg-9 { background-color: #68AD00; }
+.autodl-bg-10 { background-color: #0080FF; }
+.autodl-bg-11 { background-color: #6666FF; }
+.autodl-bg-12 { background-color: #57AECB; }
+.autodl-bg-13 { background-color: #FF4766; }
 .autodl-bg-14 { background-color: #808080; }
-.autodl-bg-15 { background-color: #D3D3D3; }
+.autodl-bg-15 { background-color: #ADADAD; }
 
-.theme-dark #autodl-irssi-log tr:hover, .theme-oblivion #autodl-irssi-log tr:hover { background-color: #282828; }
 .theme-dark .autodl-line-sep, .theme-oblivion .autodl-line-sep { color: #FFFFFF; }
+.theme-dark #autodl-irssi-log tr:hover, .theme-oblivion #autodl-irssi-log tr:hover { background-color: #282828; }
 .theme-dark .autodl-bold, .theme-oblivion .autodl-bold { color: #FFFFFF; }
 .theme-dark .autodl-fg-default, .theme-oblivion .autodl-fg-default { color: #808080; }
 .theme-dark .autodl-fg-as-bg, .theme-oblivion .autodl-fg-as-bg { background-color: #808080; }
 .theme-dark .autodl-bg-default, .theme-oblivion .autodl-bg-default { background-color: #000000; }
 .theme-dark .autodl-bg-as-fg, .theme-oblivion .autodl-bg-as-fg { color: #000000; }
 .theme-dark .autodl-fg-0, .theme-oblivion .autodl-fg-0 { color: #FFFFFF; }
-.theme-dark .autodl-fg-1, .theme-oblivion .autodl-fg-1 { color: #000000; }
-.theme-dark .autodl-fg-2, .theme-oblivion .autodl-fg-2 { color: #0000FF; }
-.theme-dark .autodl-fg-3, .theme-oblivion .autodl-fg-3 { color: #008000; }
+.theme-dark .autodl-fg-1, .theme-oblivion .autodl-fg-1 { color: #000000; } .theme-dark .autodl-fg-2, .theme-oblivion .autodl-fg-2 { color: #0000FF; } .theme-dark .autodl-fg-3, .theme-oblivion .autodl-fg-3 { color: #008000; }
 .theme-dark .autodl-fg-4, .theme-oblivion .autodl-fg-4 { color: #FF0000; }
 .theme-dark .autodl-fg-5, .theme-oblivion .autodl-fg-5 { color: #A52A2A; }
 .theme-dark .autodl-fg-6, .theme-oblivion .autodl-fg-6 { color: #800080; }
@@ -400,8 +398,41 @@
 .theme-dark .autodl-bg-14, .theme-oblivion .autodl-bg-14 { background-color: #808080; }
 .theme-dark .autodl-bg-15, .theme-oblivion .autodl-bg-15 { background-color: #D3D3D3; }
 
+.theme-acid .autodl-line-sep { color: #FFFFFF; }
 .theme-acid #autodl-irssi-log tr:hover { background-color: #3C4753; }
-.theme-acid .autodl-fg-default { color: #FFFFFF; }
-.theme-acid .autodl-fg-as-bg { background-color: #FFFFFF; }
+.theme-acid .autodl-fg-default { color: #BDDBDB; }
+.theme-acid .autodl-fg-as-bg { background-color: #BDDBDB; }
 .theme-acid .autodl-bg-default { background-color: #272E36; }
 .theme-acid .autodl-bg-as-fg { color: #272E36; }
+.theme-acid .autodl-fg-0 { color: #FFFFFF; }
+.theme-acid .autodl-fg-1 { color: #000000; }
+.theme-acid .autodl-fg-2 { color: #6666FF; }
+.theme-acid .autodl-fg-3 { color: #008000; }
+.theme-acid .autodl-fg-4 { color: #FF0000; }
+.theme-acid .autodl-fg-5 { color: #A52A2A; }
+.theme-acid .autodl-fg-6 { color: #CC00CC; }
+.theme-acid .autodl-fg-7 { color: #FFA500; }
+.theme-acid .autodl-fg-8 { color: #FFFF00; }
+.theme-acid .autodl-fg-9 { color: #ADFF2F; }
+.theme-acid .autodl-fg-10 { color: #00FFFF; }
+.theme-acid .autodl-fg-11 { color: #E0FFFF; }
+.theme-acid .autodl-fg-12 { color: #ADD8E6; }
+.theme-acid .autodl-fg-13 { color: #FFC0CB; }
+.theme-acid .autodl-fg-14 { color: #808080; }
+.theme-acid .autodl-fg-15 { color: #D3D3D3; }
+.theme-acid .autodl-bg-0 { background-color: #FFFFFF; }
+.theme-acid .autodl-bg-1 { background-color: #000000; }
+.theme-acid .autodl-bg-2 { background-color: #6666FF; }
+.theme-acid .autodl-bg-3 { background-color: #008000; }
+.theme-acid .autodl-bg-4 { background-color: #FF0000; }
+.theme-acid .autodl-bg-5 { background-color: #A52A2A; }
+.theme-acid .autodl-bg-6 { background-color: #CC00CC; }
+.theme-acid .autodl-bg-7 { background-color: #FFA500; }
+.theme-acid .autodl-bg-8 { background-color: #FFFF00; }
+.theme-acid .autodl-bg-9 { background-color: #ADFF2F; }
+.theme-acid .autodl-bg-10 { background-color: #00FFFF; }
+.theme-acid .autodl-bg-11 { background-color: #E0FFFF; }
+.theme-acid .autodl-bg-12 { background-color: #ADD8E6; }
+.theme-acid .autodl-bg-13 { background-color: #FFC0CB; }
+.theme-acid .autodl-bg-14 { background-color: #808080; }
+.theme-acid .autodl-bg-15 { background-color: #D3D3D3; }

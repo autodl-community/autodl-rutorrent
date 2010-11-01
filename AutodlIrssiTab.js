@@ -92,22 +92,6 @@ function()
 	};
 }
 
-AutodlIrssiTab.prototype._logError =
-function(msg)
-{
-	var currentTime = new Date();
-	if (this.timeLastError != null && currentTime - this.timeLastError < 30*1000)
-		return;
-	this.timeLastError = currentTime;
-	this._log(msg);
-}
-
-AutodlIrssiTab.prototype._log =
-function(msg)
-{
-	log("autodl-irssi: " + msg);
-}
-
 AutodlIrssiTab.prototype._getNewLines =
 function()
 {
@@ -127,8 +111,7 @@ function()
 			error: function(xhr, status, ex)
 			{
 				this_.gettingLines = false;
-				this.errorGettingLines = true;
-				this_._logError("Could not get lines");
+				// Ignore errorrs
 			}
 		});
 	}
@@ -146,15 +129,7 @@ function(data)
 	{
 		this.gettingLines = false;
 		if (data.error)
-		{
-			this.errorGettingLines = true;
-			return this._logError("Error getting new lines: " + data.error);
-		}
-		if (this.errorGettingLines)
-		{
-			this.errorGettingLines = false;
-			this._log("getlines is now working.");
-		}
+			return;	// Ignore errors
 
 		this.cid = data.cid;
 		var lines = data.lines;

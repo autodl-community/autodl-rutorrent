@@ -48,7 +48,8 @@ function AutodlIrssiTab(plugin)
 
 	var this_ = this;
 
-	$("#autodl-log-clear-button").click(function(e) {
+	$("#autodl-log-clear-button").click(function(e)
+	{
 		$("#autodl-log-tbody").empty();
 	});
 
@@ -194,7 +195,6 @@ function(id)
 		return this.oldOnShow(id);
 	}
 
-	// Resize since height() won't work on our button div when it's hidden.
 	this._resetSizeChrome();
 	this.visible = true;
 	this._onResize();

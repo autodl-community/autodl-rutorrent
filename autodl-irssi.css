@@ -360,29 +360,47 @@
 .autodl-bg-14 { background-color: #808080; }
 .autodl-bg-15 { background-color: #D3D3D3; }
 
-.theme-oblivion #autodl-irssi-log tr:hover {
-	background-color: #282828;
-}
-.theme-oblivion .autodl-line-sep { color: #FFFFFF; }
-.theme-oblivion .autodl-bold { color: #FFFFFF; }
-.theme-oblivion .autodl-fg-default { color: #808080; }
-.theme-oblivion .autodl-fg-as-bg { background-color: #808080; }
-.theme-oblivion .autodl-bg-default { background-color: #000000; }
-.theme-oblivion .autodl-bg-as-fg { color: #000000; }
+.theme-dark #autodl-irssi-log tr:hover, .theme-oblivion #autodl-irssi-log tr:hover { background-color: #282828; }
+.theme-dark .autodl-line-sep, .theme-oblivion .autodl-line-sep { color: #FFFFFF; }
+.theme-dark .autodl-bold, .theme-oblivion .autodl-bold { color: #FFFFFF; }
+.theme-dark .autodl-fg-default, .theme-oblivion .autodl-fg-default { color: #808080; }
+.theme-dark .autodl-fg-as-bg, .theme-oblivion .autodl-fg-as-bg { background-color: #808080; }
+.theme-dark .autodl-bg-default, .theme-oblivion .autodl-bg-default { background-color: #000000; }
+.theme-dark .autodl-bg-as-fg, .theme-oblivion .autodl-bg-as-fg { color: #000000; }
+.theme-dark .autodl-fg-0, .theme-oblivion .autodl-fg-0 { color: #FFFFFF; }
+.theme-dark .autodl-fg-1, .theme-oblivion .autodl-fg-1 { color: #000000; }
+.theme-dark .autodl-fg-2, .theme-oblivion .autodl-fg-2 { color: #0000FF; }
+.theme-dark .autodl-fg-3, .theme-oblivion .autodl-fg-3 { color: #008000; }
+.theme-dark .autodl-fg-4, .theme-oblivion .autodl-fg-4 { color: #FF0000; }
+.theme-dark .autodl-fg-5, .theme-oblivion .autodl-fg-5 { color: #A52A2A; }
+.theme-dark .autodl-fg-6, .theme-oblivion .autodl-fg-6 { color: #800080; }
+.theme-dark .autodl-fg-7, .theme-oblivion .autodl-fg-7 { color: #FFA500; }
+.theme-dark .autodl-fg-8, .theme-oblivion .autodl-fg-8 { color: #FFFF00; }
+.theme-dark .autodl-fg-9, .theme-oblivion .autodl-fg-9 { color: #ADFF2F; }
+.theme-dark .autodl-fg-10, .theme-oblivion .autodl-fg-10 { color: #00FFFF; }
+.theme-dark .autodl-fg-11, .theme-oblivion .autodl-fg-11 { color: #E0FFFF; }
+.theme-dark .autodl-fg-12, .theme-oblivion .autodl-fg-12 { color: #ADD8E6; }
+.theme-dark .autodl-fg-13, .theme-oblivion .autodl-fg-13 { color: #FFC0CB; }
+.theme-dark .autodl-fg-14, .theme-oblivion .autodl-fg-14 { color: #808080; }
+.theme-dark .autodl-fg-15, .theme-oblivion .autodl-fg-15 { color: #D3D3D3; }
+.theme-dark .autodl-bg-0, .theme-oblivion .autodl-bg-0 { background-color: #FFFFFF; }
+.theme-dark .autodl-bg-1, .theme-oblivion .autodl-bg-1 { background-color: #000000; }
+.theme-dark .autodl-bg-2, .theme-oblivion .autodl-bg-2 { background-color: #0000FF; }
+.theme-dark .autodl-bg-3, .theme-oblivion .autodl-bg-3 { background-color: #008000; }
+.theme-dark .autodl-bg-4, .theme-oblivion .autodl-bg-4 { background-color: #FF0000; }
+.theme-dark .autodl-bg-5, .theme-oblivion .autodl-bg-5 { background-color: #A52A2A; }
+.theme-dark .autodl-bg-6, .theme-oblivion .autodl-bg-6 { background-color: #800080; }
+.theme-dark .autodl-bg-7, .theme-oblivion .autodl-bg-7 { background-color: #FFA500; }
+.theme-dark .autodl-bg-8, .theme-oblivion .autodl-bg-8 { background-color: #FFFF00; }
+.theme-dark .autodl-bg-9, .theme-oblivion .autodl-bg-9 { background-color: #ADFF2F; }
+.theme-dark .autodl-bg-10, .theme-oblivion .autodl-bg-10 { background-color: #00FFFF; }
+.theme-dark .autodl-bg-11, .theme-oblivion .autodl-bg-11 { background-color: #E0FFFF; }
+.theme-dark .autodl-bg-12, .theme-oblivion .autodl-bg-12 { background-color: #ADD8E6; }
+.theme-dark .autodl-bg-13, .theme-oblivion .autodl-bg-13 { background-color: #FFC0CB; }
+.theme-dark .autodl-bg-14, .theme-oblivion .autodl-bg-14 { background-color: #808080; }
+.theme-dark .autodl-bg-15, .theme-oblivion .autodl-bg-15 { background-color: #D3D3D3; }
 
-.theme-dark #autodl-irssi-log tr:hover {
-	background-color: #282828;
-}
-.theme-dark .autodl-line-sep { color: #FFFFFF; }
-.theme-dark .autodl-bold { color: #FFFFFF; }
-.theme-dark .autodl-fg-default { color: #808080; }
-.theme-dark .autodl-fg-as-bg { background-color: #808080; }
-.theme-dark .autodl-bg-default { background-color: #000000; }
-.theme-dark .autodl-bg-as-fg { color: #000000; }
-
-.theme-acid #autodl-irssi-log tr:hover {
-	background-color: #3C4753;
-}
+.theme-acid #autodl-irssi-log tr:hover { background-color: #3C4753; }
 .theme-acid .autodl-fg-default { color: #FFFFFF; }
 .theme-acid .autodl-fg-as-bg { background-color: #FFFFFF; }
 .theme-acid .autodl-bg-default { background-color: #272E36; }

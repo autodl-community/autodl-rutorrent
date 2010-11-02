@@ -22,6 +22,12 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
+/*
+TODO:
+- Add "enable" option to server section
+- Add option to disable the auto connector!
+*/
+
 function IrcServers()
 {
 }
@@ -106,11 +112,12 @@ function(multiSelectDlgBox, okHandler)
 
 	var this_ = this;
 
+
+
+	this.serversListBox = new ListBox("autodl-ircsrvs-list");
+	this.serversListBox.onSelected = function(oldObj, newObj) { this_._onServerSelected(oldObj, newObj); }
+
 	$("#autodl-ircsrvs-ok-button").click(function(e) { okHandler() });
-
-
-
-
 
 	// Do this last so all textboxes have been created
 	installEmptyTextHandlers("autodl-ircsrvs");
@@ -119,14 +126,104 @@ function(multiSelectDlgBox, okHandler)
 IrcServers.prototype.onBeforeShow =
 function(configFile, trackerInfos, trackersId)
 {
+	this.configFile = configFile;
+
+	this.initServers();
 }
 
 IrcServers.prototype.onAfterHide =
 function()
 {
+	this.configFile = null;
 }
 
 IrcServers.prototype.onOkClicked =
 function()
 {
+}
+
+function _cloneServerInfo(serverInfo)
+{
+	var rv =
+	{
+		serverSection: serverInfo.serverSection.clone(),
+		channels: []
+	}
+
+	for (var i = 0; i < serverInfo.channels.length; i++)
+		rv.channels.push(serverInfo.channels[i].clone());
+
+	return rv;
+}
+
+IrcServers.prototype.initServers =
+function()
+{
+	this.filterObjs = [];
+	var ary = this.configFile.getIrcServers();
+	ary.sort(function(a, b)
+	{
+		return stringCompare(canonicalizeServerName(a.serverSection.name), canonicalizeServerName(b.serverSection.name));
+	});
+	for (var i = 0; i < ary.length; i++)
+		this._addServer(_cloneServerInfo(ary[i]));
+
+	if (this.filterObjs.length === 0)
+		this._onServerSelected();
+	else
+		this.serversListBox.select(0);
+}
+
+IrcServers.prototype._fixFilterName =
+function(name)
+{
+	return name || theUILang.autodlNoName;
+}
+
+IrcServers.prototype._addServer =
+function(serverInfo)
+{
+	var obj =
+	{
+		serverInfo: serverInfo,
+	};
+	obj.checkboxElem = $('<input type="checkbox" />')[0];
+	obj.labelElem = $('<label />').text(this._fixFilterName(section.name))[0];
+
+	if (serverInfo.serverSection.getOption("enabled", "true", "bool").getValue())
+		$(obj.checkboxElem).attr("checked", "checked");
+
+	this.filterListBox.append($(obj.checkboxElem).add(obj.labelElem), obj);
+
+	this.filterObjs.push(obj);
+	return obj;
+}
+
+IrcServers.prototype._saveFilterObj =
+function(obj)
+{
+	if (obj)
+	{
+		var section = obj.section;
+
+		saveDialogOptions(section, this.options);
+		section.name = $("#autodl-ircsrvs-server").myval();
+
+		var enabled = obj.checkboxElem.checked;
+		section.getOption("enabled").setValue(enabled.toString());
+	}
+}
+
+IrcServers.prototype._onServerSelected =
+function(oldObj, newObj)
+{
+	this._saveFilterObj(oldObj);
+
+	var section = (newObj || {}).section;
+	initDialogOptions(section, this.options);
+	$("#autodl-ircsrvs-server").myval(section ? section.name : "");
+
+	var elems = $("#autodl-ircsrvs-remove-button").
+				add($("input, select", $("#autodl-ircsrvs-right")[0]));
+	enableJqueryElem(elems, newObj);
 }

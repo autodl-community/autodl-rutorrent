@@ -24,6 +24,12 @@
 
 // Parses the autodl.cfg file
 
+function canonicalizeServerName(serverName)
+{
+	var ary = serverName.match(/^([^:]*)/);
+	return ary[1].toLowerCase();
+}
+
 function sortObjectById(obj)
 {
 	var ary = [];
@@ -312,7 +318,7 @@ function(type, name)
 		return this._getOrCreateSection(type, name, $.trim(type) + " " + $.trim(name));
 
 	case "server":
-		return this._getOrCreateSection(type, name, " server " + this.id++ + " " + $.trim(type) + " " + $.trim(name));
+		return this._getOrCreateSection(type, name, " server " + $.trim(type) + " " + canonicalizeServerName($.trim(name)));
 
 	case "channel":
 		return this._getOrCreateSection(type, name, " channel " + this.id++ + " " + $.trim(type) + " " + $.trim(name));
@@ -332,9 +338,57 @@ function(type, name, hash)
 }
 
 ConfigFile.prototype.getFilters =
-function(type)
+function()
 {
 	return this.filters;
+}
+
+ConfigFile.prototype.getIrcServers =
+function()
+{
+	var servers = {};
+
+	function getServerInfo(serverName, section)
+	{
+		serverName = canonicalizeServerName(serverName);
+
+		var serverInfo = servers[serverName];
+		if (!serverInfo)
+		{
+			servers[serverName] = serverInfo =
+			{
+				channels: []
+			};
+		}
+
+		return serverInfo;
+	}
+
+	for (var key in this.sections)
+	{
+		var section = this.sections[key];
+		if (key.match(/^ server /))
+		{
+			var serverInfo = getServerInfo(section.name);
+			serverInfo.serverSection = section;
+		}
+		else if (key.match(/^ channel /))
+		{
+			var serverInfo = getServerInfo(section.name);
+			serverInfo.channels.push(section);
+		}
+	}
+
+	// Remove channels with no [server] section
+	var rv = [];
+	for (var key in servers)
+	{
+		var serverInfo = servers[key];
+		if (serverInfo.serverSection)
+			rv.push(serverInfo);
+	}
+
+	return rv;
 }
 
 ConfigFile.prototype._removeFilters =

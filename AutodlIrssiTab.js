@@ -88,7 +88,7 @@ function AutodlIrssiTab(dialogManager, plugin)
 				'<form target="autodl-restore-iframe" id="autodl-restore" method="POST" action="plugins/autodl-irssi/writeconfig.php" enctype="multipart/form-data">' +
 					'<input type="hidden" name="restoring" value="1" />' +
 					'<input type="submit" id="autodl-log-restore-button" class="Button" value="' + theUILang.autodlRestore1 + '" title="' + theUILang.autodlRestore2  + '" />' +
-					'<input id="autodl-restore-file" type="file" name="file" />' +
+					'<input id="autodl-restore-file" type="file" name="file" title="' + theUILang.autodlRestore3  + '" />' +
 				'</form>' +
 			'</div>' +
 			'<div id="autodl-irssi-log" class="autodl-fg-default autodl-bg-default">' +

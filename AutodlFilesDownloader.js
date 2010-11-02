@@ -108,7 +108,12 @@ function(handler)
 			success: function(data, status) { this_._onGetfiles(data); },
 			error: function(xhr, status, ex)
 			{
-				this_._notifyHandler("Could not get files listing");
+				var msg = "Could not get files listing";
+				if (status)
+					msg += ", status: " + status;
+				if (ex)
+					msg += ", ex: " + ex;
+				this_._notifyHandler(msg);
 			}
 		});
 	}

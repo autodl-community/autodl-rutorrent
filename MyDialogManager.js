@@ -39,6 +39,7 @@ function MyDialogManager(pluginPath)
 	this.trackers = new Trackers();
 	this.filters = new Filters();
 	this.servers = new Servers();
+	this.ircsrvs = new IrcServers();
 
 	var this_ = this;
 	for (var i = 0; i < this.names.length; i++)
@@ -76,7 +77,8 @@ MyDialogManager.prototype.names =
 	'preferences',
 	'filters',
 	'trackers',
-	'servers'
+	'servers',
+	'ircsrvs'
 ];
 
 MyDialogManager.prototype._onOkClicked =

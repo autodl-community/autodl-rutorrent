@@ -24,6 +24,14 @@
 
 // Code for the autodl-irssi tab
 
+function fromPixels(s)
+{
+	var ary = s.match(/^(\d+)px$/);
+	if (!ary)
+		return 0;
+	return parseInt(ary[1], 10);
+}
+
 function jqSetHeight(elem, height)
 {
 	var extraHeight = elem.outerHeight() - elem.height();
@@ -34,6 +42,25 @@ function jqSetWidth(elem, width)
 {
 	var extraWidth = elem.outerWidth() - elem.width();
 	elem.width(width - extraWidth);
+}
+
+function isScrolledToBottom(elem)
+{
+	var paddingTop = fromPixels(elem.css("paddingTop"));
+	var paddingBottom = fromPixels(elem.css("paddingBottom"));
+	var padding = paddingTop + paddingBottom;
+	var visibleBottom = elem.scrollTop() + elem.height() + padding;
+
+	// Horiz scrollbars may be visible...
+	return visibleBottom >= elem.attr("scrollHeight") - 20;
+}
+
+function scrollToBottom(elem)
+{
+	var scrollHeight = elem.attr("scrollHeight");
+
+	// Horiz scrollbars may be visible...
+	elem.scrollTop(scrollHeight + 20);
 }
 
 function AutodlIrssiTab(dialogManager, plugin)
@@ -61,7 +88,7 @@ function AutodlIrssiTab(dialogManager, plugin)
 				'<form target="autodl-restore-iframe" id="autodl-restore" method="POST" action="plugins/autodl-irssi/writeconfig.php" enctype="multipart/form-data">' +
 					'<input type="hidden" name="restoring" value="1" />' +
 					'<input type="submit" id="autodl-log-restore-button" class="Button" value="' + theUILang.autodlRestore1 + '" title="' + theUILang.autodlRestore2  + '" />' +
-					'<input type="file" name="file" />' +
+					'<input id="autodl-restore-file" type="file" name="file" />' +
 				'</form>' +
 			'</div>' +
 			'<div id="autodl-irssi-log" class="autodl-fg-default autodl-bg-default">' +
@@ -74,6 +101,11 @@ function AutodlIrssiTab(dialogManager, plugin)
 
 	$("#autodl-restore").submit(function()
 	{
+		if ($("#autodl-restore-file").val() == "")
+		{
+			alert(theUILang.autodlMissingFilename)
+			return false;
+		}
 		dialogManager.clearConfigFileCache();
 		return true;
 	});
@@ -205,13 +237,19 @@ function(data)
 		if (data.error)
 			return;	// Ignore errors
 
+		var elem = $("#autodl-irssi-log");
+		var wasScrolledDown = isScrolledToBottom(elem);
+
 		this.cid = data.cid;
 		var lines = data.lines;
 		for (var i = 0; i < lines.length; i++)
 		{
 			var info = lines[i];
-			this.addLine(new Date(info.time * 1000), info.line);
+			this._addLine(new Date(info.time * 1000), info.line);
 		}
+
+		if (wasScrolledDown)
+			scrollToBottom(elem);
 	}
 	catch (ex)
 	{
@@ -247,6 +285,7 @@ function(id)
 	this._resetSizeChrome();
 	this.visible = true;
 	this._onResize();
+	scrollToBottom($("#autodl-irssi-log"));
 }
 
 AutodlIrssiTab.prototype._onResize =
@@ -254,14 +293,6 @@ function()
 {
 	if (!this.visible)
 		return;
-
-	function fromPixels(s)
-	{
-		var ary = s.match(/^(\d+)px$/);
-		if (!ary)
-			return null;
-		return parseInt(ary[1], 10);
-	}
 
 	var width = fromPixels($("#PluginList").css("width"));
 	var height = fromPixels($("#PluginList").css("height"));
@@ -347,6 +378,8 @@ function getMircColorInfo(s)
 			// Underline
 			attrs.underline = !attrs.underline;
 		}
+		else if (code === 13)
+			;	// Ignore it
 		else
 		{
 			attrs.s += s.charAt(i);
@@ -376,7 +409,7 @@ function(time)
 	return f2(time.getHours()) + ":" + f2(time.getMinutes()) + ":" + f2(time.getSeconds());
 }
 
-AutodlIrssiTab.prototype.addLine =
+AutodlIrssiTab.prototype._addLine =
 function(time, line)
 {
 	var lineElem = $('<div class="autodl-line"/>');

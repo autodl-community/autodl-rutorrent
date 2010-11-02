@@ -27,13 +27,15 @@
 	font-style: italic;
 }
 
-#autodl-tb {
-	background: transparent url(001_52.gif) no-repeat center;
-}
+#autodl-tb { background: transparent url(prefs_std.gif) no-repeat center; }
+.theme-oblivion #autodl-tb { background: transparent url(prefs_dark.png) no-repeat center; }
+.theme-dark #autodl-tb { background: transparent url(prefs_dark.png) no-repeat center; }
+
 #autodl-preferences-header,
 #autodl-filters-header,
 #autodl-trackers-header,
 #autodl-servers-header,
+#autodl-ircsrvs-header,
 #autodl-multiselect-header {
 	background-image: url("../../images/settings.gif");
 }
@@ -222,7 +224,45 @@
 	padding: 0;
 }
 
-#autodl-filters select, #autodl-prefs select {
+#autodl-ircsrvs {
+	height: 330px;
+	width: 600px;
+}
+#autodl-ircsrvs-left {
+	float: left;
+	margin: 0 5px 10px 5px;
+}
+#autodl-ircsrvs-left .listbox {
+	margin-bottom: 5px;
+}
+#autodl-ircsrvs-list {
+	height: 240px;
+	width: 200px;
+}
+#autodl-ircsrvs-right {
+	margin-top: 5px;
+}
+#autodl-ircsrvs-server {
+	width: 10em;
+}
+#autodl-ircsrvs-identpass,
+#autodl-ircsrvs-nick,
+#autodl-ircsrvs-port {
+	width: 5em;
+}
+#autodl-ircsrvs-identemail,
+#autodl-ircsrvs-channel,
+#autodl-ircsrvs-channelpass {
+	width: 8em;
+}
+#autodl-ircsrvs-chaninvite,
+#autodl-ircsrvs-httpurl,
+#autodl-ircsrvs-httpheader,
+#autodl-ircsrvs-httpdata {
+	width: 20em;
+}
+
+#autodl-filters select, #autodl-prefs select, #autodl-ircsrvs select {
 	margin-left: 5px;
 	margin-right: 5px;
 }
@@ -300,7 +340,7 @@
 #autodl-irssi-log {
 	overflow: auto;
 	font-family: Courier New, Courier, monospace;
-	border: 1px solid black;
+	border: 1px solid #B3B3B3;
 	padding: 3px;
 }
 #autodl-irssi-log table {
@@ -446,3 +486,43 @@
 .theme-acid .autodl-bg-13 { background-color: #FFC0CB; }
 .theme-acid .autodl-bg-14 { background-color: #808080; }
 .theme-acid .autodl-bg-15 { background-color: #D3D3D3; }
+
+.theme-blue .autodl-line-sep { color: #255798; }
+.theme-blue #autodl-irssi-log { border: 1px solid #4E88D4; }
+.theme-blue #autodl-irssi-log tr:hover { background-color: #CADAF2; }
+.autodl-fg-default { color: #112846; }
+.autodl-fg-as-bg { background-color: #112846; }
+.autodl-bg-default { background-color: #F3F7FC; }
+.autodl-bg-as-fg { color: #F3F7FC; }
+.autodl-fg-0 { color: #FFFFFF; }
+.autodl-fg-1 { color: #000000; }
+.autodl-fg-2 { color: #0000FF; }
+.autodl-fg-3 { color: #008000; }
+.autodl-fg-4 { color: #FF0000; }
+.autodl-fg-5 { color: #A52A2A; }
+.autodl-fg-6 { color: #800080; }
+.autodl-fg-7 { color: #FFA500; }
+.autodl-fg-8 { color: #8A5C2E; }
+.autodl-fg-9 { color: #599400; }
+.autodl-fg-10 { color: #0080FF; }
+.autodl-fg-11 { color: #6666FF; }
+.autodl-fg-12 { color: #57AECB; }
+.autodl-fg-13 { color: #FF4766; }
+.autodl-fg-14 { color: #808080; }
+.autodl-fg-15 { color: #ADADAD; }
+.autodl-bg-0 { background-color: #FFFFFF; }
+.autodl-bg-1 { background-color: #000000; }
+.autodl-bg-2 { background-color: #0000FF; }
+.autodl-bg-3 { background-color: #008000; }
+.autodl-bg-4 { background-color: #FF0000; }
+.autodl-bg-5 { background-color: #A52A2A; }
+.autodl-bg-6 { background-color: #800080; }
+.autodl-bg-7 { background-color: #FFA500; }
+.autodl-bg-8 { background-color: #8A5C2E; }
+.autodl-bg-9 { background-color: #599400; }
+.autodl-bg-10 { background-color: #0080FF; }
+.autodl-bg-11 { background-color: #6666FF; }
+.autodl-bg-12 { background-color: #57AECB; }
+.autodl-bg-13 { background-color: #FF4766; }
+.autodl-bg-14 { background-color: #808080; }
+.autodl-bg-15 { background-color: #ADADAD; }

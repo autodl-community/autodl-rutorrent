@@ -76,6 +76,7 @@ function()
 		'Filters.js',
 		'Trackers.js',
 		'Servers.js',
+		'IrcServers.js',
 		'AutodlFilesDownloader.js',
 		'ConfigFileParser.js',
 		'TrackerInfo.js',
@@ -139,6 +140,7 @@ function(e)
 	theContextMenu.clear();
 	theContextMenu.add([theUILang.autodlFilters2, function() { this_.dialogManager.toggleDialog("filters"); }]);
 	theContextMenu.add([theUILang.autodlServers2, function() { this_.dialogManager.toggleDialog("servers"); }]);
+	theContextMenu.add([theUILang.autodlIrcServers2, function() { this_.dialogManager.toggleDialog("ircsrvs"); }]);
 	theContextMenu.add([theUILang.autodlTrackers2, function() { this_.dialogManager.toggleDialog("trackers"); }]);
 	theContextMenu.add([theUILang.autodlPreferences2, function() { this_.dialogManager.toggleDialog("preferences"); }]);
 	theContextMenu.add([CMENU_SEP]);

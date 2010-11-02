@@ -312,6 +312,7 @@ function(type, name)
 	case "options":
 	case "webui":
 	case "ftp":
+	case "irc":
 		return this._getOrCreateSection(type, name, $.trim(type));
 
 	case "tracker":

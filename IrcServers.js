@@ -22,12 +22,6 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-/*
-TODO:
-- Add "enable" option to server section
-- Add option to disable the auto connector!
-*/
-
 function IrcServers()
 {
 }

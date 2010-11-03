@@ -39,7 +39,7 @@ function(multiSelectDlgBox, okHandler)
 				'</div>' +
 			'</div>' +
 			'<div id="autodl-ircsrvs-right">' +
-				'<fieldset>' +
+				'<fieldset id="autodl-ircsrvs-servers-fieldset">' +
 					'<legend>' + theUILang.autodlIrcsrvs1 + '</legend>' +
 					'<div>' +
 						'<label for="autodl-ircsrvs-server">' + theUILang.autodlIrcsrvs2 + '</label>' +
@@ -58,14 +58,10 @@ function(multiSelectDlgBox, okHandler)
 						'<input type="text" class="textbox" id="autodl-ircsrvs-identemail" title="' + theUILang.autodlIrcsrvs16 + '"/>' +
 					'</div>' +
 				'</fieldset>' +
-				'<fieldset>' +
+				'<fieldset id="autodl-ircsrvs-channels-fieldset">' +
 					'<legend>' + theUILang.autodlIrcsrvs17 + '</legend>' +
 					'<div>' +
-						'<select>' +
-							'<option>#channel1</option>' +
-							'<option>#channel2</option>' +
-							'<option>#channel3</option>' +
-						'</select>' +
+						'<select id="autodl-ircsrvs-channels"/>' +
 						'<input type="button" class="Button" id="autodl-ircsrvs-new-channel-button" value="' + theUILang.autodlNew + '" />' +
 						'<input type="button" class="Button" id="autodl-ircsrvs-remove-channel-button" value="' + theUILang.autodlRemove + '" />' +
 					'</div>' +
@@ -106,10 +102,56 @@ function(multiSelectDlgBox, okHandler)
 
 	var this_ = this;
 
+	this.serverOptions =
+	[
+		new DialogOptionText("autodl-ircsrvs-port", "port", ""),
+		new DialogOptionBool("autodl-ircsrvs-ssl", "ssl", "false"),
+		new DialogOptionText("autodl-ircsrvs-nick", "nick", ""),
+		new DialogOptionText("autodl-ircsrvs-identpass", "ident-password", ""),
+		new DialogOptionText("autodl-ircsrvs-identemail", "ident-email", "")
+	];
+	this.channelOptions =
+	[
+		new DialogOptionText("autodl-ircsrvs-channelpass", "password", ""),
+		new DialogOptionText("autodl-ircsrvs-chaninvite", "invite-command", ""),
+		new DialogOptionText("autodl-ircsrvs-httpurl", "invite-http-url", ""),
+		new DialogOptionText("autodl-ircsrvs-httpheader", "invite-http-header", ""),
+		new DialogOptionText("autodl-ircsrvs-httpdata", "invite-http-data", "")
+	];
 
+	$("#autodl-ircsrvs-new-button").click(function()
+	{
+		this_._onNewServerClicked();
+	});
+	$("#autodl-ircsrvs-remove-button").click(function()
+	{
+		this_._onRemoveServerClicked();
+	});
+	$("#autodl-ircsrvs-new-channel-button").click(function()
+	{
+		this_._onNewChannelClicked();
+	});
+	$("#autodl-ircsrvs-remove-channel-button").click(function()
+	{
+		this_._onRemoveChannelClicked();
+	});
+	$("#autodl-ircsrvs-server").keyup(function(e)
+	{
+		this_._onServerNameModified();
+	});
+	$("#autodl-ircsrvs-channel").keyup(function(e)
+	{
+		this_._onChannelNameModified();
+	});
 
 	this.serversListBox = new ListBox("autodl-ircsrvs-list");
 	this.serversListBox.onSelected = function(oldObj, newObj) { this_._onServerSelected(oldObj, newObj); }
+
+	this.channelsDropdown = new DropDownBox("autodl-ircsrvs-channels");
+	this.channelsDropdown.onChange = function(oldValue, newValue)
+	{
+		this_.onChannelsDropDownChange(oldValue, newValue);
+	};
 
 	$("#autodl-ircsrvs-ok-button").click(function(e) { okHandler() });
 
@@ -121,6 +163,8 @@ IrcServers.prototype.onBeforeShow =
 function(configFile, trackerInfos, trackersId)
 {
 	this.configFile = configFile;
+	this.activeServerInfo = null;
+	this.currentChannelSection = null;
 
 	this.initServers();
 }
@@ -128,12 +172,26 @@ function(configFile, trackerInfos, trackersId)
 IrcServers.prototype.onAfterHide =
 function()
 {
+	this.channelsDropdown.empty();
+	this.serversListBox.removeAll();
+	delete this.serverObjs;
 	this.configFile = null;
+	this.activeServerInfo = null;
+	this.currentChannelSection = null;
 }
 
 IrcServers.prototype.onOkClicked =
 function()
 {
+	this._saveServerObj(this.serversListBox.getSelectedData());
+
+	// Save it all
+	var servers = [];
+	for (var i = 0; i < this.serverObjs.length; i++)
+		servers.push(this.serverObjs[i].serverInfo);
+	this.configFile.setServers(servers);
+
+	return true;	// autodl.cfg updated
 }
 
 function _cloneServerInfo(serverInfo)
@@ -153,7 +211,7 @@ function _cloneServerInfo(serverInfo)
 IrcServers.prototype.initServers =
 function()
 {
-	this.filterObjs = [];
+	this.serverObjs = [];
 	var ary = this.configFile.getIrcServers();
 	ary.sort(function(a, b)
 	{
@@ -162,13 +220,13 @@ function()
 	for (var i = 0; i < ary.length; i++)
 		this._addServer(_cloneServerInfo(ary[i]));
 
-	if (this.filterObjs.length === 0)
+	if (this.serverObjs.length === 0)
 		this._onServerSelected();
 	else
 		this.serversListBox.select(0);
 }
 
-IrcServers.prototype._fixFilterName =
+IrcServers.prototype._fixName =
 function(name)
 {
 	return name || theUILang.autodlNoName;
@@ -182,42 +240,198 @@ function(serverInfo)
 		serverInfo: serverInfo,
 	};
 	obj.checkboxElem = $('<input type="checkbox" />')[0];
-	obj.labelElem = $('<label />').text(this._fixFilterName(section.name))[0];
+	obj.labelElem = $('<label />').text(this._fixName(serverInfo.serverSection.name))[0];
 
 	if (serverInfo.serverSection.getOption("enabled", "true", "bool").getValue())
 		$(obj.checkboxElem).attr("checked", "checked");
 
-	this.filterListBox.append($(obj.checkboxElem).add(obj.labelElem), obj);
+	this.serversListBox.append($(obj.checkboxElem).add(obj.labelElem), obj);
 
-	this.filterObjs.push(obj);
+	this.serverObjs.push(obj);
 	return obj;
 }
 
-IrcServers.prototype._saveFilterObj =
+IrcServers.prototype._saveServerObj =
 function(obj)
 {
 	if (obj)
 	{
-		var section = obj.section;
+		var section = obj.serverInfo.serverSection;
 
-		saveDialogOptions(section, this.options);
+		saveDialogOptions(section, this.serverOptions);
+
 		section.name = $("#autodl-ircsrvs-server").myval();
 
 		var enabled = obj.checkboxElem.checked;
 		section.getOption("enabled").setValue(enabled.toString());
+
+		this._saveChannel(this.currentChannelSection);
 	}
 }
 
 IrcServers.prototype._onServerSelected =
 function(oldObj, newObj)
 {
-	this._saveFilterObj(oldObj);
+	this._saveServerObj(oldObj);
+	this.currentChannelSection = null;
 
-	var section = (newObj || {}).section;
-	initDialogOptions(section, this.options);
+	this.activeServerInfo = (newObj || {}).serverInfo;
+	var section = (this.activeServerInfo || {}).serverSection;
+
+	initDialogOptions(section, this.serverOptions);
 	$("#autodl-ircsrvs-server").myval(section ? section.name : "");
 
-	var elems = $("#autodl-ircsrvs-remove-button").
-				add($("input, select", $("#autodl-ircsrvs-right")[0]));
+	this.channelsDropdown.empty();
+	if (this.activeServerInfo)
+	{
+		var channels = this.activeServerInfo.channels;
+		var sorted = [];
+		for (var i = 0; i < channels.length; i++)
+		{
+			var channel = channels[i];
+			if (channel == null)
+				continue;	// Removed
+
+			sorted.push(
+			{
+				channelSection: channel,
+				index: i
+			});
+		}
+		sorted.sort(function(a, b)
+		{
+			a = a.channelSection.getOption("name", "", "text").getValue();
+			b = b.channelSection.getOption("name", "", "text").getValue();
+			return stringCompare(a.toLowerCase(), b.toLowerCase());
+		});
+
+		for (var i = 0; i < sorted.length; i++)
+		{
+			var channelSection = sorted[i].channelSection;
+			this.channelsDropdown.add(sorted[i].index, this._fixName(channelSection.getOption("name", "", "text").getValue()));
+		}
+		if (sorted.length > 0)
+			this.channelsDropdown.select(sorted[0].index);
+		else
+			this._initChannel();
+	}
+	else
+		this._initChannel();
+
+	var elems = $("#autodl-ircsrvs-servers-fieldset").find("input, select").add("#autodl-ircsrvs-remove-button, #autodl-ircsrvs-new-channel-button");
 	enableJqueryElem(elems, newObj);
+}
+
+IrcServers.prototype.onChannelsDropDownChange =
+function(oldValue, newValue)
+{
+	if (!this.activeServerInfo)
+		return;
+
+	var channels = this.activeServerInfo.channels;
+	var oldChannelSection = oldValue == null ? null : channels[oldValue];
+	var newChannelSection = newValue == null ? null : channels[newValue];
+
+	if (oldChannelSection)
+		this._saveChannel(oldChannelSection);
+
+	this._initChannel(newChannelSection);
+
+	this.currentChannelSection = newChannelSection;
+}
+
+IrcServers.prototype._saveChannel =
+function(channelSection)
+{
+	if (channelSection)
+	{
+		saveDialogOptions(channelSection, this.channelOptions);
+
+		var newName = $("#autodl-ircsrvs-channel").myval();
+		channelSection.getOption("name", "", "text").setValue(newName);
+	}
+
+}
+
+IrcServers.prototype._initChannel =
+function(channelSection)
+{
+	initDialogOptions(channelSection, this.channelOptions);
+	var name = channelSection ? channelSection.getOption("name", "", "text").getValue() : "";
+	$("#autodl-ircsrvs-channel").myval(name);
+
+	var elems = $("#autodl-ircsrvs-channels-fieldset").find("input, select").filter(":not(#autodl-ircsrvs-new-channel-button)");
+	enableJqueryElem(elems, channelSection);
+}
+
+IrcServers.prototype._onServerNameModified =
+function()
+{
+	var obj = this.serversListBox.getSelectedData();
+	if (!obj)
+		return;
+	var newText = this._fixName($("#autodl-ircsrvs-server").myval())
+	$(obj.labelElem).text(newText);
+}
+
+IrcServers.prototype._onChannelNameModified =
+function()
+{
+	var newText = this._fixName($("#autodl-ircsrvs-channel").myval())
+	this.channelsDropdown.renameSelected(newText);
+}
+
+IrcServers.prototype._onNewServerClicked =
+function()
+{
+	var serverInfo =
+	{
+		serverSection: new ConfigSection(null, "server", ""),
+		channels: []
+	}
+	var obj = this._addServer(serverInfo);
+	this.serversListBox.selectData(obj);
+
+	$("#autodl-ircsrvs-server").focus();
+}
+
+IrcServers.prototype._onRemoveServerClicked =
+function()
+{
+	if (confirm(theUILang.autodlDeleteIrcServer))
+	{
+		var selectedIndex = this.serversListBox.getSelectedIndex();
+		this.serverObjs.splice(selectedIndex, 1);
+		this.serversListBox.removeSelected();
+	}
+}
+
+IrcServers.prototype._onNewChannelClicked =
+function()
+{
+	if (!this.activeServerInfo)
+		return;
+
+	var index = this.activeServerInfo.channels.length;
+	var channelSection = new ConfigSection(null, "channel", "");
+	this.activeServerInfo.channels.push(channelSection);
+	this.channelsDropdown.add(index, this._fixName(channelSection.getOption("name", "", "text").getValue()));
+	this.channelsDropdown.select(index);
+	$("#autodl-ircsrvs-channel").focus();
+}
+
+IrcServers.prototype._onRemoveChannelClicked =
+function()
+{
+	if (!this.activeServerInfo)
+		return;
+	var index = this.channelsDropdown.getSelectedValue();
+	if (index == null)
+		return;
+
+	if (confirm(theUILang.autodlDeleteIrcChannel))
+	{
+		this.channelsDropdown.removeSelected();
+		this.activeServerInfo.channels[index] = null;
+	}
 }

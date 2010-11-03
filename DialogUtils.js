@@ -163,33 +163,114 @@ function DropDownBox(id)
 {
 	this.selectElem = document.getElementById(id);
 	this.options = [];
+	this.selectedIndex = -1;
+
+	var this_ = this;
+	$(this.selectElem).change(function(e) { this_._onChange(); })
+						// selectedIndex should be updated when we get a keyup event
+					  .keyup(function(e) { this_._onChange(); });
+}
+
+DropDownBox.prototype._onChange =
+function()
+{
+	this._setNewSelected(this.selectElem.selectedIndex);
+}
+
+DropDownBox.prototype._getIndex =
+function(value)
+{
+	for (var i = 0; i < this.options.length; i++)
+	{
+		if (this.options[i] === value)
+			return i;
+	}
+
+	return -1;
+}
+
+DropDownBox.prototype.renameSelected =
+function(newText)
+{
+	if (this.selectedIndex < 0)
+		return;
+
+	$(this.selectElem.options[this.selectedIndex]).text(newText);
+}
+
+DropDownBox.prototype.removeSelected =
+function()
+{
+	if (this.selectedIndex < 0)
+		return;
+
+	var newIndex = this.selectedIndex + 1;
+	var oldIndex = this.selectedIndex;
+	if (this.options[newIndex] == null)
+		newIndex = this.selectedIndex - 1;
+	if (this.options[newIndex] == null)
+		newIndex = -1;
+
+	this._setNewSelected(newIndex);
+	var newValue = this.getValue(newIndex);
+
+	this.selectElem.remove(oldIndex);
+	this.options.splice(oldIndex, 1);
+	this.selectedIndex = this.selectElem.selectedIndex = this._getIndex(newValue);
+}
+
+DropDownBox.prototype.getValue =
+function(index)
+{
+	if (index < 0 || index >= this.options.length)
+		return null;
+	return this.options[index];
+}
+
+DropDownBox.prototype._setNewSelected =
+function(newIndex)
+{
+	if (newIndex === this.selectedIndex)
+		return;
+	var oldSelected = this.selectedIndex;
+
+	// Notify owner
+	if (this.onChange)
+		this.onChange(this.getValue(oldSelected), this.getValue(newIndex));
+
+	this.selectedIndex = newIndex;
+}
+
+DropDownBox.prototype.empty =
+function()
+{
+	$(this.selectElem).empty();
+	this.options = [];
+	this.selectedIndex = -1;
 }
 
 DropDownBox.prototype.add =
-function(value)
+function(value, text)
 {
+	$(this.selectElem).append($('<option />').text(text));
 	this.options.push(value);
 }
 
 DropDownBox.prototype.select =
 function(value)
 {
-	for (var i = 0; i < this.options.length; i++)
-	{
-		if (this.options[i] === value)
-		{
-			this.selectElem.selectedIndex = i;
-			return;
-		}
-	}
+	var index = this._getIndex(value);
+	if (index < 0)
+		return;
 
-	log("DropDownBox: Could not find value " + value);
+	this._setNewSelected(index);
+	this.selectElem.selectedIndex = index;
 }
 
 DropDownBox.prototype.getSelectedValue =
 function()
 {
-	return this.options[this.selectElem.selectedIndex];
+	return this.getValue(this.selectElem.selectedIndex);
 }
 
 // Makes sure a bunch of textboxes contain the same value

@@ -423,23 +423,11 @@ function(multiSelectDlgBox, okHandler)
 							'</tbody>' +
 						'</table>' +
 						'<label for="autodl-filters-scene">' + theUILang.autodlScene + '</label>' +
-						'<select id="autodl-filters-scene">' +
-							'<option>' + theUILang.autodlDontCare + '</option>' +
-							'<option>' + theUILang.autodlYes + '</option>' +
-							'<option>' + theUILang.autodlNo + '</option>' +
-						'</select>' +
+						'<select id="autodl-filters-scene" />' +
 						'<label for="autodl-filters-log">Log</label>' +
-						'<select id="autodl-filters-log">' +
-							'<option>' + theUILang.autodlDontCare + '</option>' +
-							'<option>' + theUILang.autodlYes + '</option>' +
-							'<option>' + theUILang.autodlNo + '</option>' +
-						'</select>' +
+						'<select id="autodl-filters-log" />' +
 						'<label for="autodl-filters-cue">Cue</label>' +
-						'<select id="autodl-filters-cue">' +
-							'<option>' + theUILang.autodlDontCare + '</option>' +
-							'<option>' + theUILang.autodlYes + '</option>' +
-							'<option>' + theUILang.autodlNo + '</option>' +
-						'</select>' +
+						'<select id="autodl-filters-cue" />' +
 					'</div>' +
 					'<div id="autodl-filters-contents-advanced">' +
 						'<table>' +
@@ -550,9 +538,9 @@ function(multiSelectDlgBox, okHandler)
 	{
 		var dropdown = new DropDownBox('autodl-filters-' + names[i]);
 		this[names[i] + "DropDownBox"] = dropdown;
-		dropdown.add("");
-		dropdown.add("true");
-		dropdown.add("false");
+		dropdown.add("", theUILang.autodlDontCare);
+		dropdown.add("true", theUILang.autodlYes);
+		dropdown.add("false", theUILang.autodlNo);
 	}
 
 	this.filterListBox = new ListBox("autodl-filters-list");

@@ -237,11 +237,14 @@ function(data)
 		if (data.error)
 			return;	// Ignore errors
 
+		this.cid = data.cid;
+		var lines = data.lines;
+		if (lines.length === 0)
+			return;
+
 		var elem = $("#autodl-irssi-log");
 		var wasScrolledDown = isScrolledToBottom(elem);
 
-		this.cid = data.cid;
-		var lines = data.lines;
 		for (var i = 0; i < lines.length; i++)
 		{
 			var info = lines[i];

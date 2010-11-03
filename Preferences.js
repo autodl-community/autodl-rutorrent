@@ -62,11 +62,7 @@ function(multiSelectDlgBox, okHandler)
 					'<div>' +
 						'<td>' +
 							'<label for="autodl-automatic-updates">' + theUILang.autodlAutomaticUpdates + '</label>' +
-							'<select id="autodl-automatic-updates">' +
-								'<option>' + theUILang.autodlUpdateAutomatically + '</option>' +
-								'<option>' + theUILang.autodlAsk + '</option>' +
-								'<option>' + theUILang.autodlDontCheckForUpdates + '</option>' +
-							'</select>' +
+							'<select id="autodl-automatic-updates" />' +
 						'</td>' +
 					'</div>' +
 				'</div>' +
@@ -189,9 +185,9 @@ function(multiSelectDlgBox, okHandler)
 	this.tabs.add("autodl-prefs-tab-advanced", "autodl-prefs-contents-advanced");
 
 	this.dropDownBox = new DropDownBox("autodl-automatic-updates");
-	this.dropDownBox.add("auto");
-	this.dropDownBox.add("ask");
-	this.dropDownBox.add("disabled");
+	this.dropDownBox.add("auto", theUILang.autodlUpdateAutomatically);
+	this.dropDownBox.add("ask", theUILang.autodlAsk);
+	this.dropDownBox.add("disabled", theUILang.autodlDontCheckForUpdates);
 
 	this.uploadMethod = new UploadMethod("autodl-prefs-contents-upload", true);
 

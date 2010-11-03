@@ -242,24 +242,34 @@
 #autodl-ircsrvs-right {
 	margin-top: 5px;
 }
+#autodl-ircsrvs-right label {
+	margin-left: 3px;
+}
 #autodl-ircsrvs-server {
-	width: 10em;
+	width: 12em;
 }
 #autodl-ircsrvs-identpass,
 #autodl-ircsrvs-nick,
 #autodl-ircsrvs-port {
 	width: 5em;
 }
-#autodl-ircsrvs-identemail,
-#autodl-ircsrvs-channel,
+#autodl-ircsrvs-identemail {
+	width: 7em;
+}
 #autodl-ircsrvs-channelpass {
 	width: 8em;
+}
+#autodl-ircsrvs-channel {
+	width: 11em;
 }
 #autodl-ircsrvs-chaninvite,
 #autodl-ircsrvs-httpurl,
 #autodl-ircsrvs-httpheader,
 #autodl-ircsrvs-httpdata {
 	width: 20em;
+}
+#autodl-ircsrvs-channels {
+	width: 13em;
 }
 
 #autodl-filters select, #autodl-prefs select, #autodl-ircsrvs select {
@@ -490,39 +500,39 @@
 .theme-blue .autodl-line-sep { color: #255798; }
 .theme-blue #autodl-irssi-log { border: 1px solid #4E88D4; }
 .theme-blue #autodl-irssi-log tr:hover { background-color: #CADAF2; }
-.autodl-fg-default { color: #112846; }
-.autodl-fg-as-bg { background-color: #112846; }
-.autodl-bg-default { background-color: #F3F7FC; }
-.autodl-bg-as-fg { color: #F3F7FC; }
-.autodl-fg-0 { color: #FFFFFF; }
-.autodl-fg-1 { color: #000000; }
-.autodl-fg-2 { color: #0000FF; }
-.autodl-fg-3 { color: #008000; }
-.autodl-fg-4 { color: #FF0000; }
-.autodl-fg-5 { color: #A52A2A; }
-.autodl-fg-6 { color: #800080; }
-.autodl-fg-7 { color: #FFA500; }
-.autodl-fg-8 { color: #8A5C2E; }
-.autodl-fg-9 { color: #599400; }
-.autodl-fg-10 { color: #0080FF; }
-.autodl-fg-11 { color: #6666FF; }
-.autodl-fg-12 { color: #57AECB; }
-.autodl-fg-13 { color: #FF4766; }
-.autodl-fg-14 { color: #808080; }
-.autodl-fg-15 { color: #ADADAD; }
-.autodl-bg-0 { background-color: #FFFFFF; }
-.autodl-bg-1 { background-color: #000000; }
-.autodl-bg-2 { background-color: #0000FF; }
-.autodl-bg-3 { background-color: #008000; }
-.autodl-bg-4 { background-color: #FF0000; }
-.autodl-bg-5 { background-color: #A52A2A; }
-.autodl-bg-6 { background-color: #800080; }
-.autodl-bg-7 { background-color: #FFA500; }
-.autodl-bg-8 { background-color: #8A5C2E; }
-.autodl-bg-9 { background-color: #599400; }
-.autodl-bg-10 { background-color: #0080FF; }
-.autodl-bg-11 { background-color: #6666FF; }
-.autodl-bg-12 { background-color: #57AECB; }
-.autodl-bg-13 { background-color: #FF4766; }
-.autodl-bg-14 { background-color: #808080; }
-.autodl-bg-15 { background-color: #ADADAD; }
+.theme-blue .autodl-fg-default { color: #112846; }
+.theme-blue .autodl-fg-as-bg { background-color: #112846; }
+.theme-blue .autodl-bg-default { background-color: #F3F7FC; }
+.theme-blue .autodl-bg-as-fg { color: #F3F7FC; }
+.theme-blue .autodl-fg-0 { color: #FFFFFF; }
+.theme-blue .autodl-fg-1 { color: #000000; }
+.theme-blue .autodl-fg-2 { color: #0000FF; }
+.theme-blue .autodl-fg-3 { color: #008000; }
+.theme-blue .autodl-fg-4 { color: #FF0000; }
+.theme-blue .autodl-fg-5 { color: #A52A2A; }
+.theme-blue .autodl-fg-6 { color: #800080; }
+.theme-blue .autodl-fg-7 { color: #FFA500; }
+.theme-blue .autodl-fg-8 { color: #8A5C2E; }
+.theme-blue .autodl-fg-9 { color: #599400; }
+.theme-blue .autodl-fg-10 { color: #0080FF; }
+.theme-blue .autodl-fg-11 { color: #6666FF; }
+.theme-blue .autodl-fg-12 { color: #57AECB; }
+.theme-blue .autodl-fg-13 { color: #FF4766; }
+.theme-blue .autodl-fg-14 { color: #808080; }
+.theme-blue .autodl-fg-15 { color: #ADADAD; }
+.theme-blue .autodl-bg-0 { background-color: #FFFFFF; }
+.theme-blue .autodl-bg-1 { background-color: #000000; }
+.theme-blue .autodl-bg-2 { background-color: #0000FF; }
+.theme-blue .autodl-bg-3 { background-color: #008000; }
+.theme-blue .autodl-bg-4 { background-color: #FF0000; }
+.theme-blue .autodl-bg-5 { background-color: #A52A2A; }
+.theme-blue .autodl-bg-6 { background-color: #800080; }
+.theme-blue .autodl-bg-7 { background-color: #FFA500; }
+.theme-blue .autodl-bg-8 { background-color: #8A5C2E; }
+.theme-blue .autodl-bg-9 { background-color: #599400; }
+.theme-blue .autodl-bg-10 { background-color: #0080FF; }
+.theme-blue .autodl-bg-11 { background-color: #6666FF; }
+.theme-blue .autodl-bg-12 { background-color: #57AECB; }
+.theme-blue .autodl-bg-13 { background-color: #FF4766; }
+.theme-blue .autodl-bg-14 { background-color: #808080; }
+.theme-blue .autodl-bg-15 { background-color: #ADADAD; }

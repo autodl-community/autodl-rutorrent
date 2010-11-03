@@ -297,6 +297,18 @@ function(filterSection)
 	return $.trim(filterSection.type) + " " + filterSection.id;
 }
 
+ConfigFile.prototype._serverHash =
+function(serverName)
+{
+	return " server " + canonicalizeServerName(serverName);
+}
+
+ConfigFile.prototype._channelHash =
+function(channelName)
+{
+	return " channel " + this.id++ + " " + channelName.toLowerCase();
+}
+
 ConfigFile.prototype.getSection =
 function(type, name)
 {
@@ -319,10 +331,10 @@ function(type, name)
 		return this._getOrCreateSection(type, name, $.trim(type) + " " + $.trim(name));
 
 	case "server":
-		return this._getOrCreateSection(type, name, " server " + $.trim(type) + " " + canonicalizeServerName($.trim(name)));
+		return this._getOrCreateSection(type, name, this._serverHash($.trim(name)));
 
 	case "channel":
-		return this._getOrCreateSection(type, name, " channel " + this.id++ + " " + $.trim(type) + " " + $.trim(name));
+		return this._getOrCreateSection(type, name, this._channelHash($.trim(name)));
 
 	default:
 		return this._getOrCreateSection(type, name, " unknown " + this.id++ + " " + $.trim(type) + " " + $.trim(name));
@@ -342,6 +354,41 @@ ConfigFile.prototype.getFilters =
 function()
 {
 	return this.filters;
+}
+
+ConfigFile.prototype._removeFilters =
+function()
+{
+	for (var i = 0; i < this.filters.length; i++)
+	{
+		var filter = this.filters[i];
+		var hash = this._filterHash(filter);
+		delete this.sections[hash];
+	}
+	this.filters = [];
+}
+
+ConfigFile.prototype._initSectionId =
+function(section)
+{
+	// It's null if caller created it
+	if (section.id == null)
+		section.id = this.id++;
+}
+
+ConfigFile.prototype.setFilters =
+function(sections)
+{
+	this._removeFilters();
+
+	for (var i = 0; i < sections.length; i++)
+	{
+		var section = sections[i];
+		this._initSectionId(section);
+		var hash = this._filterHash(section);
+		this.sections[hash] = section;
+	}
+	this.filters = sections;
 }
 
 ConfigFile.prototype.getIrcServers =
@@ -392,33 +439,40 @@ function()
 	return rv;
 }
 
-ConfigFile.prototype._removeFilters =
+ConfigFile.prototype.removeServersChannels =
 function()
 {
-	for (var i = 0; i < this.filters.length; i++)
+	for (var hash in this.sections)
 	{
-		var filter = this.filters[i];
-		var hash = this._filterHash(filter);
+		if (!hash.match(/^ server /) && !hash.match(/^ channel /))
+			continue;
 		delete this.sections[hash];
 	}
-	this.filters = [];
 }
 
-ConfigFile.prototype.setFilters =
-function(sections)
+ConfigFile.prototype.setServers =
+function(serverInfos)
 {
-	this._removeFilters();
+	this.removeServersChannels();
 
-	for (var i = 0; i < sections.length; i++)
+	for (var i = 0; i < serverInfos.length; i++)
 	{
-		var section = sections[i];
+		var serverInfo = serverInfos[i];
 
-		// It's null if caller created it
-		if (section.id == null)
-			section.id = this.id++;
+		var serverSection = serverInfo.serverSection;
+		var serverName = serverSection.name;
+		this._initSectionId(serverSection);
+		this.sections[this._serverHash(serverName)] = serverSection;
+		
+		for (var j = 0; j < serverInfo.channels.length; j++)
+		{
+			var channelSection = serverInfo.channels[j];
+			if (channelSection == null)
+				continue;
+			channelSection.name = serverName;
 
-		var hash = this._filterHash(section);
-		this.sections[hash] = section;
+			this._initSectionId(channelSection);
+			this.sections[this._channelHash(serverName)] = channelSection;
+		}
 	}
-	this.filters = sections;
 }

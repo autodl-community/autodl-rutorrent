@@ -31,6 +31,18 @@ function autodl_ajax(obj)
 	$.ajax(obj);
 }
 
+function getAjaxErrorString(status, ex)
+{
+	var msg = "AJAX error";
+
+	if (status)
+		msg += ", status: " + status;
+	if (ex)
+		msg += ", " + formatException(ex);
+
+	return msg;
+}
+
 /**
  * @param pluginUrl	URL of plugin directory (plugin.path), ending in a slash.
  */
@@ -79,12 +91,12 @@ function(errorMessage)
 		}
 		catch (ex)
 		{
-			log("AutodlFilesDownloader._notifyHandler: handler: ex: " + ex);
+			log("AutodlFilesDownloader._notifyHandler: handler: " + formatException(ex));
 		}
 	}
 	catch (ex)
 	{
-		log("AutodlFilesDownloader._notifyHandler: ex: " + ex);
+		log("AutodlFilesDownloader._notifyHandler: " + formatException(ex));
 	}
 }
 
@@ -108,18 +120,13 @@ function(handler)
 			success: function(data, status) { this_._onGetfiles(data); },
 			error: function(xhr, status, ex)
 			{
-				var msg = "Could not get files listing";
-				if (status)
-					msg += ", status: " + status;
-				if (ex)
-					msg += ", ex: " + ex;
-				this_._notifyHandler(msg);
+				this_._notifyHandler("Could not get files listing: " + getAjaxErrorString(status, ex));
 			}
 		});
 	}
 	catch (ex)
 	{
-		this._notifyHandler("AutodlFilesDownloader.downloadAllFiles: ex: " + ex);
+		this._notifyHandler("AutodlFilesDownloader.downloadAllFiles: " + formatException(ex));
 	}
 }
 
@@ -136,7 +143,7 @@ function(data)
 	}
 	catch (ex)
 	{
-		this._notifyHandler("AutodlFilesDownloader._onGetfiles: ex: " + ex);
+		this._notifyHandler("AutodlFilesDownloader._onGetfiles: " + formatException(ex));
 	}
 }
 
@@ -154,7 +161,7 @@ function(handler)
 	}
 	catch (ex)
 	{
-		this._notifyHandler("AutodlFilesDownloader.downloadAllFiles: ex: " + ex);
+		this._notifyHandler("AutodlFilesDownloader.downloadAllFiles: " + formatException(ex));
 	}
 }
 
@@ -169,7 +176,7 @@ function(aryFiles)
 	}
 	catch (ex)
 	{
-		this._notifyHandler("AutodlFilesDownloader._downloadFiles: ex: " + ex);
+		this._notifyHandler("AutodlFilesDownloader._downloadFiles: " + formatException(ex));
 	}
 }
 
@@ -198,13 +205,13 @@ function()
 			success: function(data, status) { this_._gotFileData(data, filename); },
 			error: function(xhr, status, ex)
 			{
-				this_._notifyHandler("Could not read file " + filename);
+				this_._notifyHandler("Could not read file " + filename + ": " + getAjaxErrorString(status, ex));
 			}
 		});
 	}
 	catch (ex)
 	{
-		this._notifyHandler("AutodlFilesDownloader._getNextFile: ex: " + ex);
+		this._notifyHandler("AutodlFilesDownloader._getNextFile: " + formatException(ex));
 	}
 }
 
@@ -224,6 +231,6 @@ function(data, filename)
 	}
 	catch (ex)
 	{
-		this._notifyHandler("AutodlFilesDownloader._gotFileData: ex: " + ex);
+		this._notifyHandler("AutodlFilesDownloader._gotFileData: " + formatException(ex));
 	}
 }

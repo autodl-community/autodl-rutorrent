@@ -95,7 +95,7 @@ function(name)
 	}
 	catch (ex)
 	{
-		log("MyDialogManager._onOkClicked: ex: " + ex);
+		log("MyDialogManager._onOkClicked: " + formatException(ex));
 	}
 }
 
@@ -133,14 +133,14 @@ function(fileData)
 			},
 			error: function(xhr, status, ex)
 			{
-				this_._onSavedConfigFile("Unknown error");
+				this_._onSavedConfigFile("Unknown error: " + getAjaxErrorString(status, ex));
 			}
 		});
 	}
 	catch (ex)
 	{
 		this.savingConfigFile = false;
-		log("Could not save to autodl.cfg. Got an exception: " + ex);
+		log("Could not save to autodl.cfg. " + formatException(ex));
 	}
 }
 
@@ -280,7 +280,7 @@ function(errorMessage, downloadedAllFiles)
 	catch (ex)
 	{
 		this.redownloadAll = true;
-		log("MyDialogManager._onDownloadedFiles: ex: " + ex);
+		log("MyDialogManager._onDownloadedFiles: " + formatException(ex));
 	}
 }
 
@@ -296,7 +296,7 @@ function()
 	}
 	catch (ex)
 	{
-		log("MyDialogManager._useCachedConfigFile : ex: " + ex);
+		log("MyDialogManager._useCachedConfigFile: " + formatException(ex));
 	}
 }
 

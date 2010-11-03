@@ -162,13 +162,13 @@ function(subcmd)
 			success: function(data, status) { onComplete(data.error) },
 			error: function(xhr, status, ex)
 			{
-				onComplete("Unknown error");
+				onComplete(getAjaxErrorString(status, ex));
 			}
 		});
 	}
 	catch (ex)
 	{
-		log("AutodlIrssiTab::_sendAutodlCommand: ex: " + ex);
+		log("AutodlIrssiTab::_sendAutodlCommand: " + formatException(ex));
 	}
 }
 
@@ -224,7 +224,7 @@ function()
 	catch (ex)
 	{
 		this.gettingLines = false;
-		this._notifyHandler("AutodlIrssiTab._getNewLines: ex: " + ex);
+		this._notifyHandler("AutodlIrssiTab._getNewLines: " + formatException(ex));
 	}
 }
 
@@ -256,7 +256,7 @@ function(data)
 	}
 	catch (ex)
 	{
-		this._notifyHandler("AutodlIrssiTab::_onGetLines: ex: " + ex);
+		this._notifyHandler("AutodlIrssiTab::_onGetLines: " + formatException(ex));
 	}
 }
 

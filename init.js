@@ -22,6 +22,37 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
+window.formatException = function(ex)
+{
+	try
+	{
+		if (ex == null)
+			return "";
+
+		var msg = "";
+
+		function addProp(name)
+		{
+			if (ex[name] != null)
+				msg += name + " = " + ex[name] + "; ";
+		}
+
+		addProp("name");
+		addProp("message");
+		addProp("fileName");
+		addProp("lineNumber");
+
+		if (msg === "")
+			msg = ex.toString();
+
+		return "Exception info: " + msg;
+	}
+	catch (ex)
+	{
+		return "ex: " + ex;
+	}
+}
+
 plugin.loadJavaScriptFiles =
 function(aryFiles, func)
 {
@@ -108,7 +139,7 @@ function()
 	}
 	catch (ex)
 	{
-		log("autodl-irssi: __init2: ex: " + ex);
+		log("autodl-irssi: __init2: ex: " + formatException(ex));
 		throw ex;
 	}
 }

@@ -370,14 +370,14 @@ function()
 	var obj = this.serversListBox.getSelectedData();
 	if (!obj)
 		return;
-	var newText = this._fixName($("#autodl-ircsrvs-server").myval())
+	var newText = this._fixName($("#autodl-ircsrvs-server").myval());
 	$(obj.labelElem).text(newText);
 }
 
 IrcServers.prototype._onChannelNameModified =
 function()
 {
-	var newText = this._fixName($("#autodl-ircsrvs-channel").myval())
+	var newText = this._fixName($("#autodl-ircsrvs-channel").myval());
 	this.channelsDropdown.renameSelected(newText);
 }
 

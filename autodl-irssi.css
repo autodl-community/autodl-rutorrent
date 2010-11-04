@@ -188,6 +188,7 @@
 #autodl-filters-contents-upload .textbox {
 	width: 25em;
 }
+#autodl-prefs-contents-irc .textbox,
 #autodl-prefs-contents-upload .textbox,
 #autodl-prefs-contents-programs .textbox {
 	width: 30em;
@@ -209,6 +210,10 @@
 #autodl-filters-except-sites-button {
 	margin: 0;
 	padding: 0;
+}
+#autodl-irc-autoconn-enabled {
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 #autodl-prefs {

@@ -37,6 +37,7 @@ function(multiSelectDlgBox, okHandler)
 					'<li><a id="autodl-prefs-tab-upload">' + theUILang.autodlUploadMethod + '</a></li>' +
 					'<li><a id="autodl-prefs-tab-webui">' + theUILang.autodlWebui + '</a></li>' +
 					'<li><a id="autodl-prefs-tab-ftp">' + theUILang.autodlFtp + '</a></li>' +
+					'<li><a id="autodl-prefs-tab-irc">' + theUILang.autodlIrc + '</a></li>' +
 					'<li><a id="autodl-prefs-tab-programs">' + theUILang.autodlPrograms + '</a></li>' +
 					'<li><a id="autodl-prefs-tab-advanced">' + theUILang.autodlAdvanced + '</a></li>' +
 				'</ul>' +
@@ -75,7 +76,7 @@ function(multiSelectDlgBox, okHandler)
 								'<td><label for="autodl-webui-user">' + theUILang.autodlUserName + '</label></td>' +
 								'<td><input type="text" class="textbox" id="autodl-webui-user" title="' + theUILang.autodlTitle34 + '"/></td>' +
 								'<td><label for="autodl-webui-password">' + theUILang.autodlPassword + '</label></td>' +
-								'<td><input type="password" id="autodl-webui-password" title="' + theUILang.autodlTitle35 + '"/></td>' +
+								'<td><input type="password" class="textbox" id="autodl-webui-password" title="' + theUILang.autodlTitle35 + '"/></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><label for="autodl-webui-hostname">' + theUILang.autodlIpAddress + '</label></td>' +
@@ -95,13 +96,29 @@ function(multiSelectDlgBox, okHandler)
 								'<td><label for="autodl-ftp-user">' + theUILang.autodlUserName + '</label></td>' +
 								'<td><input type="text" class="textbox" id="autodl-ftp-user" title="' + theUILang.autodlTitle38 + '"/></td>' +
 								'<td><label for="autodl-ftp-password">' + theUILang.autodlPassword + '</label></td>' +
-								'<td><input type="password" id="autodl-ftp-password" title="' + theUILang.autodlTitle39 + '"/></td>' +
+								'<td><input type="password" class="textbox" id="autodl-ftp-password" title="' + theUILang.autodlTitle39 + '"/></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><label for="autodl-ftp-hostname">' + theUILang.autodlHostname + '</label></td>' +
 								'<td><input type="text" class="textbox" id="autodl-ftp-hostname" title="' + theUILang.autodlTitle40 + '"/></td>' +
 								'<td><label for="autodl-ftp-port">' + theUILang.autodlPort + '</label></td>' +
 								'<td><input type="text" class="textbox" id="autodl-ftp-port" title="' + theUILang.autodlTitle41 + '"/></td>' +
+							'</tr>' +
+						'</tbody>' +
+					'</table>' +
+				'</div>' +
+				'<div id="autodl-prefs-contents-irc">' +
+					'<input type="checkbox" id="autodl-irc-autoconn-enabled" title="' + theUILang.autodlAutoConnEnabled + '"/>' +
+					'<label for="autodl-irc-autoconn-enabled" title="' + theUILang.autodlAutoConnEnabled + '">' + theUILang.autodlAutoConnEnabled + '</label>' +
+					'<table>' +
+						'<tbody>' +
+							'<tr>' +
+								'<td><label for="autodl-irc-user-name">' + theUILang.autodlUserName + '</label></td>' +
+								'<td><input type="text" class="textbox" id="autodl-irc-user-name" title="' + theUILang.autodlYourUserName + '"/></td>' +
+							'</tr>' +
+							'<tr>' +
+								'<td><label for="autodl-irc-real-name">' + theUILang.autodlRealName + '</label></td>' +
+								'<td><input type="text" class="textbox" id="autodl-irc-real-name" title="' + theUILang.autodlYourRealName + '"/></td>' +
 							'</tr>' +
 						'</tbody>' +
 					'</table>' +
@@ -174,6 +191,13 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionInt("autodl-ftp-port", "port", "0")
 	];
 
+	this.irc =
+	[
+		new DialogOptionBool("autodl-irc-autoconn-enabled", "auto-connect", "true"),
+		new DialogOptionText("autodl-irc-user-name", "user-name", ""),
+		new DialogOptionText("autodl-irc-real-name", "real-name", "")
+	];
+
 	var this_ = this;
 
 	this.tabs = new Tabs();
@@ -181,6 +205,7 @@ function(multiSelectDlgBox, okHandler)
 	this.tabs.add("autodl-prefs-tab-upload", "autodl-prefs-contents-upload");
 	this.tabs.add("autodl-prefs-tab-webui", "autodl-prefs-contents-webui");
 	this.tabs.add("autodl-prefs-tab-ftp", "autodl-prefs-contents-ftp");
+	this.tabs.add("autodl-prefs-tab-irc", "autodl-prefs-contents-irc");
 	this.tabs.add("autodl-prefs-tab-programs", "autodl-prefs-contents-programs");
 	this.tabs.add("autodl-prefs-tab-advanced", "autodl-prefs-contents-advanced");
 
@@ -206,6 +231,7 @@ function(configFile, trackerInfos, trackersId)
 	initDialogOptions(this.configFile.getSection("options", null), this.options);
 	initDialogOptions(this.configFile.getSection("webui", null), this.webui);
 	initDialogOptions(this.configFile.getSection("ftp", null), this.ftp);
+	initDialogOptions(this.configFile.getSection("irc", null), this.irc);
 
 	var section = this.configFile.getSection("options", null);
 	var option = section.getOption("update-check", "ask", "text");
@@ -226,6 +252,7 @@ function()
 	saveDialogOptions(optionsSection, this.options);
 	saveDialogOptions(this.configFile.getSection("webui", null), this.webui);
 	saveDialogOptions(this.configFile.getSection("ftp", null), this.ftp);
+	saveDialogOptions(this.configFile.getSection("irc", null), this.irc);
 
 	optionsSection.getOption("update-check").setValue(this.dropDownBox.getSelectedValue());
 

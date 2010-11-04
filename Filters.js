@@ -577,7 +577,9 @@ function()
 Filters.prototype.onOkClicked =
 function()
 {
-	this._saveFilterObj(this.filterListBox.getSelectedData());
+	var obj = this.filterListBox.getSelectedData();
+	this._saveFilterObj(obj);
+	this.lastSelectedFilterName = obj ? obj.section.name : null;
 
 	var filters = [];
 	for (var i = 0; i < this.filterObjs.length; i++)
@@ -603,13 +605,32 @@ function()
 	if (this.filterObjs.length === 0)
 		this._onFilterSelected();
 	else
-		this.filterListBox.select(0);
+	{
+		var index = this._findIndexByName(this.lastSelectedFilterName);
+		index = index < 0 ? 0 : index;
+		this.filterListBox.select(index);
+	}
 }
 
 Filters.prototype._fixFilterName =
 function(name)
 {
 	return name || theUILang.autodlNoName;
+}
+
+Filters.prototype._findIndexByName =
+function(name)
+{
+	if (name == null)
+		return -1;
+
+	for (var i = 0; i < this.filterObjs.length; i++)
+	{
+		if (this.filterObjs[i].section.name === name)
+			return i;
+	}
+
+	return -1;
 }
 
 Filters.prototype._addFilterSection =
@@ -657,6 +678,8 @@ Filters.prototype._onFilterSelected =
 function(oldObj, newObj)
 {
 	this._saveFilterObj(oldObj);
+
+	this.lastSelectedFilterName = newObj ? newObj.section.name : null;
 
 	var section = (newObj || {}).section;
 	initDialogOptions(section, this.options);

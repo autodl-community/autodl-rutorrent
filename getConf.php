@@ -74,6 +74,8 @@ function sendAutodlCommand($data) {
 		if (!socket_connect($socket, "127.0.0.1", $autodlPort))
 			throw new Exception("Could not connect: " . getSocketError($socket));
 
+		if ($autodlPort <= 0 || $autodlPort > 65535)
+			throw new Exception("Invalid port ($autodlPort)! Initialize port in conf.php");
 		$data['password'] = $autodlPassword;
 		socketWriteAllData($socket, json_encode($data));
 		$response = utf8_decode(socketReadAllData($socket));

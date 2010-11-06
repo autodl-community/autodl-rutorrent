@@ -67,6 +67,9 @@ function socketReadAllData($socket) {
 function sendAutodlCommand($data) {
 	global $autodlPort, $autodlPassword;
 	try {
+		if ($autodlPort <= 0 || $autodlPort > 65535)
+			throw new Exception("Invalid port ($autodlPort)! Initialize port in conf.php");
+
 		$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 		if ($socket === false)
 			throw new Exception("Could not create socket: " . getSocketError());
@@ -74,8 +77,6 @@ function sendAutodlCommand($data) {
 		if (!socket_connect($socket, "127.0.0.1", $autodlPort))
 			throw new Exception("Could not connect: " . getSocketError($socket));
 
-		if ($autodlPort <= 0 || $autodlPort > 65535)
-			throw new Exception("Invalid port ($autodlPort)! Initialize port in conf.php");
 		$data['password'] = $autodlPassword;
 		socketWriteAllData($socket, json_encode($data));
 		$response = utf8_decode(socketReadAllData($socket));

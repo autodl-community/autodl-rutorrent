@@ -28,7 +28,6 @@
 }
 
 #autodl-tb { background: transparent url(prefs_std.gif) no-repeat center; }
-.theme-oblivion #autodl-tb { background: transparent url(prefs_dark.png) no-repeat center; }
 .theme-dark #autodl-tb { background: transparent url(prefs_dark.png) no-repeat center; }
 
 #autodl-preferences-header,

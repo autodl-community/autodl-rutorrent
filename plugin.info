@@ -2,5 +2,5 @@ author: Godfrey Jones
 description: GUI for autodl-irssi
 remote: ok
 need_rtorrent: 0
-version: 1.00
+version: 1.10
 runlevel: 10.0

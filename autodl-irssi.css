@@ -431,7 +431,9 @@
 .theme-dark .autodl-bg-default, .theme-oblivion .autodl-bg-default { background-color: #000000; }
 .theme-dark .autodl-bg-as-fg, .theme-oblivion .autodl-bg-as-fg { color: #000000; }
 .theme-dark .autodl-fg-0, .theme-oblivion .autodl-fg-0 { color: #FFFFFF; }
-.theme-dark .autodl-fg-1, .theme-oblivion .autodl-fg-1 { color: #000000; } .theme-dark .autodl-fg-2, .theme-oblivion .autodl-fg-2 { color: #0000FF; } .theme-dark .autodl-fg-3, .theme-oblivion .autodl-fg-3 { color: #008000; }
+.theme-dark .autodl-fg-1, .theme-oblivion .autodl-fg-1 { color: #000000; }
+.theme-dark .autodl-fg-2, .theme-oblivion .autodl-fg-2 { color: #0000FF; }
+.theme-dark .autodl-fg-3, .theme-oblivion .autodl-fg-3 { color: #008000; }
 .theme-dark .autodl-fg-4, .theme-oblivion .autodl-fg-4 { color: #FF0000; }
 .theme-dark .autodl-fg-5, .theme-oblivion .autodl-fg-5 { color: #A52A2A; }
 .theme-dark .autodl-fg-6, .theme-oblivion .autodl-fg-6 { color: #800080; }

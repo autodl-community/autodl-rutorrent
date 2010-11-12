@@ -217,7 +217,7 @@ function()
 			error: function(xhr, status, ex)
 			{
 				this_.gettingLines = false;
-				// Ignore errorrs
+				// Ignore errors
 			}
 		});
 	}

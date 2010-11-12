@@ -178,7 +178,7 @@ function(e)
 	theContextMenu.add([theUILang.autodlHelp, function() {}]);
 
 	// There's no way to add href links so add this fugly hack
-	$($("a", theContextMenu.obj)[5]).attr("target", "_blank").attr("href", "http://sourceforge.net/apps/phpbb/autodl-irssi/")
+	$($("a", theContextMenu.obj)[5]).attr("target", "_blank").attr("href", "http://sourceforge.net/apps/phpbb/autodl-irssi/");
 
 	var offset = $("#autodl-tb").offset();
 	var x = offset.left - 5;

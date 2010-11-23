@@ -461,9 +461,9 @@ function(multiSelectDlgBox, okHandler)
 						'<div>' +
 							'<label for="autodl-filters-max-downloads">' + theUILang.autodlMaxDownloads + '</label>' +
 							'<input type="text" class="textbox" id="autodl-filters-max-downloads" title="' + theUILang.autodlMaxDownloadsTitle + '" />' +
-							'<label for="autodl-filters-per-week">' + theUILang.autodlMaxDownloads2 + '</label>' +
-							'<select id="autodl-filters-per-week" />' +
-							'<label for="autodl-filters-per-week">' + theUILang.autodlMaxDownloads3 + '</label>' +
+							'<label for="autodl-filters-max-downloads-per">' + theUILang.autodlMaxDownloads2 + '</label>' +
+							'<select id="autodl-filters-max-downloads-per" />' +
+							'<label for="autodl-filters-max-downloads-per">' + theUILang.autodlMaxDownloads3 + '</label>' +
 						'</div>' +
 					'</div>' +
 					'<div id="autodl-filters-contents-upload"/>' +
@@ -551,7 +551,8 @@ function(multiSelectDlgBox, okHandler)
 		dropdown.add("false", theUILang.autodlNo);
 	}
 
-	this.maxDlsDropdown = new DropDownBox("autodl-filters-per-week");
+	this.maxDlsDropdown = new DropDownBox("autodl-filters-max-downloads-per");
+	this.maxDlsDropdown.add("day", theUILang.autodlMaxDlsDay);
 	this.maxDlsDropdown.add("week", theUILang.autodlMaxDlsWeek);
 	this.maxDlsDropdown.add("month", theUILang.autodlMaxDlsMonth);
 
@@ -684,7 +685,7 @@ function(obj)
 		var enabled = obj.checkboxElem.checked;
 		section.getOption("enabled").setValue(enabled.toString());
 
-		section.getOption("is-per-week").setValue(this.maxDlsDropdown.getSelectedValue() === "week");
+		section.getOption("max-downloads-per").setValue(this.maxDlsDropdown.getSelectedValue());
 	}
 }
 
@@ -711,8 +712,7 @@ function(oldObj, newObj)
 	setDropDown(this.logDropDownBox, "log");
 	setDropDown(this.cueDropDownBox, "cue");
 
-	var isPerWeek = getSectionOptionValue(section, "is-per-week", "false", "bool");
-	this.maxDlsDropdown.select(isPerWeek ? "week" : "month");
+	this.maxDlsDropdown.select(getSectionOptionValue(section, "max-downloads-per", "", "text"));
 
 	var elems = $("#autodl-filters-remove-button").
 				add($("input, select", $("#autodl-filters-right")[0]));

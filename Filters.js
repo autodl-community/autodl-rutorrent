@@ -552,6 +552,7 @@ function(multiSelectDlgBox, okHandler)
 	}
 
 	this.maxDlsDropdown = new DropDownBox("autodl-filters-max-downloads-per");
+	this.maxDlsDropdown.add("", theUILang.autodlMaxDlsNone);
 	this.maxDlsDropdown.add("day", theUILang.autodlMaxDlsDay);
 	this.maxDlsDropdown.add("week", theUILang.autodlMaxDlsWeek);
 	this.maxDlsDropdown.add("month", theUILang.autodlMaxDlsMonth);

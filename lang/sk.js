@@ -252,6 +252,7 @@ theUILang.autodlAutoConnEnabled = "Auto connect to IRC servers and channels";
 theUILang.autodlMaxDownloadsTitle = "Max number of downloads per week/month. You must name your filter or it won't work.";
 theUILang.autodlMaxDownloads = "Max";
 theUILang.autodlMaxDownloads2 = "downloads per";	// Text before the week/month drop down menu
+theUILang.autodlMaxDlsNone = "<Choose>";
 theUILang.autodlMaxDlsDay = "day";
 theUILang.autodlMaxDlsWeek = "week";
 theUILang.autodlMaxDlsMonth = "month";

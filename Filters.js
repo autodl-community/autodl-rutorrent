@@ -458,6 +458,13 @@ function(multiSelectDlgBox, okHandler)
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
+						'<div>' +
+							'<label for="autodl-filters-max-downloads">' + theUILang.autodlMaxDownloads + '</label>' +
+							'<input type="text" class="textbox" id="autodl-filters-max-downloads" title="' + theUILang.autodlMaxDownloadsTitle + '" />' +
+							'<label for="autodl-filters-per-week">' + theUILang.autodlMaxDownloads2 + '</label>' +
+							'<select id="autodl-filters-per-week" />' +
+							'<label for="autodl-filters-per-week">' + theUILang.autodlMaxDownloads3 + '</label>' +
+						'</div>' +
 					'</div>' +
 					'<div id="autodl-filters-contents-upload"/>' +
 				'</div>' +
@@ -495,7 +502,8 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionText("autodl-filters-tags", "tags", ""),
 		new DialogOptionText("autodl-filters-match-uploaders", "match-uploaders", ""),
 		new DialogOptionText("autodl-filters-except-uploaders", "except-uploaders", ""),
-		new DialogOptionText("autodl-filters-max-pretime", "max-pretime", "")
+		new DialogOptionText("autodl-filters-max-pretime", "max-pretime", ""),
+		new DialogOptionText("autodl-filters-max-downloads", "max-downloads", "")
 	];
 
 	var this_ = this;
@@ -542,6 +550,10 @@ function(multiSelectDlgBox, okHandler)
 		dropdown.add("true", theUILang.autodlYes);
 		dropdown.add("false", theUILang.autodlNo);
 	}
+
+	this.maxDlsDropdown = new DropDownBox("autodl-filters-per-week");
+	this.maxDlsDropdown.add("week", theUILang.autodlMaxDlsWeek);
+	this.maxDlsDropdown.add("month", theUILang.autodlMaxDlsMonth);
 
 	this.filterListBox = new ListBox("autodl-filters-list");
 	this.filterListBox.onSelected = function(oldObj, newObj) { this_._onFilterSelected(oldObj, newObj); }
@@ -671,6 +683,8 @@ function(obj)
 
 		var enabled = obj.checkboxElem.checked;
 		section.getOption("enabled").setValue(enabled.toString());
+
+		section.getOption("is-per-week").setValue(this.maxDlsDropdown.getSelectedValue() === "week");
 	}
 }
 
@@ -696,6 +710,9 @@ function(oldObj, newObj)
 	setDropDown(this.sceneDropDownBox, "scene");
 	setDropDown(this.logDropDownBox, "log");
 	setDropDown(this.cueDropDownBox, "cue");
+
+	var isPerWeek = getSectionOptionValue(section, "is-per-week", "false", "bool");
+	this.maxDlsDropdown.select(isPerWeek ? "week" : "month");
 
 	var elems = $("#autodl-filters-remove-button").
 				add($("input, select", $("#autodl-filters-right")[0]));

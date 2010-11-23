@@ -179,6 +179,9 @@
 #autodl-filters-contents-advanced .textbox {
 	width: 22em;
 }
+#autodl-filters-contents-advanced #autodl-filters-max-downloads {
+	width: 5em;
+}
 #autodl-filters-contents-general .textbox,
 #autodl-filters-contents-tv .textbox,
 #autodl-filters-contents-music .textbox {

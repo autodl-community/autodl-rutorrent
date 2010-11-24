@@ -289,6 +289,10 @@ function(setting, trackerInfo)
 			{
 				this_._onPaste(trackerInfo, setting.pasteGroup, textbox);
 			});
+			textbox.bind('input', function(e)
+			{
+				this_._onPaste(trackerInfo, setting.pasteGroup, textbox);
+			});
 		}
 		return label.add(textbox);
 

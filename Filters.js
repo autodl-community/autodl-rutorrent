@@ -321,6 +321,7 @@ function(multiSelectDlgBox, okHandler)
 						'<li><a id="autodl-filters-tab-music">' + theUILang.autodlMusic + '</a></li>' +
 						'<li><a id="autodl-filters-tab-advanced">' + theUILang.autodlAdvanced + '</a></li>' +
 						'<li><a id="autodl-filters-tab-upload">' + theUILang.autodlUploadMethod + '</a></li>' +
+						'<li><a id="autodl-filters-tab-wol">' + theUILang.autodlWol + '</a></li>' +
 					'</ul>' +
 				'</div>' +
 				'<div id="autodl-filters-contents">' +
@@ -467,6 +468,27 @@ function(multiSelectDlgBox, okHandler)
 						'</div>' +
 					'</div>' +
 					'<div id="autodl-filters-contents-upload"/>' +
+					'<div id="autodl-filters-contents-wol">' +
+						'<p>' +
+							theUILang.autodlWolDesc +
+						'</p>' +
+						'<table>' +
+							'<tbody>' +
+								'<tr>' +
+									'<td><label for="autodl-filters-wol-mac">' + theUILang.autodlWolMac + '</label></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-wol-mac" title="' + theUILang.autodlWolMacTitle + '" emptytext="' + theUILang.autodlWolMacEmpty + '"/></td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td><label for="autodl-filters-wol-ip">' + theUILang.autodlWolIp + '</label></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-wol-ip" title="' + theUILang.autodlWolIpTitle + '" emptytext="' + theUILang.autodlWolIpEmpty + '"/></td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td><label for="autodl-filters-wol-port">' + theUILang.autodlWolPort + '</label></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-wol-port" title="' + theUILang.autodlWolPortTitle + '" emptytext="' + theUILang.autodlWolPortEmpty + '"/></td>' +
+								'</tr>' +
+							'</tbody>' +
+						'</table>' +
+					'</div>' +
 				'</div>' +
 			'</div>' +
 			'<div class="aright buttons-list dlgbuttons">' +
@@ -503,7 +525,10 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionText("autodl-filters-match-uploaders", "match-uploaders", ""),
 		new DialogOptionText("autodl-filters-except-uploaders", "except-uploaders", ""),
 		new DialogOptionText("autodl-filters-max-pretime", "max-pretime", ""),
-		new DialogOptionText("autodl-filters-max-downloads", "max-downloads", "")
+		new DialogOptionText("autodl-filters-max-downloads", "max-downloads", ""),
+		new DialogOptionText("autodl-filters-wol-mac", "wol-mac-address", ""),
+		new DialogOptionText("autodl-filters-wol-ip", "wol-ip-address", ""),
+		new DialogOptionInt("autodl-filters-wol-port", "wol-port", "9")
 	];
 
 	var this_ = this;
@@ -540,6 +565,7 @@ function(multiSelectDlgBox, okHandler)
 	this.tabs.add("autodl-filters-tab-music", "autodl-filters-contents-music");
 	this.tabs.add("autodl-filters-tab-advanced", "autodl-filters-contents-advanced");
 	this.tabs.add("autodl-filters-tab-upload", "autodl-filters-contents-upload");
+	this.tabs.add("autodl-filters-tab-wol", "autodl-filters-contents-wol");
 
 	var names = ["scene", "log", "cue"];
 	for (var i = 0; i < names.length; i++)

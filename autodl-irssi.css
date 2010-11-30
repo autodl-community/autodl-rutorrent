@@ -182,6 +182,7 @@
 #autodl-filters-contents-advanced #autodl-filters-max-downloads {
 	width: 5em;
 }
+#autodl-filters-contents-wol .textbox,
 #autodl-filters-contents-general .textbox,
 #autodl-filters-contents-tv .textbox,
 #autodl-filters-contents-music .textbox {
@@ -199,7 +200,7 @@
 	width: 20em;
 }
 #autodl-filters-contents p {
-	margin: 0;
+	margin: 3px;
 	padding: 0;
 }
 #autodl-filters-resolutions-button,

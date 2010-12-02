@@ -291,4 +291,4 @@ theUILang.autodlOutputChannel = "Channel";
 theUILang.autodlOutputChannelTitle = "The IRC channel";
 theUILang.autodlOutputChannelEmpty = "Eg. #channel";
 theUILang.autodlUniqueName = "Use unique torrent filenames";
-theUILang.autodlUniqueNameTitle = "Use a unique torrent name by prepending site name to torrent filename.";
+theUILang.autodlUniqueNameTitle = "Use a unique torrent name by prepending the site name to the torrent filename.";

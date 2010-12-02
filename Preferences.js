@@ -179,7 +179,7 @@ function(multiSelectDlgBox, okHandler)
 	[
 		new DialogOptionInt("autodl-max-saved-releases", "max-saved-releases", "1000"),
 		new DialogOptionBool("autodl-save-download-history", "save-download-history", "true"),
-		new DialogOptionBool("autodl-unique-name", "unique-torrent-names", "true"),
+		new DialogOptionBool("autodl-unique-name", "unique-torrent-names", "false"),
 		new DialogOptionBool("autodl-download-duplicates", "download-duplicates", "false"),
 		new DialogOptionText("autodl-programs-utorrent", "path-utorrent", ""),
 		new DialogOptionText("autodl-advanced-user-agent", "user-agent", "autodl-irssi"),

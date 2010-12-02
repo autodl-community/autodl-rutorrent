@@ -115,10 +115,17 @@ function(multiSelectDlgBox, okHandler)
 							'<tr>' +
 								'<td><label for="autodl-irc-user-name">' + theUILang.autodlUserName + '</label></td>' +
 								'<td><input type="text" class="textbox" id="autodl-irc-user-name" title="' + theUILang.autodlYourUserName + '"/></td>' +
-							'</tr>' +
-							'<tr>' +
 								'<td><label for="autodl-irc-real-name">' + theUILang.autodlRealName + '</label></td>' +
 								'<td><input type="text" class="textbox" id="autodl-irc-real-name" title="' + theUILang.autodlYourRealName + '"/></td>' +
+							'</tr>' +
+							'<tr>' +
+								'<td colspan="4">' + theUILang.autodlIrcOutputDesc + '</td>' +
+							'</tr>' +
+							'<tr>' +
+								'<td><label for="autodl-irc-server">' + theUILang.autodlOutputServer + '</label></td>' +
+								'<td><input type="text" class="textbox" id="autodl-irc-server" title="' + theUILang.autodlOutputServerTitle + '" emptytext="' + theUILang.autodlOutputServerEmpty + '"/></td>' +
+								'<td><label for="autodl-irc-channel">' + theUILang.autodlOutputChannel + '</label></td>' +
+								'<td><input type="text" class="textbox" id="autodl-irc-channel" title="' + theUILang.autodlOutputChannelTitle + '" emptytext="' + theUILang.autodlOutputChannelEmpty + '"/></td>' +
 							'</tr>' +
 						'</tbody>' +
 					'</table>' +

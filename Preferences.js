@@ -202,7 +202,9 @@ function(multiSelectDlgBox, okHandler)
 	[
 		new DialogOptionBool("autodl-irc-autoconn-enabled", "auto-connect", "true"),
 		new DialogOptionText("autodl-irc-user-name", "user-name", ""),
-		new DialogOptionText("autodl-irc-real-name", "real-name", "")
+		new DialogOptionText("autodl-irc-real-name", "real-name", ""),
+		new DialogOptionText("autodl-irc-server", "output-server", ""),
+		new DialogOptionText("autodl-irc-channel", "output-channel", "")
 	];
 
 	var this_ = this;

@@ -24,6 +24,7 @@
 
 var tvResolutions =
 [
+	["PD", "Portable Device"],
 	["SD", "SDTV", "Standard Def", "Standard Definition"],
 	["480i"],
 	["480p"],

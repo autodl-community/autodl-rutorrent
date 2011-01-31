@@ -27,6 +27,7 @@ function TabsBase()
 {
 	this.tabs = [];
 	this.selected = undefined;
+	this.onChange = function(oldObj, newObj) {};
 }
 
 /*
@@ -73,6 +74,7 @@ function(newSelected)
 	this._makeUnselected(oldSelected);
 	this._makeSelected(newSelected);
 	this.selected = newSelected;
+	this.onChange(oldSelected, newSelected);
 }
 
 TabsBase.prototype._makeUnselected =

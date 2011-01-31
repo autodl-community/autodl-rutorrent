@@ -190,7 +190,6 @@ theUILang.autodlHint22 = "List of bad uploaders";
 theUILang.autodlHint23 = "List of sites you don't want to use";
 theUILang.autodlHint24 = "Maximum pretime eg. 10min 3s";
 theUILang.autodlHint25 = "Tags, eg. hip hop, rock";
-theUILang.autodlHint26 = "Eg. /home/YOURNAME/watchdir";
 theUILang.autodlHint27 = "FTP path, eg. /home/YOURNAME/watchdir";
 theUILang.autodlHint28 = "Command eg. /home/YOURNAME/myscript";
 theUILang.autodlHint29 = "Program arguments";

@@ -191,6 +191,9 @@
 #autodl-filters-contents-upload .textbox {
 	width: 25em;
 }
+#autodl-filters-contents .watchdir-text {
+	width: 20em;
+}
 #autodl-prefs-contents-upload .textbox,
 #autodl-prefs-contents-programs .textbox {
 	width: 30em;
@@ -216,6 +219,11 @@
 #autodl-irc-autoconn-enabled {
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+
+#autodl-prefs .watchdir-button,
+#autodl-filters .watchdir-button {
+	width: 30px;
 }
 
 #autodl-prefs {

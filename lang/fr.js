@@ -201,7 +201,6 @@ theUILang.autodlHint22 = "Liste de Uploader à exclure";
 theUILang.autodlHint23 = "Liste des trackers à NE PAS utiliser";
 theUILang.autodlHint24 = "Délai de parution maximum, ex. 10min 3s";
 theUILang.autodlHint25 = "Etiquettes, ex. hip hop, rock";
-theUILang.autodlHint26 = "Ex. /home/VOTRENOM/watchdir";
 theUILang.autodlHint27 = "Chemin FTP, ex. /home/VOTRENOM/watchdir";
 theUILang.autodlHint28 = "Commande, ex. /home/VOTRENOM/myscript";
 theUILang.autodlHint29 = "Arguments du programme";

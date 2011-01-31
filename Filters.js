@@ -587,7 +587,7 @@ function(multiSelectDlgBox, okHandler)
 	this.filterListBox = new ListBox("autodl-filters-list");
 	this.filterListBox.onSelected = function(oldObj, newObj) { this_._onFilterSelected(oldObj, newObj); }
 
-	this.uploadMethod = new UploadMethod("autodl-filters-contents-upload");
+	this.uploadMethod = new UploadMethod("autodl-filters", "autodl-filters-contents-upload");
 
 	$("#autodl-filters-ok-button").click(function(e) { okHandler() });
 
@@ -608,6 +608,7 @@ function(configFile, trackerInfos, trackersId)
 Filters.prototype.onAfterHide =
 function()
 {
+	this.uploadMethod.onAfterHide();
 	this.matchSitesButton._setTrackerInfos(null);
 	this.exceptSitesButton._setTrackerInfos(null);
 	this.filterListBox.removeAll();

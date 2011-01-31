@@ -22,7 +22,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-function UploadMethod(idParent, isPrefs)
+function UploadMethod(idDlg, idParent, isPrefs)
 {
 	this.num = UploadMethod.num++;
 
@@ -49,7 +49,10 @@ function UploadMethod(idParent, isPrefs)
 				'<tbody>' +
 					'<tr>' +
 						'<td><label for="' + this.id("watchdir-folder") + '">' + theUILang.autodlTorrentClientWatchFolder + '</label></td>' +
-						'<td><input type="text" class="textbox" id="' + this.id("watchdir-folder") + '" title="' + theUILang.autodlTitle26 + '" emptytext="' + theUILang.autodlHint26 + '"/></td>' +
+						'<td>' +
+							'<input type="text" class="textbox watchdir-text" id="' + this.id("watchdir-folder") + '" title="' + theUILang.autodlTitle26 + '" />' +
+							'<input type="button" class="Button watchdir-button" id="' + this.id("getdir-button") + '" value="xyz" />' +
+						'</td>' +
 					'</tr>' +
 				'</tbody>' +
 			'</table>' +
@@ -95,6 +98,13 @@ function UploadMethod(idParent, isPrefs)
 		'</div>'
 	);
 
+	var this_ = this;
+
+	if (thePlugins.isInstalled("_getdir"))
+		this.getdirButton = new theWebUI.rDirBrowser(idDlg, this.id("watchdir-folder"), this.id("getdir-button"));
+	else
+		$("#" + this.id("getdir-button")).remove();
+
 	this.dropdown = new DropDownTabs(this.id("method"));
 	this.dropdown.add(this.id("method-nothing"), this.id("nothing"), "");
 	this.dropdown.add(this.id("method-watchdir"), this.id("watchdir"), "watchdir");
@@ -102,6 +112,7 @@ function UploadMethod(idParent, isPrefs)
 	this.dropdown.add(this.id("method-ftp"), this.id("ftp"), "ftp");
 	this.dropdown.add(this.id("method-program"), this.id("program"), "exec");
 	this.dropdown.add(this.id("method-dyndir"), this.id("dyndir"), "dyndir");
+	this.dropdown.onChange = function(oldObj, newObj) { this_._onChange(oldObj, newObj) };
 
 	this.options =
 	[
@@ -135,4 +146,24 @@ function(section)
 	saveDialogOptions(section, this.options);
 
 	section.getOption("upload-type").setValue(this.dropdown.getSelectedValue());
+}
+
+UploadMethod.prototype._hideGetdirButtons =
+function()
+{
+	if (this.getdirButton)
+		this.getdirButton.hide();
+}
+
+UploadMethod.prototype._onChange =
+function(oldObj, newObj)
+{
+	if (!newObj || newObj.value !== "watchdir")
+		this._hideGetdirButtons();
+}
+
+UploadMethod.prototype.onAfterHide =
+function()
+{
+	this._hideGetdirButtons();
 }

@@ -230,7 +230,7 @@ function(multiSelectDlgBox, okHandler)
 	this.dropDownBox.add("ask", theUILang.autodlAsk);
 	this.dropDownBox.add("disabled", theUILang.autodlDontCheckForUpdates);
 
-	this.uploadMethod = new UploadMethod("autodl-prefs-contents-upload", true);
+	this.uploadMethod = new UploadMethod("autodl-preferences", "autodl-prefs-contents-upload", true);
 
 	$("#autodl-prefs-ok-button").click(function(e) { okHandler() });
 
@@ -257,6 +257,7 @@ function(configFile, trackerInfos, trackersId)
 Preferences.prototype.onAfterHide =
 function()
 {
+	this.uploadMethod.onAfterHide();
 	this.configFile = null;
 }
 

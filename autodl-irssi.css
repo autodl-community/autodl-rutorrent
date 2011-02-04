@@ -368,7 +368,7 @@
 }
 #autodl-irssi-log {
 	overflow: auto;
-	font-family: Courier New, Courier, monospace;
+	font-family: "Courier New", Courier, monospace;
 	border: 1px solid #B3B3B3;
 	padding: 3px;
 }
@@ -557,3 +557,43 @@
 .theme-blue .autodl-bg-13 { background-color: #FF4766; }
 .theme-blue .autodl-bg-14 { background-color: #808080; }
 .theme-blue .autodl-bg-15 { background-color: #ADADAD; }
+
+.theme-excel .autodl-line-sep { color: #255798; }
+.theme-excel #autodl-irssi-log { border: 1px solid #284E77; background-color: #E4EDF6; }
+.theme-excel #autodl-irssi-log tr:hover { background-color: #BED3EA; }
+.theme-excel .autodl-fg-default { color: #000000; }
+.theme-excel .autodl-fg-as-bg { background-color: #000000; }
+.theme-excel .autodl-bg-default { background-color: #F5F5F5; }
+.theme-excel .autodl-bg-as-fg { color: #F5F5F5; }
+.theme-excel .autodl-fg-0 { color: #FFFFFF; }
+.theme-excel .autodl-fg-1 { color: #000000; }
+.theme-excel .autodl-fg-2 { color: #0000FF; }
+.theme-excel .autodl-fg-3 { color: #008000; }
+.theme-excel .autodl-fg-4 { color: #FF0000; }
+.theme-excel .autodl-fg-5 { color: #A52A2A; }
+.theme-excel .autodl-fg-6 { color: #800080; }
+.theme-excel .autodl-fg-7 { color: #FFA500; }
+.theme-excel .autodl-fg-8 { color: #8A5C2E; }
+.theme-excel .autodl-fg-9 { color: #599400; }
+.theme-excel .autodl-fg-10 { color: #0080FF; }
+.theme-excel .autodl-fg-11 { color: #6666FF; }
+.theme-excel .autodl-fg-12 { color: #57AECB; }
+.theme-excel .autodl-fg-13 { color: #FF4766; }
+.theme-excel .autodl-fg-14 { color: #808080; }
+.theme-excel .autodl-fg-15 { color: #ADADAD; }
+.theme-excel .autodl-bg-0 { background-color: #FFFFFF; }
+.theme-excel .autodl-bg-1 { background-color: #000000; }
+.theme-excel .autodl-bg-2 { background-color: #0000FF; }
+.theme-excel .autodl-bg-3 { background-color: #008000; }
+.theme-excel .autodl-bg-4 { background-color: #FF0000; }
+.theme-excel .autodl-bg-5 { background-color: #A52A2A; }
+.theme-excel .autodl-bg-6 { background-color: #800080; }
+.theme-excel .autodl-bg-7 { background-color: #FFA500; }
+.theme-excel .autodl-bg-8 { background-color: #8A5C2E; }
+.theme-excel .autodl-bg-9 { background-color: #599400; }
+.theme-excel .autodl-bg-10 { background-color: #0080FF; }
+.theme-excel .autodl-bg-11 { background-color: #6666FF; }
+.theme-excel .autodl-bg-12 { background-color: #57AECB; }
+.theme-excel .autodl-bg-13 { background-color: #FF4766; }
+.theme-excel .autodl-bg-14 { background-color: #808080; }
+.theme-excel .autodl-bg-15 { background-color: #ADADAD; }

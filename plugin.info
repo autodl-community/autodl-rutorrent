@@ -1,6 +1,6 @@
-author: Godfrey Jones
+author: Carl Carlson
 description: GUI for autodl-irssi
 remote: ok
 need_rtorrent: 0
-version: 1.21
+version: 1.30
 runlevel: 10.0

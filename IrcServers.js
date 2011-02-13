@@ -237,7 +237,7 @@ function(serverInfo)
 {
 	var obj =
 	{
-		serverInfo: serverInfo,
+		serverInfo: serverInfo
 	};
 	obj.checkboxElem = $('<input type="checkbox" />')[0];
 	obj.labelElem = $('<label />').text(this._fixName(serverInfo.serverSection.name))[0];

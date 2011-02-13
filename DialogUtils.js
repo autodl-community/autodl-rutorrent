@@ -155,6 +155,8 @@ function saveDialogOptions(section, aryDlgOptions)
 		else
 			val = $("#" + dlgOption.id).myval();
 
+		if (val == null)
+			val = "";
 		option.setValue(val.toString());
 	}
 }

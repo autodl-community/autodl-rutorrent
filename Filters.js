@@ -355,6 +355,13 @@ function(multiSelectDlgBox, okHandler)
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
+						'<div>' +
+							'<label for="autodl-filters-max-downloads">' + theUILang.autodlMaxDownloads + '</label>' +
+							'<input type="text" class="textbox" id="autodl-filters-max-downloads" title="' + theUILang.autodlMaxDownloadsTitle + '" />' +
+							'<label for="autodl-filters-max-downloads-per">' + theUILang.autodlMaxDownloads2 + '</label>' +
+							'<select id="autodl-filters-max-downloads-per" />' +
+							'<label for="autodl-filters-max-downloads-per">' + theUILang.autodlMaxDownloads3 + '</label>' +
+						'</div>' +
 					'</div>' +
 					'<div id="autodl-filters-contents-tv">' +
 						'<table>' +
@@ -460,13 +467,6 @@ function(multiSelectDlgBox, okHandler)
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
-						'<div>' +
-							'<label for="autodl-filters-max-downloads">' + theUILang.autodlMaxDownloads + '</label>' +
-							'<input type="text" class="textbox" id="autodl-filters-max-downloads" title="' + theUILang.autodlMaxDownloadsTitle + '" />' +
-							'<label for="autodl-filters-max-downloads-per">' + theUILang.autodlMaxDownloads2 + '</label>' +
-							'<select id="autodl-filters-max-downloads-per" />' +
-							'<label for="autodl-filters-max-downloads-per">' + theUILang.autodlMaxDownloads3 + '</label>' +
-						'</div>' +
 					'</div>' +
 					'<div id="autodl-filters-contents-upload"/>' +
 					'<div id="autodl-filters-contents-wol">' +
@@ -600,6 +600,7 @@ function(configFile, trackerInfos, trackersId)
 {
 	this.configFile = configFile;
 
+	this.uploadMethod.onBeforeShow();
 	this.matchSitesButton._setTrackerInfos(trackerInfos);
 	this.exceptSitesButton._setTrackerInfos(trackerInfos);
 	this.initFilters();
@@ -743,9 +744,12 @@ function(oldObj, newObj)
 
 	this.maxDlsDropdown.select(getSectionOptionValue(section, "max-downloads-per", "", "text"));
 
+	var enable = newObj != null;
 	var elems = $("#autodl-filters-remove-button").
 				add($("input, select", $("#autodl-filters-right")[0]));
-	enableJqueryElem(elems, newObj);
+	enableJqueryElem(elems, enable);
+	if (enable)
+		this.uploadMethod.reenableElements();
 }
 
 Filters.prototype._onClickNew =

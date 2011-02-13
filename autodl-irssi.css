@@ -179,7 +179,7 @@
 #autodl-filters-contents-advanced .textbox {
 	width: 22em;
 }
-#autodl-filters-contents-advanced #autodl-filters-max-downloads {
+#autodl-filters-contents-general #autodl-filters-max-downloads {
 	width: 5em;
 }
 #autodl-filters-contents-wol .textbox,
@@ -219,6 +219,15 @@
 #autodl-irc-autoconn-enabled {
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+#autodl-prefs .rtorrent-tbl1 .rt-label {
+	width: 7em;
+}
+#autodl-prefs .rtorrent-tbl1 .rt-cmds {
+	width: 20em;
+}
+#autodl-filters .rtorrent-tbl1 .textbox {
+	width: 9em;
 }
 
 #autodl-prefs .watchdir-button,

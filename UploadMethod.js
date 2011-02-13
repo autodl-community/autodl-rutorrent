@@ -31,10 +31,15 @@ function UploadMethod(idDlg, idParent, isPrefs)
 	else
 		var text = [theUILang.autodlOverride1, theUILang.autodlOverride2];
 
-	$("#" + idParent).html(
+	// The 'rtorrent' part takes up a whole lot of space. The preferences dialog box is wide
+	// enough for some optimizations.
+	var isWide = idDlg === "autodl-preferences";
+
+	var html = '' +
 		'<label for="' + this.id("method") + '">' + theUILang.autodlChooseUploadMethod + '</label>' +
 		'<select id="' + this.id("method") + '">' +
 			'<option id="' + this.id("method-nothing") + '">' + text[0] + '</option>' +
+			'<option id="' + this.id("method-rtorrent") + '">' + theUILang.autodlRtorrent + '</option>' +
 			'<option id="' + this.id("method-watchdir") + '">' + theUILang.autodlSaveToWatchFolder + '</option>' +
 			'<option id="' + this.id("method-webui") + '">' + theUILang.autodlUtorrentWebui + '</option>' +
 			'<option id="' + this.id("method-ftp") + '">' + theUILang.autodlFtpUpoad + '</option>' +
@@ -43,6 +48,76 @@ function UploadMethod(idDlg, idParent, isPrefs)
 		'</select>' +
 		'<div id="' + this.id("nothing") + '">' +
 			'<p>' + text[1] + '</p>' +
+		'</div>' +
+		'<div id="' + this.id("rtorrent") + '">' +
+			'<table>' +
+				'<tbody>' +
+					'<tr>' +
+						'<td><label for="' + this.id("rtorrent-folder") + '">' + theUILang.autodlRtDestDir + '</label></td>' +
+						'<td>' +
+							'<input type="text" class="textbox watchdir-text" id="' + this.id("rtorrent-folder") + '" title="' + theUILang.autodlTitle49 + '" />' +
+							'<input type="button" class="Button watchdir-button" id="' + this.id("rt-getdir-button") + '" value="xyz" />' +
+						'</td>' +
+					'</tr>' +
+				'</tbody>' +
+			'</table>' +
+			'<table>' +
+				'<tbody>' +
+					'<tr class="rtorrent-tbl1">' +
+						'<td><label for="' + this.id("rtorrent-label") + '">' + theUILang.autodlLabel + '</label></td>' +
+						'<td><input type="text" class="textbox rt-label" id="' + this.id("rtorrent-label") + '" title="' + theUILang.autodlTitle51 + '" /></td>' +
+						'<td><label for="' + this.id("rtorrent-commands") + '">' + theUILang.autodlRtCmds + '</label></td>' +
+						'<td><input type="text" class="textbox rt-cmds" id="' + this.id("rtorrent-commands") + '" title="' + theUILang.autodlTitle50 + '" /></td>' +
+					'</tr>' +
+				'</tbody>' +
+			'</table>';
+	if (isWide)
+	{
+		html += '' +
+			'<table>' +
+				'<tbody>' +
+					'<tr>' +
+						'<td><label for="' + this.id("rtorrent-ratio-group") + '">' + theUILang.autodlRatioGroup + '</label></td>' +
+						'<td><select id="' + this.id("rtorrent-ratio-group") + '" title="' + theUILang.autodlTitle53 + '" /></td>' +
+						'<td><label for="' + this.id("rtorrent-channel") + '">' + theUILang.autodlChannel + '</label></td>' +
+						'<td><select id="' + this.id("rtorrent-channel") + '" title="' + theUILang.autodlTitle54 + '" /></td>' +
+						'<td><label for="' + this.id("rtorrent-priority") + '">' + theUILang.autodlPriority + '</label></td>' +
+						'<td><select id="' + this.id("rtorrent-priority") + '" title="' + theUILang.autodlTitle55 + '" /></td>' +
+					'</tr>' +
+				'</tbody>' +
+			'</table>' +
+			'<div>' +
+				'<input type="checkbox" id="' + this.id("rtorrent-scheduler") + '" title="' + theUILang.autodlTitle52 + '"/>' +
+				'<label for="' + this.id("rtorrent-scheduler") + '" title="' + theUILang.autodlTitle52 + '">' + theUILang.autodlIgnoreScheduler + '</label>' +
+			'</div>';
+	}
+	else
+	{
+		html += '' +
+			'<table>' +
+				'<tbody>' +
+					'<tr>' +
+						'<td><label for="' + this.id("rtorrent-ratio-group") + '">' + theUILang.autodlRatioGroup + '</label></td>' +
+						'<td><select id="' + this.id("rtorrent-ratio-group") + '" title="' + theUILang.autodlTitle53 + '" /></td>' +
+						'<td><label for="' + this.id("rtorrent-channel") + '">' + theUILang.autodlChannel + '</label></td>' +
+						'<td><select id="' + this.id("rtorrent-channel") + '" title="' + theUILang.autodlTitle54 + '" /></td>' +
+					'</tr>' +
+				'</tbody>' +
+			'</table>' +
+			'<table>' +
+				'<tbody>' +
+					'<tr>' +
+						'<td><label for="' + this.id("rtorrent-priority") + '">' + theUILang.autodlPriority + '</label></td>' +
+						'<td><select id="' + this.id("rtorrent-priority") + '" title="' + theUILang.autodlTitle55 + '" /></td>' +
+						'<td>' +
+							'<input type="checkbox" id="' + this.id("rtorrent-scheduler") + '" title="' + theUILang.autodlTitle52 + '"/>' +
+							'<label for="' + this.id("rtorrent-scheduler") + '" title="' + theUILang.autodlTitle52 + '">' + theUILang.autodlIgnoreScheduler + '</label>' +
+						'</td>' +
+					'</tr>' +
+				'</tbody>' +
+			'</table>';
+	}
+	html += '' +
 		'</div>' +
 		'<div id="' + this.id("watchdir") + '">' +
 			'<table>' +
@@ -66,7 +141,7 @@ function UploadMethod(idDlg, idParent, isPrefs)
 			'<table>' +
 				'<tbody>' +
 					'<tr>' +
-						'<td><label for="' + this.id("ftp-path") + '">' + theUILang.autodlFtpPath + '</label</td>' +
+						'<td><label for="' + this.id("ftp-path") + '">' + theUILang.autodlFtpPath + '</label></td>' +
 						'<td><input type="text" class="textbox" id="' + this.id("ftp-path") + '" title="' + theUILang.autodlTitle27 + '" emptytext="' + theUILang.autodlHint27 + '"/></td>' +
 					'</tr>' +
 				'</tbody>' +
@@ -76,11 +151,11 @@ function UploadMethod(idDlg, idParent, isPrefs)
 			'<table>' +
 				'<tbody>' +
 					'<tr>' +
-						'<td><label for="' + this.id("program-command") + '">' + theUILang.autodlCommand + '</label</td>' +
+						'<td><label for="' + this.id("program-command") + '">' + theUILang.autodlCommand + '</label></td>' +
 						'<td><input type="text" class="textbox" id="' + this.id("program-command") + '" title="' + theUILang.autodlTitle28 + '" emptytext="' + theUILang.autodlHint28 + '"/></td>' +
 					'</tr>' +
 					'<tr>' +
-						'<td><label for="' + this.id("program-args") + '">' + theUILang.autodlArguments + '</label</td>' +
+						'<td><label for="' + this.id("program-args") + '">' + theUILang.autodlArguments + '</label></td>' +
 						'<td><input type="text" class="textbox" id="' + this.id("program-args") + '" title="' + theUILang.autodlTitle29 + '" emptytext="' + theUILang.autodlHint29 + '"/></td>' +
 					'</tr>' +
 				'</tbody>' +
@@ -90,23 +165,30 @@ function UploadMethod(idDlg, idParent, isPrefs)
 			'<table>' +
 				'<tbody>' +
 					'<tr>' +
-						'<td><label for="' + this.id("dyndir-dir") + '">' + theUILang.autodlFolder + '</label</td>' +
+						'<td><label for="' + this.id("dyndir-dir") + '">' + theUILang.autodlFolder + '</label></td>' +
 						'<td><input type="text" class="textbox" id="' + this.id("dyndir-dir") + '" title="' + theUILang.autodlTitle30 + '" emptytext="' + theUILang.autodlHint30 + '"/></td>' +
 					'</tr>' +
 				'</tbody>' +
 			'</table>' +
-		'</div>'
-	);
+		'</div>';
+	$("#" + idParent).html(html);
 
 	var this_ = this;
 
 	if (thePlugins.isInstalled("_getdir"))
-		this.getdirButton = new theWebUI.rDirBrowser(idDlg, this.id("watchdir-folder"), this.id("getdir-button"));
+	{
+		this.getdirButton1 = new theWebUI.rDirBrowser(idDlg, this.id("watchdir-folder"), this.id("getdir-button"));
+		this.getdirButton2 = new theWebUI.rDirBrowser(idDlg, this.id("rtorrent-folder"), this.id("rt-getdir-button"));
+	}
 	else
+	{
 		$("#" + this.id("getdir-button")).remove();
+		$("#" + this.id("rt-getdir-button")).remove();
+	}
 
 	this.dropdown = new DropDownTabs(this.id("method"));
 	this.dropdown.add(this.id("method-nothing"), this.id("nothing"), "");
+	this.dropdown.add(this.id("method-rtorrent"), this.id("rtorrent"), "rtorrent");
 	this.dropdown.add(this.id("method-watchdir"), this.id("watchdir"), "watchdir");
 	this.dropdown.add(this.id("method-webui"), this.id("webui"), "webui");
 	this.dropdown.add(this.id("method-ftp"), this.id("ftp"), "ftp");
@@ -120,7 +202,11 @@ function UploadMethod(idDlg, idParent, isPrefs)
 		new DialogOptionText(this.id("ftp-path"), "upload-ftp-path", ""),
 		new DialogOptionText(this.id("program-command"), "upload-command", ""),
 		new DialogOptionText(this.id("program-args"), "upload-args", ""),
-		new DialogOptionText(this.id("dyndir-dir"), "upload-dyndir", "")
+		new DialogOptionText(this.id("dyndir-dir"), "upload-dyndir", ""),
+		new DialogOptionText(this.id("rtorrent-folder"), "rt-dir", ""),
+		new DialogOptionText(this.id("rtorrent-commands"), "rt-commands", ""),
+		new DialogOptionText(this.id("rtorrent-label"), "rt-label", ""),
+		new DialogOptionBool(this.id("rtorrent-scheduler"), "rt-ignore-scheduler", "false")
 	];
 }
 
@@ -132,10 +218,34 @@ function(id)
 	return "autodl-upload-" + id + "-" + this.num;
 }
 
+function _fixUserPriority(priority)
+{
+	switch (priority)
+	{
+	case "0":
+	case "dont-download":
+		return "dont-download";
+	case "1":
+	case "low":
+		return "low";
+	case "2":
+	case "normal":
+	default:
+		return "normal";
+	case "3":
+	case "high":
+		return "high";
+	}
+}
+
 UploadMethod.prototype.initFields =
 function(section)
 {
 	initDialogOptions(section, this.options);
+
+	this.ratioDropdown.select(getSectionOptionValue(section, "rt-ratio-group", "", "text"));
+	this.channelDropdown.select(getSectionOptionValue(section, "rt-channel", "", "text"));
+	this.priorityDropdown.select(_fixUserPriority(getSectionOptionValue(section, "rt-priority", "", "text")));
 
 	this.dropdown.select(getSectionOptionValue(section, "upload-type", "", "text"));
 }
@@ -145,14 +255,24 @@ function(section)
 {
 	saveDialogOptions(section, this.options);
 
+	section.getOption("rt-ratio-group").setValue(this.ratioDropdown.getSelectedValue());
+	section.getOption("rt-channel").setValue(this.channelDropdown.getSelectedValue());
+
+	var priority = this.priorityDropdown.getSelectedValue();
+	if (priority === "normal")
+		priority = "";	// normal is default
+	section.getOption("rt-priority").setValue(priority);
+
 	section.getOption("upload-type").setValue(this.dropdown.getSelectedValue());
 }
 
 UploadMethod.prototype._hideGetdirButtons =
 function()
 {
-	if (this.getdirButton)
-		this.getdirButton.hide();
+	if (this.getdirButton1)
+		this.getdirButton1.hide();
+	if (this.getdirButton2)
+		this.getdirButton2.hide();
 }
 
 UploadMethod.prototype._onChange =
@@ -160,6 +280,51 @@ function(oldObj, newObj)
 {
 	if (!newObj || newObj.value !== "watchdir")
 		this._hideGetdirButtons();
+}
+
+UploadMethod.prototype.reenableElements =
+function()
+{
+	enableJqueryElem($('#' + this.id("rtorrent-ratio-group")), theWebUI.ratios != null);
+	enableJqueryElem($('#' + this.id("rtorrent-channel")), theWebUI.throttles != null);
+}
+
+UploadMethod.prototype.onBeforeShow =
+function()
+{
+	function getRatioName(i)
+	{
+		if (theWebUI.ratios && theWebUI.ratios[i] && theWebUI.ratios[i].name != "")
+			return theWebUI.ratios[i].name;
+		return "ratio" + i;
+	}
+	function getChannelName(i)
+	{
+		if (theWebUI.throttles && theWebUI.throttles[i] && theWebUI.throttles[i].name != "")
+			return theWebUI.throttles[i].name;
+		return "thr_" + i;
+	}
+
+	$('#' + this.id("rtorrent-ratio-group")).empty();
+	this.ratioDropdown = new DropDownBox(this.id("rtorrent-ratio-group"));
+	this.ratioDropdown.add("", theUILang.autodlNone);
+	for (var i = 0; i < 8; i++)
+		this.ratioDropdown.add("rat_" + i, getRatioName(i));
+
+	$('#' + this.id("rtorrent-channel")).empty();
+	this.channelDropdown = new DropDownBox(this.id("rtorrent-channel"));
+	this.channelDropdown.add("", theUILang.autodlNone);
+	for (var i = 0; i < 10; i++)
+		this.channelDropdown.add("thr_" + i, getChannelName(i));
+
+	$('#' + this.id("rtorrent-priority")).empty();
+	this.priorityDropdown = new DropDownBox(this.id("rtorrent-priority"));
+	this.priorityDropdown.add("high", theUILang.autodlPrioHigh);
+	this.priorityDropdown.add("normal", theUILang.autodlPrioNormal);
+	this.priorityDropdown.add("low", theUILang.autodlPrioLow);
+	this.priorityDropdown.add("dont-download", theUILang.autodlPrioDontDownload);
+
+	this.reenableElements();
 }
 
 UploadMethod.prototype.onAfterHide =

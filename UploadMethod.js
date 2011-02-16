@@ -296,7 +296,7 @@ function()
 	{
 		if (theWebUI.ratios && theWebUI.ratios[i] && theWebUI.ratios[i].name != "")
 			return theWebUI.ratios[i].name;
-		return "ratio" + i;
+		return "rat_" + i;
 	}
 	function getChannelName(i)
 	{

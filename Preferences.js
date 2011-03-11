@@ -185,7 +185,7 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionText("autodl-advanced-user-agent", "user-agent", "autodl-irssi"),
 		new DialogOptionInt("autodl-advanced-max-download-retry-time", "download-retry-time-seconds", "300"),
 		new DialogOptionInt("autodl-advanced-output-level", "output-level", "3"),
-		new DialogOptionBool("autodl-advanced-debug", "debug", "false"),
+		new DialogOptionBool("autodl-advanced-debug", "debug", "false")
 	];
 
 	this.webui =

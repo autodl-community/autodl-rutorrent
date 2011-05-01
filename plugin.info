@@ -2,5 +2,5 @@ author: Carl Carlson
 description: GUI for autodl-irssi
 remote: ok
 need_rtorrent: 0
-version: 1.30
+version: 1.31
 runlevel: 10.0

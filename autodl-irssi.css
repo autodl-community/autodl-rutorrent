@@ -15,7 +15,7 @@
  *
  * The Initial Developer of the Original Code is
  * David Nilsson.
- * Portions created by the Initial Developer are Copyright (C) 2010
+ * Portions created by the Initial Developer are Copyright (C) 2010, 2011
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
@@ -143,8 +143,7 @@
 	float: left;
 	margin: 5px 5px 5px 5px;
 }
-#autodl-trackers-left .listbox {
-} #autodl-trackers-list {
+#autodl-trackers-list {
 	height: 200px;
 	width: 200px;
 }
@@ -159,7 +158,7 @@
 }
 
 #autodl-filters {
-	height: 330px;
+	height: 350px;
 	width: 600px;
 }
 #autodl-filters-left {
@@ -170,7 +169,7 @@
 	margin-bottom: 5px;
 }
 #autodl-filters-list {
-	height: 240px;
+	height: 270px;
 	width: 200px;
 }
 #autodl-filters-right {
@@ -187,6 +186,10 @@
 #autodl-filters-contents-tv .textbox,
 #autodl-filters-contents-music .textbox {
 	width: 23em;
+}
+#autodl-filters-contents-music #autodl-filters-tags,
+#autodl-filters-contents-music #autodl-filters-except-tags {
+	width: 16em;
 }
 #autodl-filters-contents-upload .textbox {
 	width: 25em;
@@ -236,7 +239,7 @@
 }
 
 #autodl-prefs {
-	height: 170px;
+	height: 190px;
 	width: 500px;
 }
 #autodl-prefs-contents {

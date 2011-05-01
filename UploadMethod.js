@@ -15,7 +15,7 @@
  *
  * The Initial Developer of the Original Code is
  * David Nilsson.
- * Portions created by the Initial Developer are Copyright (C) 2010
+ * Portions created by the Initial Developer are Copyright (C) 2010, 2011
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
@@ -87,6 +87,10 @@ function UploadMethod(idDlg, idParent, isPrefs)
 				'</tbody>' +
 			'</table>' +
 			'<div>' +
+				'<input type="checkbox" id="' + this.id("rtorrent-dont-add-name") + '" title="' + theUILang.autodlTitle56 + '"/>' +
+				'<label for="' + this.id("rtorrent-dont-add-name") + '" title="' + theUILang.autodlTitle56 + '">' + theUILang.autodlDontAddName + '</label>' +
+			'</div>' +
+			'<div>' +
 				'<input type="checkbox" id="' + this.id("rtorrent-scheduler") + '" title="' + theUILang.autodlTitle52 + '"/>' +
 				'<label for="' + this.id("rtorrent-scheduler") + '" title="' + theUILang.autodlTitle52 + '">' + theUILang.autodlIgnoreScheduler + '</label>' +
 			'</div>';
@@ -109,13 +113,17 @@ function UploadMethod(idDlg, idParent, isPrefs)
 					'<tr>' +
 						'<td><label for="' + this.id("rtorrent-priority") + '">' + theUILang.autodlPriority + '</label></td>' +
 						'<td><select id="' + this.id("rtorrent-priority") + '" title="' + theUILang.autodlTitle55 + '" /></td>' +
-						'<td>' +
-							'<input type="checkbox" id="' + this.id("rtorrent-scheduler") + '" title="' + theUILang.autodlTitle52 + '"/>' +
-							'<label for="' + this.id("rtorrent-scheduler") + '" title="' + theUILang.autodlTitle52 + '">' + theUILang.autodlIgnoreScheduler + '</label>' +
-						'</td>' +
 					'</tr>' +
 				'</tbody>' +
-			'</table>';
+			'</table>' +
+			'<div>' +
+				'<input type="checkbox" id="' + this.id("rtorrent-dont-add-name") + '" title="' + theUILang.autodlTitle56 + '"/>' +
+				'<label for="' + this.id("rtorrent-dont-add-name") + '" title="' + theUILang.autodlTitle56 + '">' + theUILang.autodlDontAddName + '</label>' +
+			'</div>' +
+			'<div>' +
+				'<input type="checkbox" id="' + this.id("rtorrent-scheduler") + '" title="' + theUILang.autodlTitle52 + '"/>' +
+				'<label for="' + this.id("rtorrent-scheduler") + '" title="' + theUILang.autodlTitle52 + '">' + theUILang.autodlIgnoreScheduler + '</label>' +
+			'</div>';
 	}
 	html += '' +
 		'</div>' +
@@ -206,7 +214,8 @@ function UploadMethod(idDlg, idParent, isPrefs)
 		new DialogOptionText(this.id("rtorrent-folder"), "rt-dir", ""),
 		new DialogOptionText(this.id("rtorrent-commands"), "rt-commands", ""),
 		new DialogOptionText(this.id("rtorrent-label"), "rt-label", ""),
-		new DialogOptionBool(this.id("rtorrent-scheduler"), "rt-ignore-scheduler", "false")
+		new DialogOptionBool(this.id("rtorrent-scheduler"), "rt-ignore-scheduler", "false"),
+		new DialogOptionBool(this.id("rtorrent-dont-add-name"), "rt-dont-add-name", "false")
 	];
 }
 

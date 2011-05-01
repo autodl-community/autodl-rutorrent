@@ -15,7 +15,7 @@
  *
  * The Initial Developer of the Original Code is
  * David Nilsson.
- * Portions created by the Initial Developer are Copyright (C) 2010
+ * Portions created by the Initial Developer are Copyright (C) 2010, 2011
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
@@ -302,6 +302,29 @@ function Filters()
 {
 }
 
+// Class for the ANY / ALL drop down box (eg. the one used by tags and except-tags)
+function AnyAllDropDown(id, optionName)
+{
+	this.dropDownBox = new DropDownBox(id);
+	this.dropDownBox.add("any", theUILang.autodlAny);
+	this.dropDownBox.add("all", theUILang.autodlAll);
+	this.optionName = optionName;
+}
+
+AnyAllDropDown.prototype.initialize =
+function(section)
+{
+	var value = getSectionOptionValue(section, this.optionName, "true", "bool");
+	this.dropDownBox.select(value ? "any" : "all");
+}
+
+AnyAllDropDown.prototype.save =
+function(section)
+{
+	var value = this.dropDownBox.getSelectedValue() === "any";
+	section.getOption(this.optionName).setValue(value);
+}
+
 Filters.prototype.createDialogBox =
 function(multiSelectDlgBox, okHandler)
 {
@@ -427,7 +450,17 @@ function(multiSelectDlgBox, okHandler)
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-tags">' + theUILang.autodlTags + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-tags" title="' + theUILang.autodlTitle19 + '" emptytext="' + theUILang.autodlHint25 + '"/></td>' +
+									'<td>' +
+										'<input type="text" class="textbox" id="autodl-filters-tags" title="' + theUILang.autodlTitle19 + '" emptytext="' + theUILang.autodlHint25 + '"/>' +
+										'<select id="autodl-filters-tags-any" />' +
+									'</td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td><label for="autodl-filters-except-tags">' + theUILang.autodlExceptTags + '</label></td>' +
+									'<td>' +
+										'<input type="text" class="textbox" id="autodl-filters-except-tags" title="' + theUILang.autodlTitle57 + '" emptytext="' + theUILang.autodlHint25 + '"/>' +
+										'<select id="autodl-filters-except-tags-any" />' +
+									'</td>' +
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
@@ -523,6 +556,7 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionText("autodl-filters-bitrates", "bitrates", ""),
 		new DialogOptionText("autodl-filters-media", "media", ""),
 		new DialogOptionText("autodl-filters-tags", "tags", ""),
+		new DialogOptionText("autodl-filters-except-tags", "except-tags", ""),
 		new DialogOptionText("autodl-filters-match-uploaders", "match-uploaders", ""),
 		new DialogOptionText("autodl-filters-except-uploaders", "except-uploaders", ""),
 		new DialogOptionText("autodl-filters-max-pretime", "max-pretime", ""),
@@ -577,6 +611,9 @@ function(multiSelectDlgBox, okHandler)
 		dropdown.add("true", theUILang.autodlYes);
 		dropdown.add("false", theUILang.autodlNo);
 	}
+
+	this.tagsDropdownBox = new AnyAllDropDown("autodl-filters-tags-any", "tags-any");
+	this.exceptTagsDropdownBox = new AnyAllDropDown("autodl-filters-except-tags-any", "except-tags-any");
 
 	this.maxDlsDropdown = new DropDownBox("autodl-filters-max-downloads-per");
 	this.maxDlsDropdown.add("", theUILang.autodlMaxDlsNone);
@@ -716,6 +753,9 @@ function(obj)
 		section.getOption("enabled").setValue(enabled.toString());
 
 		section.getOption("max-downloads-per").setValue(this.maxDlsDropdown.getSelectedValue());
+
+		this.tagsDropdownBox.save(section);
+		this.exceptTagsDropdownBox.save(section);
 	}
 }
 
@@ -743,6 +783,9 @@ function(oldObj, newObj)
 	setDropDown(this.cueDropDownBox, "cue");
 
 	this.maxDlsDropdown.select(getSectionOptionValue(section, "max-downloads-per", "", "text"));
+
+	this.tagsDropdownBox.initialize(section);
+	this.exceptTagsDropdownBox.initialize(section);
 
 	var enable = newObj != null;
 	var elems = $("#autodl-filters-remove-button").

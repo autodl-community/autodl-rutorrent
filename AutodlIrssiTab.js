@@ -224,7 +224,7 @@ function()
 	catch (ex)
 	{
 		this.gettingLines = false;
-		this._notifyHandler("AutodlIrssiTab._getNewLines: " + formatException(ex));
+		log("AutodlIrssiTab._getNewLines: " + formatException(ex));
 	}
 }
 
@@ -256,7 +256,7 @@ function(data)
 	}
 	catch (ex)
 	{
-		this._notifyHandler("AutodlIrssiTab::_onGetLines: " + formatException(ex));
+		log("AutodlIrssiTab::_onGetLines: " + formatException(ex));
 	}
 }
 

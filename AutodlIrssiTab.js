@@ -26,6 +26,8 @@
 
 function fromPixels(s)
 {
+	if (s === undefined)
+		return 0;
 	var ary = s.match(/^(\d+)px$/);
 	if (!ary)
 		return 0;

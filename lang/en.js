@@ -302,3 +302,4 @@ theUILang.autodlExceptTags = "Except tags";
 theUILang.autodlTitle57 = "The tags you don't want, separated by commas. Wildcards are allowed. Example: tag1,tag2,tag3"
 theUILang.autodlAny = "Any";
 theUILang.autodlAll = "All";
+theUILang.autodlFreeleech = "Freeleech";

@@ -501,6 +501,14 @@ function(multiSelectDlgBox, okHandler)
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
+						'<table>' +
+							'<tr>' +
+								'<td>' +
+									'<label for="autodl-filters-freeleech">' + theUILang.autodlFreeleech + '</label>' +
+									'<select id="autodl-filters-freeleech" />' +
+								'</td>' +
+							'</tr>' +
+						'</table>' +
 					'</div>' +
 					'<div id="autodl-filters-contents-upload"/>' +
 					'<div id="autodl-filters-contents-wol">' +
@@ -603,7 +611,7 @@ function(multiSelectDlgBox, okHandler)
 	this.tabs.add("autodl-filters-tab-upload", "autodl-filters-contents-upload");
 	this.tabs.add("autodl-filters-tab-wol", "autodl-filters-contents-wol");
 
-	var names = ["scene", "log", "cue"];
+	var names = ["scene", "log", "cue", "freeleech"];
 	for (var i = 0; i < names.length; i++)
 	{
 		var dropdown = new DropDownBox('autodl-filters-' + names[i]);
@@ -747,6 +755,7 @@ function(obj)
 		section.getOption("scene").setValue(this.sceneDropDownBox.getSelectedValue());
 		section.getOption("log").setValue(this.logDropDownBox.getSelectedValue());
 		section.getOption("cue").setValue(this.cueDropDownBox.getSelectedValue());
+		section.getOption("freeleech").setValue(this.freeleechDropDownBox.getSelectedValue());
 
 		section.name = $("#autodl-filters-name").myval();
 
@@ -782,6 +791,7 @@ function(oldObj, newObj)
 	setDropDown(this.sceneDropDownBox, "scene");
 	setDropDown(this.logDropDownBox, "log");
 	setDropDown(this.cueDropDownBox, "cue");
+	setDropDown(this.freeleechDropDownBox, "freeleech");
 
 	this.maxDlsDropdown.select(getSectionOptionValue(section, "max-downloads-per", "", "text"));
 

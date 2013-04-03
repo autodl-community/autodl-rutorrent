@@ -69,7 +69,8 @@ var tvEncoders =
 	["h.264", "h264"],
 	["mpeg2", "mpeg-2"],
 	["VC-1", "VC1"],
-	["WMV", "WMV-HD"]
+	["WMV", "WMV-HD"],
+	["Remux", "h.264 Remux", "h264 Remux", "VC-1 Remux", "VC1 Remux"]
 ];
 
 var musicFormats =

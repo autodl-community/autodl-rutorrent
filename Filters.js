@@ -449,20 +449,6 @@ function(multiSelectDlgBox, okHandler)
 									'<td><input type="button" id="autodl-filters-media-button" class="Button" value="' + theUILang.autodlMedia + '" /></td>' +
 									'<td><input type="text" class="textbox" id="autodl-filters-media" title="' + theUILang.autodlTitle18 + '" emptytext="' + theUILang.autodlHint18 + '"/></td>' +
 								'</tr>' +
-								'<tr>' +
-									'<td><label for="autodl-filters-tags">' + theUILang.autodlTags + '</label></td>' +
-									'<td>' +
-										'<input type="text" class="textbox" id="autodl-filters-tags" title="' + theUILang.autodlTitle19 + '" emptytext="' + theUILang.autodlHint25 + '"/>' +
-										'<select id="autodl-filters-tags-any" />' +
-									'</td>' +
-								'</tr>' +
-								'<tr>' +
-									'<td><label for="autodl-filters-except-tags">' + theUILang.autodlExceptTags + '</label></td>' +
-									'<td>' +
-										'<input type="text" class="textbox" id="autodl-filters-except-tags" title="' + theUILang.autodlTitle57 + '" emptytext="' + theUILang.autodlHint25 + '"/>' +
-										'<select id="autodl-filters-except-tags-any" />' +
-									'</td>' +
-								'</tr>' +
 							'</tbody>' +
 						'</table>' +
 						'<label for="autodl-filters-scene">' + theUILang.autodlScene + '</label>' +
@@ -498,6 +484,20 @@ function(multiSelectDlgBox, okHandler)
 								'<tr>' +
 									'<td><label for="autodl-filters-max-pretime">' + theUILang.autodlMaxPreTime + '</label></td>' +
 									'<td><input type="text" class="textbox" id="autodl-filters-max-pretime" title="' + theUILang.autodlTitle25 + '" emptytext="' + theUILang.autodlHint24 + '"/></td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td><label for="autodl-filters-tags">' + theUILang.autodlTags + '</label></td>' +
+									'<td>' +
+										'<input type="text" class="textbox" id="autodl-filters-tags" title="' + theUILang.autodlTitle19 + '" emptytext="' + theUILang.autodlHint25 + '"/>' +
+										'<select id="autodl-filters-tags-any" />' +
+									'</td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td><label for="autodl-filters-except-tags">' + theUILang.autodlExceptTags + '</label></td>' +
+									'<td>' +
+										'<input type="text" class="textbox" id="autodl-filters-except-tags" title="' + theUILang.autodlTitle57 + '" emptytext="' + theUILang.autodlHint25 + '"/>' +
+										'<select id="autodl-filters-except-tags-any" />' +
+									'</td>' +
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +

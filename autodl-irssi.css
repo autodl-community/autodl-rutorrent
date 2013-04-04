@@ -188,7 +188,8 @@
 	width: 23em;
 }
 #autodl-filters-contents-advanced #autodl-filters-tags,
-#autodl-filters-contents-advanced #autodl-filters-except-tags {
+#autodl-filters-contents-advanced #autodl-filters-except-tags,
+#autodl-filters-contents-music #autodl-filters-log-scores {
 	width: 16em;
 }
 #autodl-filters-contents-upload .textbox {

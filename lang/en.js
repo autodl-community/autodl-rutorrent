@@ -306,3 +306,6 @@ theUILang.autodlFreeleech = "Freeleech";
 theUILang.autodlFreeleechPercents = "Freeleech Percents";
 theUILang.autodlTitle58 = "Freeleech percents separated by commas.";
 theUILang.autodlHint33 = "eg. 25, 50, 75-100";
+theUILang.autodlLogScores = "Log Scores";
+theUILang.autodlTitle59 = "Log scores separated by commas.";
+theUILang.autodlHint34 = "eg. 95, 98-100";

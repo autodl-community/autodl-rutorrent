@@ -451,12 +451,24 @@ function(multiSelectDlgBox, okHandler)
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
-						'<label for="autodl-filters-scene">' + theUILang.autodlScene + '</label>' +
-						'<select id="autodl-filters-scene" />' +
-						'<label for="autodl-filters-log">Log</label>' +
-						'<select id="autodl-filters-log" />' +
-						'<label for="autodl-filters-cue">Cue</label>' +
-						'<select id="autodl-filters-cue" />' +
+						'<table>' +
+							'<tr>' +
+								'<td>' +
+									'<label for="autodl-filters-scene">' + theUILang.autodlScene + '</label>' +
+									'<select id="autodl-filters-scene" />' +
+									'<label for="autodl-filters-cue">Cue</label>' +
+									'<select id="autodl-filters-cue" />' +
+								'</td>' +
+							'</tr>' +
+							'<tr>' +
+								'<td>' +
+									'<label for="autodl-filters-log">Log</label>' +
+									'<select id="autodl-filters-log" />' +
+									'<label for="autodl-filters-log-scores">' + theUILang.autodlLogScores + '</label>' +
+									'<input type="text" class="textbox" id="autodl-filters-log-scores" title="' + theUILang.autodlTitle59 + '" emptytext="' + theUILang.autodlHint34 + '"/>' +
+								'</td>' +
+							'</tr>' +
+						'</table>' +
 					'</div>' +
 					'<div id="autodl-filters-contents-advanced">' +
 						'<table>' +
@@ -577,7 +589,8 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionText("autodl-filters-wol-mac", "wol-mac-address", ""),
 		new DialogOptionText("autodl-filters-wol-ip", "wol-ip-address", ""),
 		new DialogOptionInt("autodl-filters-wol-port", "wol-port", "9"),
-		new DialogOptionText("autodl-filters-freeleech-percents", "freeleech-percents", "")
+		new DialogOptionText("autodl-filters-freeleech-percents", "freeleech-percents", ""),
+		new DialogOptionText("autodl-filters-log-scores", "log-scores", "")
 	];
 
 	var this_ = this;

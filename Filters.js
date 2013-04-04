@@ -508,6 +508,10 @@ function(multiSelectDlgBox, okHandler)
 									'<select id="autodl-filters-freeleech" />' +
 								'</td>' +
 							'</tr>' +
+							'<tr>' +
+								'<td><label for="autodl-filters-feeleech-percents">' + theUILang.autodlFreeleechPercents + '</label>' +
+								'<input type="text" class="textbox" id="autodl-filters-freeleech-percents" title="' + theUILang.autodlTitle58 + '" emptytext="' + theUILang.autodlHint33 + '"/></td>' +
+							'</tr>' +
 						'</table>' +
 					'</div>' +
 					'<div id="autodl-filters-contents-upload"/>' +
@@ -572,7 +576,8 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionText("autodl-filters-max-downloads", "max-downloads", ""),
 		new DialogOptionText("autodl-filters-wol-mac", "wol-mac-address", ""),
 		new DialogOptionText("autodl-filters-wol-ip", "wol-ip-address", ""),
-		new DialogOptionInt("autodl-filters-wol-port", "wol-port", "9")
+		new DialogOptionInt("autodl-filters-wol-port", "wol-port", "9"),
+		new DialogOptionText("autodl-filters-freeleech-percents", "freeleech-percents", "")
 	];
 
 	var this_ = this;

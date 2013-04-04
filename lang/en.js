@@ -303,3 +303,6 @@ theUILang.autodlTitle57 = "The tags you don't want, separated by commas. Wildcar
 theUILang.autodlAny = "Any";
 theUILang.autodlAll = "All";
 theUILang.autodlFreeleech = "Freeleech";
+theUILang.autodlFreeleechPercents = "Freeleech Percents";
+theUILang.autodlTitle58 = "Freeleech percents separated by commas.";
+theUILang.autodlHint33 = "eg. 25, 50, 75-100";

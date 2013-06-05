@@ -28,7 +28,7 @@ function fromPixels(s)
 {
 	if (s === undefined)
 		return 0;
-	var ary = s.match(/^(\d+)px$/);
+	var ary = s.match(/^(\d+).?(\d*)px$/);
 	if (!ary)
 		return 0;
 	return parseInt(ary[1], 10);
@@ -54,12 +54,12 @@ function isScrolledToBottom(elem)
 	var visibleBottom = elem.scrollTop() + elem.height() + padding;
 
 	// Horiz scrollbars may be visible...
-	return visibleBottom >= elem.attr("scrollHeight") - 20;
+	return visibleBottom >= elem.prop("scrollHeight") - 20;
 }
 
 function scrollToBottom(elem)
 {
-	var scrollHeight = elem.attr("scrollHeight");
+	var scrollHeight = elem.prop("scrollHeight");
 
 	// Horiz scrollbars may be visible...
 	elem.scrollTop(scrollHeight + 20);

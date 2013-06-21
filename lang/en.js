@@ -241,6 +241,8 @@ theUILang.autodlIrcsrvs28 = "Invite HTTP Header";
 theUILang.autodlIrcsrvs29 = "Optional. HTTP header to send, eg: Cookie: uid=12345; pass=asdfqwersdf";
 theUILang.autodlIrcsrvs30 = "Invite HTTP Data";
 theUILang.autodlIrcsrvs31 = "Optional. The HTTP POST data";
+theUILang.autodlIrcsrvs32 = "Server Password";
+theUILang.autodlIrcsrvs33 = "Optional. The IRC server password.";
 theUILang.autodlDeleteIrcServer = "Do you want to remove the selected IRC server?";
 theUILang.autodlDeleteIrcChannel = "Do you want to remove the selected IRC channel?";
 theUILang.autodlIrc = "IRC";

@@ -60,6 +60,8 @@ function(multiSelectDlgBox, okHandler)
 					'<div>' +
 						'<label for="autodl-ircsrvs-server-password">' + theUILang.autodlIrcsrvs32 + '</label>' +
 						'<input type="text" class="textbox" id="autodl-ircsrvs-server-password" title="' + theUILang.autodlIrcsrvs33 + '"/>' +
+						'<input type="checkbox" id="autodl-ircsrvs-bnc" title="' + theUILang.autodlIrcsrvs34 + '"/>' +
+						'<label for="autodl-ircsrvs-bnc" title="' + theUILang.autodlIrcsrvs35 + '">' + theUILang.autodlIrcsrvs36 + '</label>' +
 					'</div>' +
 				'</fieldset>' +
 				'<fieldset id="autodl-ircsrvs-channels-fieldset">' +
@@ -113,7 +115,8 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionText("autodl-ircsrvs-nick", "nick", ""),
 		new DialogOptionText("autodl-ircsrvs-identpass", "ident-password", ""),
 		new DialogOptionText("autodl-ircsrvs-identemail", "ident-email", ""),
-		new DialogOptionText("autodl-ircsrvs-server-password", "server-password", "")
+		new DialogOptionText("autodl-ircsrvs-server-password", "server-password", ""),
+		new DialogOptionBool("autodl-ircsrvs-bnc", "bnc", "false")
 	];
 	this.channelOptions =
 	[

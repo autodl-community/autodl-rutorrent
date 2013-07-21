@@ -178,7 +178,8 @@
 #autodl-filters-contents-advanced .textbox {
 	width: 22em;
 }
-#autodl-filters-contents-general #autodl-filters-max-downloads {
+#autodl-filters-contents-general #autodl-filters-max-downloads,
+#autodl-filters-contents-general #autodl-filters-upload-delay-secs {
 	width: 5em;
 }
 #autodl-filters-contents-wol .textbox,

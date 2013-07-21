@@ -379,13 +379,25 @@ function(multiSelectDlgBox, okHandler)
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
-						'<div>' +
-							'<label for="autodl-filters-max-downloads">' + theUILang.autodlMaxDownloads + '</label>' +
-							'<input type="text" class="textbox" id="autodl-filters-max-downloads" title="' + theUILang.autodlMaxDownloadsTitle + '" />' +
-							'<label for="autodl-filters-max-downloads-per">' + theUILang.autodlMaxDownloads2 + '</label>' +
-							'<select id="autodl-filters-max-downloads-per" />' +
-							'<label for="autodl-filters-max-downloads-per">' + theUILang.autodlMaxDownloads3 + '</label>' +
-						'</div>' +
+						'<table>' +
+							'<tbody>' +
+								'<tr>' +
+									'<td>' +
+										'<label for="autodl-filters-upload-delay-secs">' + theUILang.autodlUploadDelay + '</label>' +
+										'<input type="text" class="textbox" id="autodl-filters-upload-delay-secs" title="' + theUILang.autodlUploadDelay2 + '" />' +
+									'</td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td>' +
+										'<label for="autodl-filters-max-downloads">' + theUILang.autodlMaxDownloads + '</label>' +
+										'<input type="text" class="textbox" id="autodl-filters-max-downloads" title="' + theUILang.autodlMaxDownloadsTitle + '" />' +
+										'<label for="autodl-filters-max-downloads-per">' + theUILang.autodlMaxDownloads2 + '</label>' +
+										'<select id="autodl-filters-max-downloads-per" />' +
+										'<label for="autodl-filters-max-downloads-per">' + theUILang.autodlMaxDownloads3 + '</label>' +
+									'</td>' +
+								'</tr>' +
+							'</tbody>' +
+						'</table>' +
 					'</div>' +
 					'<div id="autodl-filters-contents-tv">' +
 						'<table>' +
@@ -590,7 +602,8 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionText("autodl-filters-wol-ip", "wol-ip-address", ""),
 		new DialogOptionInt("autodl-filters-wol-port", "wol-port", "9"),
 		new DialogOptionText("autodl-filters-freeleech-percents", "freeleech-percents", ""),
-		new DialogOptionText("autodl-filters-log-scores", "log-scores", "")
+		new DialogOptionText("autodl-filters-log-scores", "log-scores", ""),
+		new DialogOptionText("autodl-filters-upload-delay-secs", "upload-delay-secs", "")
 	];
 
 	var this_ = this;

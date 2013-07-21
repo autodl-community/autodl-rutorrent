@@ -299,8 +299,12 @@ function()
 	if (!this.visible)
 		return;
 
-	var width = fromPixels($("#PluginList").css("width"));
-	var height = fromPixels($("#PluginList").css("height"));
+	var width = fromPixels($("#tdetails").css("width"));
+	width -= 8;
+	var height = fromPixels($("#tdetails").css("height"));
+	height -= ($("#tabbar").height());
+	$("#tdcont").height( height );
+	height -= 2;
 
 	var logElem = $("#autodl-irssi-log");
 	if (width != null)

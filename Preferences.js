@@ -159,7 +159,7 @@ function(multiSelectDlgBox, okHandler)
 								'<td><label for="autodl-advanced-max-download-retry-time">' + theUILang.autodlSeconds + '</label></td>' +
 							'</tr>' +
 							'<tr>' +
-								'<td><label for="autodl-advanced-output-level">' + theUILang.autodlDebugOutputLevel + '</label></td>' +
+								'<td><label for="autodl-advanced-output-level">' + theUILang.autodlAdvancedOutputLevel + '</label></td>' +
 								'<td><input type="text" class="textbox" id="autodl-advanced-output-level" title="' + theUILang.autodlTitle47 + '"/></td>' +
 							'</tr>' +
 						'</tbody>' +

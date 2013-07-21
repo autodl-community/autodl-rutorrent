@@ -396,6 +396,12 @@ function(multiSelectDlgBox, okHandler)
 										'<label for="autodl-filters-max-downloads-per">' + theUILang.autodlMaxDownloads3 + '</label>' +
 									'</td>' +
 								'</tr>' +
+								'<tr>' +
+									'<td>' +
+										'<input type="checkbox" id="autodl-filters-download-duplicates" title="' + theUILang.autodlTitle33 + '"/>' +
+										'<label for="autodl-filters-download-duplicates" title="' + theUILang.autodlTitle33 + '">' + theUILang.autodlDownloadDupes + '</label>' +
+									'</td>' +
+								'</tr>' +
 							'</tbody>' +
 						'</table>' +
 					'</div>' +
@@ -603,7 +609,8 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionInt("autodl-filters-wol-port", "wol-port", "9"),
 		new DialogOptionText("autodl-filters-freeleech-percents", "freeleech-percents", ""),
 		new DialogOptionText("autodl-filters-log-scores", "log-scores", ""),
-		new DialogOptionText("autodl-filters-upload-delay-secs", "upload-delay-secs", "")
+		new DialogOptionText("autodl-filters-upload-delay-secs", "upload-delay-secs", ""),
+		new DialogOptionBool("autodl-filters-download-duplicates", "download-duplicates", "false")
 	];
 
 	var this_ = this;

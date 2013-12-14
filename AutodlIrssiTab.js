@@ -86,6 +86,9 @@ function AutodlIrssiTab(dialogManager, plugin)
 				'<input type="button" id="autodl-log-clear-button" class="Button" value="' + theUILang.ClearButton + '" title="' + theUILang.autodlClear2  + '" />' +
 				'<input type="button" id="autodl-log-update-button" class="Button" value="' + theUILang.autodlUpdate1 + '" title="' + theUILang.autodlUpdate2  + '" />' +
 				'<input type="button" id="autodl-log-whatsnew-button" class="Button" value="' + theUILang.autodlWhatsNew1 + '" title="' + theUILang.autodlWhatsNew2  + '" />' +
+				'<input type="button" id="autodl-log-version-button" class="Button" value="' + theUILang.autodlVersion1 + '" title="' + theUILang.autodlVersion2  + '" />' +
+				'<input type="button" id="autodl-log-reload-button" class="Button" value="' + theUILang.autodlReload1 + '" title="' + theUILang.autodlReload2  + '" />' +
+				'<input type="button" id="autodl-log-reload-trackers-button" class="Button" value="' + theUILang.autodlReloadTrackers1 + '" title="' + theUILang.autodlReloadTrackers2  + '" />' +
 				'<input type="button" id="autodl-log-backup-button" class="Button" value="' + theUILang.autodlBackup1 + '" title="' + theUILang.autodlBackup2  + '" />' +
 				'<form target="autodl-restore-iframe" id="autodl-restore" method="POST" action="plugins/autodl-irssi/writeconfig.php" enctype="multipart/form-data">' +
 					'<input type="hidden" name="restoring" value="1" />' +
@@ -122,6 +125,18 @@ function AutodlIrssiTab(dialogManager, plugin)
 	$("#autodl-log-whatsnew-button").click(function()
 	{
 		this_._sendAutodlCommand("whatsnew");
+	});
+	$("#autodl-log-version-button").click(function()
+	{
+		this_._sendAutodlCommand("version");
+	});
+	$("#autodl-log-reload-button").click(function()
+	{
+		this_._sendAutodlCommand("reload");
+	});
+	$("#autodl-log-reload-trackers-button").click(function()
+	{
+		this_._sendAutodlCommand("reloadtrackers");
 	});
 
 	this._initResizeBottom();

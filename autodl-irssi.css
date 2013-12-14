@@ -380,6 +380,18 @@
 #autodl-log-buttons form {
 	display: inline;
 }
+
+#autodl-log-clear-button,
+#autodl-log-update-button,
+#autodl-log-whatsnew-button,
+#autodl-log-version-button,
+#autodl-log-reload-button,
+#autodl-log-reload-trackers-button,
+#autodl-log-backup-button,
+#autodl-log-restore-button {
+	width: 100px;
+}
+
 #autodl-irssi-log {
 	overflow: auto;
 	font-family: "Courier New", Courier, monospace;

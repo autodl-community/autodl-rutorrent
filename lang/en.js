@@ -257,6 +257,7 @@ theUILang.autodlMaxDownloadsTitle = "Max number of downloads per day/week/month.
 theUILang.autodlMaxDownloads = "Max";
 theUILang.autodlMaxDownloads2 = "downloads per";	// Text before the day/week/month drop down menu
 theUILang.autodlMaxDlsNone = "<Choose>";
+theUILang.autodlMaxDlsHour = "hour";
 theUILang.autodlMaxDlsDay = "day";
 theUILang.autodlMaxDlsWeek = "week";
 theUILang.autodlMaxDlsMonth = "month";

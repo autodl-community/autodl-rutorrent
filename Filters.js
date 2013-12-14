@@ -54,6 +54,7 @@ var tvSources =
 	["HDDVDRip"],
 	["BluRay", "Blu-Ray", "MBluRay"],
 	["WEB-DL", "WEB", "WEBDL"],
+	["WEBRip", "Webrip", "WebRip", "WEBRIP"],
 	["TVRip", "TV"],
 	["CAM"],
 	["R5"],

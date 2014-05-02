@@ -244,7 +244,7 @@ function(trackerInfo)
 			if (tbody == null)
 			{
 				tbody = $('<tbody />');
-				div.append($('<table />').append(tbody));
+				div.append($('<br /><table />').append(tbody));
 			}
 			tbody.append(elem);
 		}

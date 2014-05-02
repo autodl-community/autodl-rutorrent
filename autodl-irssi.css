@@ -136,15 +136,15 @@
 }
 
 #autodl-trackers {
-	height: 250px;
-	width: 600px;
+	height: 300px;
+	width: 700px;
 }
 #autodl-trackers-left {
 	float: left;
 	margin: 5px 5px 5px 5px;
 }
 #autodl-trackers-list {
-	height: 200px;
+	height: 255px;
 	width: 200px;
 }
 #autodl-trackers-right {

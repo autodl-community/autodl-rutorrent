@@ -110,7 +110,7 @@ theUILang.autodlCookie1 = "Log in to your tracker's home page with your browser.
 <strong>Chrome:</strong> Options Menu -&gt; Privacy -&gt; Content Settings -&gt; All cookies and site data<br>\
 <strong>Firefox:</strong> Firefox Menu -&gt; Options -&gt; Privacy -&gt; Show cookies<br>\
 <strong>Safari:</strong> Action Menu -&gt; Preferences -&gt; Privacy -&gt; Details<br><br>\
-Find your tracker site in the cookie or file list (cookie files start with &quot;Cookie:&quot; in INetCache). There should be a <em>uid</em> and <em>pass</em> value.<br />\
+Find your tracker site in the cookie or file list.The values needed may vary between trackers. Often these are _uid_ and _pass_.<br />\
 Set the cookie like <strong>uid=XXX; pass=YYY</strong>, separating each key=value pair with a semicolon.";
 theUILang.autodlCookie2 = "The ";
 theUILang.autodlCookie3 = " cookie.";

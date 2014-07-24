@@ -57,6 +57,7 @@ var tvSources =
 	["WEBRip", "Webrip", "WebRip", "WEBRIP"],
 	["TVRip", "TV"],
 	["CAM"],
+	["HDCAM", "HD-CAM", "HD CAM"],
 	["R5"],
 	["TELESYNC", "TS"],
 	["TELECINE", "TC"]

@@ -49,7 +49,7 @@ var tvSources =
 	["BD9"],
 	["BDRip"],
 	["BRRip", "BLURAYRiP"],
-	["DVDR", "MDVDR", "DVD"],
+	["DVDR", "MDVDR", "DVD", "DVD-R"],
 	["HDDVD", "HD-DVD"],
 	["HDDVDRip"],
 	["BluRay", "Blu-Ray", "MBluRay"],

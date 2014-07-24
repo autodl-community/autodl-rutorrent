@@ -60,6 +60,7 @@ var tvSources =
 	["HDCAM", "HD-CAM", "HD CAM"],
 	["R5"],
 	["TELESYNC", "TS"],
+	["HDTS", "HD-TS", "HD TS"],
 	["TELECINE", "TC"]
 ];
 

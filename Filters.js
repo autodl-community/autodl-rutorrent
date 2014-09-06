@@ -478,6 +478,12 @@ function(multiSelectDlgBox, okHandler)
 								'<td>' +
 									'<label for="autodl-filters-scene">' + theUILang.autodlScene + '</label>' +
 									'<select id="autodl-filters-scene" />' +
+									'<label for="autodl-filters-origins">' + theUILang.autodlOrigins + '</label>' +
+									'<input type="text" class="textbox" id="autodl-filters-origins" title="' + theUILang.autodlTitle60 + '"emptytext="' + theUILang.autodlHint35 + '"/>' +
+								'</td>' +
+							'</tr>' +
+							'<tr>' +
+								'<td>' +
 									'<label for="autodl-filters-cue">Cue</label>' +
 									'<select id="autodl-filters-cue" />' +
 								'</td>' +
@@ -613,6 +619,7 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionInt("autodl-filters-wol-port", "wol-port", "9"),
 		new DialogOptionText("autodl-filters-freeleech-percents", "freeleech-percents", ""),
 		new DialogOptionText("autodl-filters-log-scores", "log-scores", ""),
+		new DialogOptionText("autodl-filters-origins", "origins", ""),
 		new DialogOptionText("autodl-filters-upload-delay-secs", "upload-delay-secs", ""),
 		new DialogOptionBool("autodl-filters-download-duplicates", "download-duplicates", "false")
 	];

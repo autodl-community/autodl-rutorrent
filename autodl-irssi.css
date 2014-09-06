@@ -190,7 +190,8 @@
 }
 #autodl-filters-contents-advanced #autodl-filters-tags,
 #autodl-filters-contents-advanced #autodl-filters-except-tags,
-#autodl-filters-contents-music #autodl-filters-log-scores {
+#autodl-filters-contents-music #autodl-filters-log-scores,
+#autodl-filters-contents-music #autodl-filters-origins {
 	width: 16em;
 }
 #autodl-filters-contents-upload .textbox {

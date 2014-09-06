@@ -106,7 +106,12 @@ theUILang.autodlAuthkey3 = "The authkey in any ";
 theUILang.autodlAuthkey4 = " torrent download link.";
 theUILang.autodlPasskey1 = "The passkey in any ";
 theUILang.autodlPasskey2 = " torrent download link.";
-theUILang.autodlCookie1 = "Go to the tracker and write javascript:document.innerHTML=document.cookie in the address bar and press enter. Select all and copy everything then paste it (Ctrl+V) in the text box below.";
+theUILang.autodlCookie1 = "Log in to your tracker's home page with your browser.<br><br>\
+<strong>Chrome:</strong> Options Menu -&gt; Privacy -&gt; Content Settings -&gt; All cookies and site data<br>\
+<strong>Firefox:</strong> Firefox Menu -&gt; Options -&gt; Privacy -&gt; Show cookies<br>\
+<strong>Safari:</strong> Action Menu -&gt; Preferences -&gt; Privacy -&gt; Details<br><br>\
+Find your tracker site in the cookie or file list.The values needed may vary between trackers. Often these are _uid_ and _pass_.<br />\
+Set the cookie like <strong>uid=XXX; pass=YYY</strong>, separating each key=value pair with a semicolon.";
 theUILang.autodlCookie2 = "The ";
 theUILang.autodlCookie3 = " cookie.";
 theUILang.autodlIdDelta = "Torrent ID delta";
@@ -322,3 +327,9 @@ theUILang.autodlHint33 = "eg. 25, 50, 75-100";
 theUILang.autodlLogScores = "Log Scores";
 theUILang.autodlTitle59 = "Log scores separated by commas.";
 theUILang.autodlHint34 = "eg. 95, 98-100";
+theUILang.autodlOrigins = "Origins";
+theUILang.autodlTitle60 = "Origins separated by commas.";
+theUILang.autodlHint35 = "eg. P2P, Internal,";
+theUILang.autodlOrigins = "Origins";
+theUILang.autodlTitle60 = "Origins separated by commas.";
+theUILang.autodlHint35 = "eg. P2P, Internal, Scene";

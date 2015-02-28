@@ -222,6 +222,13 @@
 	margin: 0;
 	padding: 0;
 }
+
+#autodl-advanced-output-sites-button {
+	margin: 0;
+	padding: 0;
+	width: 12em;
+}
+
 #autodl-irc-autoconn-enabled {
 	margin-top: 5px;
 	margin-bottom: 5px;

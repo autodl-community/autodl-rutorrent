@@ -26,6 +26,61 @@ function Preferences()
 {
 }
 
+function SitesButton(buttonId, textboxId, multiSelectDlgBox)
+{
+	this.buttonElem = document.getElementById(buttonId);
+	this.textboxElem = document.getElementById(textboxId);
+	this.multiSelectDlgBox = multiSelectDlgBox;
+
+	var this_ = this;
+	$(this.buttonElem).click(function(e)
+	{
+		this_._onClick(e);
+	});
+}
+
+SitesButton.prototype._onClick =
+function()
+{
+	var listboxData = [];
+	for (var i = 0; i < this.trackerInfos.length; i++)
+	{
+		var trackerInfo = this.trackerInfos[i];
+		listboxData.push(
+		{
+			displayName: trackerInfo.longName,
+			validNames:
+			[
+				trackerInfo.type,
+				trackerInfo.siteName,
+				trackerInfo.longName
+			]
+		});
+	}
+
+	var data =
+	{
+		selectedText: $(this.textboxElem).myval(),
+		listboxData: listboxData,
+		multiSelect: true,
+		title: theUILang.autodlSelectTrackers,
+		text: theUILang.autodlHoldCtrl,
+		okClicked: function()
+		{
+			$(this_.textboxElem).myval(data.selectedText);
+		}
+	};
+
+	var this_ = this;
+	this.multiSelectDlgBox.show(data)
+}
+
+SitesButton.prototype._setTrackerInfos =
+function(trackerInfos)
+{
+	this.trackerInfos = trackerInfos;
+}
+
 Preferences.prototype.createDialogBox =
 function(multiSelectDlgBox, okHandler)
 {
@@ -159,8 +214,12 @@ function(multiSelectDlgBox, okHandler)
 								'<td><label for="autodl-advanced-max-download-retry-time">' + theUILang.autodlSeconds + '</label></td>' +
 							'</tr>' +
 							'<tr>' +
-								'<td><label for="autodl-advanced-output-level">' + theUILang.autodlAdvancedOutputLevel + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-advanced-output-level" title="' + theUILang.autodlTitle47 + '"/></td>' +
+								'<td><label for="autodl-advanced-output-level">' + theUILang.autodlOutputLevel + '</label></td>' +
+								'<td><input type="text" class="textbox" id="autodl-output-level" title="' + theUILang.autodlTitle47 + '"/></td>' +
+							'</tr>' +
+							'<tr>' +
+								'<td><input type="button" id="autodl-advanced-output-sites-button" class="Button" value="' + theUILang.autodlAdvancedOutputSites + '" /></td>' +
+								'<td><input type="text" class="textbox" id="autodl-advanced-output-sites" title="' + theUILang.autodlTitle61 + '" emptytext="' + theUILang.autodlHint4 + '"/></td>' +
 							'</tr>' +
 						'</tbody>' +
 					'</table>' +
@@ -184,7 +243,8 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionText("autodl-programs-utorrent", "path-utorrent", ""),
 		new DialogOptionText("autodl-advanced-user-agent", "user-agent", "autodl-irssi"),
 		new DialogOptionInt("autodl-advanced-max-download-retry-time", "download-retry-time-seconds", "300"),
-		new DialogOptionInt("autodl-advanced-output-level", "output-level", "3"),
+		new DialogOptionInt("autodl-output-level", "output-level", "3"),
+		new DialogOptionText("autodl-advanced-output-sites", "advanced-output-sites", ""),
 		new DialogOptionBool("autodl-advanced-debug", "debug", "false")
 	];
 
@@ -232,6 +292,8 @@ function(multiSelectDlgBox, okHandler)
 
 	this.uploadMethod = new UploadMethod("autodl-preferences", "autodl-prefs-contents-upload", true);
 
+	this.advancedOutputSitesButton = new SitesButton("autodl-advanced-output-sites-button", "autodl-advanced-output-sites", multiSelectDlgBox);
+
 	$("#autodl-prefs-ok-button").click(function(e) { okHandler() });
 
 	// Do this last so all textboxes have been created
@@ -245,6 +307,7 @@ function(configFile, trackerInfos, trackersId)
 
 	this.uploadMethod.onBeforeShow();
 	this.uploadMethod.initFields(this.configFile.getSection("options", null));
+	this.advancedOutputSitesButton._setTrackerInfos(trackerInfos);
 	initDialogOptions(this.configFile.getSection("options", null), this.options);
 	initDialogOptions(this.configFile.getSection("webui", null), this.webui);
 	initDialogOptions(this.configFile.getSection("ftp", null), this.ftp);
@@ -259,6 +322,7 @@ Preferences.prototype.onAfterHide =
 function()
 {
 	this.uploadMethod.onAfterHide();
+	this.advancedOutputSitesButton._setTrackerInfos(null);
 	this.configFile = null;
 }
 

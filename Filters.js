@@ -471,6 +471,10 @@ function(multiSelectDlgBox, okHandler)
 									'<td><input type="text" class="textbox" id="autodl-filters-sources" title="' + theUILang.autodlTitle12 + '" emptytext="' + theUILang.autodlHint12 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
+									'<td><label for="autodl-filters-containers">' + theUILang.autodlContainers + '</label></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-containers" title="' + theUILang.autodlTitle62 + '" emptytext="' + theUILang.autodlHint36 + '"/></td>' +
+								'</tr>' +
+								'<tr>' +
 									'<td><label for="autodl-filters-years1">' + theUILang.autodlYears + '</label></td>' +
 									'<td><input type="text" class="textbox" id="autodl-filters-years1" title="' + theUILang.autodlTitle13 + '" emptytext="' + theUILang.autodlHint13 + '"/></td>' +
 								'</tr>' +
@@ -625,6 +629,7 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionText("autodl-filters-freeleech-percents", "freeleech-percents", ""),
 		new DialogOptionText("autodl-filters-log-scores", "log-scores", ""),
 		new DialogOptionText("autodl-filters-origins", "origins", ""),
+		new DialogOptionText("autodl-filters-containers", "containers", ""),
 		new DialogOptionText("autodl-filters-upload-delay-secs", "upload-delay-secs", ""),
 		new DialogOptionBool("autodl-filters-download-duplicates", "download-duplicates", "false")
 	];

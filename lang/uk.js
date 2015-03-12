@@ -333,3 +333,6 @@ theUILang.autodlHint35 = "Origins eg. P2P, Internal, User";
 theUILang.autodlAdvancedOutputSites = "Advanced Output Sites";
 theUILang.autodlTitle61 = "List of sites to enable advanced output for, separated by commas. Set to all to enable for all sites.";
 theUILang.autodlP2P = "P2P";
+theUILang.autodlContainers = "Containers";
+theUILang.autodlTitle62 = "Containers separated by commas.";
+theUILang.autodlHint36 = "Containers eg. mkv, mp4";

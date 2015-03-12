@@ -336,3 +336,6 @@ theUILang.autodlP2P = "P2P";
 theUILang.autodlContainers = "Containers";
 theUILang.autodlTitle62 = "Containers separated by commas.";
 theUILang.autodlHint36 = "Containers eg. mkv, mp4";
+theUILang.autodlUseRegex = "Use regex for match/except-releases";
+theUILang.autodlTitle63 = "Check this to use regex for match/except releases filter options instead of wildcard syntax.";
+theUILang.autodlFiltersUseRegex = "Use regex";

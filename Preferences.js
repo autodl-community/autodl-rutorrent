@@ -117,6 +117,12 @@ function(multiSelectDlgBox, okHandler)
 					'</div>' +
 					'<div>' +
 						'<td>' +
+							'<input type="checkbox" id="autodl-use-regex" title="' + theUILang.autodlTitle63 + '"/>' +
+							'<label for="autodl-use-regex" title="' + theUILang.autodlTitle63 + '">' + theUILang.autodlUseRegex + '</label>' +
+						'</td>' +
+					'</div>' +
+					'<div>' +
+						'<td>' +
 							'<input type="checkbox" id="autodl-unique-name" title="' + theUILang.autodlUniqueNameTitle + '"/>' +
 							'<label for="autodl-unique-name" title="' + theUILang.autodlUniqueNameTitle + '">' + theUILang.autodlUniqueName + '</label>' +
 						'</td>' +
@@ -240,6 +246,7 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionBool("autodl-save-download-history", "save-download-history", "true"),
 		new DialogOptionBool("autodl-unique-name", "unique-torrent-names", "false"),
 		new DialogOptionBool("autodl-download-duplicates", "download-duplicates", "false"),
+		new DialogOptionBool("autodl-use-regex", "use-regex", "false"),
 		new DialogOptionText("autodl-programs-utorrent", "path-utorrent", ""),
 		new DialogOptionText("autodl-advanced-user-agent", "user-agent", "autodl-irssi"),
 		new DialogOptionInt("autodl-advanced-max-download-retry-time", "download-retry-time-seconds", "300"),

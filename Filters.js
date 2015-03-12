@@ -411,6 +411,16 @@ function(multiSelectDlgBox, okHandler)
 									'<td><input type="text" class="textbox" id="autodl-filters-except-releases" title="' + theUILang.autodlTitle3 + '" emptytext="' + theUILang.autodlHint3 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
+									'<td>' +
+										'<input type="checkbox" id="autodl-filters-use-regex" title="' + theUILang.autodlTitle63 + '"/>' +
+										'<label for="autodl-filters-use-regex" title="' + theUILang.autodlTitle63 + '">' + theUILang.autodlFiltersUseRegex + '</label>' +
+									'</td>' +
+								'</tr>' +
+							'</tbody>' +
+						'</table>' +
+						'<table>' +
+							'<tbody>' +
+								'<tr>' +
 									'<td><input type="button" id="autodl-filters-match-sites-button" class="Button" value="' + theUILang.autodlMatchSites + '" /></td>' +
 									'<td><input type="text" class="textbox" id="autodl-filters-match-sites" title="' + theUILang.autodlTitle4 + '" emptytext="' + theUILang.autodlHint4 + '"/></td>' +
 								'</tr>' +
@@ -631,7 +641,8 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionText("autodl-filters-origins", "origins", ""),
 		new DialogOptionText("autodl-filters-containers", "containers", ""),
 		new DialogOptionText("autodl-filters-upload-delay-secs", "upload-delay-secs", ""),
-		new DialogOptionBool("autodl-filters-download-duplicates", "download-duplicates", "false")
+		new DialogOptionBool("autodl-filters-download-duplicates", "download-duplicates", "false"),
+		new DialogOptionBool("autodl-filters-use-regex", "use-regex", "false")
 	];
 
 	var this_ = this;

@@ -184,14 +184,16 @@
 }
 #autodl-filters-contents-wol .textbox,
 #autodl-filters-contents-general .textbox,
-#autodl-filters-contents-tv .textbox,
+#autodl-filters-contents-p2p .textbox,
+#autodl-filters-contents-tv-movie .textbox,
 #autodl-filters-contents-music .textbox {
 	width: 23em;
 }
 #autodl-filters-contents-advanced #autodl-filters-tags,
 #autodl-filters-contents-advanced #autodl-filters-except-tags,
 #autodl-filters-contents-music #autodl-filters-log-scores,
-#autodl-filters-contents-music #autodl-filters-origins {
+#autodl-filters-contents-p2p #autodl-filters-origins,
+#autodl-filters-contents-p2p #autodl-filters-freeleech-percents {
 	width: 16em;
 }
 #autodl-filters-contents-upload .textbox {

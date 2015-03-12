@@ -346,3 +346,4 @@ theUILang.autodlTitle60 = "Origins separated by commas.";
 theUILang.autodlHint35 = "eg. P2P, Internal, Scene";
 theUILang.autodlAdvancedOutputSites = "Advanced Output Sites";
 theUILang.autodlTitle61 = "List of sites to enable advanced output for, separated by commas. Set to all to enable for all sites.";
+theUILang.autodlP2P = "P2P";

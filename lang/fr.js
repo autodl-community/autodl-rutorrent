@@ -353,4 +353,8 @@ theUILang.autodlHint36 = "Containers eg. mkv, mp4";
 theUILang.autodlUseRegex = "Use regex for match/except-releases";
 theUILang.autodlTitle63 = "Check this to use regex for match/except releases filter options instead of wildcard syntax.";
 theUILang.autodlFiltersUseRegex = "Use regex";
+theUILang.autodlMatchReleaseTypes = "Match release types";
+theUILang.autodlExceptReleaseTypes = "Except release types";
+theUILang.autodlTitle64 = "Release types separated by commas.";
+theUILang.autodlHint37 = "Release types eg. Album, EP";
 

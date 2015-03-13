@@ -518,6 +518,14 @@ function(multiSelectDlgBox, okHandler)
 									'<td><input type="button" id="autodl-filters-media-button" class="Button" value="' + theUILang.autodlMedia + '" /></td>' +
 									'<td><input type="text" class="textbox" id="autodl-filters-media" title="' + theUILang.autodlTitle18 + '" emptytext="' + theUILang.autodlHint18 + '"/></td>' +
 								'</tr>' +
+								'<tr>' +
+									'<td><label for="autodl-filters-match-release-types">' + theUILang.autodlMatchReleaseTypes + '</label></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-match-release-types" title="' + theUILang.autodlTitle64 + '" emptytext="' + theUILang.autodlHint37 + '"/></td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td><label for="autodl-filters-except-release-types">' + theUILang.autodlExceptReleaseTypes + '</label></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-except-release-types" title="' + theUILang.autodlTitle64 + '" emptytext="' + theUILang.autodlHint37 + '"/></td>' +
+								'</tr>' +
 							'</tbody>' +
 						'</table>' +
 						'<table>' +
@@ -627,6 +635,8 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionText("autodl-filters-formats", "formats", ""),
 		new DialogOptionText("autodl-filters-bitrates", "bitrates", ""),
 		new DialogOptionText("autodl-filters-media", "media", ""),
+		new DialogOptionText("autodl-filters-match-release-types", "match-release-types", ""),
+		new DialogOptionText("autodl-filters-except-release-types", "except-release-types", ""),
 		new DialogOptionText("autodl-filters-tags", "tags", ""),
 		new DialogOptionText("autodl-filters-except-tags", "except-tags", ""),
 		new DialogOptionText("autodl-filters-match-uploaders", "match-uploaders", ""),

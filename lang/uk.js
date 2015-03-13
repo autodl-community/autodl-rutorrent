@@ -343,3 +343,7 @@ theUILang.autodlMatchReleaseTypes = "Match release types";
 theUILang.autodlExceptReleaseTypes = "Except release types";
 theUILang.autodlTitle64 = "Release types separated by commas.";
 theUILang.autodlHint37 = "Release types eg. Album, EP";
+theUILang.autodlMatchReleaseGroups = "Match release groups";
+theUILang.autodlExceptReleaseGroups = "Except release groups";
+theUILang.autodlTitle65 = "Release groups separated by commas.";
+theUILang.autodlHint38 = "Release groups eg. HiFi, decibeL";

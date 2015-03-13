@@ -429,6 +429,14 @@ function(multiSelectDlgBox, okHandler)
 									'<td><input type="text" class="textbox" id="autodl-filters-except-sites" title="' + theUILang.autodlTitle24 + '" emptytext="' + theUILang.autodlHint23 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
+									'<td><label for="autodl-filters-match-release-groups">' + theUILang.autodlMatchReleaseGroups + '</label></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-match-release-groups" title="' + theUILang.autodlTitle65 + '" emptytext="' + theUILang.autodlHint38 + '"/></td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td><label for="autodl-filters-except-release-groups">' + theUILang.autodlExceptReleaseGroups + '</label></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-except-release-groups" title="' + theUILang.autodlTitle65 + '" emptytext="' + theUILang.autodlHint38 + '"/></td>' +
+								'</tr>' +
+								'<tr>' +
 									'<td><label for="autodl-filters-max-pretime">' + theUILang.autodlMaxPreTime + '</label></td>' +
 									'<td><input type="text" class="textbox" id="autodl-filters-max-pretime" title="' + theUILang.autodlTitle25 + '" emptytext="' + theUILang.autodlHint24 + '"/></td>' +
 								'</tr>' +
@@ -616,6 +624,8 @@ function(multiSelectDlgBox, okHandler)
 	[
 		new DialogOptionText("autodl-filters-match-releases", "match-releases", ""),
 		new DialogOptionText("autodl-filters-except-releases", "except-releases", ""),
+		new DialogOptionText("autodl-filters-match-release-groups", "match-release-groups", ""),
+		new DialogOptionText("autodl-filters-except-release-groups", "except-release-groups", ""),
 		new DialogOptionText("autodl-filters-match-categories", "match-categories", ""),
 		new DialogOptionText("autodl-filters-except-categories", "except-categories", ""),
 		new DialogOptionText("autodl-filters-match-sites", "match-sites", ""),

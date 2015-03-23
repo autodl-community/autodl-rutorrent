@@ -363,6 +363,14 @@ function(multiSelectDlgBox, okHandler)
 									'<td><input type="text" class="textbox" id="autodl-filters-name" title="' + theUILang.autodlTitle1 + '" emptytext="' + theUILang.autodlHint1 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
+									'<td><input type="button" id="autodl-filters-match-sites-button" class="Button" value="' + theUILang.autodlMatchSites + '" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-match-sites" title="' + theUILang.autodlTitle4 + '" emptytext="' + theUILang.autodlHint4 + '"/></td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td><input type="button" id="autodl-filters-except-sites-button" class="Button" value="' + theUILang.autodlExceptSites + '" /></td>' +
+									'<td><input type="text" class="textbox" id="autodl-filters-except-sites" title="' + theUILang.autodlTitle24 + '" emptytext="' + theUILang.autodlHint23 + '"/></td>' +
+								'</tr>' +
+								'<tr>' +
 									'<td><label for="autodl-filters-min-size">' + theUILang.autodlMinimumSize + '</label></td>' +
 									'<td><input type="text" class="textbox" id="autodl-filters-min-size" title="' + theUILang.autodlTitle5 + '" emptytext="' + theUILang.autodlHint5 + '"/></td>' +
 								'</tr>' +
@@ -420,14 +428,6 @@ function(multiSelectDlgBox, okHandler)
 						'</table>' +
 						'<table>' +
 							'<tbody>' +
-								'<tr>' +
-									'<td><input type="button" id="autodl-filters-match-sites-button" class="Button" value="' + theUILang.autodlMatchSites + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-match-sites" title="' + theUILang.autodlTitle4 + '" emptytext="' + theUILang.autodlHint4 + '"/></td>' +
-								'</tr>' +
-								'<tr>' +
-									'<td><input type="button" id="autodl-filters-except-sites-button" class="Button" value="' + theUILang.autodlExceptSites + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-except-sites" title="' + theUILang.autodlTitle24 + '" emptytext="' + theUILang.autodlHint23 + '"/></td>' +
-								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-match-release-groups">' + theUILang.autodlMatchReleaseGroups + '</label></td>' +
 									'<td><input type="text" class="textbox" id="autodl-filters-match-release-groups" title="' + theUILang.autodlTitle65 + '" emptytext="' + theUILang.autodlHint38 + '"/></td>' +

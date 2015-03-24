@@ -426,6 +426,7 @@ function(multiSelectDlgBox, okHandler)
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
+						'<hr>' +
 						'<table>' +
 							'<tbody>' +
 								'<tr>' +

@@ -61,7 +61,7 @@ function(aryFiles, func)
 		return func();
 	for (var i = 0; i < aryFiles.length; i++)
 	{
-		injectScript(this.path + aryFiles[i], function()
+		injectScript(this.path + 'js/' + aryFiles[i], function()
 		{
 			if (--numFiles === 0)
 				func();
@@ -92,7 +92,7 @@ function()
 	var this_ = this;
 
 	$("body").addClass("theme-" + this.getThemeName());
-	this.loadMainCSS();
+	this.loadCSS("css/autodl-irssi");
 
 	// Note: These files aren't necessarily loaded in order! They must not rely on other JS files.
 	this.loadJavaScriptFiles(

@@ -186,12 +186,6 @@ function(name)
 		return;
 	}
 
-	if (this._isOneOfOurDialogsVisible())
-	{
-		alert(theUILang.autodlCloseOther);
-		return;
-	}
-
 	this.dialogName = name;
 	this._downloadFiles();
 }

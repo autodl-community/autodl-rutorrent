@@ -6,7 +6,7 @@ theUILang.autodlServers = "Information sur les salons d'annonces IRC";
 theUILang.autodlPreferences2 = "Préférences...";
 theUILang.autodlFilters2 = "Filtres...";
 theUILang.autodlTrackers2 = "Config trackers...";
-theUILang.autodlServers2 = "Annonces IRC...";
+theUILang.autodlServers2 = "Annonces IRC";
 theUILang.autodlHelp = "Aide";
 //Preferences
 theUILang.autodlGeneral = "Général";

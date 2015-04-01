@@ -411,6 +411,10 @@
 	width: 100px;
 }
 
+#autodl-ircsrvs-announce-channels-button {
+	width: 125px;
+}
+
 #autodl-irssi-log {
 	overflow: auto;
 	font-family: "Courier New", Courier, monospace;

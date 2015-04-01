@@ -337,7 +337,7 @@ function(multiSelectDlgBox, okHandler)
 		'<div id="autodl-filters">' +
 			'<div id="autodl-filters-left">' +
 				'<div id="autodl-filters-list" />' +
-				'<div id="autodl-filters-list-buttons">' +
+				'<div id="autodl-filters-list-buttons" align="center">' +
 					'<input type="button" class="Button" id="autodl-filters-new-button" value="' + theUILang.autodlNew + '" />' +
 					'<input type="button" class="Button" id="autodl-filters-remove-button" value="' + theUILang.autodlRemove + '" />' +
 				'</div>' +

@@ -7,7 +7,8 @@ theUILang.autodlPreferences2 = "Préférences...";
 theUILang.autodlFilters2 = "Filtres...";
 theUILang.autodlTrackers2 = "Config trackers...";
 theUILang.autodlServers2 = "Annonces IRC";
-theUILang.autodlHelp = "Aide";
+theUILang.autodlHelp = "autodl-irssi Aide";
+theUILang.autodlHelp2 = "Aide";
 //Preferences
 theUILang.autodlGeneral = "Général";
 theUILang.autodlUploadMethod = "Action";

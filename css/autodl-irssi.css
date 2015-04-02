@@ -44,6 +44,7 @@
 #autodl-trackers-header,
 #autodl-servers-header,
 #autodl-ircsrvs-header,
+#autodl-help-header,
 #autodl-multiselect-header {
 	background-image: url("../../../images/settings.gif");
 }
@@ -118,6 +119,16 @@
 }
 .theme-acid .listboxItemSelected:hover {
 	background: #4D555C;
+}
+
+#autodl-help {
+	height: 225px;
+	width: 250px;
+}
+
+#autodl-help a,
+#autodl-help p {
+	font-size: 12px;
 }
 
 #autodl-servers {

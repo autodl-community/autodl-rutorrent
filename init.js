@@ -108,6 +108,7 @@ function()
 		'Trackers.js',
 		'Servers.js',
 		'IrcServers.js',
+		'Help.js',
 		'AutodlFilesDownloader.js',
 		'ConfigFileParser.js',
 		'TrackerInfo.js',
@@ -174,10 +175,7 @@ function(e)
 	theContextMenu.add([theUILang.autodlTrackers2, function() { this_.dialogManager.toggleDialog("trackers"); }]);
 	theContextMenu.add([theUILang.autodlPreferences2, function() { this_.dialogManager.toggleDialog("preferences"); }]);
 	theContextMenu.add([CMENU_SEP]);
-	theContextMenu.add([theUILang.autodlHelp, function() {}]);
-
-	// There's no way to add href links so add this fugly hack
-	$($("a", theContextMenu.obj)[5]).attr("target", "_blank").attr("href", "http://sourceforge.net/apps/phpbb/autodl-irssi/");
+	theContextMenu.add([theUILang.autodlHelp2, function() { this_.dialogManager.toggleDialog("help"); }]);
 
 	var offset = $("#autodl-tb").offset();
 	var x = offset.left - 5;

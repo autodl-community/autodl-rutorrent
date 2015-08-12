@@ -97,7 +97,6 @@ function()
 	// Note: These files aren't necessarily loaded in order! They must not rely on other JS files.
 	this.loadJavaScriptFiles(
 	[
-		'EmptyText.js',
 		'ListBox.js',
 		'Tabs.js',
 		'DialogUtils.js',

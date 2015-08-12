@@ -73,9 +73,6 @@ function(multiSelectDlgBox, okHandler)
 	this.trackerListBox.onSelected = function(oldObj, newObj) { this_._onTrackerSelected(oldObj, newObj); }
 
 	$("#autodl-servers-close-button").click(function(e) { okHandler() });
-
-	// Do this last so all textboxes have been created
-	installEmptyTextHandlers("autodl-servers");
 }
 
 Servers.prototype.onOkClicked =
@@ -147,7 +144,7 @@ function(oldObj, newObj)
 	function setIt(obj, id, propName)
 	{
 		var server = (obj || {}).server || {};
-		$("#" + id).myval(server[propName] || "");
+		$("#" + id).val(server[propName] || "");
 	}
 	setIt(newObj, "autodl-servers-network", "network");
 	setIt(newObj, "autodl-servers-servers", "serverNames");

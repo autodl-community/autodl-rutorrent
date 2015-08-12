@@ -209,7 +209,7 @@ function(trackerInfoElem)
 			type:			readAttribute(elem, "type"),
 			defaultValue:	readAttribute(elem, "defaultValue", ""),
 			text:			readAttribute(elem, "text"),
-			emptytext:		readAttribute(elem, "emptytext"),
+			placeholder:	readAttribute(elem, "placeholder"),
 			tooltiptext:	readAttribute(elem, "tooltiptext"),
 			pasteGroup:		readAttribute(elem, "pasteGroup"),
 			pasteRegex:		readAttribute(elem, "pasteRegex"),
@@ -263,7 +263,7 @@ function(setting, elemName)
 		setProp("type", "textbox");
 		setProp("name", "authkey");
 		setProp("text", "authkey");
-		setProp("emptytext", this.longName + " " + setting.name);
+		setProp("placeholder", this.longName + " " + setting.name);
 		setProp("tooltiptext", theUILang.autodlAuthkey1 + this.longName + theUILang.autodlAuthkey2);
 		setProp("pasteGroup", "authkey,torrent_pass");
 		setProp("pasteRegex", "[\\?&]authkey=([\\da-zA-Z]{32})");
@@ -273,7 +273,7 @@ function(setting, elemName)
 		setProp("type", "textbox");
 		setProp("name", "torrent_pass");
 		setProp("text", "torrent_pass");
-		setProp("emptytext", this.longName + " " + setting.name);
+		setProp("placeholder", this.longName + " " + setting.name);
 		setProp("tooltiptext", theUILang.autodlTorrentPass1 + this.longName + theUILang.autodlTorrentPass2);
 		setProp("pasteGroup", "authkey,torrent_pass");
 		setProp("pasteRegex", "[\\?&]torrent_pass=([\\da-zA-Z]{32})");
@@ -287,7 +287,7 @@ function(setting, elemName)
 		setProp("type", "textbox");
 		setProp("name", "authkey");
 		setProp("text", "authkey");
-		setProp("emptytext", this.longName + " " + setting.name);
+		setProp("placeholder", this.longName + " " + setting.name);
 		setProp("tooltiptext", theUILang.autodlAuthkey3 + this.longName + theUILang.autodlAuthkey4);
 		setProp("pasteGroup", "authkey");
 		setProp("pasteRegex", "[\\?&]authkey=([\\da-fA-F]{32})");
@@ -297,7 +297,7 @@ function(setting, elemName)
 		setProp("type", "textbox");
 		setProp("name", "passkey");
 		setProp("text", "passkey");
-		setProp("emptytext", this.longName + " passkey");
+		setProp("placeholder", this.longName + " passkey");
 		setProp("tooltiptext", theUILang.autodlPasskey1 + this.longName + theUILang.autodlPasskey2);
 		setProp("pasteGroup", "passkey");
 		setProp("pasteRegex", "[\\?&]passkey=([\\da-fA-F]{32})");
@@ -312,7 +312,7 @@ function(setting, elemName)
 		setProp("type", "textbox");
 		setProp("name", "cookie");
 		setProp("text", "Cookie");
-		setProp("emptytext", this.longName + " " + setting.name);
+		setProp("placeholder", this.longName + " " + setting.name);
 		setProp("tooltiptext", theUILang.autodlCookie2 + this.longName + theUILang.autodlCookie3);
 	}
 	else if (elemName === "integer")
@@ -330,7 +330,7 @@ function(setting, elemName)
 	else if (elemName === "textbox")
 	{
 		setProp("type", "textbox");
-		setProp("emptytext", this.longName + " " + setting.name);
+		setProp("placeholder", this.longName + " " + setting.name);
 	}
 
 	if (setting.pasteRegex)

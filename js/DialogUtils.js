@@ -136,7 +136,7 @@ function initDialogOptions(section, aryDlgOptions)
 				$("#" + dlgOption.id).removeAttr("checked");
 		}
 		else
-			$("#" + dlgOption.id).myval(val);
+			$("#" + dlgOption.id).val(val);
 	}
 }
 
@@ -153,7 +153,7 @@ function saveDialogOptions(section, aryDlgOptions)
 		if (dlgOption.type === "bool")
 			val = $("#" + dlgOption.id)[0].checked;
 		else
-			val = $("#" + dlgOption.id).myval();
+			val = $("#" + dlgOption.id).val();
 
 		if (val == null)
 			val = "";
@@ -295,11 +295,11 @@ function SyncTextBoxes(ids)
 SyncTextBoxes.prototype.setNewValue =
 function(index)
 {
-	var newValue = $(this.textboxElems[index]).myval();
+	var newValue = $(this.textboxElems[index]).val();
 	for (var i = 0; i < this.textboxElems.length; i++)
 	{
 		if (i === index)
 			continue;
-		$(this.textboxElems[i]).myval(newValue);
+		$(this.textboxElems[i]).val(newValue);
 	}
 }

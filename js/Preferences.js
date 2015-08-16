@@ -60,14 +60,14 @@ function()
 
 	var data =
 	{
-		selectedText: $(this.textboxElem).myval(),
+		selectedText: $(this.textboxElem).val(),
 		listboxData: listboxData,
 		multiSelect: true,
 		title: theUILang.autodlSelectTrackers,
 		text: theUILang.autodlHoldCtrl,
 		okClicked: function()
 		{
-			$(this_.textboxElem).myval(data.selectedText);
+			$(this_.textboxElem).val(data.selectedText);
 		}
 	};
 
@@ -190,9 +190,9 @@ function(multiSelectDlgBox, okHandler)
 							'</tr>' +
 							'<tr>' +
 								'<td><label for="autodl-irc-server">' + theUILang.autodlOutputServer + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-irc-server" title="' + theUILang.autodlOutputServerTitle + '" emptytext="' + theUILang.autodlOutputServerEmpty + '"/></td>' +
+								'<td><input type="text" class="textbox" id="autodl-irc-server" title="' + theUILang.autodlOutputServerTitle + '" placeholder="' + theUILang.autodlOutputServerEmpty + '"/></td>' +
 								'<td><label for="autodl-irc-channel">' + theUILang.autodlOutputChannel + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-irc-channel" title="' + theUILang.autodlOutputChannelTitle + '" emptytext="' + theUILang.autodlOutputChannelEmpty + '"/></td>' +
+								'<td><input type="text" class="textbox" id="autodl-irc-channel" title="' + theUILang.autodlOutputChannelTitle + '" placeholder="' + theUILang.autodlOutputChannelEmpty + '"/></td>' +
 							'</tr>' +
 						'</tbody>' +
 					'</table>' +
@@ -202,7 +202,7 @@ function(multiSelectDlgBox, okHandler)
 						'<tbody>' +
 							'<tr>' +
 								'<td><label for="autodl-programs-utorrent">' + theUILang.autodlUtorrentExe + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-programs-utorrent" title="' + theUILang.autodlTitle42 + '" emptytext="' + theUILang.autodlHint31 + '"/></td>' +
+								'<td><input type="text" class="textbox" id="autodl-programs-utorrent" title="' + theUILang.autodlTitle42 + '" placeholder="' + theUILang.autodlHint31 + '"/></td>' +
 							'</tr>' +
 						'</tbody>' +
 					'</table>' +
@@ -212,7 +212,7 @@ function(multiSelectDlgBox, okHandler)
 						'<tbody>' +
 							'<tr>' +
 								'<td><label for="autodl-advanced-user-agent">' + theUILang.autodlDownloadUserAgent + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-advanced-user-agent" title="' + theUILang.autodlTitle43 + '" emptytext="' + theUILang.autodlHint32 + '"/></td>' +
+								'<td><input type="text" class="textbox" id="autodl-advanced-user-agent" title="' + theUILang.autodlTitle43 + '" placeholder="' + theUILang.autodlHint32 + '"/></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><label for="autodl-advanced-max-download-retry-time">' + theUILang.autodlMaxDlRetryTime + '</label></td>' +
@@ -225,7 +225,7 @@ function(multiSelectDlgBox, okHandler)
 							'</tr>' +
 							'<tr>' +
 								'<td><input type="button" id="autodl-advanced-output-sites-button" class="Button" value="' + theUILang.autodlAdvancedOutputSites + '" /></td>' +
-								'<td><input type="text" class="textbox" id="autodl-advanced-output-sites" title="' + theUILang.autodlTitle61 + '" emptytext="' + theUILang.autodlHint4 + '"/></td>' +
+								'<td><input type="text" class="textbox" id="autodl-advanced-output-sites" title="' + theUILang.autodlTitle61 + '" placeholder="' + theUILang.autodlHint4 + '"/></td>' +
 							'</tr>' +
 						'</tbody>' +
 					'</table>' +
@@ -302,9 +302,6 @@ function(multiSelectDlgBox, okHandler)
 	this.advancedOutputSitesButton = new SitesButton("autodl-advanced-output-sites-button", "autodl-advanced-output-sites", multiSelectDlgBox);
 
 	$("#autodl-prefs-ok-button").click(function(e) { okHandler() });
-
-	// Do this last so all textboxes have been created
-	installEmptyTextHandlers("autodl-preferences");
 }
 
 Preferences.prototype.onBeforeShow =

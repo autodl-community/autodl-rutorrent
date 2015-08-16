@@ -31,7 +31,17 @@
 	padding: 0;
 }
 
-.emptytext-set {
+::-webkit-input-placeholder {
+	color: gray;
+	font-style: italic;
+}
+
+::-moz-placeholder {
+	color: gray;
+	font-style: italic;
+}
+
+:-ms-input-placeholder {
 	color: gray;
 	font-style: italic;
 }

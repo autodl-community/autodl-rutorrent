@@ -150,7 +150,7 @@ function UploadMethod(idDlg, idParent, isPrefs)
 				'<tbody>' +
 					'<tr>' +
 						'<td><label for="' + this.id("ftp-path") + '">' + theUILang.autodlFtpPath + '</label></td>' +
-						'<td><input type="text" class="textbox" id="' + this.id("ftp-path") + '" title="' + theUILang.autodlTitle27 + '" emptytext="' + theUILang.autodlHint27 + '"/></td>' +
+						'<td><input type="text" class="textbox" id="' + this.id("ftp-path") + '" title="' + theUILang.autodlTitle27 + '" placeholder="' + theUILang.autodlHint27 + '"/></td>' +
 					'</tr>' +
 				'</tbody>' +
 			'</table>' +
@@ -160,11 +160,11 @@ function UploadMethod(idDlg, idParent, isPrefs)
 				'<tbody>' +
 					'<tr>' +
 						'<td><label for="' + this.id("program-command") + '">' + theUILang.autodlCommand + '</label></td>' +
-						'<td><input type="text" class="textbox" id="' + this.id("program-command") + '" title="' + theUILang.autodlTitle28 + '" emptytext="' + theUILang.autodlHint28 + '"/></td>' +
+						'<td><input type="text" class="textbox" id="' + this.id("program-command") + '" title="' + theUILang.autodlTitle28 + '" placeholder="' + theUILang.autodlHint28 + '"/></td>' +
 					'</tr>' +
 					'<tr>' +
 						'<td><label for="' + this.id("program-args") + '">' + theUILang.autodlArguments + '</label></td>' +
-						'<td><input type="text" class="textbox" id="' + this.id("program-args") + '" title="' + theUILang.autodlTitle29 + '" emptytext="' + theUILang.autodlHint29 + '"/></td>' +
+						'<td><input type="text" class="textbox" id="' + this.id("program-args") + '" title="' + theUILang.autodlTitle29 + '" placeholder="' + theUILang.autodlHint29 + '"/></td>' +
 					'</tr>' +
 				'</tbody>' +
 			'</table>' +
@@ -174,7 +174,7 @@ function UploadMethod(idDlg, idParent, isPrefs)
 				'<tbody>' +
 					'<tr>' +
 						'<td><label for="' + this.id("dyndir-dir") + '">' + theUILang.autodlFolder + '</label></td>' +
-						'<td><input type="text" class="textbox" id="' + this.id("dyndir-dir") + '" title="' + theUILang.autodlTitle30 + '" emptytext="' + theUILang.autodlHint30 + '"/></td>' +
+						'<td><input type="text" class="textbox" id="' + this.id("dyndir-dir") + '" title="' + theUILang.autodlTitle30 + '" placeholder="' + theUILang.autodlHint30 + '"/></td>' +
 					'</tr>' +
 				'</tbody>' +
 			'</table>' +

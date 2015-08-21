@@ -360,23 +360,23 @@ function(multiSelectDlgBox, okHandler)
 							'<tbody>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-name">' + theUILang.autodlDisplayName + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-name" title="' + theUILang.autodlTitle1 + '" placeholder="' + theUILang.autodlHint1 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-name" title="' + theUILang.autodlTitle1 + '" placeholder="' + theUILang.autodlHint1 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><input type="button" id="autodl-filters-match-sites-button" class="Button" value="' + theUILang.autodlMatchSites + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-match-sites" title="' + theUILang.autodlTitle4 + '" placeholder="' + theUILang.autodlHint4 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-match-sites" title="' + theUILang.autodlTitle4 + '" placeholder="' + theUILang.autodlHint4 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><input type="button" id="autodl-filters-except-sites-button" class="Button" value="' + theUILang.autodlExceptSites + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-except-sites" title="' + theUILang.autodlTitle24 + '" placeholder="' + theUILang.autodlHint23 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-except-sites" title="' + theUILang.autodlTitle24 + '" placeholder="' + theUILang.autodlHint23 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-min-size">' + theUILang.autodlMinimumSize + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-min-size" title="' + theUILang.autodlTitle5 + '" placeholder="' + theUILang.autodlHint5 + '"/></td>' +
+									'<td><input type="text" class="textbox-16" id="autodl-filters-min-size" title="' + theUILang.autodlTitle5 + '" placeholder="' + theUILang.autodlHint5 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-max-size">' + theUILang.autodlMaximumSize + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-max-size" title="' + theUILang.autodlTitle6 + '" placeholder="' + theUILang.autodlHint6 + '"/></td>' +
+									'<td><input type="text" class="textbox-16" id="autodl-filters-max-size" title="' + theUILang.autodlTitle6 + '" placeholder="' + theUILang.autodlHint6 + '"/></td>' +
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
@@ -385,13 +385,13 @@ function(multiSelectDlgBox, okHandler)
 								'<tr>' +
 									'<td>' +
 										'<label for="autodl-filters-upload-delay-secs">' + theUILang.autodlUploadDelay + '</label>' +
-										'<input type="text" class="textbox" id="autodl-filters-upload-delay-secs" title="' + theUILang.autodlUploadDelay2 + '" />' +
+										'<input type="text" class="textbox-5" id="autodl-filters-upload-delay-secs" title="' + theUILang.autodlUploadDelay2 + '" />' +
 									'</td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td>' +
 										'<label for="autodl-filters-max-downloads">' + theUILang.autodlMaxDownloads + '</label>' +
-										'<input type="text" class="textbox" id="autodl-filters-max-downloads" title="' + theUILang.autodlMaxDownloadsTitle + '" />' +
+										'<input type="text" class="textbox-5" id="autodl-filters-max-downloads" title="' + theUILang.autodlMaxDownloadsTitle + '" />' +
 										'<label for="autodl-filters-max-downloads-per">' + theUILang.autodlMaxDownloads2 + '</label>' +
 										'<select id="autodl-filters-max-downloads-per" />' +
 										'<label for="autodl-filters-max-downloads-per">' + theUILang.autodlMaxDownloads3 + '</label>' +
@@ -412,11 +412,11 @@ function(multiSelectDlgBox, okHandler)
 							'<tbody>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-match-releases">' + theUILang.autodlMatchReleases + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-match-releases" title="' + theUILang.autodlTitle2 + '" placeholder="' + theUILang.autodlHint2 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-match-releases" title="' + theUILang.autodlTitle2 + '" placeholder="' + theUILang.autodlHint2 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-except-releases">' + theUILang.autodlExceptReleases + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-except-releases" title="' + theUILang.autodlTitle3 + '" placeholder="' + theUILang.autodlHint3 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-except-releases" title="' + theUILang.autodlTitle3 + '" placeholder="' + theUILang.autodlHint3 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td>' +
@@ -431,15 +431,15 @@ function(multiSelectDlgBox, okHandler)
 							'<tbody>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-match-release-groups">' + theUILang.autodlMatchReleaseGroups + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-match-release-groups" title="' + theUILang.autodlTitle65 + '" placeholder="' + theUILang.autodlHint38 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-match-release-groups" title="' + theUILang.autodlTitle65 + '" placeholder="' + theUILang.autodlHint38 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-except-release-groups">' + theUILang.autodlExceptReleaseGroups + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-except-release-groups" title="' + theUILang.autodlTitle65 + '" placeholder="' + theUILang.autodlHint38 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-except-release-groups" title="' + theUILang.autodlTitle65 + '" placeholder="' + theUILang.autodlHint38 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-max-pretime">' + theUILang.autodlMaxPreTime + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-max-pretime" title="' + theUILang.autodlTitle25 + '" placeholder="' + theUILang.autodlHint24 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-max-pretime" title="' + theUILang.autodlTitle25 + '" placeholder="' + theUILang.autodlHint24 + '"/></td>' +
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
@@ -449,7 +449,7 @@ function(multiSelectDlgBox, okHandler)
 									'<label for="autodl-filters-scene">' + theUILang.autodlScene + '</label>' +
 									'<select id="autodl-filters-scene" />' +
 									'<label for="autodl-filters-origins">' + theUILang.autodlOrigins + '</label>' +
-									'<input type="text" class="textbox" id="autodl-filters-origins" title="' + theUILang.autodlTitle60 + '"placeholder="' + theUILang.autodlHint35 + '"/>' +
+									'<input type="text" class="textbox-16" id="autodl-filters-origins" title="' + theUILang.autodlTitle60 + '"placeholder="' + theUILang.autodlHint35 + '"/>' +
 								'</td>' +
 							'</tr>' +
 							'<tr>' +
@@ -457,7 +457,7 @@ function(multiSelectDlgBox, okHandler)
 									'<label for="autodl-filters-freeleech">' + theUILang.autodlFreeleech + '</label>' +
 									'<select id="autodl-filters-freeleech" />' +
 									'<label for="autodl-filters-feeleech-percents">' + theUILang.autodlFreeleechPercents + '</label>' +
-									'<input type="text" class="textbox" id="autodl-filters-freeleech-percents" title="' + theUILang.autodlTitle58 + '" placeholder="' + theUILang.autodlHint33 + '"/>' +
+									'<input type="text" class="textbox-16" id="autodl-filters-freeleech-percents" title="' + theUILang.autodlTitle58 + '" placeholder="' + theUILang.autodlHint33 + '"/>' +
 								'</td>' +
 							'</tr>' +
 						'</table>' +
@@ -467,35 +467,35 @@ function(multiSelectDlgBox, okHandler)
 							'<tbody>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-shows">' + theUILang.autodlTvShowMovie + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-shows" title="' + theUILang.autodlTitle7 + '" placeholder="' + theUILang.autodlHint7 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-shows" title="' + theUILang.autodlTitle7 + '" placeholder="' + theUILang.autodlHint7 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-seasons">' + theUILang.autodlSeasons + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-seasons" title="' + theUILang.autodlTitle8 + '" placeholder="' + theUILang.autodlHint8 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-seasons" title="' + theUILang.autodlTitle8 + '" placeholder="' + theUILang.autodlHint8 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-episodes">' + theUILang.autodlEpisodes + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-episodes" title="' + theUILang.autodlTitle9 + '" placeholder="' + theUILang.autodlHint9 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-episodes" title="' + theUILang.autodlTitle9 + '" placeholder="' + theUILang.autodlHint9 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><input type="button" id="autodl-filters-resolutions-button" class="Button" value="' + theUILang.autodlResolutions + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-resolutions" title="' + theUILang.autodlTitle10 + '" placeholder="' + theUILang.autodlHint10 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-resolutions" title="' + theUILang.autodlTitle10 + '" placeholder="' + theUILang.autodlHint10 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><input type="button" id="autodl-filters-encoders-button" class="Button" value="' + theUILang.autodlEncoders + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-encoders" title="' + theUILang.autodlTitle11 + '" placeholder="' + theUILang.autodlHint11 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-encoders" title="' + theUILang.autodlTitle11 + '" placeholder="' + theUILang.autodlHint11 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><input type="button" id="autodl-filters-sources-button" class="Button" value="' + theUILang.autodlSources + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-sources" title="' + theUILang.autodlTitle12 + '" placeholder="' + theUILang.autodlHint12 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-sources" title="' + theUILang.autodlTitle12 + '" placeholder="' + theUILang.autodlHint12 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-containers">' + theUILang.autodlContainers + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-containers" title="' + theUILang.autodlTitle62 + '" placeholder="' + theUILang.autodlHint36 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-containers" title="' + theUILang.autodlTitle62 + '" placeholder="' + theUILang.autodlHint36 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-years1">' + theUILang.autodlYears + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-years1" title="' + theUILang.autodlTitle13 + '" placeholder="' + theUILang.autodlHint13 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-years1" title="' + theUILang.autodlTitle13 + '" placeholder="' + theUILang.autodlHint13 + '"/></td>' +
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
@@ -505,35 +505,35 @@ function(multiSelectDlgBox, okHandler)
 							'<tbody>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-years2">' + theUILang.autodlYears + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-years2" title="' + theUILang.autodlTitle13 + '" placeholder="' + theUILang.autodlHint13 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-years2" title="' + theUILang.autodlTitle13 + '" placeholder="' + theUILang.autodlHint13 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-artists">' + theUILang.autodlArtists + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-artists" title="' + theUILang.autodlTitle14 + '" placeholder="' + theUILang.autodlHint14 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-artists" title="' + theUILang.autodlTitle14 + '" placeholder="' + theUILang.autodlHint14 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-albums">' + theUILang.autodlAlbums + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-albums" title="' + theUILang.autodlTitle15 + '" placeholder="' + theUILang.autodlHint15 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-albums" title="' + theUILang.autodlTitle15 + '" placeholder="' + theUILang.autodlHint15 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><input type="button" id="autodl-filters-formats-button" class="Button" value="' + theUILang.autodlFormats + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-formats" title="' + theUILang.autodlTitle16 + '" placeholder="' + theUILang.autodlHint16 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-formats" title="' + theUILang.autodlTitle16 + '" placeholder="' + theUILang.autodlHint16 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><input type="button" id="autodl-filters-bitrates-button" class="Button" value="' + theUILang.autodlBitrates + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-bitrates" title="' + theUILang.autodlTitle17 + '" placeholder="' + theUILang.autodlHint17 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-bitrates" title="' + theUILang.autodlTitle17 + '" placeholder="' + theUILang.autodlHint17 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><input type="button" id="autodl-filters-media-button" class="Button" value="' + theUILang.autodlMedia + '" /></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-media" title="' + theUILang.autodlTitle18 + '" placeholder="' + theUILang.autodlHint18 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-media" title="' + theUILang.autodlTitle18 + '" placeholder="' + theUILang.autodlHint18 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-match-release-types">' + theUILang.autodlMatchReleaseTypes + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-match-release-types" title="' + theUILang.autodlTitle64 + '" placeholder="' + theUILang.autodlHint37 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-match-release-types" title="' + theUILang.autodlTitle64 + '" placeholder="' + theUILang.autodlHint37 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-except-release-types">' + theUILang.autodlExceptReleaseTypes + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-except-release-types" title="' + theUILang.autodlTitle64 + '" placeholder="' + theUILang.autodlHint37 + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-except-release-types" title="' + theUILang.autodlTitle64 + '" placeholder="' + theUILang.autodlHint37 + '"/></td>' +
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
@@ -549,7 +549,7 @@ function(multiSelectDlgBox, okHandler)
 									'<label for="autodl-filters-log">Log</label>' +
 									'<select id="autodl-filters-log" />' +
 									'<label for="autodl-filters-log-scores">' + theUILang.autodlLogScores + '</label>' +
-									'<input type="text" class="textbox" id="autodl-filters-log-scores" title="' + theUILang.autodlTitle59 + '" placeholder="' + theUILang.autodlHint34 + '"/>' +
+									'<input type="text" class="textbox-16" id="autodl-filters-log-scores" title="' + theUILang.autodlTitle59 + '" placeholder="' + theUILang.autodlHint34 + '"/>' +
 								'</td>' +
 							'</tr>' +
 						'</table>' +
@@ -559,31 +559,31 @@ function(multiSelectDlgBox, okHandler)
 							'<tbody>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-match-categories">' + theUILang.autodlMatchCategories + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-match-categories" title="' + theUILang.autodlTitle20 + '" placeholder="' + theUILang.autodlHint19 + '"/></td>' +
+									'<td><input type="text" class="textbox-20" id="autodl-filters-match-categories" title="' + theUILang.autodlTitle20 + '" placeholder="' + theUILang.autodlHint19 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-except-categories">' + theUILang.autodlExceptCategories + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-except-categories" title="' + theUILang.autodlTitle21 + '" placeholder="' + theUILang.autodlHint20 + '"/></td>' +
+									'<td><input type="text" class="textbox-20" id="autodl-filters-except-categories" title="' + theUILang.autodlTitle21 + '" placeholder="' + theUILang.autodlHint20 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-match-uploaders">' + theUILang.autodlMatchUploaders + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-match-uploaders" title="' + theUILang.autodlTitle22 + '" placeholder="' + theUILang.autodlHint21 + '"/></td>' +
+									'<td><input type="text" class="textbox-20" id="autodl-filters-match-uploaders" title="' + theUILang.autodlTitle22 + '" placeholder="' + theUILang.autodlHint21 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-except-uploaders">' + theUILang.autodlExceptUploaders + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-except-uploaders" title="' + theUILang.autodlTitle23 + '" placeholder="' + theUILang.autodlHint22 + '"/></td>' +
+									'<td><input type="text" class="textbox-20" id="autodl-filters-except-uploaders" title="' + theUILang.autodlTitle23 + '" placeholder="' + theUILang.autodlHint22 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-tags">' + theUILang.autodlTags + '</label></td>' +
 									'<td>' +
-										'<input type="text" class="textbox" id="autodl-filters-tags" title="' + theUILang.autodlTitle19 + '" placeholder="' + theUILang.autodlHint25 + '"/>' +
+										'<input type="text" class="textbox-16" id="autodl-filters-tags" title="' + theUILang.autodlTitle19 + '" placeholder="' + theUILang.autodlHint25 + '"/>' +
 										'<select id="autodl-filters-tags-any" />' +
 									'</td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-except-tags">' + theUILang.autodlExceptTags + '</label></td>' +
 									'<td>' +
-										'<input type="text" class="textbox" id="autodl-filters-except-tags" title="' + theUILang.autodlTitle57 + '" placeholder="' + theUILang.autodlHint25 + '"/>' +
+										'<input type="text" class="textbox-16" id="autodl-filters-except-tags" title="' + theUILang.autodlTitle57 + '" placeholder="' + theUILang.autodlHint25 + '"/>' +
 										'<select id="autodl-filters-except-tags-any" />' +
 									'</td>' +
 								'</tr>' +
@@ -599,22 +599,22 @@ function(multiSelectDlgBox, okHandler)
 							'<tbody>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-wol-mac">' + theUILang.autodlWolMac + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-wol-mac" title="' + theUILang.autodlWolMacTitle + '" placeholder="' + theUILang.autodlWolMacEmpty + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-wol-mac" title="' + theUILang.autodlWolMacTitle + '" placeholder="' + theUILang.autodlWolMacEmpty + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-wol-ip">' + theUILang.autodlWolIp + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-wol-ip" title="' + theUILang.autodlWolIpTitle + '" placeholder="' + theUILang.autodlWolIpEmpty + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-wol-ip" title="' + theUILang.autodlWolIpTitle + '" placeholder="' + theUILang.autodlWolIpEmpty + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-wol-port">' + theUILang.autodlWolPort + '</label></td>' +
-									'<td><input type="text" class="textbox" id="autodl-filters-wol-port" title="' + theUILang.autodlWolPortTitle + '" placeholder="' + theUILang.autodlWolPortEmpty + '"/></td>' +
+									'<td><input type="text" class="textbox-23" id="autodl-filters-wol-port" title="' + theUILang.autodlWolPortTitle + '" placeholder="' + theUILang.autodlWolPortEmpty + '"/></td>' +
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
 					'</div>' +
 				'</div>' +
 			'</div>' +
-			'<div class="aright buttons-list dlgbuttons">' +
+			'<div class="aright buttons-list dialog-buttons">' +
 				'<input type="button" id="autodl-filters-ok-button" value="' + theUILang.ok + '" class="OK Button" />' +
 				'<input type="button" value="' + theUILang.Cancel + '" class="Cancel Button" />' +
 			'</div>' +

@@ -30,7 +30,7 @@ function MultiSelect()
 			'<div id="autodl-multiselect-content">' +
 				'<select multiple="multiple" id="autodl-multiselect-select" />' +
 			'</div>' +
-			'<div class="aright buttons-list dlgbuttons">' +
+			'<div class="aright buttons-list dialog-buttons">' +
 				'<input type="button" id="autodl-multiselect-ok-button" value="' + theUILang.ok + '" class="OK Button" />' +
 				'<input type="button" value="' + theUILang.Cancel + '" class="Cancel Button" />' +
 			'</div>' +

@@ -31,7 +31,7 @@
 function ListBox(idParent)
 {
 	this.lbElem = document.getElementById(idParent);
-	$(this.lbElem).addClass("listbox");
+	$(this.lbElem).addClass("autodl-listbox");
 	this.rows = [];
 	this.selectedIndex = -1;
 }
@@ -55,7 +55,7 @@ function(elem, data)
 {
 	var obj =
 	{
-		elem: $('<div class="listboxItem" />').append(elem)[0],
+		elem: $('<div class="autodl-listbox-item" />').append(elem)[0],
 		data: data
 	};
 	this.rows.push(obj);
@@ -141,7 +141,7 @@ function(obj)
 {
 	if (!obj)
 		return;
-	$(obj.elem).removeClass("listboxItemSelected");
+	$(obj.elem).removeClass("autodl-listbox-item-selected");
 }
 
 ListBox.prototype._makeSelected =
@@ -149,7 +149,7 @@ function(obj)
 {
 	if (!obj)
 		return;
-	$(obj.elem).addClass("listboxItemSelected");
+	$(obj.elem).addClass("autodl-listbox-item-selected");
 }
 
 ListBox.prototype.getSelectedData =

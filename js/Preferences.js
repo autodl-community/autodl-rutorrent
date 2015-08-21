@@ -101,7 +101,7 @@ function(multiSelectDlgBox, okHandler)
 				'<div id="autodl-prefs-contents-general">' +
 					'<div>' +
 						'<td><label for="autodl-max-saved-releases">' + theUILang.autodlMaxSavedRels + '</label></td>' +
-						'<td><input type="text" class="textbox" id="autodl-max-saved-releases" title="' + theUILang.autodlTitle31 + '"/></td>' +
+						'<td><input type="text" class="textbox-13" id="autodl-max-saved-releases" title="' + theUILang.autodlTitle31 + '"/></td>' +
 					'</div>' +
 					'<div>' +
 						'<td>' +
@@ -141,15 +141,15 @@ function(multiSelectDlgBox, okHandler)
 						'<tbody>' +
 							'<tr>' +
 								'<td><label for="autodl-webui-user">' + theUILang.autodlUserName + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-webui-user" title="' + theUILang.autodlTitle34 + '"/></td>' +
+								'<td><input type="text" class="textbox-13" id="autodl-webui-user" title="' + theUILang.autodlTitle34 + '"/></td>' +
 								'<td><label for="autodl-webui-password">' + theUILang.autodlPassword + '</label></td>' +
-								'<td><input type="password" class="textbox" id="autodl-webui-password" title="' + theUILang.autodlTitle35 + '"/></td>' +
+								'<td><input type="password" class="textbox-13" id="autodl-webui-password" title="' + theUILang.autodlTitle35 + '"/></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><label for="autodl-webui-hostname">' + theUILang.autodlIpAddress + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-webui-hostname" title="' + theUILang.autodlTitle36 + '"/></td>' +
+								'<td><input type="text" class="textbox-13" id="autodl-webui-hostname" title="' + theUILang.autodlTitle36 + '"/></td>' +
 								'<td><label for="autodl-webui-port">' + theUILang.autodlPort + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-webui-port" title="' + theUILang.autodlTitle37 + '"/></td>' +
+								'<td><input type="text" class="textbox-13" id="autodl-webui-port" title="' + theUILang.autodlTitle37 + '"/></td>' +
 							'</tr>' +
 						'</tbody>' +
 					'</table>' +
@@ -161,15 +161,15 @@ function(multiSelectDlgBox, okHandler)
 						'<tbody>' +
 							'<tr>' +
 								'<td><label for="autodl-ftp-user">' + theUILang.autodlUserName + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-ftp-user" title="' + theUILang.autodlTitle38 + '"/></td>' +
+								'<td><input type="text" class="textbox-13" id="autodl-ftp-user" title="' + theUILang.autodlTitle38 + '"/></td>' +
 								'<td><label for="autodl-ftp-password">' + theUILang.autodlPassword + '</label></td>' +
-								'<td><input type="password" class="textbox" id="autodl-ftp-password" title="' + theUILang.autodlTitle39 + '"/></td>' +
+								'<td><input type="password" class="textbox-13" id="autodl-ftp-password" title="' + theUILang.autodlTitle39 + '"/></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><label for="autodl-ftp-hostname">' + theUILang.autodlHostname + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-ftp-hostname" title="' + theUILang.autodlTitle40 + '"/></td>' +
+								'<td><input type="text" class="textbox-13" id="autodl-ftp-hostname" title="' + theUILang.autodlTitle40 + '"/></td>' +
 								'<td><label for="autodl-ftp-port">' + theUILang.autodlPort + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-ftp-port" title="' + theUILang.autodlTitle41 + '"/></td>' +
+								'<td><input type="text" class="textbox-13" id="autodl-ftp-port" title="' + theUILang.autodlTitle41 + '"/></td>' +
 							'</tr>' +
 						'</tbody>' +
 					'</table>' +
@@ -181,18 +181,18 @@ function(multiSelectDlgBox, okHandler)
 						'<tbody>' +
 							'<tr>' +
 								'<td><label for="autodl-irc-user-name">' + theUILang.autodlUserName + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-irc-user-name" title="' + theUILang.autodlYourUserName + '"/></td>' +
+								'<td><input type="text" class="textbox-13" id="autodl-irc-user-name" title="' + theUILang.autodlYourUserName + '"/></td>' +
 								'<td><label for="autodl-irc-real-name">' + theUILang.autodlRealName + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-irc-real-name" title="' + theUILang.autodlYourRealName + '"/></td>' +
+								'<td><input type="text" class="textbox-13" id="autodl-irc-real-name" title="' + theUILang.autodlYourRealName + '"/></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td colspan="4">' + theUILang.autodlIrcOutputDesc + '</td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><label for="autodl-irc-server">' + theUILang.autodlOutputServer + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-irc-server" title="' + theUILang.autodlOutputServerTitle + '" placeholder="' + theUILang.autodlOutputServerEmpty + '"/></td>' +
+								'<td><input type="text" class="textbox-13" id="autodl-irc-server" title="' + theUILang.autodlOutputServerTitle + '" placeholder="' + theUILang.autodlOutputServerEmpty + '"/></td>' +
 								'<td><label for="autodl-irc-channel">' + theUILang.autodlOutputChannel + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-irc-channel" title="' + theUILang.autodlOutputChannelTitle + '" placeholder="' + theUILang.autodlOutputChannelEmpty + '"/></td>' +
+								'<td><input type="text" class="textbox-13" id="autodl-irc-channel" title="' + theUILang.autodlOutputChannelTitle + '" placeholder="' + theUILang.autodlOutputChannelEmpty + '"/></td>' +
 							'</tr>' +
 						'</tbody>' +
 					'</table>' +
@@ -202,7 +202,7 @@ function(multiSelectDlgBox, okHandler)
 						'<tbody>' +
 							'<tr>' +
 								'<td><label for="autodl-programs-utorrent">' + theUILang.autodlUtorrentExe + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-programs-utorrent" title="' + theUILang.autodlTitle42 + '" placeholder="' + theUILang.autodlHint31 + '"/></td>' +
+								'<td><input type="text" class="textbox-30" id="autodl-programs-utorrent" title="' + theUILang.autodlTitle42 + '" placeholder="' + theUILang.autodlHint31 + '"/></td>' +
 							'</tr>' +
 						'</tbody>' +
 					'</table>' +
@@ -212,20 +212,20 @@ function(multiSelectDlgBox, okHandler)
 						'<tbody>' +
 							'<tr>' +
 								'<td><label for="autodl-advanced-user-agent">' + theUILang.autodlDownloadUserAgent + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-advanced-user-agent" title="' + theUILang.autodlTitle43 + '" placeholder="' + theUILang.autodlHint32 + '"/></td>' +
+								'<td><input type="text" class="textbox-20" id="autodl-advanced-user-agent" title="' + theUILang.autodlTitle43 + '" placeholder="' + theUILang.autodlHint32 + '"/></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><label for="autodl-advanced-max-download-retry-time">' + theUILang.autodlMaxDlRetryTime + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-advanced-max-download-retry-time" title="' + theUILang.autodlTitle46 + '"/></td>' +
+								'<td><input type="text" class="textbox-20" id="autodl-advanced-max-download-retry-time" title="' + theUILang.autodlTitle46 + '"/></td>' +
 								'<td><label for="autodl-advanced-max-download-retry-time">' + theUILang.autodlSeconds + '</label></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><label for="autodl-advanced-output-level">' + theUILang.autodlOutputLevel + '</label></td>' +
-								'<td><input type="text" class="textbox" id="autodl-output-level" title="' + theUILang.autodlTitle47 + '"/></td>' +
+								'<td><input type="text" class="textbox-20" id="autodl-output-level" title="' + theUILang.autodlTitle47 + '"/></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><input type="button" id="autodl-advanced-output-sites-button" class="Button" value="' + theUILang.autodlAdvancedOutputSites + '" /></td>' +
-								'<td><input type="text" class="textbox" id="autodl-advanced-output-sites" title="' + theUILang.autodlTitle61 + '" placeholder="' + theUILang.autodlHint4 + '"/></td>' +
+								'<td><input type="text" class="textbox-20" id="autodl-advanced-output-sites" title="' + theUILang.autodlTitle61 + '" placeholder="' + theUILang.autodlHint4 + '"/></td>' +
 							'</tr>' +
 						'</tbody>' +
 					'</table>' +
@@ -233,7 +233,7 @@ function(multiSelectDlgBox, okHandler)
 					'<label for="autodl-advanced-debug" title="' + theUILang.autodlTitle48 + '">' + theUILang.autodlDebug + '</label>' +
 				'</div>' +
 			'</div>' +
-			'<div class="aright buttons-list dlgbuttons">' +
+			'<div class="aright buttons-list dialog-buttons">' +
 				'<input type="button" id="autodl-prefs-ok-button" value="' + theUILang.ok + '" class="OK Button" />' +
 				'<input type="button" value="' + theUILang.Cancel + '" class="Cancel Button" />' +
 			'</div>' +

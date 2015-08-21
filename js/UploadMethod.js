@@ -55,25 +55,25 @@ function UploadMethod(idDlg, idParent, isPrefs)
 					'<tr>' +
 						'<td><label for="' + this.id("rtorrent-folder") + '">' + theUILang.autodlRtDestDir + '</label></td>' +
 						'<td>' +
-							'<input type="text" class="textbox watchdir-text" id="' + this.id("rtorrent-folder") + '" title="' + theUILang.autodlTitle49 + '" />' +
+							'<input type="text" class="textbox-20" id="' + this.id("rtorrent-folder") + '" title="' + theUILang.autodlTitle49 + '" />' +
 							'<input type="button" class="Button watchdir-button" id="' + this.id("rt-getdir-button") + '" value="xyz" />' +
 						'</td>' +
 					'</tr>' +
 				'</tbody>' +
-			'</table>' +
+			'</table>'
+	if (isWide)
+	{
+		html += '' +
 			'<table>' +
 				'<tbody>' +
 					'<tr class="rtorrent-tbl1">' +
 						'<td><label for="' + this.id("rtorrent-label") + '">' + theUILang.autodlLabel + '</label></td>' +
-						'<td><input type="text" class="textbox rt-label" id="' + this.id("rtorrent-label") + '" title="' + theUILang.autodlTitle51 + '" /></td>' +
+						'<td><input type="text" class="textbox-7" id="' + this.id("rtorrent-label") + '" title="' + theUILang.autodlTitle51 + '" /></td>' +
 						'<td><label for="' + this.id("rtorrent-commands") + '">' + theUILang.autodlRtCmds + '</label></td>' +
-						'<td><input type="text" class="textbox rt-cmds" id="' + this.id("rtorrent-commands") + '" title="' + theUILang.autodlTitle50 + '" /></td>' +
+						'<td><input type="text" class="textbox-20" id="' + this.id("rtorrent-commands") + '" title="' + theUILang.autodlTitle50 + '" /></td>' +
 					'</tr>' +
 				'</tbody>' +
-			'</table>';
-	if (isWide)
-	{
-		html += '' +
+			'</table>' +
 			'<table>' +
 				'<tbody>' +
 					'<tr>' +
@@ -98,6 +98,16 @@ function UploadMethod(idDlg, idParent, isPrefs)
 	else
 	{
 		html += '' +
+			'<table>' +
+				'<tbody>' +
+					'<tr class="rtorrent-tbl1">' +
+						'<td><label for="' + this.id("rtorrent-label") + '">' + theUILang.autodlLabel + '</label></td>' +
+						'<td><input type="text" class="textbox-7" id="' + this.id("rtorrent-label") + '" title="' + theUILang.autodlTitle51 + '" /></td>' +
+						'<td><label for="' + this.id("rtorrent-commands") + '">' + theUILang.autodlRtCmds + '</label></td>' +
+						'<td><input type="text" class="textbox-9" id="' + this.id("rtorrent-commands") + '" title="' + theUILang.autodlTitle50 + '" /></td>' +
+					'</tr>' +
+				'</tbody>' +
+			'</table>' +
 			'<table>' +
 				'<tbody>' +
 					'<tr>' +
@@ -133,7 +143,7 @@ function UploadMethod(idDlg, idParent, isPrefs)
 					'<tr>' +
 						'<td><label for="' + this.id("watchdir-folder") + '">' + theUILang.autodlTorrentClientWatchFolder + '</label></td>' +
 						'<td>' +
-							'<input type="text" class="textbox watchdir-text" id="' + this.id("watchdir-folder") + '" title="' + theUILang.autodlTitle26 + '" />' +
+							'<input type="text" class="textbox-20" id="' + this.id("watchdir-folder") + '" title="' + theUILang.autodlTitle26 + '" />' +
 							'<input type="button" class="Button watchdir-button" id="' + this.id("getdir-button") + '" value="xyz" />' +
 						'</td>' +
 					'</tr>' +
@@ -150,7 +160,7 @@ function UploadMethod(idDlg, idParent, isPrefs)
 				'<tbody>' +
 					'<tr>' +
 						'<td><label for="' + this.id("ftp-path") + '">' + theUILang.autodlFtpPath + '</label></td>' +
-						'<td><input type="text" class="textbox" id="' + this.id("ftp-path") + '" title="' + theUILang.autodlTitle27 + '" placeholder="' + theUILang.autodlHint27 + '"/></td>' +
+						'<td><input type="text" class="textbox-25" id="' + this.id("ftp-path") + '" title="' + theUILang.autodlTitle27 + '" placeholder="' + theUILang.autodlHint27 + '"/></td>' +
 					'</tr>' +
 				'</tbody>' +
 			'</table>' +
@@ -160,11 +170,11 @@ function UploadMethod(idDlg, idParent, isPrefs)
 				'<tbody>' +
 					'<tr>' +
 						'<td><label for="' + this.id("program-command") + '">' + theUILang.autodlCommand + '</label></td>' +
-						'<td><input type="text" class="textbox" id="' + this.id("program-command") + '" title="' + theUILang.autodlTitle28 + '" placeholder="' + theUILang.autodlHint28 + '"/></td>' +
+						'<td><input type="text" class="textbox-25" id="' + this.id("program-command") + '" title="' + theUILang.autodlTitle28 + '" placeholder="' + theUILang.autodlHint28 + '"/></td>' +
 					'</tr>' +
 					'<tr>' +
 						'<td><label for="' + this.id("program-args") + '">' + theUILang.autodlArguments + '</label></td>' +
-						'<td><input type="text" class="textbox" id="' + this.id("program-args") + '" title="' + theUILang.autodlTitle29 + '" placeholder="' + theUILang.autodlHint29 + '"/></td>' +
+						'<td><input type="text" class="textbox-25" id="' + this.id("program-args") + '" title="' + theUILang.autodlTitle29 + '" placeholder="' + theUILang.autodlHint29 + '"/></td>' +
 					'</tr>' +
 				'</tbody>' +
 			'</table>' +
@@ -174,7 +184,7 @@ function UploadMethod(idDlg, idParent, isPrefs)
 				'<tbody>' +
 					'<tr>' +
 						'<td><label for="' + this.id("dyndir-dir") + '">' + theUILang.autodlFolder + '</label></td>' +
-						'<td><input type="text" class="textbox" id="' + this.id("dyndir-dir") + '" title="' + theUILang.autodlTitle30 + '" placeholder="' + theUILang.autodlHint30 + '"/></td>' +
+						'<td><input type="text" class="textbox-25" id="' + this.id("dyndir-dir") + '" title="' + theUILang.autodlTitle30 + '" placeholder="' + theUILang.autodlHint30 + '"/></td>' +
 					'</tr>' +
 				'</tbody>' +
 			'</table>' +

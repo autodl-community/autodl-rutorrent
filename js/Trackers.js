@@ -35,7 +35,7 @@ function(multiSelectDlgBox, okHandler)
 				'<div id="autodl-trackers-list" />' +
 			'</div>' +
 			'<div id="autodl-trackers-right" />' +
-			'<div class="aright buttons-list dlgbuttons">' +
+			'<div class="aright buttons-list dialog-buttons">' +
 				'<input type="button" id="autodl-trackers-ok-button" value="' + theUILang.ok + '" class="OK Button" />' +
 				'<input type="button" value="' + theUILang.Cancel + '" class="Cancel Button" />' +
 			'</div>' +
@@ -273,7 +273,7 @@ function(setting, trackerInfo)
 	case "textbox":
 	case "integer":
 		var label = $('<label />').attr("for", id).text(setting.text);
-		var textbox = $('<input type="text" class="textbox" />')
+		var textbox = $('<input type="text" class="textbox-22" />')
 							.attr("id", id)
 							.attr("title", tooltipText)
 							.attr("placeholder", setting.placeholder || "");

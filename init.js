@@ -91,8 +91,7 @@ function()
 {
 	var this_ = this;
 
-	$("body").addClass("theme-" + this.getThemeName());
-	this.loadCSS("css/autodl-irssi");
+	this.loadCSS("css/" + this.getThemeName() + "-min");
 
 	// Note: These files aren't necessarily loaded in order! They must not rely on other JS files.
 	this.loadJavaScriptFiles(

@@ -363,6 +363,15 @@ function(multiSelectDlgBox, okHandler)
 									'<td><input type="text" class="textbox-23" id="autodl-filters-name" title="' + theUILang.autodlTitle1 + '" placeholder="' + theUILang.autodlHint1 + '"/></td>' +
 								'</tr>' +
 								'<tr>' +
+									'<td><label for="autodl-filters-priority">' + theUILang.autodlFiltersPriority + '</label></td>' +
+									'<td><input type="text" class="textbox-3" id="autodl-filters-priority" title="' + theUILang.autodlTitle66 + '"/></td>' +
+								'</tr>' +
+							'</tbody>' +
+						'</table>' +
+						'<hr>' +
+						'<table>' +
+							'<tbody>' +
+								'<tr>' +
 									'<td><input type="button" id="autodl-filters-match-sites-button" class="Button" value="' + theUILang.autodlMatchSites + '" /></td>' +
 									'<td><input type="text" class="textbox-23" id="autodl-filters-match-sites" title="' + theUILang.autodlTitle4 + '" placeholder="' + theUILang.autodlHint4 + '"/></td>' +
 								'</tr>' +

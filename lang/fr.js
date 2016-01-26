@@ -362,4 +362,6 @@ theUILang.autodlMatchReleaseGroups = "Match release groups";
 theUILang.autodlExceptReleaseGroups = "Except release groups";
 theUILang.autodlTitle65 = "Release groups separated by commas.";
 theUILang.autodlHint38 = "Release groups eg. HiFi, decibeL";
+theUILang.autodlFiltersPriority = "Priority";
+theUILang.autodlTitle66 = "Filter priority.";
 

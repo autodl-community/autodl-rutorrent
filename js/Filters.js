@@ -625,7 +625,7 @@ function(multiSelectDlgBox, okHandler)
 			'</div>' +
 			'<div class="aright buttons-list dialog-buttons">' +
 				'<input type="button" id="autodl-filters-ok-button" value="' + theUILang.ok + '" class="OK Button" />' +
-				'<input type="button" value="' + theUILang.Cancel + '" class="Cancel Button" />' +
+				'<input type="button" id="autodl-filters-cancel-button" value="' + theUILang.Cancel + '" class="Cancel Button" />' +
 			'</div>' +
 		'</div>'
 	);
@@ -900,7 +900,8 @@ function(oldObj, newObj)
 
 	var enable = newObj != null;
 	var elems = $("#autodl-filters-remove-button").
-				add($("input, select", $("#autodl-filters-right")[0]));
+				add($("input, select", $("#autodl-filters-right")[0]).
+				not("#autodl-filters-ok-button, #autodl-filters-cancel-button"));
 	enableJqueryElem(elems, enable);
 	if (enable)
 		this.uploadMethod.reenableElements();

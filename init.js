@@ -91,7 +91,7 @@ function()
 {
 	var this_ = this;
 
-	this.loadCSS("css/" + this.getThemeName() + "-min");
+	this.loadCSS("css/" + this.getThemeName() + ".min");
 
 	// Note: These files aren't necessarily loaded in order! They must not rely on other JS files.
 	this.loadJavaScriptFiles(

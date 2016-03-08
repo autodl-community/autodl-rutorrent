@@ -672,7 +672,8 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionText("autodl-filters-containers", "containers", ""),
 		new DialogOptionText("autodl-filters-upload-delay-secs", "upload-delay-secs", ""),
 		new DialogOptionBool("autodl-filters-download-duplicates", "download-duplicates", "false"),
-		new DialogOptionBool("autodl-filters-use-regex", "use-regex", "false")
+		new DialogOptionBool("autodl-filters-use-regex", "use-regex", "false"),
+		new DialogOptionInt("autodl-filters-priority", "priority", "0")
 	];
 
 	var this_ = this;

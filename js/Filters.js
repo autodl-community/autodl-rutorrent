@@ -478,6 +478,11 @@ function(multiSelectDlgBox, okHandler)
 									'<td><label for="autodl-filters-shows">' + theUILang.autodlTvShowMovie + '</label></td>' +
 									'<td><input type="text" class="textbox-23" id="autodl-filters-shows" title="' + theUILang.autodlTitle7 + '" placeholder="' + theUILang.autodlHint7 + '"/></td>' +
 								'</tr>' +
+							'</tbody>' +
+						'</table>' +
+						'<hr>' +
+						'<table>' +
+							'<tbody>' +
 								'<tr>' +
 									'<td><label for="autodl-filters-seasons">' + theUILang.autodlSeasons + '</label></td>' +
 									'<td><input type="text" class="textbox-23" id="autodl-filters-seasons" title="' + theUILang.autodlTitle8 + '" placeholder="' + theUILang.autodlHint8 + '"/></td>' +
@@ -486,6 +491,17 @@ function(multiSelectDlgBox, okHandler)
 									'<td><label for="autodl-filters-episodes">' + theUILang.autodlEpisodes + '</label></td>' +
 									'<td><input type="text" class="textbox-23" id="autodl-filters-episodes" title="' + theUILang.autodlTitle9 + '" placeholder="' + theUILang.autodlHint9 + '"/></td>' +
 								'</tr>' +
+								'<tr>' +
+									'<td>' +
+										'<input type="checkbox" id="autodl-filters-smart-episode" title="' + theUILang.autodlTitle67 + '"/>' +
+										'<label for="autodl-filters-smart-episode" title="' + theUILang.autodlTitle67 + '">' + theUILang.autodlSmartEpisode + '</label>' +
+									'</td>' +
+								'</tr>' +
+							'</tbody>' +
+						'</table>' +
+						'<hr>' +
+						'<table>' +
+							'<tbody>' +
 								'<tr>' +
 									'<td><input type="button" id="autodl-filters-resolutions-button" class="Button" value="' + theUILang.autodlResolutions + '" /></td>' +
 									'<td><input type="text" class="textbox-23" id="autodl-filters-resolutions" title="' + theUILang.autodlTitle10 + '" placeholder="' + theUILang.autodlHint10 + '"/></td>' +
@@ -646,6 +662,7 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionText("autodl-filters-artists", "shows", ""),
 		new DialogOptionText("autodl-filters-seasons", "seasons", ""),
 		new DialogOptionText("autodl-filters-episodes", "episodes", ""),
+		new DialogOptionBool("autodl-filters-smart-episode", "smart-episode", "false"),
 		new DialogOptionText("autodl-filters-resolutions", "resolutions", ""),
 		new DialogOptionText("autodl-filters-sources", "sources", ""),
 		new DialogOptionText("autodl-filters-years1", "years", ""),

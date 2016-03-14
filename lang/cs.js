@@ -350,3 +350,5 @@ theUILang.autodlTitle65 = "Release groups separated by commas.";
 theUILang.autodlHint38 = "Release groups eg. HiFi, decibeL";
 theUILang.autodlFiltersPriority = "Priority";
 theUILang.autodlTitle66 = "Filter priority.";
+theUILang.autodlTitle67 = "Check this to prevent downloading earlier episodes than your latest download.";
+theUILang.autodlSmartEpisode = "Smart Episode";

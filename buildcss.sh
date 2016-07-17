@@ -11,6 +11,5 @@ for style in $style_files
 do
 	name=$(basename --suffix=.styl $style)
 
-	stylus $style -o $css_dir/$name.css
-	stylus $style -o $css_dir/$name.min.css -c
+	stylus $style -c -m -o $css_dir/$name.min.css
 done

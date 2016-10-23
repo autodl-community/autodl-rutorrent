@@ -474,6 +474,6 @@ function(time, line)
 	var tbody = $("#autodl-log-tbody");
 	tbody.append(tr);
 
-	if (tbody.children().size() >= this.REMOVE_LINES_LIMIT)
-		tbody.children(":lt(" + (tbody.children().size() - this.MAX_AUTODL_IRSSI_LINES) + ")").remove();
+	if (tbody.children().length >= this.REMOVE_LINES_LIMIT)
+		tbody.children(":lt(" + (tbody.children().length - this.MAX_AUTODL_IRSSI_LINES) + ")").remove();
 }

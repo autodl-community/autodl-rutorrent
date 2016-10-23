@@ -355,7 +355,7 @@ function(trackerInfo, pasteGroup, textboxElem)
 
 		var textbox = $("#" + this._settingIdFromName(trackerInfo, name));
 		var ary = s.match(setting.pasteRegex);
-		if (textbox.size() > 0 && ary && ary.length > 1)
+		if (textbox.length > 0 && ary && ary.length > 1)
 			textbox.val(ary[1]);
 	}
 }

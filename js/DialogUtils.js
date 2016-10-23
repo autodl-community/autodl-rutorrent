@@ -117,9 +117,9 @@ function getSectionOptionValue(section, name, defaultValue, type)
 function enableJqueryElem(jq, enable)
 {
 	if (enable)
-		jq.removeAttr("disabled");
+		jq.prop("disabled", false);
 	else
-		jq.attr("disabled", "disabled");
+		jq.prop("disabled", true);
 }
 
 function initDialogOptions(section, aryDlgOptions)
@@ -131,9 +131,9 @@ function initDialogOptions(section, aryDlgOptions)
 		if (dlgOption.type === "bool")
 		{
 			if (val)
-				$("#" + dlgOption.id).attr("checked", "checked");
+				$("#" + dlgOption.id).prop("checked", true);
 			else
-				$("#" + dlgOption.id).removeAttr("checked");
+				$("#" + dlgOption.id).prop("checked", false);
 		}
 		else
 			$("#" + dlgOption.id).val(val);

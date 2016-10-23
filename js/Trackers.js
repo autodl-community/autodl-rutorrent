@@ -288,7 +288,7 @@ function(setting, trackerInfo)
 			{
 				this_._onPaste(trackerInfo, setting.pasteGroup, textbox);
 			});
-			textbox.bind('input', function(e)
+			textbox.on('input', function(e)
 			{
 				this_._onPaste(trackerInfo, setting.pasteGroup, textbox);
 			});

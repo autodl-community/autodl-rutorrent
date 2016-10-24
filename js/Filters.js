@@ -178,7 +178,7 @@ function()
 		return false;
 
 	var links = theContextMenu.obj.find("a");
-	var len = links.size();
+	var len = links.length;
 	if (len !== this.strings.length || $(links[len-1]).text() !== this.strings[len-1][0])
 		return false;
 

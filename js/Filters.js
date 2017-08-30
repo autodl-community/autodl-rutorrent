@@ -32,7 +32,8 @@ var tvResolutions =
 	["720p"],
 	["810p"],
 	["1080i"],
-	["1080p"]
+	["1080p"],
+	["2160p"]
 ];
 
 var tvSources =

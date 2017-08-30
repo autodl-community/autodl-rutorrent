@@ -72,6 +72,7 @@ var tvEncoders =
 	["x264-Hi10p", "Hi10p", "10-bit"],
 	["h.264", "h264"],
 	["x265"],
+	["h.265", "h265"],
 	["mpeg2", "mpeg-2"],
 	["VC-1", "VC1"],
 	["WMV", "WMV-HD"],

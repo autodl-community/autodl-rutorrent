@@ -341,8 +341,11 @@ function(multiSelectDlgBox, okHandler)
 			'<div id="autodl-filters-left">' +
 				'<div id="autodl-filters-list" />' +
 				'<div id="autodl-filters-list-buttons" align="center">' +
-					'<input type="button" class="Button" id="autodl-filters-new-button" value="' + theUILang.autodlNew + '" />' +
-					'<input type="button" class="Button" id="autodl-filters-remove-button" value="' + theUILang.autodlRemove + '" />' +
+					'<div>' +
+						'<input type="button" class="Button autodl-filters-button" id="autodl-filters-new-button" value="' + theUILang.autodlNew + '" />' +
+						'<input type="button" class="Button autodl-filters-button" id="autodl-filters-remove-button" value="' + theUILang.autodlRemove + '" />' +
+						'<input type="button" class="Button autodl-filters-button" id="autodl-filters-copy-button" value="' + theUILang.autodlCopy + '" />' +
+					'</div>' +
 				'</div>' +
 			'</div>' +
 			'<div id="autodl-filters-right">' +
@@ -706,6 +709,10 @@ function(multiSelectDlgBox, okHandler)
 	{
 		this_._onClickRemove();
 	});
+	$("#autodl-filters-copy-button").click(function(e)
+	{
+		this_._onClickCopy();
+	});
 	$("#autodl-filters-name").keyup(function(e)
 	{
 		this_._onFilterNameModified();
@@ -946,6 +953,21 @@ function()
 		this.filterObjs.splice(selectedIndex, 1);
 		this.filterListBox.removeSelected();
 	}
+}
+
+Filters.prototype._onClickCopy =
+function()
+{
+	var oldObj = this.filterListBox.getSelectedData();
+	if (!oldObj)
+		return;
+
+	this._saveFilterObj(oldObj);
+
+	var newObj = this._addFilterSection(oldObj.section.copy());
+	this.filterListBox.selectData(newObj);
+	this.tabs.selectByIndex(0);
+	$("#autodl-filters-name").focus();
 }
 
 Filters.prototype._onFilterNameModified =

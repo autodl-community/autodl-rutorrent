@@ -24,7 +24,40 @@
  * ***** END LICENSE BLOCK ***** */
 
 require_once '../../php/util.php';
-eval(getPluginConf('autodl-irssi'));
+require_once '../../php/settings.php';
+
+try {
+	$config = attemptZeroConfig();
+	$autodlPort = $config['gui-server-port'];
+	$autodlPassword = $config['gui-server-password'];
+} catch (Exception $e) {
+	eval(getPluginConf('autodl-irssi'));
+}
+
+function attemptZeroConfig() {
+	if (!isLocalMode()) {
+		throw Exception('Zeroconfig is not available for remote connections');
+	}
+
+	if (!function_exists('posix_getpwuid')) {
+		throw Exception('Zeroconfig requires PHP to be compiled with posix support');
+	}
+
+	$theSettings = rTorrentSettings::get();
+	$userInfo = posix_getpwuid($theSettings->uid);
+	if (!file_exists($userInfo['dir'].'/.autodl/autodl.cfg')) {
+		throw Exception('Zeroconfig autodl.cfg not not found');
+	}
+	if (!is_readable($userInfo['dir'].'/.autodl/autodl.cfg')) {
+		throw Exception('Zeroconfig autodl.cfg not readable');
+	}
+	$config = parse_ini_file($userInfo['dir'].'/.autodl/autodl.cfg');
+	if ($config === false) {
+		throw Exception('Zeroconfig failed to parse autodl.cfg');
+	}
+
+	return $config;
+}
 
 // Checks if there are missing PHP modules, and if so returns JSON data with an
 // error message saying exactly which PHP modules are missing.
@@ -111,5 +144,3 @@ function sendAutodlCommand($data) {
 		return $obj;
 	}
 }
-
-?>

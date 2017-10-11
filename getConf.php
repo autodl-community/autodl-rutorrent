@@ -36,24 +36,24 @@ try {
 
 function attemptZeroConfig() {
 	if (!isLocalMode()) {
-		throw Exception('Zeroconfig is not available for remote connections');
+		throw new Exception('Zeroconfig is not available for remote connections');
 	}
 
 	if (!function_exists('posix_getpwuid')) {
-		throw Exception('Zeroconfig requires PHP to be compiled with posix support');
+		throw new Exception('Zeroconfig requires PHP to be compiled with posix support');
 	}
 
 	$theSettings = rTorrentSettings::get();
 	$userInfo = posix_getpwuid($theSettings->uid);
 	if (!file_exists($userInfo['dir'].'/.autodl/autodl.cfg')) {
-		throw Exception('Zeroconfig autodl.cfg not not found');
+		throw new Exception('Zeroconfig autodl.cfg not not found');
 	}
 	if (!is_readable($userInfo['dir'].'/.autodl/autodl.cfg')) {
-		throw Exception('Zeroconfig autodl.cfg not readable');
+		throw new Exception('Zeroconfig autodl.cfg not readable');
 	}
 	$config = parse_ini_file($userInfo['dir'].'/.autodl/autodl.cfg');
 	if ($config === false) {
-		throw Exception('Zeroconfig failed to parse autodl.cfg');
+		throw new Exception('Zeroconfig failed to parse autodl.cfg');
 	}
 
 	return $config;

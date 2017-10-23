@@ -51,12 +51,12 @@ function attemptZeroConfig() {
 	if (!is_readable($userInfo['dir'].'/.autodl/autodl.cfg')) {
 		throw new Exception('Zeroconfig autodl.cfg not readable');
 	}
-	$config = parse_ini_file($userInfo['dir'].'/.autodl/autodl.cfg');
+	$config = parse_ini_file($userInfo['dir'].'/.autodl/autodl.cfg', true, INI_SCANNER_RAW);
 	if ($config === false) {
 		throw new Exception('Zeroconfig failed to parse autodl.cfg');
 	}
 
-	return $config;
+	return $config['options'];
 }
 
 // Checks if there are missing PHP modules, and if so returns JSON data with an

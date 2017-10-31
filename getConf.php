@@ -45,18 +45,39 @@ function attemptZeroConfig() {
 
 	$theSettings = rTorrentSettings::get();
 	$userInfo = posix_getpwuid($theSettings->uid);
-	if (!file_exists($userInfo['dir'].'/.autodl/autodl.cfg')) {
-		throw new Exception('Zeroconfig autodl.cfg not not found');
-	}
-	if (!is_readable($userInfo['dir'].'/.autodl/autodl.cfg')) {
-		throw new Exception('Zeroconfig autodl.cfg not readable');
-	}
-	$config = parse_ini_file($userInfo['dir'].'/.autodl/autodl.cfg', true, INI_SCANNER_RAW);
-	if ($config === false) {
-		throw new Exception('Zeroconfig failed to parse autodl.cfg');
+
+	// We mimic the logic found in reloadAutodlConfigFile in autodl-irssi
+	// so we can accept all of the valid configurations it does
+
+	$options = array();
+
+	if (file_exists($userInfo['dir'].'/.autodl/autodl.cfg') && is_readable($userInfo['dir'].'/.autodl/autodl.cfg')) {
+		$config = parse_ini_file($userInfo['dir'].'/.autodl/autodl.cfg', true, INI_SCANNER_RAW);
+		if ($config !== false && isset($config['options'])) {
+			$options = $config['options'];
+		}
 	}
 
-	return $config['options'];
+	if (file_exists($userInfo['dir'].'/.autodl/autodl2.cfg') && is_readable($userInfo['dir'].'/.autodl/autodl2.cfg')) {
+		$config2 = parse_ini_file($userInfo['dir'].'/.autodl/autodl2.cfg', true, INI_SCANNER_RAW);
+		if ($config2 !== false) {
+			if ($config2['options']['gui-server-port'] !== 0) {
+				$options['gui-server-port'] = $config2['options']['gui-server-port'];
+			}
+
+			if ($config2['options']['gui-server-password'] !== '') {
+				$options['gui-server-password'] = $config2['options']['gui-server-password'];
+			}
+		}
+	}
+
+	// /etc/autodl.cfg does not suport defining these options
+
+	if (empty($options['gui-server-port']) || empty($options['gui-server-password'])) {
+		throw new Excepton("Zeroconfig is unable to determine a port and password");
+	}
+
+	return $options;
 }
 
 // Checks if there are missing PHP modules, and if so returns JSON data with an

@@ -4,3 +4,4 @@ remote: ok
 need_rtorrent: 0
 version: 2.1.0
 runlevel: 10.0
+php.extensions.error: json,xml,sockets

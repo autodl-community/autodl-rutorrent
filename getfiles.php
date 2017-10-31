@@ -28,8 +28,6 @@
 
 require_once 'getConf.php';
 
-checkPhpModules();
-
 $command = Array("command" => "getfiles");
 $response = sendAutodlCommand($command);
 

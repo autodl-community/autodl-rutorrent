@@ -80,23 +80,6 @@ function attemptZeroConfig() {
 	return $options;
 }
 
-// Checks if there are missing PHP modules, and if so returns JSON data with an
-// error message saying exactly which PHP modules are missing.
-function checkPhpModules() {
-	$missing = "";
-	foreach (Array('xml', 'sockets', 'json') as $module) {
-		if (!extension_loaded($module))
-			$missing = "$missing $module";
-	}
-	if ($missing === "")
-		return;
-
-	$jsonData = "{\"error\":\"Missing PHP modules:$missing\"}";
-	header('Content-Type: application/json; charset=UTF-8');
-	echo $jsonData;
-	exit(0);
-}
-
 // Sends a 304 if it's the same file (and exits) or returns if the file has changed
 // with added ETag HTTP header.
 function checkSameFile($etag, $mtime) {

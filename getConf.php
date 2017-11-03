@@ -139,7 +139,7 @@ function sendAutodlCommand($data) {
 	global $autodlPort, $autodlPassword;
 	try {
 		if ($autodlPort <= 0 || $autodlPort > 65535)
-			throw new Exception("Invalid port ($autodlPort)! Initialize port in conf.php");
+			throw new Exception("Invalid port ($autodlPort)! Initialize port in autodl.cfg");
 
 		$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 		if ($socket === false)

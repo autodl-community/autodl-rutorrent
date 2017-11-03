@@ -61,11 +61,11 @@ function attemptZeroConfig() {
 	if (file_exists($userInfo['dir'].'/.autodl/autodl2.cfg') && is_readable($userInfo['dir'].'/.autodl/autodl2.cfg')) {
 		$config2 = parse_ini_file($userInfo['dir'].'/.autodl/autodl2.cfg', true, INI_SCANNER_RAW);
 		if ($config2 !== false) {
-			if ($config2['options']['gui-server-port'] !== 0) {
+			if (isset($config2['options']['gui-server-port']) && $config2['options']['gui-server-port'] !== 0) {
 				$options['gui-server-port'] = $config2['options']['gui-server-port'];
 			}
 
-			if ($config2['options']['gui-server-password'] !== '') {
+			if (isset($config2['options']['gui-server-password']) && $config2['options']['gui-server-password'] !== '') {
 				$options['gui-server-password'] = $config2['options']['gui-server-password'];
 			}
 		}
@@ -74,7 +74,7 @@ function attemptZeroConfig() {
 	// /etc/autodl.cfg does not suport defining these options
 
 	if (empty($options['gui-server-port']) || empty($options['gui-server-password'])) {
-		throw new Excepton("Zeroconfig is unable to determine a port and password");
+		throw new Exception("Zeroconfig is unable to determine a port and password");
 	}
 
 	return $options;

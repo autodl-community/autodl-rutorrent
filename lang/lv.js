@@ -26,6 +26,7 @@ theUILang.autodlChoose = "Choose...";
 theUILang.autodlChooseMethod = "Choose how to save/upload the torrent above...";
 theUILang.autodlOverride1 = "Use global settings";
 theUILang.autodlOverride2 = "Use global action (Preferences -> Action)";
+theUILang.autodlTestFilter = "Test";
 theUILang.autodlSaveToWatchFolder = "Save to Watch Folder";
 theUILang.autodlUtorrentWebui = "&#x3BC;Torrent Webui Upload";
 theUILang.autodlFtpUpoad = "FTP Upload";

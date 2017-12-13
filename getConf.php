@@ -71,8 +71,6 @@ function attemptZeroConfig() {
 		}
 	}
 
-	// /etc/autodl.cfg does not suport defining these options
-
 	if (empty($options['gui-server-port']) || empty($options['gui-server-password'])) {
 		throw new Exception("Zeroconfig is unable to determine a port and password");
 	}

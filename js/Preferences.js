@@ -318,7 +318,7 @@ function(configFile, trackerInfos, trackersId)
 	initDialogOptions(this.configFile.getSection("irc", null), this.irc);
 
 	var section = this.configFile.getSection("options", null);
-	var option = section.getOption("update-check", "ask", "text");
+	var option = section.getOption("update-check", "auto", "text");
 	this.dropDownBox.select(option.getValue());
 }
 

@@ -1,7 +1,7 @@
 author: autodl-community,Carl Carlson
-description: GUI for autodl-irssi-community
+description: GUI for autodl-irssi
 remote: ok
 need_rtorrent: 0
-version: 2.1.0
+version: 2.3.0
 runlevel: 10.0
 php.extensions.error: json,xml,sockets

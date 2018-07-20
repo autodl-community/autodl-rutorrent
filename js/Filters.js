@@ -44,7 +44,7 @@ var tvSources =
 	["HR.PDTV"],
 	["HR.HDTV"],
 	["DVDRip"],
-	["DVDScr", "DVDScrener", "DVD-Screner"],
+	["DVDScr", "DVDScreener", "DVD-Screener", "Scr", "Screener"],
 	["BDr"],
 	["BD5"],
 	["BD9"],
@@ -52,17 +52,22 @@ var tvSources =
 	["BRRip", "BLURAYRiP"],
 	["DVDR", "MDVDR", "DVD", "DVD-R"],
 	["HDDVD", "HD-DVD"],
-	["HDDVDRip"],
+	["HDDVDRip", "HD-DVDRip"],
 	["BluRay", "Blu-Ray", "MBluRay"],
 	["WEB-DL", "WEB", "WEBDL"],
-	["WEBRip", "Webrip", "WebRip", "WEBRIP"],
+	["Webrip"],
 	["TVRip", "TV"],
 	["CAM"],
 	["HDCAM", "HD-CAM", "HD CAM"],
-	["R5"],
+	["R2", "R5", "R6"],
 	["TELESYNC", "TS"],
 	["HDTS", "HD-TS", "HD TS"],
-	["TELECINE", "TC"]
+	["TELECINE", "TC"],
+	["SiteRip"],
+	["PPV"],
+	["VHSRip"],
+	["IMGSet"],
+	["Mixed"],
 ];
 
 var tvEncoders =
@@ -70,10 +75,11 @@ var tvEncoders =
 	["XviD", "XvidHD"],
 	["DivX"],
 	["x264"],
-	["x264-Hi10p", "Hi10p", "10-bit"],
-	["h.264", "h264"],
+	["x264-Hi10p", "Hi10p", "10-bit", "h264 10-bit"],
+	["AVC", "h.264", "h264"],
 	["x265"],
-	["h.265", "h265"],
+	["x265-Hi10p", "h265 10-bit"],
+	["HEVC", "h.265", "h265"],
 	["mpeg2", "mpeg-2"],
 	["VC-1", "VC1"],
 	["WMV", "WMV-HD"],
@@ -87,26 +93,28 @@ var tvEncoders =
 var musicFormats =
 [
 	["MP3"],
+	["WMA"],
 	["FLAC"],
-	["Ogg"],
+	["Ogg", "Ogg Vorbis"],
 	["AAC"],
 	["AC3"],
-	["DTS"]
+	["DTS"],
+	["TrueHD"]
 ];
 
 var musicBitrates =
 [
 	["192"],
 	["APS (VBR)"],
-	["V2 (VBR)"],
-	["V1 (VBR)"],
+	["V2 (VBR)", "V2"],
+	["V1 (VBR)", "V1"],
 	["256"],
 	["APX (VBR)"],
-	["V0 (VBR)"],
+	["V0 (VBR)", "V0"],
 	["q8.x (VBR)"],
 	["320"],
 	["Lossless"],
-	["24bit Lossless"],
+	["24bit Lossless", "Lossless 24-bit"],
 	["Other"]
 ];
 

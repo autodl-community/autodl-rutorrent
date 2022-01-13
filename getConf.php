@@ -31,11 +31,11 @@ try {
 	$autodlPort = $config['gui-server-port'];
 	$autodlPassword = $config['gui-server-password'];
 } catch (Exception $e) {
-	eval(getPluginConf('autodl-irssi'));
+	eval(FileUtil::getPluginConf('autodl-irssi'));
 }
 
 function attemptZeroConfig() {
-	if (!isLocalMode()) {
+	if (!User::isLocalMode()) {
 		throw new Exception('Zeroconfig is not available for remote connections');
 	}
 

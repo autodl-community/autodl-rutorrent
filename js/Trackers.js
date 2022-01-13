@@ -32,12 +32,12 @@ function(multiSelectDlgBox, okHandler)
 	theDialogManager.make("autodl-trackers", theUILang.autodlTrackers,
 		'<div id="autodl-trackers">' +
 			'<div id="autodl-trackers-left">' +
-				'<div id="autodl-trackers-list" />' +
+				'<div id="autodl-trackers-list"></div>' +
 			'</div>' +
-			'<div id="autodl-trackers-right" />' +
+			'<div id="autodl-trackers-right"></div>' +
 			'<div class="aright buttons-list dialog-buttons">' +
-				'<input type="button" id="autodl-trackers-ok-button" value="' + theUILang.ok + '" class="OK Button" />' +
-				'<input type="button" value="' + theUILang.Cancel + '" class="Cancel Button" />' +
+				'<input type="button" id="autodl-trackers-ok-button" value="' + theUILang.ok + '" class="OK Button"></input>' +
+				'<input type="button" value="' + theUILang.Cancel + '" class="Cancel Button"></input>' +
 			'</div>' +
 		'</div>'
 	);
@@ -47,7 +47,7 @@ function(multiSelectDlgBox, okHandler)
 	this.trackerListBox = new ListBox("autodl-trackers-list");
 	this.trackerListBox.onSelected = function(oldObj, newObj) { this_._onTrackerSelected(oldObj, newObj); }
 
-	$("#autodl-trackers-ok-button").click(function(e) { okHandler() });
+	$("#autodl-trackers-ok-button").on('click', function(e) { okHandler() });
 }
 
 Trackers.prototype._getSortedTrackerInfos =
@@ -177,8 +177,8 @@ function()
 			trackerInfo: trackerInfo
 		};
 		var checkboxId = this._settingIdFromName(trackerInfo, "enabled");
-		obj.checkboxElem = $('<input type="checkbox" />').attr("id", checkboxId)[0];
-		obj.labelElem = $('<label />').text(trackerInfo.longName)[0];
+		obj.checkboxElem = $('<input type="checkbox"></input>').attr("id", checkboxId)[0];
+		obj.labelElem = $('<label></label>').text(trackerInfo.longName)[0];
 
 		this.trackerListBox.append($(obj.checkboxElem).add(obj.labelElem), obj);
 	}
@@ -221,7 +221,7 @@ function(oldObj, newObj)
 Trackers.prototype._createTrackerContent =
 function(trackerInfo)
 {
-	var div = $("<div />").attr("id", this._id(trackerInfo));
+	var div = $("<div></div>").attr("id", this._id(trackerInfo));
 
 	var settings = trackerInfo.settings;
 	var tbody = null;
@@ -237,19 +237,19 @@ function(trackerInfo)
 
 		if (setting.type === "textbox" || setting.type === "integer")
 		{
-			elem = $('<tr />').append($('<td />').append(elem[0]))
-							.append($('<td />').append(elem[1]));
+			elem = $('<tr></tr>').append($('<td></td>').append(elem[0]))
+							.append($('<td></td>').append(elem[1]));
 
 			if (tbody == null)
 			{
-				tbody = $('<tbody />');
-				div.append($('<br /><table />').append(tbody));
+				tbody = $('<tbody></tbody>');
+				div.append($('<br></br><table></tabel>').append(tbody));
 			}
 			tbody.append(elem);
 		}
 		else
 		{
-			elem = $('<div />').append(elem);
+			elem = $('<div></div>').append(elem);
 			div.append(elem);
 		}
 	}
@@ -266,25 +266,25 @@ function(setting, trackerInfo)
 	switch (setting.type)
 	{
 	case "bool":
-		var checkbox = $('<input type="checkbox" />').attr("id", id).attr("title", tooltipText);
-		var label = $('<label />').attr("for", id).text(setting.text).attr("title", tooltipText);
+		var checkbox = $('<input type="checkbox"></input>').attr("id", id).attr("title", tooltipText);
+		var label = $('<label></label>').attr("for", id).text(setting.text).attr("title", tooltipText);
 		return checkbox.add(label);
 
 	case "textbox":
 	case "integer":
-		var label = $('<label />').attr("for", id).text(setting.text);
-		var textbox = $('<input type="text" class="textbox-22" />')
+		var label = $('<label></label>').attr("for", id).text(setting.text);
+		var textbox = $('<input type="text" class="textbox-22"></input>')
 							.attr("id", id)
 							.attr("title", tooltipText)
 							.attr("placeholder", setting.placeholder || "");
 		if (setting.pasteRegex && setting.pasteGroup)
 		{
 			var this_ = this;
-			textbox.change(function(e)
+			textbox.on('change', function(e)
 			{
 				this_._onPaste(trackerInfo, setting.pasteGroup, textbox);
 			});
-			textbox.keyup(function(e)
+			textbox.on('keyup', function(e)
 			{
 				this_._onPaste(trackerInfo, setting.pasteGroup, textbox);
 			});

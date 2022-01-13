@@ -168,9 +168,9 @@ function DropDownBox(id)
 	this.selectedIndex = -1;
 
 	var this_ = this;
-	$(this.selectElem).change(function(e) { this_._onChange(); })
+	$(this.selectElem).on('change', function(e) { this_._onChange(); })
 						// selectedIndex should be updated when we get a keyup event
-					  .keyup(function(e) { this_._onChange(); });
+					  .on('keyup', function(e) { this_._onChange(); });
 }
 
 DropDownBox.prototype._onChange =
@@ -286,7 +286,7 @@ function SyncTextBoxes(ids)
 		(function(i, textbox)
 		{
 			this_.textboxElems.push(textbox);
-			$(textbox).keyup(function(e) { this_.setNewValue(i); })
+			$(textbox).on('keyup', function(e) { this_.setNewValue(i); })
 		})(i, document.getElementById(ids[i]));
 	}
 }

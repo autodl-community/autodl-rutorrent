@@ -474,7 +474,7 @@ function(multiSelectDlgBox, okHandler)
 							'<tr>' +
 								'<td>' +
 									'<label for="autodl-filters-scene">' + theUILang.autodlScene + '</label>' +
-									'<select id="autodl-filters-scene"></input>' +
+									'<select id="autodl-filters-scene"></select>' +
 									'<label for="autodl-filters-origins">' + theUILang.autodlOrigins + '</label>' +
 									'<input type="text" class="textbox-16" id="autodl-filters-origins" title="' + theUILang.autodlTitle60 + '"placeholder="' + theUILang.autodlHint35 + '"></input>' +
 								'</td>' +

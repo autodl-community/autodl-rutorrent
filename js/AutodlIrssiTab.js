@@ -103,7 +103,7 @@ function AutodlIrssiTab(dialogManager, plugin)
 		'</div>'
 	).get(0), "autodl-irssi", "lcont");
 
-	$("#autodl-restore").submit(function()
+	$("#autodl-restore").on('submit', function()
 	{
 		if ($("#autodl-restore-file").val() == "")
 		{
@@ -113,23 +113,23 @@ function AutodlIrssiTab(dialogManager, plugin)
 		dialogManager.clearConfigFileCache();
 		return true;
 	});
-	$("#autodl-log-backup-button").click(function()
+	$("#autodl-log-backup-button").on('click', function()
 	{
 		backupIframe.attr("src", "plugins/autodl-irssi/getfile.php?file=autodl.cfg");
 	});
-	$("#autodl-log-update-button").click(function()
+	$("#autodl-log-update-button").on('click', function()
 	{
 		this_._sendAutodlCommand("update");
 	});
-	$("#autodl-log-whatsnew-button").click(function()
+	$("#autodl-log-whatsnew-button").on('click', function()
 	{
 		this_._sendAutodlCommand("whatsnew");
 	});
-	$("#autodl-log-version-button").click(function()
+	$("#autodl-log-version-button").on('click', function()
 	{
 		this_._sendAutodlCommand("version");
 	});
-	$("#autodl-log-reload-trackers-button").click(function()
+	$("#autodl-log-reload-trackers-button").on('click', function()
 	{
 		this_._sendAutodlCommand("reloadtrackers");
 	});
@@ -137,7 +137,7 @@ function AutodlIrssiTab(dialogManager, plugin)
 	this._initResizeBottom();
 	this._initOnShow();
 
-	$("#autodl-log-clear-button").click(function(e)
+	$("#autodl-log-clear-button").on('click', function(e)
 	{
 		$("#autodl-log-tbody").empty();
 	});

@@ -26,13 +26,13 @@ function MultiSelect()
 {
 	theDialogManager.make("autodl-multiselect", theUILang.autodlSelect,
 		'<div id="autodl-multiselect">' +
-			'<div id="autodl-multiselect-title" />' +
+			'<div id="autodl-multiselect-title"></div>' +
 			'<div id="autodl-multiselect-content">' +
-				'<select multiple="multiple" id="autodl-multiselect-select" />' +
+				'<select multiple="multiple" id="autodl-multiselect-select"></select>' +
 			'</div>' +
 			'<div class="aright buttons-list dialog-buttons">' +
-				'<input type="button" id="autodl-multiselect-ok-button" value="' + theUILang.ok + '" class="OK Button" />' +
-				'<input type="button" value="' + theUILang.Cancel + '" class="Cancel Button" />' +
+				'<input type="button" id="autodl-multiselect-ok-button" value="' + theUILang.ok + '" class="OK Button"></input>' +
+				'<input type="button" value="' + theUILang.Cancel + '" class="Cancel Button"></input>' +
 			'</div>' +
 		'</div>', true
 	);
@@ -50,7 +50,7 @@ function MultiSelect()
 		this_.onAfterHide();
 	});
 
-	$("#autodl-multiselect-ok-button").click(function(e)
+	$("#autodl-multiselect-ok-button").on('click', function(e)
 	{
 		this_._onClickOk();
 	});
@@ -103,7 +103,7 @@ function()
 
 	for (var i = 0; i < this.data.listboxData.length; i++)
 	{
-		var option = $('<option />').text(this.data.listboxData[i].displayName);
+		var option = $('<option></option>').text(this.data.listboxData[i].displayName);
 		if (isSelected(this.data.listboxData[i].validNames))
 			option.attr("selected", "selected");
 		$(this.selectElem).append(option);

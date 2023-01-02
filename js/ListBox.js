@@ -62,7 +62,7 @@ function(elem, data)
 	$(this.lbElem).append(obj.elem);
 
 	var this_ = this;
-	$(obj.elem).click(function(e)
+	$(obj.elem).on('click', function(e)
 	{
 		this_.select(this_._findIndex(obj));
 	});

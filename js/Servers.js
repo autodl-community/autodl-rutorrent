@@ -35,32 +35,32 @@ function(multiSelectDlgBox, okHandler)
 				'<p>' + theUILang.autodlCantEditHere + '</p>' +
 			'</div>' +
 			'<div id="autodl-servers-left">' +
-				'<div id="autodl-servers-list" />' +
+				'<div id="autodl-servers-list"></div>' +
 			'</div>' +
 			'<div id="autodl-servers-right">' +
 				'<table>' +
 					'<tbody>' +
 						'<tr>' +
 							'<td><label for="autodl-servers-network">' + theUILang.autodlNetwork + '</label></td>' +
-							'<td><input type="text" class="textbox-18" id="autodl-servers-network" /></td>' +
+							'<td><input type="text" class="textbox-18" id="autodl-servers-network"></input></td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td><label for="autodl-servers-servers">' + theUILang.autodlServer + '</label></td>' +
-							'<td><input type="text" class="textbox-18" id="autodl-servers-servers" /></td>' +
+							'<td><input type="text" class="textbox-18" id="autodl-servers-servers"></input></td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td><label for="autodl-servers-channels">' + theUILang.autodlChannels + '</label></td>' +
-							'<td><input type="text" class="textbox-18" id="autodl-servers-channels" /></td>' +
+							'<td><input type="text" class="textbox-18" id="autodl-servers-channels"></input></td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td><label for="autodl-servers-announcers">' + theUILang.autodlAnnouncer + '</label></td>' +
-							'<td><input type="text" class="textbox-18" id="autodl-servers-announcers" /></td>' +
+							'<td><input type="text" class="textbox-18" id="autodl-servers-announcers"></input></td>' +
 						'</tr>' +
 					'</tbody>' +
 				'</table>' +
 			'</div>' +
 			'<div class="aright buttons-list dialog-buttons">' +
-				'<input type="button" id="autodl-servers-close-button" value="' + theUILang.autodlClose + '" class="Button" />' +
+				'<input type="button" id="autodl-servers-close-button" value="' + theUILang.autodlClose + '" class="Button"></input>' +
 			'</div>' +
 		'</div>'
 	);
@@ -72,7 +72,7 @@ function(multiSelectDlgBox, okHandler)
 	this.trackerListBox = new ListBox("autodl-servers-list");
 	this.trackerListBox.onSelected = function(oldObj, newObj) { this_._onTrackerSelected(oldObj, newObj); }
 
-	$("#autodl-servers-close-button").click(function(e) { okHandler() });
+	$("#autodl-servers-close-button").on('click', function(e) { okHandler() });
 }
 
 Servers.prototype.onOkClicked =
@@ -131,7 +131,7 @@ function(trackerInfos)
 				server: server,
 				trackerInfo: trackerInfo
 			};
-			obj.labelElem = $('<label />').text(trackerInfo.longName)[0];
+			obj.labelElem = $('<label></label>').text(trackerInfo.longName)[0];
 
 			this.trackerListBox.append(obj.labelElem, obj);
 		}

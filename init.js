@@ -151,11 +151,10 @@ function()
 	this.addSeparatorToToolbar(beforeId);
 
 	var this_ = this;
-	$("#mnu_autodl-tb").click(function(e)
+	$("#mnu_autodl-tb").on('click', function(e)
 	{
 		this_._onClickToolbarButton(e);
-	}).
-	mouseup(function(e)
+	}).on('mouseup', function(e)
 	{
 		// Prevent ruTorrent from closing the popup menu
 		e.stopPropagation();
